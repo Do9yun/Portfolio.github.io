@@ -1,6 +1,6 @@
-/* 1. @font-face로 글씨체 로드 */
+/* 1. @font-face로 Permanent Marker 글씨체 로드 */
 @font-face {
-    font-family: 'Playwrite';
+    font-family: 'Permanent Marker';
     src: url('font/PermanentMarker-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -62,13 +62,13 @@ header {
 
 /* 제목 스타일 */
 .intro-content h1 {
-    font-family: 'Playwrite', sans-serif; /* Portfolio에만 글씨체 적용 */
+    font-family: 'Permanent Marker', sans-serif; /* Portfolio에만 Permanent Marker 폰트 적용 */
     font-size: 3rem;
     margin-bottom: 20px;
 }
 
 /* 부제목 스타일 */
 .intro-content p {
-    font-family: Arial, sans-serif; /* 기본 글씨체 */
+    font-family: Arial, sans-serif; /* 부제목 기본 글씨체 */
     font-size: 1.2rem;
 }
