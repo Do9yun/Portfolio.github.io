@@ -1,26 +1,38 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('images/1.png'); /* 배경 이미지 경로 */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 5px; /* 상단 여백을 줄여 더 위로 배치 */
-    width: 100%; /* 헤더 전체 폭을 채움 */
+    top: 10px;
+    width: 100%;
     display: flex;
-    justify-content: space-between; /* 왼쪽과 오른쪽으로 정렬 */
+    justify-content: space-between; /* 왼쪽 로고와 오른쪽 홈 버튼 정렬 */
     align-items: center;
-    padding: 0 20px; /* 좌우 여백 추가 */
+    padding: 0 20px;
+    z-index: 10; /* 헤더를 최상위에 배치 */
 }
 
 /* 로고 스타일 */
 .logo img {
-    width: 45px; /* 로고 크기 */
+    width: 50px; /* 로고 크기 */
     height: auto;
-    cursor: pointer; /* 클릭 가능하도록 설정 */
+    cursor: pointer;
 }
 
 /* 홈 버튼 스타일 */
 .home-button {
     display: inline-block;
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 8px;
@@ -38,4 +50,21 @@ header {
 .home-icon {
     width: 30px;
     height: 30px;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    text-align: center;
+    margin-top: 20%; /* 텍스트 위치 조정 */
+}
+
+.main-content h1 {
+    font-size: 4rem; /* 글씨 크기 */
+    font-family: 'Permanent Marker', cursive; /* Portfolio 글씨체 */
+    margin: 0;
+}
+
+.main-content p {
+    font-size: 1.5rem; /* 설명 텍스트 크기 */
+    margin: 10px 0 0;
 }
