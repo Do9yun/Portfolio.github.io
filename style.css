@@ -85,9 +85,10 @@ header {
 
 /* 로고 스타일 */
 .logo img {
-    width: 100px; /* 로고 크기 */
-    height: auto;
-    cursor: pointer; /* 클릭 가능하도록 커서 변경 */
+    width: 45px; /* 홈 버튼 크기와 비슷하게 설정 */
+    height: auto; /* 비율 유지 */
+    border-radius: 50%; /* 원형으로 만들기 (필요 시 삭제 가능) */
+    cursor: pointer; /* 클릭 가능하도록 설정 */
 }
 
 /* 홈 버튼 스타일 */
