@@ -31,11 +31,11 @@ header {
 /* 홈 버튼 스타일 */
 .home-button {
     display: inline-block;
-    width: 40px; /* 버튼 가로 크기 */
-    height: 40px; /* 버튼 세로 크기 */
-    background: rgba(255, 255, 255, 0.2); /* 버튼 배경 투명도 */
-    border: 2px solid rgba(255, 255, 255, 0.8); /* 외곽선 */
-    border-radius: 10px; /* 둥근 모서리 */
+    width: 35px; /* 버튼 크기 */
+    height: 35px; /* 버튼 크기 */
+    background: rgba(255, 255, 255, 0.2); /* 투명 배경 */
+    border: 2px solid rgba(255, 255, 255, 0.8); /* 테두리 */
+    border-radius: 5px; /* 살짝 둥근 모서리 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,14 +45,14 @@ header {
 
 /* 홈 버튼 호버 효과 */
 .home-button:hover {
-    background: rgba(255, 255, 255, 0.6); /* 호버 시 배경 밝아짐 */
+    background: rgba(255, 255, 255, 0.6); /* 호버 시 밝아짐 */
     border-color: white;
 }
 
-/* 홈 아이콘 이미지 스타일 */
+/* 홈 아이콘 스타일 */
 .home-icon {
-    width: 25px; /* 아이콘 가로 크기 */
-    height: 25px; /* 아이콘 세로 크기 */
+    width: 20px; /* 아이콘 크기 */
+    height: 20px; /* 아이콘 크기 */
 }
 
 /* 메인 콘텐츠 스타일 */
