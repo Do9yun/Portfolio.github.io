@@ -1,7 +1,7 @@
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 0px; /* 상단 여백을 줄여 더 위로 배치 */
+    top: 5px; /* 상단 여백을 줄여 더 위로 배치 */
     width: 100%; /* 헤더 전체 폭을 채움 */
     display: flex;
     justify-content: space-between; /* 왼쪽과 오른쪽으로 정렬 */
@@ -14,7 +14,6 @@ header {
     width: 45px; /* 로고 크기 */
     height: auto;
     cursor: pointer; /* 클릭 가능하도록 설정 */
-    margin-top: -5px; /* 로고를 위로 약간 올림 */
 }
 
 /* 홈 버튼 스타일 */
@@ -29,7 +28,6 @@ header {
     justify-content: center;
     align-items: center;
     transition: background 0.3s, border-color 0.3s;
-    margin-top: -5px; /* 홈 버튼을 위로 약간 올림 */
 }
 
 .home-button:hover {
