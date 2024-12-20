@@ -63,7 +63,7 @@ header {
 /* 제목 스타일 */
 .intro-content h1 {
     font-family: 'Permanent Marker', sans-serif; /* Portfolio에만 Permanent Marker 폰트 적용 */
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 20px;
 }
 
