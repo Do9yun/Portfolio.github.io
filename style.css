@@ -1,12 +1,12 @@
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 5px; /* 상단 여백을 줄여 더 위로 배치 */
-    width: 100%; /* 헤더 전체 폭을 채움 */
+    top: 5px; /* 상단 여백 */
+    width: 100%; /* 헤더 전체 폭 */
     display: flex;
     justify-content: space-between; /* 왼쪽과 오른쪽으로 정렬 */
     align-items: center;
-    padding: 0 20px; /* 좌우 여백 추가 */
+    padding: 0 5px; /* 좌우 여백 */
 }
 
 /* 로고 스타일 */
@@ -38,4 +38,36 @@ header {
 .home-icon {
     width: 30px;
     height: 30px;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+.main-content h1 {
+    font-size: 5rem; /* 제목 크기 */
+    font-family: 'Permanent Marker', cursive; /* 제목 폰트 */
+    margin: 0;
+}
+
+.main-content p {
+    font-size: 1.5rem; /* 문구 크기 */
+    font-family: 'Arial', sans-serif; /* 기본 폰트 */
+    margin: 10px 0;
+}
+
+/* 배경 이미지 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('images/1.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
 }
