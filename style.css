@@ -1,12 +1,14 @@
 /* 기본 스타일 */
-body {
+html, body {
     margin: 0;
     padding: 0;
-    background-image: url('images/1.png'); /* 배경 이미지 경로 */
-    background-size: cover;
-    background-position: center;
+    width: 100%; /* 창 너비를 100%로 설정 */
+    height: 100%; /* 창 높이를 100%로 설정 */
+    overflow: hidden; /* 화면 넘침 방지 */
     font-family: Arial, sans-serif;
     color: white;
+    background: url('images/1.png') no-repeat center center fixed; /* 배경 이미지 설정 */
+    background-size: cover; /* 배경 이미지 크기를 화면에 맞춤 */
 }
 
 /* 헤더 스타일 */
@@ -15,15 +17,15 @@ header {
     top: 10px;
     width: 100%;
     display: flex;
-    justify-content: space-between; /* 왼쪽 로고와 오른쪽 홈 버튼 정렬 */
+    justify-content: space-between; /* 로고와 홈 버튼 정렬 */
     align-items: center;
     padding: 0 20px;
-    z-index: 10; /* 헤더를 최상위에 배치 */
+    z-index: 10;
 }
 
 /* 로고 스타일 */
 .logo img {
-    width: 50px; /* 로고 크기 */
+    width: 50px;
     height: auto;
     cursor: pointer;
 }
@@ -55,12 +57,15 @@ header {
 /* 메인 콘텐츠 스타일 */
 .main-content {
     text-align: center;
-    margin-top: 20%; /* 텍스트 위치 조정 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 화면 중앙 정렬 */
 }
 
 .main-content h1 {
-    font-size: 4rem; /* 글씨 크기 */
-    font-family: 'Permanent Marker', cursive; /* Portfolio 글씨체 */
+    font-size: 4rem; /* 제목 크기 */
+    font-family: 'Permanent Marker', cursive;
     margin: 0;
 }
 
