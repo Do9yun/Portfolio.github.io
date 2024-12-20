@@ -1,7 +1,7 @@
 /* 1. @font-face로 글씨체 로드 */
 @font-face {
     font-family: 'Playwrite';
-    src: url('font/PlaywriteAUVICGuides-Regular.ttf') format('truetype');
+    src: url('font/PermanentMarker-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
