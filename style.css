@@ -28,19 +28,31 @@ header {
     right: 10px;
 }
 
+/* 홈 버튼 스타일 */
 .home-button {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2); /* 버튼 배경 투명도 */
+    border: 2px solid rgba(255, 255, 255, 0.8); /* 외곽선 */
+    border-radius: 10px; /* 둥근 모서리 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s, border-color 0.3s;
     text-decoration: none;
-    font-size: 1rem;
-    color: white;
-    background: rgba(0, 0, 0, 0.6); /* 투명도 있는 검은색 */
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background 0.3s;
 }
 
+/* 홈 버튼 호버 효과 */
 .home-button:hover {
-    background: rgba(255, 255, 255, 0.8); /* 호버 시 흰색 배경 */
-    color: black;
+    background: rgba(255, 255, 255, 0.6); /* 호버 시 배경 밝아짐 */
+    border-color: white;
+}
+
+/* 홈 아이콘 이미지 스타일 */
+.home-icon {
+    width: 30px;
+    height: 30px;
 }
 
 /* 메인 콘텐츠 스타일 */
