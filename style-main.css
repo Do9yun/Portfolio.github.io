@@ -31,40 +31,37 @@ header {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
-    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: auto;
 }
 
-/* 수정 버튼 스타일 */
+/* 수정 텍스트 버튼 */
 .edit-text {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
     font-size: 1rem;
     color: white;
     cursor: pointer;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
-/* 목록 생성 버튼 스타일 */
+/* 목록 생성 텍스트 버튼 */
 .create-text {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
     font-size: 1rem;
     color: white;
     cursor: pointer;
+    text-align: right;
 }
 
-/* 목록 생성 시 텍스트박스 및 버튼 컨테이너 */
+/* 입력 박스 및 버튼 컨테이너 */
 .input-container {
     display: flex;
-    gap: 10px;
     align-items: center;
     margin-top: 10px;
+    justify-content: center; /* 중앙 정렬 */
 }
 
 .input-container input {
@@ -73,6 +70,7 @@ header {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-right: 10px; /* 버튼과의 간격 */
 }
 
 .input-container button {
