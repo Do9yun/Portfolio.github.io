@@ -7,7 +7,7 @@ html, body {
     overflow: hidden; /* 화면 넘침 방지 */
     font-family: Arial, sans-serif;
     color: white;
-    background: url('images/1.png') no-repeat center center fixed; /* 배경 이미지 설정 */
+    background: url('images/index.png') no-repeat center center fixed; /* 배경 이미지 설정 */
     background-size: cover; /* 배경 이미지 크기를 화면에 맞춤 */
 }
 
