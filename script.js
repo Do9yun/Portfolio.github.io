@@ -26,7 +26,7 @@ function createListItem(item) {
     const editButton = document.createElement('span');
     editButton.textContent = '수정';
     editButton.style.cursor = 'pointer';
-    editButton.style.color = '#00FF00';
+    editButton.style.color = '#FFA500';
     editButton.onclick = () => {
         // 텍스트박스로 전환
         const inputBox = document.createElement('input');
@@ -51,11 +51,9 @@ function createListItem(item) {
                     localStorage.setItem('savedList', JSON.stringify(savedItems));
                 }
             }
-            // 텍스트박스와 버튼 제거
             inputBox.remove();
             saveButton.remove();
             cancelButton.remove();
-            itemName.style.display = 'inline';
         };
 
         const cancelButton = document.createElement('span');
@@ -66,10 +64,8 @@ function createListItem(item) {
             inputBox.remove();
             saveButton.remove();
             cancelButton.remove();
-            itemName.style.display = 'inline';
         };
 
-        // 기존 텍스트 숨기고 텍스트박스와 버튼 표시
         itemName.style.display = 'none';
         listItem.insertBefore(inputBox, actionContainer);
         listItem.insertBefore(saveButton, actionContainer);
@@ -105,10 +101,56 @@ function createListItem(item) {
     list.appendChild(listItem);
 }
 
+function createInputBox() {
+    const sidebar = document.querySelector('.sidebar');
+
+    const inputContainer = document.getElementById('input-container');
+    if (inputContainer) inputContainer.remove();
+
+    const newContainer = document.createElement('div');
+    newContainer.id = 'input-container';
+    newContainer.style.display = 'flex';
+    newContainer.style.gap = '10px';
+    newContainer.style.marginTop = '10px';
+
+    const inputBox = document.createElement('input');
+    inputBox.type = 'text';
+    inputBox.placeholder = '목록 이름 입력';
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = '저장';
+    saveButton.style.cursor = 'pointer';
+    saveButton.style.color = '#4CAF50';
+    saveButton.onclick = () => {
+        const inputValue = inputBox.value.trim();
+        if (inputValue) {
+            createListItem(inputValue);
+
+            const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+            savedItems.push(inputValue);
+            localStorage.setItem('savedList', JSON.stringify(savedItems));
+            newContainer.remove();
+        }
+    };
+
+    const cancelButton = document.createElement('button');
+    cancelButton.textContent = '취소';
+    cancelButton.style.cursor = 'pointer';
+    cancelButton.style.color = '#FF0000';
+    cancelButton.onclick = () => {
+        newContainer.remove();
+    };
+
+    newContainer.appendChild(inputBox);
+    newContainer.appendChild(saveButton);
+    newContainer.appendChild(cancelButton);
+
+    sidebar.appendChild(newContainer);
+}
+
 function toggleEditMode() {
-    const listItems = document.querySelectorAll('#dynamic-list li');
-    listItems.forEach((listItem) => {
-        const actionContainer = listItem.querySelector('div');
+    const listItems = document.querySelectorAll('#dynamic-list li div');
+    listItems.forEach((actionContainer) => {
         actionContainer.style.display = actionContainer.style.display === 'flex' ? 'none' : 'flex';
     });
 }
@@ -116,15 +158,4 @@ function toggleEditMode() {
 // 페이지 로드 시 기존 목록 불러오기
 window.onload = () => {
     loadList();
-
-    // 사이드바에 "수정" 버튼 추가
-    const sidebar = document.querySelector('.sidebar');
-    const editModeButton = document.createElement('div');
-    editModeButton.textContent = '수정';
-    editModeButton.style.cursor = 'pointer';
-    editModeButton.style.color = '#FFA500';
-    editModeButton.style.marginTop = '20px';
-    editModeButton.onclick = toggleEditMode;
-
-    sidebar.appendChild(editModeButton);
 };
