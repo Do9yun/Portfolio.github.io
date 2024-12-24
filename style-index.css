@@ -48,7 +48,7 @@ header {
 }
 
 .content h2 {
-    font-size: 1.5rem;
+    font-size: 2.5rem; /* WELCOME 크기 */
     color: #FFC107; /* 진한 노란색 */
     display: flex;
     align-items: center;
@@ -59,22 +59,22 @@ header {
 .content h2::after {
     content: "";
     display: inline-block;
-    width: 50px;
-    height: 2px;
-    background-color: #FFD700; /* 진한 노란색 */
-    margin: 0 10px;
+    width: 80px; /* 작대기 길이 증가 */
+    height: 3px; /* 작대기 두께 증가 */
+    background-color: #FFC107; /* 진한 노란색 */
+    margin: 0 15px;
 }
 
 .content h1 {
-    font-size: 4rem;
+    font-size: 6rem; /* KIM DOGYUN 크기 */
     font-weight: bold;
-    margin: 10px 0;
+    margin: 20px 0;
     color: white; /* 기본 흰색 */
 }
 
 .content h3 {
-    font-size: 1.5rem;
-    color: #FFD700; /* 진한 노란색 */
+    font-size: 2rem; /* PORTFOLIO 크기 */
+    color: #FFC107; /* 진한 노란색 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,8 +84,8 @@ header {
 .content h3::after {
     content: "";
     display: inline-block;
-    width: 30px;
-    height: 2px;
-    background-color: #FFD700; /* 진한 노란색 */
-    margin: 0 10px;
+    width: 60px; /* 작대기 길이 증가 */
+    height: 3px; /* 작대기 두께 증가 */
+    background-color: #FFC107; /* 진한 노란색 */
+    margin: 0 15px;
 }
