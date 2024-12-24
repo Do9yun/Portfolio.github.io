@@ -9,15 +9,15 @@
 <body>
     <header>
         <div class="logo">
-            <a href="main.html">
+            <a href="index.html">
                 <img src="icon/로고.png" alt="Logo">
             </a>
         </div>
     </header>
     <aside class="sidebar">
-        <!-- 목록 생성 글씨를 버튼 대신 div로 구현 -->
-        <div class="create-text" onclick="createList()">목록 생성</div>
         <ul id="dynamic-list"></ul>
+        <div class="edit-text" onclick="toggleEditMode()">수정</div>
+        <div class="create-text" onclick="createList()">목록 생성</div>
     </aside>
     <script src="script.js"></script>
 </body>
