@@ -33,84 +33,72 @@ header {
     width: 200px;
     padding: 20px;
     border-radius: 5px;
-    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 400px; /* 사이드바 높이 지정 */
 }
 
-/* 수정 텍스트 버튼 */
-.sidebar .edit-button {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 0.9rem; /* 텍스트 크기 줄임 */
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 0;
-    background: none;
-    border: none;
-}
-
-/* 목록 생성 텍스트 버튼 */
-.sidebar .create-text {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 0.9rem; /* 텍스트 크기 줄임 */
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 0;
-    background: none;
-    border: none;
-}
-
-/* 동적 목록 스타일 */
-#dynamic-list {
+/* 목록 스타일 */
+.sidebar ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-#dynamic-list li {
-    padding: 10px;
+.sidebar li {
     margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
     color: white;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
-#dynamic-list li:hover {
-    background-color: rgba(255, 255, 255, 0.4);
+/* 버튼 스타일 */
+.create-text, .edit-text {
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
 }
 
-/* 텍스트 박스 스타일 */
-.input-container {
+.create-text {
+    align-self: flex-end; /* 오른쪽 하단에 배치 */
+}
+
+.edit-text {
+    align-self: flex-start; /* 왼쪽 하단에 배치 */
+}
+
+/* 텍스트박스와 버튼 스타일 */
+#input-container {
     display: flex;
-    align-items: center;
+    gap: 10px;
     margin-top: 10px;
 }
 
-.input-container input {
+#input-container input {
     flex: 1;
     padding: 5px;
-    border-radius: 5px;
-    border: 1px solid white;
-    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#input-container button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#input-container button:hover {
+    opacity: 0.8;
+}
+
+#input-container button:first-child {
+    background-color: #FF0000;
     color: white;
 }
 
-.input-container button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid white;
-    background-color: transparent;
+#input-container button:last-child {
+    background-color: #4CAF50;
     color: white;
-    cursor: pointer;
 }
