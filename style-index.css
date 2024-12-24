@@ -17,6 +17,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 10;
 }
 
 /* 로고 스타일 */
@@ -41,11 +42,44 @@ header {
     text-align: center;
 }
 
-.content h1 {
-    font-size: 4rem;
+.content h2 {
+    font-size: 1.5rem;
+    color: #A3C686; /* 초록색 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.content p {
-    font-size: 1.5rem;
+.content h2::before,
+.content h2::after {
+    content: "";
+    display: inline-block;
+    width: 50px;
+    height: 2px;
+    background-color: #A3C686;
+    margin: 0 10px;
+}
+
+.content h1 {
+    font-size: 4rem;
+    font-weight: bold;
     margin: 10px 0;
+}
+
+.content h3 {
+    font-size: 1.5rem;
+    color: #A3C686;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h3::before,
+.content h3::after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background-color: #A3C686;
+    margin: 0 10px;
 }
