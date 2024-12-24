@@ -16,13 +16,9 @@
     </header>
     <aside class="sidebar">
         <ul id="dynamic-list"></ul>
-        <div class="edit-button" onclick="toggleEditMode()">수정</div>
-        <div class="create-text" onclick="showInputBox()">목록 생성</div>
+        <span class="edit-text" onclick="toggleEditMode()">수정</span>
+        <span class="create-text" onclick="createInputBox()">목록 생성</span>
     </aside>
-    <div class="input-container" id="input-container" style="display: none;">
-        <input type="text" id="input-box" placeholder="항목 입력">
-        <button onclick="addListItem()">저장</button>
-    </div>
     <script src="script.js"></script>
 </body>
 </html>
