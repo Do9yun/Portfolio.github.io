@@ -11,7 +11,7 @@ body {
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 10px; /* 헤더 상단 여백 */
+    top: 10px;
     left: 10px;
 }
 
@@ -21,13 +21,13 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
-    margin-bottom: 20px; /* 로고와 사이드바 사이 간격 */
+    margin-bottom: 20px;
 }
 
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 150px; /* 사이드바 위치 */
+    top: 150px;
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
@@ -36,30 +36,54 @@ header {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 아래쪽으로 버튼 배치 */
+    justify-content: space-between;
     align-items: flex-start;
 }
 
 /* 버튼 스타일 */
 .sidebar .button-group {
     display: flex;
-    justify-content: space-between; /* 버튼 간격 균등 분배 */
-    width: 100%; /* 버튼 그룹의 폭 설정 */
+    justify-content: space-between;
+    width: 100%;
 }
 
 .sidebar .button-group .create-text,
 .sidebar .button-group .edit-text {
-    font-size: 1.2rem; /* 텍스트 크기 */
-    color: white; /* 흰색 글씨 */
+    font-size: 1.2rem;
+    color: white;
     cursor: pointer;
-    text-decoration: none; /* 기본 밑줄 제거 */
-    padding: 0; /* 패딩 제거 */
-    margin: 0; /* 마진 제거 */
-    border: none; /* 테두리 제거 */
-    background: none; /* 배경 제거 */
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
 }
 
 /* 목록 스타일 */
 #dynamic-list {
     margin-top: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+#dynamic-list li {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dynamic-list li span {
+    margin-right: 10px;
+}
+
+#dynamic-list li .edit-container {
+    display: flex;
+    gap: 10px;
+    display: none;
 }
