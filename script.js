@@ -17,7 +17,7 @@ function createListItem(item) {
 
     // 수정 | 삭제 버튼 컨테이너
     const actionContainer = document.createElement('div');
-    actionContainer.style.display = 'flex';
+    actionContainer.style.display = 'none'; // 기본은 숨김
     actionContainer.style.gap = '10px';
 
     // 수정 버튼
@@ -39,6 +39,12 @@ function createListItem(item) {
     listItem.appendChild(actionContainer);
 
     list.appendChild(listItem);
+
+    // 목록 클릭 시 수정|삭제 표시
+    listItem.onclick = () => {
+        const isVisible = actionContainer.style.display === 'flex';
+        actionContainer.style.display = isVisible ? 'none' : 'flex';
+    };
 }
 
 function createList() {
