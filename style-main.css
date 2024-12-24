@@ -11,7 +11,7 @@ body {
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 10px; /* 헤더 상단 여백 */
+    top: 10px;
     left: 10px;
 }
 
@@ -21,48 +21,25 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
-    margin-bottom: 20px; /* 로고와 사이드바 사이 간격 */
+    margin-bottom: 20px;
 }
 
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 150px; /* 사이드바 위치 */
+    top: 150px;
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
-    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    position: relative;
 }
 
-/* "목록 생성" 텍스트 스타일 */
-.sidebar .create-text {
-    position: absolute;
-    bottom: 10px; /* 사이드바 아래쪽 여백 */
-    right: 10px; /* 사이드바 오른쪽 여백 */
-    font-size: 1.2rem; /* 텍스트 크기 */
-    color: white; /* 흰색 글씨 */
-    cursor: pointer;
-    text-decoration: none; /* 기본 밑줄 제거 */
-}
-
-/* "수정" 텍스트 스타일 */
-.sidebar .edit-text {
-    position: absolute;
-    bottom: 10px; /* 사이드바 아래쪽 여백 */
-    left: 10px; /* 사이드바 왼쪽 여백 */
-    font-size: 1.2rem; /* 텍스트 크기 */
-    color: white; /* 흰색 글씨 */
-    cursor: pointer;
-    text-decoration: none; /* 기본 밑줄 제거 */
-}
-
+/* 목록 스타일 */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -83,3 +60,13 @@ header {
     background-color: #FFA000;
     color: black;
 }
+
+/* 수정 버튼 스타일 */
+.sidebar div {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    cursor: pointer;
+    color: #FFA500;
+    text-align: center;
+}
+
