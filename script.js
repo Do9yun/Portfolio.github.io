@@ -3,10 +3,10 @@ function loadList() {
     const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
 
     // 로컬 스토리지에 저장된 목록 불러오기
-    savedItems.forEach((item) => createListItem(item));
+    savedItems.forEach((item) => createListItem(item, false));
 }
 
-function createListItem(item) {
+function createListItem(item, showActions) {
     const list = document.getElementById('dynamic-list');
 
     const listItem = document.createElement('li');
@@ -17,7 +17,7 @@ function createListItem(item) {
 
     // 수정 | 삭제 버튼 컨테이너
     const actionContainer = document.createElement('div');
-    actionContainer.style.display = 'none'; // 기본은 숨김
+    actionContainer.style.display = showActions ? 'flex' : 'none'; // 수정 버튼 클릭 시 보이도록 설정
     actionContainer.style.gap = '10px';
 
     // 수정 버튼
@@ -39,12 +39,6 @@ function createListItem(item) {
     listItem.appendChild(actionContainer);
 
     list.appendChild(listItem);
-
-    // 목록 클릭 시 수정|삭제 표시
-    listItem.onclick = () => {
-        const isVisible = actionContainer.style.display === 'flex';
-        actionContainer.style.display = isVisible ? 'none' : 'flex';
-    };
 }
 
 function createList() {
@@ -92,7 +86,7 @@ function createList() {
     saveButton.onclick = () => {
         const inputValue = inputBox.value.trim();
         if (inputValue) {
-            createListItem(inputValue);
+            createListItem(inputValue, false);
 
             // 로컬 스토리지에 저장
             const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
@@ -161,5 +155,26 @@ function deleteListItem(listItem, item) {
     }
 }
 
+function toggleEditMode() {
+    const listItems = document.querySelectorAll('#dynamic-list li');
+    listItems.forEach((listItem) => {
+        const actionContainer = listItem.querySelector('div');
+        actionContainer.style.display = 'flex'; // 수정 버튼 클릭 시 보이게 함
+    });
+}
+
 // 페이지 로드 시 기존 목록 불러오기
-window.onload = loadList;
+window.onload = () => {
+    loadList();
+
+    // 사이드바에 "수정" 버튼 추가
+    const sidebar = document.querySelector('.sidebar');
+    const editModeButton = document.createElement('div');
+    editModeButton.textContent = '수정';
+    editModeButton.style.cursor = 'pointer';
+    editModeButton.style.color = '#FFA500';
+    editModeButton.style.marginTop = '20px';
+    editModeButton.onclick = toggleEditMode;
+
+    sidebar.appendChild(editModeButton);
+};
