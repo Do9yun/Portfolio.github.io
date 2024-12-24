@@ -26,7 +26,7 @@ header {
 
 /* 로고 스타일 */
 .logo img {
-    width: 50px; /* 로고 크기 */
+    width: 100px; /* 로고 크기 */
     height: auto;
     cursor: pointer; /* 클릭 가능 */
 }
