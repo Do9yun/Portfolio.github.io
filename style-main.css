@@ -27,23 +27,24 @@ header {
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 80px; /* 로고 아래로 내려오도록 조정 */
+    top: 150px; /* 사이드바 위치를 더 아래로 */
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
-    height: 300px; /* 사이드바 높이 */
+    height: auto; /* 높이를 내용에 맞게 자동 조정 */
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* 텍스트를 하단으로 배치 */
-    align-items: flex-start; /* 텍스트를 왼쪽 정렬 */
+    justify-content: flex-end; /* 내용이 아래로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
 }
 
-/* 목록 생성 텍스트 스타일 */
+/* "목록 생성" 텍스트 스타일 */
 .sidebar .create-text {
-    font-size: 1rem;
+    font-size: 1.2rem; /* 텍스트 크기 */
     color: white; /* 흰색 글씨 */
     cursor: pointer;
+    margin-top: 20px; /* 사이드바 내용과의 간격 */
     text-decoration: underline; /* 텍스트 강조 */
 }
