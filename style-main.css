@@ -33,30 +33,38 @@ header {
     width: 200px;
     padding: 20px;
     border-radius: 5px;
-}
-
-/* 버튼 스타일 */
-.sidebar .buttons {
+    height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 20px;
 }
 
-.sidebar .buttons .action-button {
-    font-size: 1rem;
+/* 수정 텍스트 버튼 */
+.sidebar .edit-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.9rem; /* 텍스트 크기 줄임 */
     color: white;
     cursor: pointer;
-    padding: 5px 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    text-align: center;
-    background-color: transparent;
-    flex: 1;
-    margin: 0 5px;
+    text-decoration: none;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
-.sidebar .buttons .action-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+/* 목록 생성 텍스트 버튼 */
+.sidebar .create-text {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.9rem; /* 텍스트 크기 줄임 */
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
 /* 동적 목록 스타일 */
