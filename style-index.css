@@ -4,95 +4,88 @@
 }
 
 /* 기본 스타일 */
-html, body {
+body {
     margin: 0;
     padding: 0;
-    width: 100%; /* 창 너비를 100%로 설정 */
-    height: 100%; /* 창 높이를 100%로 설정 */
-    overflow: hidden; /* 화면 넘침 방지 */
+    background: url('images/main1.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: 'Permanent Marker', cursive;
     color: white;
-    background: url('images/main1.jpg') no-repeat center center fixed; /* 배경 이미지 설정 */
-    background-size: cover; /* 배경 이미지 크기를 화면에 맞춤 */
 }
 
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 10px; /* 위쪽 여백 */
-    left: 10px; /* 왼쪽 여백 */
-    width: calc(100% - 20px); /* 전체 폭에서 좌우 여백 제외 */
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
     display: flex;
-    justify-content: space-between; /* 로고와 홈 버튼을 양 끝으로 배치 */
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
     z-index: 10;
 }
 
 /* 로고 스타일 */
 .logo img {
-    width: 50px; /* 로고 크기 */
+    width: 100px;
     height: auto;
-    cursor: pointer; /* 클릭 가능 */
+    cursor: pointer;
 }
 
 /* 홈 버튼 스타일 */
-.home-button {
-    display: inline-block;
+.home-button img {
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s, border-color 0.3s;
-    margin-right: 10px; /* 오른쪽 여백 */
 }
 
-.home-button:hover {
-    background: rgba(255, 255, 255, 0.6);
-    border-color: white;
-}
-
-.home-icon {
-    width: 30px;
-    height: 30px;
-    filter: invert(100%); /* 아이콘 색상을 화이트로 변경 */
-}
-
-/* 메인 콘텐츠 스타일 */
-.main-content {
-    text-align: center;
+/* 콘텐츠 스타일 */
+.content {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* 화면 중앙 정렬 */
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.main-content h1 {
-    font-size: 4rem; /* 제목 크기 */
-    font-family: 'Permanent Marker', cursive;
-    margin: 0;
+.content h2 {
+    font-size: 2.5rem; /* WELCOME 크기 */
+    color: #FFA000; /* 더 진한 노란색 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.main-content h2 {
-    font-size: 2.5rem; /* WELCOME 텍스트 크기 */
-    color: #FFC107; /* 더 진한 노란색 */
-    margin: 0;
-}
-
-.main-content h3 {
-    font-size: 1.5rem; /* KIM DOGYUN 텍스트 크기 */
-    color: #FFC107; /* 더 진한 노란색 */
-    margin: 0;
-}
-
-.line {
+.content h2::before,
+.content h2::after {
+    content: "";
     display: inline-block;
-    width: 50px; /* 작대기 길이 */
+    width: 80px; /* 작대기 길이 */
     height: 3px; /* 작대기 두께 */
-    background-color: #FFC107; /* 더 진한 노란색 */
-    margin: 0 15px; /* 텍스트와 간격 */
+    background-color: #FFA000; /* 더 진한 노란색 */
+    margin: 0 15px;
+}
+
+.content h1 {
+    font-size: 6rem; /* KIM DOGYUN 크기 */
+    font-weight: bold;
+    margin: 20px 0;
+    color: white; /* 기본 흰색 */
+}
+
+.content h3 {
+    font-size: 2rem; /* PORTFOLIO 크기 */
+    color: #FFA000; /* 더 진한 노란색 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h3::before,
+.content h3::after {
+    content: "";
+    display: inline-block;
+    width: 60px; /* 작대기 길이 */
+    height: 3px; /* 작대기 두께 */
+    background-color: #FFA000; /* 더 진한 노란색 */
+    margin: 0 15px;
 }
