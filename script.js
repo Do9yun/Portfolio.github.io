@@ -102,16 +102,16 @@ function createListItem(item) {
 }
 
 function createInputBox() {
-    const sidebar = document.querySelector('.sidebar');
+    const list = document.getElementById('dynamic-list');
 
+    // 기존에 생성된 입력 박스가 있다면 제거
     const inputContainer = document.getElementById('input-container');
     if (inputContainer) inputContainer.remove();
 
+    // 새로운 입력 박스 컨테이너 생성
     const newContainer = document.createElement('div');
     newContainer.id = 'input-container';
-    newContainer.style.display = 'flex';
-    newContainer.style.gap = '10px';
-    newContainer.style.marginTop = '10px';
+    newContainer.className = 'input-container';
 
     const inputBox = document.createElement('input');
     inputBox.type = 'text';
@@ -119,8 +119,7 @@ function createInputBox() {
 
     const saveButton = document.createElement('button');
     saveButton.textContent = '저장';
-    saveButton.style.cursor = 'pointer';
-    saveButton.style.color = '#4CAF50';
+    saveButton.className = 'save';
     saveButton.onclick = () => {
         const inputValue = inputBox.value.trim();
         if (inputValue) {
@@ -135,8 +134,7 @@ function createInputBox() {
 
     const cancelButton = document.createElement('button');
     cancelButton.textContent = '취소';
-    cancelButton.style.cursor = 'pointer';
-    cancelButton.style.color = '#FF0000';
+    cancelButton.className = 'cancel';
     cancelButton.onclick = () => {
         newContainer.remove();
     };
@@ -145,7 +143,7 @@ function createInputBox() {
     newContainer.appendChild(saveButton);
     newContainer.appendChild(cancelButton);
 
-    sidebar.appendChild(newContainer);
+    list.appendChild(newContainer); // 항목 리스트의 마지막 아래에 추가
 }
 
 function toggleEditMode() {
