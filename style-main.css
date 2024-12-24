@@ -1,13 +1,3 @@
-/* 기본 스타일 */
-body {
-    margin: 0;
-    padding: 0;
-    background: url('images/main1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-
 /* 헤더 스타일 */
 header {
     position: absolute;
@@ -26,7 +16,7 @@ header {
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 60px;
+    top: 120px; /* 기존 60px에서 120px로 수정하여 로고와의 간격 확보 */
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
