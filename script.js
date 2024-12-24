@@ -1,7 +1,20 @@
+function loadList() {
+    const list = document.getElementById('dynamic-list');
+    const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+
+    // 로컬 스토리지에 저장된 목록 불러오기
+    savedItems.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        listItem.onclick = () => alert(`${item} 클릭됨`);
+        list.appendChild(listItem);
+    });
+}
+
 function createList() {
     const list = document.getElementById('dynamic-list');
 
-    // 기존에 생성된 텍스트박스와 버튼을 제거 (중복 방지)
+    // 기존에 생성된 텍스트박스와 버튼 제거 (중복 방지)
     const existingInputBox = document.getElementById('input-box');
     if (existingInputBox) {
         existingInputBox.remove();
@@ -47,7 +60,13 @@ function createList() {
             listItem.textContent = inputValue;
             listItem.onclick = () => alert(`${inputValue} 클릭됨`);
             list.appendChild(listItem);
+
+            // 로컬 스토리지에 저장
+            const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+            savedItems.push(inputValue);
+            localStorage.setItem('savedList', JSON.stringify(savedItems));
         }
+
         // 텍스트박스와 버튼 제거
         inputBox.remove();
         actionButtons.remove();
@@ -62,3 +81,6 @@ function createList() {
     sidebar.appendChild(inputBox);
     sidebar.appendChild(actionButtons);
 }
+
+// 페이지 로드 시 기존 목록 불러오기
+window.onload = loadList;
