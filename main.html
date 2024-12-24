@@ -17,7 +17,11 @@
     <aside class="sidebar">
         <div class="buttons">
             <div class="action-button" onclick="toggleEditMode()">수정</div>
-            <div class="action-button" onclick="createList()">목록 생성</div>
+            <div class="action-button" onclick="showInputBox()">목록 생성</div>
+        </div>
+        <div class="input-container" id="input-container" style="display: none;">
+            <input type="text" id="input-box" placeholder="항목 입력">
+            <button onclick="addListItem()">저장</button>
         </div>
         <ul id="dynamic-list"></ul>
     </aside>
