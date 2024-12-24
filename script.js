@@ -1,57 +1,98 @@
-// 로컬 스토리지에서 목록 불러오기
 function loadList() {
     const list = document.getElementById('dynamic-list');
     const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
-    savedItems.forEach(item => createListItem(item));
+
+    // 로컬 스토리지에 저장된 목록 불러오기
+    savedItems.forEach((item) => createListItem(item));
 }
 
-// 동적 목록 항목 생성
 function createListItem(item) {
     const list = document.getElementById('dynamic-list');
+
     const listItem = document.createElement('li');
-    
+    listItem.style.display = 'flex';
+    listItem.style.justifyContent = 'space-between';
+    listItem.style.alignItems = 'center';
+
     const itemName = document.createElement('span');
     itemName.textContent = item;
 
+    // 수정 | 삭제 버튼 컨테이너
     const actionContainer = document.createElement('div');
-    actionContainer.style.display = 'none';
+    actionContainer.style.display = 'none'; // 기본적으로 숨김
+    actionContainer.style.gap = '10px';
 
     // 수정 버튼
     const editButton = document.createElement('span');
     editButton.textContent = '수정';
-    editButton.style.color = '#00FF00';
     editButton.style.cursor = 'pointer';
+    editButton.style.color = '#00FF00';
     editButton.onclick = () => {
+        // 텍스트박스로 전환
         const inputBox = document.createElement('input');
         inputBox.type = 'text';
         inputBox.value = item;
+        inputBox.style.marginRight = '10px';
+
         const saveButton = document.createElement('span');
         saveButton.textContent = '저장';
-        saveButton.style.color = '#4CAF50';
         saveButton.style.cursor = 'pointer';
+        saveButton.style.color = '#4CAF50';
         saveButton.onclick = () => {
             const newValue = inputBox.value.trim();
             if (newValue) {
                 itemName.textContent = newValue;
-                updateLocalStorage(item, newValue);
+
+                // 로컬 스토리지 업데이트
+                const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+                const index = savedItems.indexOf(item);
+                if (index !== -1) {
+                    savedItems[index] = newValue;
+                    localStorage.setItem('savedList', JSON.stringify(savedItems));
+                }
             }
+            // 텍스트박스와 버튼 제거
             inputBox.remove();
             saveButton.remove();
+            cancelButton.remove();
+            itemName.style.display = 'inline';
         };
+
+        const cancelButton = document.createElement('span');
+        cancelButton.textContent = '취소';
+        cancelButton.style.cursor = 'pointer';
+        cancelButton.style.color = '#FF0000';
+        cancelButton.onclick = () => {
+            inputBox.remove();
+            saveButton.remove();
+            cancelButton.remove();
+            itemName.style.display = 'inline';
+        };
+
+        // 기존 텍스트 숨기고 텍스트박스와 버튼 표시
         itemName.style.display = 'none';
-        listItem.appendChild(inputBox);
-        listItem.appendChild(saveButton);
+        listItem.insertBefore(inputBox, actionContainer);
+        listItem.insertBefore(saveButton, actionContainer);
+        listItem.insertBefore(cancelButton, actionContainer);
     };
 
     // 삭제 버튼
     const deleteButton = document.createElement('span');
     deleteButton.textContent = '삭제';
-    deleteButton.style.color = '#FF0000';
     deleteButton.style.cursor = 'pointer';
+    deleteButton.style.color = '#FF0000';
     deleteButton.onclick = () => {
-        if (confirm(`${item}을(를) 삭제하시겠습니까?`)) {
+        const confirmation = confirm(`"${item}"을(를) 삭제하시겠습니까?`);
+        if (confirmation) {
             listItem.remove();
-            removeFromLocalStorage(item);
+
+            // 로컬 스토리지에서 삭제
+            const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+            const index = savedItems.indexOf(item);
+            if (index !== -1) {
+                savedItems.splice(index, 1);
+                localStorage.setItem('savedList', JSON.stringify(savedItems));
+            }
         }
     };
 
@@ -60,60 +101,30 @@ function createListItem(item) {
 
     listItem.appendChild(itemName);
     listItem.appendChild(actionContainer);
+
     list.appendChild(listItem);
 }
 
-// 로컬 스토리지 업데이트
-function updateLocalStorage(oldValue, newValue) {
-    const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
-    const index = savedItems.indexOf(oldValue);
-    if (index !== -1) {
-        savedItems[index] = newValue;
-        localStorage.setItem('savedList', JSON.stringify(savedItems));
-    }
-}
-
-// 로컬 스토리지에서 항목 삭제
-function removeFromLocalStorage(item) {
-    const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
-    const index = savedItems.indexOf(item);
-    if (index !== -1) {
-        savedItems.splice(index, 1);
-        localStorage.setItem('savedList', JSON.stringify(savedItems));
-    }
-}
-
-// "목록 생성" 버튼 클릭 시 텍스트 박스 표시
-function showInputBox() {
-    const inputContainer = document.getElementById('input-container');
-    inputContainer.style.display = 'flex';
-}
-
-// 새 항목 추가
-function addListItem() {
-    const inputBox = document.getElementById('input-box');
-    const value = inputBox.value.trim();
-    if (value) {
-        createListItem(value);
-
-        // 로컬 스토리지에 추가
-        const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
-        savedItems.push(value);
-        localStorage.setItem('savedList', JSON.stringify(savedItems));
-
-        // 입력 상자 초기화 및 숨기기
-        inputBox.value = '';
-        document.getElementById('input-container').style.display = 'none';
-    }
-}
-
-// 수정 모드 토글
 function toggleEditMode() {
-    const listItems = document.querySelectorAll('#dynamic-list li div');
-    listItems.forEach(container => {
-        container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+    const listItems = document.querySelectorAll('#dynamic-list li');
+    listItems.forEach((listItem) => {
+        const actionContainer = listItem.querySelector('div');
+        actionContainer.style.display = actionContainer.style.display === 'flex' ? 'none' : 'flex';
     });
 }
 
-// 페이지 로드 시 목록 로드
-window.onload = loadList;
+// 페이지 로드 시 기존 목록 불러오기
+window.onload = () => {
+    loadList();
+
+    // 사이드바에 "수정" 버튼 추가
+    const sidebar = document.querySelector('.sidebar');
+    const editModeButton = document.createElement('div');
+    editModeButton.textContent = '수정';
+    editModeButton.style.cursor = 'pointer';
+    editModeButton.style.color = '#FFA500';
+    editModeButton.style.marginTop = '20px';
+    editModeButton.onclick = toggleEditMode;
+
+    sidebar.appendChild(editModeButton);
+};
