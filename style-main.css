@@ -13,10 +13,6 @@ header {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: calc(100% - 20px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /* 로고 스타일 */
@@ -25,28 +21,4 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
-}
-
-/* 홈 버튼 스타일 */
-.home-button img {
-    width: 50px;
-    height: 50px;
-}
-
-/* 콘텐츠 스타일 */
-.content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.content h1 {
-    font-size: 3rem;
-}
-
-.content p {
-    font-size: 1.2rem;
-    margin: 10px 0;
 }
