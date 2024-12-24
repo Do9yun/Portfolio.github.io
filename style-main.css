@@ -31,12 +31,13 @@ header {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
-    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* 위쪽 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+    gap: 10px;
 }
 
 /* 수정 버튼 스타일 */
@@ -65,7 +66,8 @@ header {
     gap: 10px;
     align-items: center;
     margin-top: 10px;
-    flex-wrap: wrap; /* 버튼과 텍스트박스가 겹치지 않도록 조정 */
+    flex-wrap: nowrap; /* 버튼과 텍스트박스가 한 줄에 유지 */
+    position: relative;
 }
 
 .input-container input {
@@ -74,6 +76,7 @@ header {
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-right: 5px;
 }
 
 .input-container button {
