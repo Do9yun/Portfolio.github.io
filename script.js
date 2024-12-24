@@ -1,8 +1,8 @@
 function loadList() {
     const list = document.getElementById('dynamic-list');
-    const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
 
-    // 로컬 스토리지에 저장된 목록 불러오기
+    // 로컬 스토리지에서 기존 목록 불러오기
+    const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
     savedItems.forEach((item) => createListItem(item));
 }
 
@@ -19,7 +19,7 @@ function createListItem(item) {
 
     // 수정 | 삭제 버튼 컨테이너
     const actionContainer = document.createElement('div');
-    actionContainer.style.display = 'none'; // 기본적으로 숨김
+    actionContainer.style.display = 'none';
     actionContainer.style.gap = '10px';
 
     // 수정 버튼
@@ -28,7 +28,7 @@ function createListItem(item) {
     editButton.style.cursor = 'pointer';
     editButton.style.color = '#00FF00';
     editButton.onclick = () => {
-        // 텍스트박스로 전환
+        // 기존 이름을 입력 박스로 변경
         const inputBox = document.createElement('input');
         inputBox.type = 'text';
         inputBox.value = item;
@@ -51,12 +51,10 @@ function createListItem(item) {
                     localStorage.setItem('savedList', JSON.stringify(savedItems));
                 }
             }
-            // 텍스트박스와 저장 버튼 제거
             inputBox.remove();
             saveButton.remove();
         };
 
-        // 기존 텍스트 숨기고 텍스트박스 표시
         itemName.style.display = 'none';
         listItem.insertBefore(inputBox, actionContainer);
         listItem.insertBefore(saveButton, actionContainer);
@@ -68,11 +66,10 @@ function createListItem(item) {
     deleteButton.style.cursor = 'pointer';
     deleteButton.style.color = '#FF0000';
     deleteButton.onclick = () => {
-        const confirmation = confirm(`"${item}"을(를) 삭제하시겠습니까?`);
-        if (confirmation) {
+        if (confirm(`"${item}"을(를) 삭제하시겠습니까?`)) {
             listItem.remove();
 
-            // 로컬 스토리지에서 삭제
+            // 로컬 스토리지에서 항목 제거
             const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
             const index = savedItems.indexOf(item);
             if (index !== -1) {
@@ -99,11 +96,11 @@ function toggleEditMode() {
     });
 }
 
-// 페이지 로드 시 기존 목록 불러오기
+// 페이지 로드 시 실행
 window.onload = () => {
     loadList();
 
-    // 사이드바에 "수정" 버튼 추가
+    // 수정 버튼 추가
     const sidebar = document.querySelector('.sidebar');
     const editModeButton = document.createElement('div');
     editModeButton.textContent = '수정';
