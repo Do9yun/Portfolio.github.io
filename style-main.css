@@ -36,12 +36,16 @@ header {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* 아래쪽 정렬 */
+    justify-content: flex-start; /* 아이템을 위쪽 정렬 */
     align-items: flex-start; /* 왼쪽 정렬 */
+    position: relative; /* 내부 요소 위치 설정을 위한 relative 추가 */
 }
 
 /* "목록 생성" 텍스트 스타일 */
 .sidebar .create-text {
+    position: absolute;
+    bottom: 10px; /* 사이드바 아래쪽 여백 */
+    right: 10px; /* 사이드바 오른쪽 여백 */
     font-size: 1.2rem; /* 텍스트 크기 */
     color: white; /* 흰색 글씨 */
     cursor: pointer;
