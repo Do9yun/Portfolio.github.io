@@ -31,48 +31,38 @@ header {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
+    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 400px; /* 사이드바 높이 지정 */
 }
 
-/* 목록 스타일 */
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar li {
-    margin-bottom: 10px;
-    color: white;
-}
-
-/* 버튼 스타일 */
+/* 수정 및 목록 생성 버튼 스타일 */
 .create-text, .edit-text {
     font-size: 1.2rem;
     color: white;
     cursor: pointer;
     text-align: center;
-    display: inline-block;
+    margin-bottom: 10px;
 }
 
 .create-text {
-    align-self: flex-end; /* 오른쪽 하단에 배치 */
+    align-self: flex-end; /* 오른쪽 아래 */
 }
 
 .edit-text {
-    align-self: flex-start; /* 왼쪽 하단에 배치 */
+    align-self: flex-start; /* 왼쪽 아래 */
 }
 
-/* 텍스트박스와 버튼 스타일 */
+/* 텍스트박스와 버튼 컨테이너 */
 #input-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #input-container input {
