@@ -9,15 +9,17 @@
 <body>
     <header>
         <div class="logo">
-            <a href="main.html">
+            <a href="index.html">
                 <img src="icon/로고.png" alt="Logo">
             </a>
         </div>
     </header>
     <aside class="sidebar">
+        <div class="buttons">
+            <div class="action-button" onclick="toggleEditMode()">수정</div>
+            <div class="action-button" onclick="createList()">목록 생성</div>
+        </div>
         <ul id="dynamic-list"></ul>
-        <div class="edit-text" onclick="toggleEditMode()">수정</div>
-        <div class="create-text" onclick="createList()">목록 생성</div>
     </aside>
     <script src="script.js"></script>
 </body>
