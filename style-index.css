@@ -16,12 +16,13 @@ body {
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
+    top: 10px; /* 위쪽 여백 */
+    left: 10px; /* 왼쪽 여백 */
+    width: calc(100% - 20px); /* 전체 폭에서 좌우 여백 제외 */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 로고와 홈 버튼을 양 끝으로 배치 */
     align-items: center;
+    padding: 0;
     z-index: 10;
 }
 
@@ -35,10 +36,23 @@ header {
 
 
 /* 홈 버튼 스타일 */
-.home-button img {
-    filter: invert(100%) brightness(200%);
+.home-button {
+    display: inline-block;
     width: 50px;
     height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s, border-color 0.3s;
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: white;
 }
 
 /* 콘텐츠 스타일 */
