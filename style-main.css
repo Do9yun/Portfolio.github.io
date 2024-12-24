@@ -31,42 +31,19 @@ header {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
+    height: 300px; /* 사이드바 높이 */
     padding: 20px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 텍스트를 하단으로 배치 */
+    align-items: flex-start; /* 텍스트를 왼쪽 정렬 */
 }
 
-.sidebar .create-button {
-    background-color: #FFA000;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    cursor: pointer;
-    border-radius: 5px;
+/* 목록 생성 텍스트 스타일 */
+.sidebar .create-text {
     font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-.sidebar .create-button:hover {
-    background-color: #FFC107;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    color: white; /* 흰색 글씨 */
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.sidebar ul li:hover {
-    background-color: #FFA000;
-    color: black;
+    text-decoration: underline; /* 텍스트 강조 */
 }
