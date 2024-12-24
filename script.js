@@ -3,12 +3,42 @@ function loadList() {
     const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
 
     // 로컬 스토리지에 저장된 목록 불러오기
-    savedItems.forEach((item) => {
-        const listItem = document.createElement('li');
-        listItem.textContent = item;
-        listItem.onclick = () => alert(`${item} 클릭됨`);
-        list.appendChild(listItem);
-    });
+    savedItems.forEach((item) => createListItem(item));
+}
+
+function createListItem(item) {
+    const list = document.getElementById('dynamic-list');
+
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    listItem.style.display = 'flex';
+    listItem.style.justifyContent = 'space-between';
+    listItem.style.alignItems = 'center';
+
+    // 수정 | 삭제 버튼 컨테이너
+    const actionContainer = document.createElement('div');
+    actionContainer.style.display = 'flex';
+    actionContainer.style.gap = '10px';
+
+    // 수정 버튼
+    const editButton = document.createElement('span');
+    editButton.textContent = '수정';
+    editButton.style.cursor = 'pointer';
+    editButton.style.color = '#00FF00';
+    editButton.onclick = () => editListItem(listItem, item);
+
+    // 삭제 버튼
+    const deleteButton = document.createElement('span');
+    deleteButton.textContent = '삭제';
+    deleteButton.style.cursor = 'pointer';
+    deleteButton.style.color = '#FF0000';
+    deleteButton.onclick = () => deleteListItem(listItem, item);
+
+    actionContainer.appendChild(editButton);
+    actionContainer.appendChild(deleteButton);
+    listItem.appendChild(actionContainer);
+
+    list.appendChild(listItem);
 }
 
 function createList() {
@@ -56,10 +86,7 @@ function createList() {
     saveButton.onclick = () => {
         const inputValue = inputBox.value.trim();
         if (inputValue) {
-            const listItem = document.createElement('li');
-            listItem.textContent = inputValue;
-            listItem.onclick = () => alert(`${inputValue} 클릭됨`);
-            list.appendChild(listItem);
+            createListItem(inputValue);
 
             // 로컬 스토리지에 저장
             const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
@@ -80,6 +107,52 @@ function createList() {
     const sidebar = document.querySelector('.sidebar');
     sidebar.appendChild(inputBox);
     sidebar.appendChild(actionButtons);
+}
+
+function editListItem(listItem, oldValue) {
+    const inputBox = document.createElement('input');
+    inputBox.type = 'text';
+    inputBox.value = oldValue;
+
+    const saveButton = document.createElement('span');
+    saveButton.textContent = '저장';
+    saveButton.style.cursor = 'pointer';
+    saveButton.style.color = '#00FF00';
+    saveButton.onclick = () => {
+        const newValue = inputBox.value.trim();
+        if (newValue) {
+            listItem.firstChild.textContent = newValue;
+
+            // 로컬 스토리지 수정
+            const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+            const index = savedItems.indexOf(oldValue);
+            if (index !== -1) {
+                savedItems[index] = newValue;
+                localStorage.setItem('savedList', JSON.stringify(savedItems));
+            }
+        }
+        inputBox.remove();
+        saveButton.remove();
+    };
+
+    listItem.firstChild.textContent = '';
+    listItem.firstChild.appendChild(inputBox);
+    listItem.firstChild.appendChild(saveButton);
+}
+
+function deleteListItem(listItem, item) {
+    const confirmation = confirm(`"${item}"을(를) 삭제하시겠습니까?`);
+    if (confirmation) {
+        listItem.remove();
+
+        // 로컬 스토리지에서 삭제
+        const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
+        const index = savedItems.indexOf(item);
+        if (index !== -1) {
+            savedItems.splice(index, 1);
+            localStorage.setItem('savedList', JSON.stringify(savedItems));
+        }
+    }
 }
 
 // 페이지 로드 시 기존 목록 불러오기
