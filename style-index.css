@@ -63,7 +63,7 @@ header {
     display: inline-block;
     width: 80px; /* 작대기 길이 증가 */
     height: 3px; /* 작대기 두께 증가 */
-    background-color: #FFC107; /* 진한 노란색 */
+    background-color: #FFA000; /* 진한 노란색 */
     margin: 0 15px;
 }
 
@@ -76,7 +76,7 @@ header {
 
 .content h3 {
     font-size: 2rem; /* PORTFOLIO 크기 */
-    color: #FFC107; /* 진한 노란색 */
+    color: #FFA000; /* 진한 노란색 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,6 +88,6 @@ header {
     display: inline-block;
     width: 60px; /* 작대기 길이 증가 */
     height: 3px; /* 작대기 두께 증가 */
-    background-color: #FFC107; /* 진한 노란색 */
+    background-color: #FFA000; /* 진한 노란색 */
     margin: 0 15px;
 }
