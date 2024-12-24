@@ -17,6 +17,7 @@ function createListItem(item) {
     const itemName = document.createElement('span');
     itemName.textContent = item;
 
+    // 수정 | 삭제 버튼 컨테이너
     const actionContainer = document.createElement('div');
     actionContainer.style.display = 'none'; // 기본적으로 숨김
     actionContainer.style.gap = '10px';
@@ -27,9 +28,11 @@ function createListItem(item) {
     editButton.style.cursor = 'pointer';
     editButton.style.color = '#FFA500';
     editButton.onclick = () => {
+        // 텍스트박스로 전환
         const inputBox = document.createElement('input');
         inputBox.type = 'text';
         inputBox.value = item;
+        inputBox.style.marginRight = '10px';
 
         const saveButton = document.createElement('span');
         saveButton.textContent = '저장';
@@ -40,6 +43,7 @@ function createListItem(item) {
             if (newValue) {
                 itemName.textContent = newValue;
 
+                // 로컬 스토리지 업데이트
                 const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
                 const index = savedItems.indexOf(item);
                 if (index !== -1) {
@@ -68,6 +72,7 @@ function createListItem(item) {
         listItem.insertBefore(cancelButton, actionContainer);
     };
 
+    // 삭제 버튼
     const deleteButton = document.createElement('span');
     deleteButton.textContent = '삭제';
     deleteButton.style.cursor = 'pointer';
@@ -77,6 +82,7 @@ function createListItem(item) {
         if (confirmation) {
             listItem.remove();
 
+            // 로컬 스토리지에서 삭제
             const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
             const index = savedItems.indexOf(item);
             if (index !== -1) {
@@ -97,12 +103,15 @@ function createListItem(item) {
 
 function createInputBox() {
     const list = document.getElementById('dynamic-list');
-    const existingInput = document.getElementById('input-container');
-    if (existingInput) existingInput.remove();
 
-    const inputContainer = document.createElement('div');
-    inputContainer.id = 'input-container';
-    inputContainer.className = 'input-container';
+    // 기존에 생성된 입력 박스가 있다면 제거
+    const inputContainer = document.getElementById('input-container');
+    if (inputContainer) inputContainer.remove();
+
+    // 새로운 입력 박스 컨테이너 생성
+    const newContainer = document.createElement('div');
+    newContainer.id = 'input-container';
+    newContainer.className = 'input-container';
 
     const inputBox = document.createElement('input');
     inputBox.type = 'text';
@@ -119,7 +128,7 @@ function createInputBox() {
             const savedItems = JSON.parse(localStorage.getItem('savedList')) || [];
             savedItems.push(inputValue);
             localStorage.setItem('savedList', JSON.stringify(savedItems));
-            inputContainer.remove();
+            newContainer.remove();
         }
     };
 
@@ -127,14 +136,14 @@ function createInputBox() {
     cancelButton.textContent = '취소';
     cancelButton.className = 'cancel';
     cancelButton.onclick = () => {
-        inputContainer.remove();
+        newContainer.remove();
     };
 
-    inputContainer.appendChild(inputBox);
-    inputContainer.appendChild(saveButton);
-    inputContainer.appendChild(cancelButton);
+    newContainer.appendChild(inputBox);
+    newContainer.appendChild(saveButton);
+    newContainer.appendChild(cancelButton);
 
-    list.appendChild(inputContainer); // 목록 아래에 텍스트박스 배치
+    list.appendChild(newContainer); // 항목 리스트의 마지막 아래에 추가
 }
 
 function toggleEditMode() {
@@ -144,6 +153,7 @@ function toggleEditMode() {
     });
 }
 
+// 페이지 로드 시 기존 목록 불러오기
 window.onload = () => {
     loadList();
 };
