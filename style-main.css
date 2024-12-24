@@ -11,7 +11,7 @@ body {
 /* 헤더 스타일 */
 header {
     position: absolute;
-    top: 10px;
+    top: 10px; /* 헤더 상단 여백 */
     left: 10px;
 }
 
@@ -21,12 +21,13 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
+    margin-bottom: 20px; /* 로고와 사이드바 사이 간격 */
 }
 
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 60px;
+    top: 80px; /* 로고 아래로 내려오도록 조정 */
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
