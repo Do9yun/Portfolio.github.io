@@ -2,9 +2,9 @@
 body {
     margin: 0;
     padding: 0;
-    background: url('images/main1.jpg') no-repeat center center fixed;
+    background: url('images/index.jpg') no-repeat center center fixed;
     background-size: cover;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     color: white;
 }
 
@@ -17,40 +17,23 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
 }
 
+/* 로고 스타일 */
 .logo img {
     width: 100px;
     height: auto;
     cursor: pointer;
 }
 
-.home-button {
-    display: inline-block;
+/* 홈 버튼 스타일 */
+.home-button img {
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s, border-color 0.3s;
 }
 
-.home-button:hover {
-    background: rgba(255, 255, 255, 0.6);
-    border-color: white;
-}
-
-.home-icon {
-    width: 30px;
-    height: 30px;
-}
-
-/* 중앙 텍스트 스타일 */
-.center-text {
+/* 콘텐츠 스타일 */
+.content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,44 +41,11 @@ header {
     text-align: center;
 }
 
-.center-text h2 {
-    font-size: 2rem;
-    font-weight: 300;
-    color: #A9C198;
-    margin: 0;
+.content h1 {
+    font-size: 4rem;
 }
 
-.center-text h1 {
-    font-size: 5rem;
-    font-weight: bold;
-    margin: 10px 0;
-    color: white;
-    position: relative;
-    display: inline-block;
-}
-
-.center-text h1::before,
-.center-text h1::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 80px;
-    height: 2px;
-    background-color: #A9C198;
-}
-
-.center-text h1::before {
-    left: -100px;
-}
-
-.center-text h1::after {
-    right: -100px;
-}
-
-.center-text h3 {
+.content p {
     font-size: 1.5rem;
-    font-weight: 300;
-    color: #A9C198;
-    margin: 20px 0 0;
-    letter-spacing: 2px;
+    margin: 10px 0;
 }
