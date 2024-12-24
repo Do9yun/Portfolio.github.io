@@ -1,77 +1,64 @@
 function createList() {
     const list = document.getElementById('dynamic-list');
 
-    // 기존 내용 삭제
-    list.innerHTML = '';
+    // 기존에 생성된 텍스트박스와 버튼을 제거 (중복 방지)
+    const existingInputBox = document.getElementById('input-box');
+    if (existingInputBox) {
+        existingInputBox.remove();
+    }
 
-    // 텍스트박스 추가
-    const inputContainer = document.createElement('div');
-    inputContainer.style.display = 'flex';
-    inputContainer.style.alignItems = 'center';
-    inputContainer.style.marginBottom = '10px';
+    const existingActionButtons = document.getElementById('action-buttons');
+    if (existingActionButtons) {
+        existingActionButtons.remove();
+    }
 
+    // 텍스트박스 생성
     const inputBox = document.createElement('input');
     inputBox.type = 'text';
-    inputBox.placeholder = '목록 이름 입력';
-    inputBox.style.flex = '1';
-    inputBox.style.padding = '5px';
-    inputBox.style.border = '1px solid rgba(255, 255, 255, 0.5)';
-    inputBox.style.borderRadius = '5px';
-    inputBox.style.marginRight = '10px';
+    inputBox.id = 'input-box';
+    inputBox.placeholder = '목록 항목 입력';
 
+    // 취소 및 저장 버튼 컨테이너
+    const actionButtons = document.createElement('div');
+    actionButtons.id = 'action-buttons';
+    actionButtons.style.display = 'flex';
+    actionButtons.style.gap = '10px';
+    actionButtons.style.marginTop = '10px';
+
+    // 취소 버튼 생성
     const cancelButton = document.createElement('span');
     cancelButton.textContent = '취소';
-    cancelButton.style.color = '#FF4D4D';
     cancelButton.style.cursor = 'pointer';
-    cancelButton.style.marginRight = '10px';
+    cancelButton.style.color = '#FF0000';
     cancelButton.onclick = () => {
-        list.innerHTML = ''; // 텍스트박스와 버튼 삭제
+        inputBox.remove();
+        actionButtons.remove();
     };
 
+    // 저장 버튼 생성
     const saveButton = document.createElement('span');
     saveButton.textContent = '저장';
-    saveButton.style.color = '#4CAF50';
     saveButton.style.cursor = 'pointer';
+    saveButton.style.color = '#00FF00';
     saveButton.onclick = () => {
         const inputValue = inputBox.value.trim();
         if (inputValue) {
-            addListItem(inputValue); // 유효한 입력값을 목록에 추가
-        } else {
-            alert('목록 이름을 입력하세요!');
+            const listItem = document.createElement('li');
+            listItem.textContent = inputValue;
+            listItem.onclick = () => alert(`${inputValue} 클릭됨`);
+            list.appendChild(listItem);
         }
+        // 텍스트박스와 버튼 제거
+        inputBox.remove();
+        actionButtons.remove();
     };
 
-    inputContainer.appendChild(inputBox);
-    inputContainer.appendChild(cancelButton);
-    inputContainer.appendChild(saveButton);
-    list.appendChild(inputContainer);
-}
+    // 버튼 추가
+    actionButtons.appendChild(cancelButton);
+    actionButtons.appendChild(saveButton);
 
-// 목록 항목 추가 함수
-function addListItem(name) {
-    const list = document.getElementById('dynamic-list');
-    const listItem = document.createElement('li');
-    listItem.textContent = name;
-
-    // 스타일 추가
-    listItem.style.cursor = 'pointer';
-    listItem.style.padding = '10px';
-    listItem.style.border = '1px solid rgba(255, 255, 255, 0.2)';
-    listItem.style.borderRadius = '5px';
-    listItem.style.marginBottom = '5px';
-
-    // Hover 효과
-    listItem.onmouseover = () => {
-        listItem.style.backgroundColor = '#FFA000';
-        listItem.style.color = 'black';
-    };
-    listItem.onmouseout = () => {
-        listItem.style.backgroundColor = '';
-        listItem.style.color = '';
-    };
-
-    // 클릭 이벤트
-    listItem.onclick = () => alert(`"${name}" 클릭됨`);
-
-    list.appendChild(listItem);
+    // 사이드바에 텍스트박스와 버튼 추가
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.appendChild(inputBox);
+    sidebar.appendChild(actionButtons);
 }
