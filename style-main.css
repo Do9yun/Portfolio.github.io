@@ -42,7 +42,7 @@ header {
     top: 10px; /* 로고와 같은 높이 */
     left: 50%; /* 중앙 정렬 */
     transform: translateX(-50%);
-    font-size: 6rem; /* KIM DOGYUN 크기와 동일 */
+    font-size: 6rem; 
     font-weight: bold;
     margin: 0;
     color: white; /* 기본 흰색 */
