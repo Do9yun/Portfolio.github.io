@@ -106,14 +106,16 @@ function showContent(section) {
         `;
     } else if (section === 'career') {
     sectionContent = `
-        <h2>수상이력</h2>
+        <h2>경력</h2>
         <div class="career-section">
             <table class="info-table">
                 <tr>
+                    <th style="width: 50px;">#</th> <!-- 번호 열 추가 -->
                     <th>대회명</th>
                     <th>수상</th>
                 </tr>
                 <tr>
+                    <td style="text-align: center;">1</td> <!-- 정사각형 번호 추가 -->
                     <td>AI 재난 상상 아이디어톤</td>
                     <td>대상</td>
                 </tr>
