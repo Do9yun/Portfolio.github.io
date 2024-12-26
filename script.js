@@ -11,17 +11,28 @@ function showContent(section) {
 
     // 섹션별 내용 추가
     if (section === 'intro') {
-        contentArea.innerHTML += `
-            <h2>내 정보</h2>
-            <div class="info-section">
-                <img src="images/증명사진.jpg" alt="Profile Picture" class="profile-pic">
-                <div class="info-text">
-                    <p><strong>이름:</strong> 김도균</p>
-                    <p><strong>나이:</strong> 26세</p>
-                    <p><strong>소개:</strong> 저는 2D 이미지를 3D 메쉬로 변환하는 프로젝트를 진행하며 다양한 기술을 익히고 활용한 경험이 있습니다.</p>
+    contentArea.innerHTML = `
+        <h2>내 정보</h2>
+        <div class="info-section">
+            <img src="images/증명사진.png" alt="증명사진">
+            <div class="info-details">
+                <div>
+                    <img src="icon/email.png" alt="Email">
+                    <span>dogyun0@naver.com</span>
+                </div>
+                <div>
+                    <img src="icon/phone.png" alt="Phone">
+                    <span>010-9921-7981</span>
+                </div>
+                <div>
+                    <img src="icon/house.png" alt="Address">
+                    <span>서울 은평구 백련산로 37 백련산힐스테이트4차 409동 104호</span>
                 </div>
             </div>
-        `;
+        </div>
+    `;
+}
+
     } else if (section === 'resume') {
         contentArea.innerHTML += `
             <h2>자기소개서</h2>
