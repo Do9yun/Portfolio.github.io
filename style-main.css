@@ -83,7 +83,7 @@ header {
     left: calc(250px + 5px); /* 사이드바 너비(250px) + 간격(5px) */
     right: 20px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
     color: white;
     font-size: 1.2rem;
