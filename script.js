@@ -107,6 +107,7 @@ function showContent(section) {
     } else if (section === 'career') {
     sectionContent = `
         <h2>수상이력</h2>
+        <h3 style="font-size: 1.5rem; font-weight: normal; margin-bottom: 10px;">교내대회</h3> <!-- 교내대회 추가 -->
         <div class="career-section">
             <table class="info-table">
                 <tr>
