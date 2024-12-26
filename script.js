@@ -126,7 +126,8 @@ function showContent(section) {
     } else if (section === 'certificates') {
         sectionContent = `
             <h2>자격증</h2>
-            <p>자격증에 대한 내용을 작성하세요.</p>
+            <p>정보처리기사</p>
+            <p>필기 합격 후, 실기 준비중입니다.</p>
         `;
     }
 
