@@ -105,10 +105,21 @@ function showContent(section) {
             </p>
         `;
     } else if (section === 'career') {
-        sectionContent = `
-            <h2>경력</h2>
-            <p>경력에 대한 내용을 작성하세요.</p>
-        `;
+    sectionContent = `
+        <h2>경력</h2>
+        <div class="career-section">
+            <table class="info-table">
+                <tr>
+                    <th>대회명</th>
+                    <th>수상</th>
+                </tr>
+                <tr>
+                    <td>AI 재난 상상 아이디어톤</td>
+                    <td>대상</td>
+                </tr>
+            </table>
+        </div>
+    `;
     } else if (section === 'certificates') {
         sectionContent = `
             <h2>자격증</h2>
