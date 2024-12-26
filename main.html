@@ -13,13 +13,15 @@
                 <img src="icon/로고.png" alt="Logo">
             </a>
         </div>
-        <h1 class="portfolio-title">Portfolio</h1>
+        <h1 class="portfolio-text">PORTFOLIO</h1>
     </header>
     <aside class="sidebar">
-        <a href="#info">내 정보</a>
-        <a href="#resume">자기소개서</a>
-        <a href="#experience">경력</a>
-        <a href="#certifications">자격증</a>
+        <a href="#" onclick="showContent('intro')">내 정보</a>
+        <a href="#" onclick="showContent('resume')">자기소개서</a>
+        <a href="#" onclick="showContent('career')">경력</a>
+        <a href="#" onclick="showContent('certificates')">자격증</a>
     </aside>
+    <main id="content-area" class="content-area"></main>
+    <script src="script.js"></script>
 </body>
 </html>
