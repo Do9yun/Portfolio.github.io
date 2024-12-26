@@ -112,5 +112,5 @@ header {
 }
 
 .close-button:hover {
-    color: red; /* 호버 시 빨간색 */
+    color: black; /* 호버 시 검정색 */
 }
