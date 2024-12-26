@@ -36,66 +36,22 @@ header {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 15px; /* 항목 간격 추가 */
 }
 
-/* 수정 버튼 스타일 */
-.edit-text {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 1rem;
+/* 항목 스타일 */
+.sidebar a {
+    text-decoration: none;
     color: white;
-    cursor: pointer;
-}
-
-/* 목록 생성 버튼 스타일 */
-.create-text {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-}
-
-/* 목록 생성 시 텍스트박스 및 버튼 컨테이너 */
-.input-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-    margin-left: 10px; /* 좌측 정렬 */
-    flex-wrap: nowrap;
-}
-
-.input-container input {
-    flex: 1;
-    padding: 5px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
+    font-size: 1.2rem;
+    padding: 10px;
     border-radius: 5px;
-}
-
-.input-container button {
-    padding: 5px 10px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: center;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
-.input-container button.save {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.input-container button.cancel {
-    background-color: #FF5722;
-    color: white;
-}
-
-.input-container button:hover {
-    opacity: 0.8;
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
