@@ -17,24 +17,27 @@ function showContent(section) {
             <h2>내 정보</h2>
             <div class="info-section">
                 <img class="profile-pic" src="images/증명사진.jpg" alt="증명사진">
-                <div class="info-details">
-                    <div class="personal-info">
-                        <p><strong>성명</strong> - 김도균&nbsp;&nbsp;&nbsp;&nbsp;<strong>생년월일</strong>: 1999-12-02</p>
-                        <p>&nbsp;&nbsp;&nbsp;- KIM DOGYUN&nbsp;&nbsp;&nbsp;&nbsp;<strong>성별</strong>: 男</p>
-                    </div>
-                    <div>
-                        <img src="icon/email.png" alt="Email">
-                        <span>dogyun0@naver.com</span>
-                    </div>
-                    <div>
-                        <img src="icon/phone.png" alt="Phone">
-                        <span>010-9921-7981</span>
-                    </div>
-                    <div>
-                        <img src="icon/house.png" alt="Address">
-                        <span>서울 은평구 백련산로 37 백련산힐스테이트4차 409동 104호</span>
-                    </div>
-                </div>
+                <table class="info-table">
+                    <tr>
+                        <th rowspan="2">성명</th>
+                        <td>(한글) 김도균</td>
+                        <th>생년월일</th>
+                        <td>1999-12-02</td>
+                    </tr>
+                    <tr>
+                        <td>(영문) KIM DOGYUN</td>
+                        <th>이메일</th>
+                        <td>dogyun0@naver.com</td>
+                    </tr>
+                    <tr>
+                        <th>연락처</th>
+                        <td colspan="3">010-9921-7981</td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td colspan="3">서울 은평구 백련산로 37 백련산힐스테이트4차 409동 104호</td>
+                    </tr>
+                </table>
             </div>
         `;
     } else if (section === 'resume') {
