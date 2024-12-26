@@ -124,10 +124,12 @@ header {
 }
 
 .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 150px; /* 크기를 기존보다 크게 조정 */
+    height: auto; /* 자동으로 원본 비율 유지 */
+    border-radius: 10px; /* 원형 대신 둥근 모서리 */
     border: 2px solid white;
-    object-fit: cover; /* 이미지 비율 유지하며 영역 채우기 */
+    object-fit: contain; /* 원본 비율 유지하며 모든 내용 표시 */
+    background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 (옵션) */
 }
 
 .info-text {
