@@ -180,14 +180,40 @@ header {
     padding-left: 15px; /* 좌측 여백 */
 }
 
-/* 병력 사항 테이블 스타일 */
+/* 병역 사항 테이블 스타일 */
+.military-section .info-table {
+    width: 100%;
+    table-layout: fixed; /* 열 너비 고정 */
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.military-section .info-table th, 
 .military-section .info-table td {
-    vertical-align: middle; /* 병력 사항 내용 세로 정렬 */
-    padding: 8px; /* 셀 내부 여백 줄임 */
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle; /* 내용 세로 정렬 */
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 병력 사항 특정 셀 정렬 */
-.military-section .info-table td[colspan="2"] {
-    text-align: center; /* 중앙 정렬 */
+/* 열 너비 명시적 설정 */
+.military-section .info-table th:nth-child(1),
+.military-section .info-table td:nth-child(1) {
+    width: 20%; /* 군필 여부 열 */
 }
 
+.military-section .info-table th:nth-child(2),
+.military-section .info-table td:nth-child(2) {
+    width: 40%; /* 내용 열 */
+}
+
+.military-section .info-table th:nth-child(3),
+.military-section .info-table td:nth-child(3) {
+    width: 20%; /* 군별 */
+}
+
+.military-section .info-table th:nth-child(4),
+.military-section .info-table td:nth-child(4) {
+    width: 20%; /* 계급 */
+}
