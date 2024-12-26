@@ -20,7 +20,8 @@ header {
 /* 로고 스타일 */
 .logo {
     position: absolute;
-    left: 20px;
+    top: 10px; /* 위쪽 여백 */
+    left: 10px; /* 왼쪽 여백 */
 }
 
 .logo img {
