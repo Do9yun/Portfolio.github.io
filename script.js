@@ -17,12 +17,18 @@ function showCenterBox(key) {
     const centerBox = document.getElementById('center-box');
     const centerContent = document.getElementById('center-content');
 
-    // 클릭된 항목에 해당하는 내용 설정
-    centerContent.textContent = contentMap[key];
+    if (contentMap[key]) {
+        centerContent.textContent = contentMap[key];
 
-    // 중앙 바 보이기
-    centerBox.style.display = 'flex';
+        // 중앙 바의 높이를 내용에 따라 조정
+        const contentHeight = centerContent.scrollHeight;
+        centerBox.style.height = `${Math.min(contentHeight, window.innerHeight * 0.8)}px`; // 최대 높이는 80%로 제한
+        centerBox.style.display = 'flex';
+    } else {
+        console.error(`Key "${key}" not found in contentMap.`);
+    }
 }
+
 
 // 중앙 바 닫기
 function hideCenterBox() {
