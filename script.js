@@ -18,6 +18,10 @@ function showContent(section) {
             <div class="info-section">
                 <img class="profile-pic" src="images/증명사진.jpg" alt="증명사진">
                 <div class="info-details">
+                    <div class="personal-info">
+                        <p><strong>성명</strong> - 김도균&nbsp;&nbsp;&nbsp;&nbsp;<strong>생년월일</strong>: 1999-12-02</p>
+                        <p>&nbsp;&nbsp;&nbsp;- KIM DOGYUN&nbsp;&nbsp;&nbsp;&nbsp;<strong>성별</strong>: 男</p>
+                    </div>
                     <div>
                         <img src="icon/email.png" alt="Email">
                         <span>dogyun0@naver.com</span>
