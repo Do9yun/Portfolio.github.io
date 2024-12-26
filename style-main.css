@@ -10,18 +10,13 @@ body {
 
 /* 헤더 스타일 */
 header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
-    padding: 10px 20px;
-}
-
-/* 로고 스타일 */
-.logo {
-    position: absolute;
-    top: 10px;
-    left: 10px; /* 왼쪽 10px 여백 */
 }
 
 .logo img {
@@ -29,25 +24,19 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
+    margin: 10px;
 }
 
-/* Portfolio 텍스트 스타일 */
-@font-face {
+.portfolio-text {
     font-family: 'Permanent Marker';
-    src: url('font/PermanentMarker-Regular.ttf') format('truetype');
-}
-
-.portfolio-title {
-    position: absolute;
-    top: 10px; /* 로고와 같은 높이 */
-    left: 50%; /* 중앙 정렬 */
-    transform: translateX(-50%);
-    font-size: 6rem; /* KIM DOGYUN 크기와 동일 */
+    font-size: 6rem;
     font-weight: bold;
+    color: white;
     margin: 0;
-    color: white; /* 기본 흰색 */
-    font-family: 'Permanent Marker', sans-serif; /* Permanent Marker 폰트 적용 */
-    text-align: center;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* 사이드바 스타일 */
@@ -57,15 +46,13 @@ header {
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
-    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
-/* 항목 스타일 */
 .sidebar a {
     text-decoration: none;
     color: white;
@@ -75,9 +62,22 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
     text-align: center;
     transition: background-color 0.3s;
-    cursor: pointer;
 }
 
 .sidebar a:hover {
     background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 콘텐츠 영역 스타일 */
+.content-area {
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    right: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.8;
 }
