@@ -4,35 +4,37 @@ function showContent(section) {
     // 콘텐츠 영역 활성화
     contentArea.classList.add('active');
 
-    // 닫기 버튼 초기화
+    // 닫기 버튼 추가
     contentArea.innerHTML = `
         <button class="close-button" onclick="closeContent()">X</button>
     `;
 
-    // 섹션별 내용 추가
+    // 섹션별 내용
+    let sectionContent = '';
+
     if (section === 'intro') {
-    contentArea.innerHTML = `
-        <h2>내 정보</h2>
-        <div class="info-section">
-            <img src="images/증명사진.jpg" alt="증명사진">
-            <div class="info-details">
-                <div>
-                    <img src="icon/email.png" alt="Email">
-                    <span>dogyun0@naver.com</span>
-                </div>
-                <div>
-                    <img src="icon/phone.png" alt="Phone">
-                    <span>010-9921-7981</span>
-                </div>
-                <div>
-                    <img src="icon/house.png" alt="Address">
-                    <span>서울 은평구 백련산로 37 백련산힐스테이트4차 409동 104호</span>
+        sectionContent = `
+            <h2>내 정보</h2>
+            <div class="info-section">
+                <img class="profile-pic" src="images/증명사진.jpg" alt="증명사진">
+                <div class="info-details">
+                    <div>
+                        <img src="icon/email.png" alt="Email">
+                        <span>dogyun0@naver.com</span>
+                    </div>
+                    <div>
+                        <img src="icon/phone.png" alt="Phone">
+                        <span>010-9921-7981</span>
+                    </div>
+                    <div>
+                        <img src="icon/house.png" alt="Address">
+                        <span>서울 은평구 백련산로 37 백련산힐스테이트4차 409동 104호</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
+        `;
     } else if (section === 'resume') {
-        contentArea.innerHTML += `
+        sectionContent = `
             <h2>자기소개서</h2>
             <p>
                 저는 2D 이미지를 PIFuHD로 변환하여 3D 인체 메쉬를 생성하고, OpenCV, OpenPose 및 포즈 추정 모델을 활용해 신체 부위를 인식하고 실제 신체 치수를 계산하는 프로그램을 제작한 경험이 있습니다.
@@ -54,10 +56,19 @@ function showContent(section) {
             </p>
         `;
     } else if (section === 'career') {
-        contentArea.innerHTML += '<h2>경력</h2><p>경력에 대한 내용을 작성하세요.</p>';
+        sectionContent = `
+            <h2>경력</h2>
+            <p>경력에 대한 내용을 작성하세요.</p>
+        `;
     } else if (section === 'certificates') {
-        contentArea.innerHTML += '<h2>자격증</h2><p>자격증에 대한 내용을 작성하세요.</p>';
+        sectionContent = `
+            <h2>자격증</h2>
+            <p>자격증에 대한 내용을 작성하세요.</p>
+        `;
     }
+
+    // 섹션 내용을 콘텐츠 영역에 추가
+    contentArea.innerHTML += sectionContent;
 }
 
 function closeContent() {
