@@ -10,9 +10,17 @@ body {
 
 /* 헤더 스타일 */
 header {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    display: flex;
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 로고와 글씨 간격 */
 }
 
 /* 로고 스타일 */
@@ -21,7 +29,13 @@ header {
     height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
-    margin-bottom: 20px;
+}
+
+/* Portfolio 텍스트 스타일 */
+.portfolio-title {
+    font-size: 2.5rem; /* Portfolio 크기 */
+    font-family: 'Permanent Marker', cursive;
+    color: #FFA000; /* 진한 노란색 */
 }
 
 /* 사이드바 스타일 */
