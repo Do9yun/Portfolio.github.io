@@ -236,7 +236,7 @@ header {
 .info-section {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* 사진과 텍스트를 위쪽 정렬 */
+    align-items: center;
     margin-top: 20px;
 }
 
