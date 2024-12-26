@@ -159,6 +159,7 @@ header {
     text-align: left;
     color: white;
     font-size: 1rem;
+    vertical-align: middle; /* 내용 세로 정렬 */
 }
 
 .info-table th {
@@ -171,22 +172,7 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.info-table th,
-.info-table td {
-    border: 1px solid white;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem;
-    color: white;
-    vertical-align: middle; /* 내용 세로 정렬 */
-}
-
-.info-table th {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: bold;
-}
-
-.info-table td[colspan="2"] {
+.info-table td[colspan="3"] {
     text-align: left; /* 왼쪽 정렬 */
     padding-left: 15px; /* 좌측 여백 */
 }
