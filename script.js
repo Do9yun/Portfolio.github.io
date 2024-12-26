@@ -1,6 +1,9 @@
 function showContent(section) {
     const contentArea = document.getElementById('content-area');
 
+    // 콘텐츠 영역 활성화
+    contentArea.classList.add('active');
+
     if (section === 'intro') {
         contentArea.innerHTML = '<h2>내 정보</h2><p>내 정보에 대한 내용을 작성하세요.</p>';
     } else if (section === 'resume') {
