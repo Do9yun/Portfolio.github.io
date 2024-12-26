@@ -4,15 +4,16 @@ function showContent(section) {
     // 콘텐츠 영역 활성화
     contentArea.classList.add('active');
 
-    // 닫기 버튼 추가
+    // 닫기 버튼 초기화
     contentArea.innerHTML = `
         <button class="close-button" onclick="closeContent()">X</button>
     `;
 
+    // 섹션별 내용 추가
     if (section === 'intro') {
-        contentArea.innerHTML = '<h2>내 정보</h2><p>내 정보에 대한 내용을 작성하세요.</p>';
+        contentArea.innerHTML += '<h2>내 정보</h2><p>내 정보에 대한 내용을 작성하세요.</p>';
     } else if (section === 'resume') {
-        contentArea.innerHTML = `
+        contentArea.innerHTML += `
             <h2>자기소개서</h2>
             <p>
                 저는 2D 이미지를 PIFuHD로 변환하여 3D 인체 메쉬를 생성하고, OpenCV, OpenPose 및 포즈 추정 모델을 활용해 신체 부위를 인식하고 실제 신체 치수를 계산하는 프로그램을 제작한 경험이 있습니다.
@@ -34,9 +35,9 @@ function showContent(section) {
             </p>
         `;
     } else if (section === 'career') {
-        contentArea.innerHTML = '<h2>경력</h2><p>경력에 대한 내용을 작성하세요.</p>';
+        contentArea.innerHTML += '<h2>경력</h2><p>경력에 대한 내용을 작성하세요.</p>';
     } else if (section === 'certificates') {
-        contentArea.innerHTML = '<h2>자격증</h2><p>자격증에 대한 내용을 작성하세요.</p>';
+        contentArea.innerHTML += '<h2>자격증</h2><p>자격증에 대한 내용을 작성하세요.</p>';
     }
 }
 
