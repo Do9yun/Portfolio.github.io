@@ -240,7 +240,6 @@ header {
     margin-top: 20px;
 }
 
-/* 프로필 사진 스타일 */
 .profile-pic {
     width: 150px; /* 크기를 기존보다 크게 조정 */
     height: auto; /* 자동으로 원본 비율 유지 */
@@ -250,30 +249,19 @@ header {
     background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 (옵션) */
 }
 
-/* 정보 텍스트 섹션 스타일 */
-.info-details {
-    display: flex;
-    flex-direction: column; /* 텍스트를 세로 정렬 */
-    gap: 10px; /* 항목 간 간격 */
-    font-size: 1.2rem;
-    line-height: 1.8;
-}
-
-/* 개별 정보 항목 스타일 */
 .info-details div {
     display: flex;
-    align-items: center; /* 아이콘과 텍스트를 수평 정렬 */
-    gap: 10px; /* 아이콘과 텍스트 간 간격 */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-/* 아이콘 스타일 */
 .info-details img {
-    width: 24px; /* 아이콘 크기 */
-    height: 24px;
-    object-fit: contain; /* 아이콘 비율 유지 */
+    width: 20px; /* 아이콘 크기 */
+    height: 20px;
+    filter: invert(1); /* 아이콘 색상을 흰색으로 변경 */
 }
 
-/* 텍스트 스타일 */
 .info-text {
     font-size: 1.2rem;
     line-height: 1.8;
