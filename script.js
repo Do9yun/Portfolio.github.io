@@ -66,21 +66,19 @@ function showContent(section) {
         <div class="military-section">
             <h3>병역 사항</h3>
             <table class="info-table">
-                <tr>
-                    <th>군필여부</th>
-                    <td>군필 (✔), 미필 ( ), 면제 ( ), 기타 ( )</td>
-                    <th>군별</th>
-                    <td>육군</td>
-                </tr>
-                <tr>
-                    <th>복무기간</th>
-                    <td colspan="3">2020.06.08 ~ 2021.12.07 (1년 6개월)</td>
-                </tr>
-                <tr>
-                    <th>계급</th>
-                    <td colspan="3">병장</td>
-                </tr>
-            </table>
+            <tr>
+                <th>군필여부</th>
+                <td>군필 (✔), 미필 ( ), 면제 ( ), 기타 ( )</td>
+                <th>군별</th>
+                <td>육군</td>
+            </tr>
+            <tr>
+                <th>복무기간</th>
+                <td colspan="3">2020.06.08 ~ 2021.12.07 (1년 6개월)</td>
+                <th>계급</th>
+                <td>병장</td>
+            </tr>
+        </table>
         </div>
     `;
     } else if (section === 'resume') {
