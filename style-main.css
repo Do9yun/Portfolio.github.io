@@ -217,3 +217,33 @@ header {
 .military-section .info-table td:nth-child(4) {
     width: 20%; /* 계급 */
 }
+
+/* 수상이력 섹션 */
+.career-section {
+    margin-top: 20px;
+}
+
+/* 테이블 스타일 */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.info-table th, .info-table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+    vertical-align: middle;
+}
+
+.info-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.info-table td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
