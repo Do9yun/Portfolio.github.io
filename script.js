@@ -39,3 +39,9 @@ function showContent(section) {
         contentArea.innerHTML = '<h2>자격증</h2><p>자격증에 대한 내용을 작성하세요.</p>';
     }
 }
+
+function closeContent() {
+    const contentArea = document.getElementById('content-area');
+    contentArea.classList.remove('active'); // 콘텐츠 영역 숨기기
+    contentArea.innerHTML = ''; // 내용 초기화
+}
