@@ -93,8 +93,6 @@ header {
     font-size: 1.2rem;
     line-height: 1.8;
     display: none; /* 초기 상태를 숨김 */
-    overflow-y: auto; /* 내용이 길어지면 세로 스크롤 */
-    max-height: calc(100vh - 220px); /* 화면 높이에 맞게 콘텐츠 제한 */
 }
 
 /* 콘텐츠 영역이 활성화된 경우 */
