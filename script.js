@@ -20,12 +20,12 @@ function showContent(section) {
                 <table class="info-table">
                     <tr>
                         <th rowspan="2">성명</th>
-                        <td>(한글) 김도균</td>
+                        <td>김도균</td>
                         <th>생년월일</th>
                         <td>1999-12-02</td>
                     </tr>
                     <tr>
-                        <td>(영문) KIM DOGYUN</td>
+                        <td>KIM DOGYUN</td>
                         <th>이메일</th>
                         <td>dogyun0@naver.com</td>
                     </tr>
