@@ -39,7 +39,50 @@ function showContent(section) {
                     </tr>
                 </table>
             </div>
-        `;
+            <div class="education-section">
+            <h3>학력 사항</h3>
+            <table class="info-table">
+                <tr>
+                    <th rowspan="3">학력사항</th>
+                    <th>졸업일</th>
+                    <th>학교명</th>
+                    <th>전공</th>
+                    <th>졸업여부</th>
+                </tr>
+                <tr>
+                    <td>2018.02</td>
+                    <td>선정고등학교</td>
+                    <td>-</td>
+                    <td>졸업</td>
+                </tr>
+                <tr>
+                    <td>2025.02</td>
+                    <td>강원대학교</td>
+                    <td>AI소프트웨어학과(미디어전공)</td>
+                    <td>졸업예정</td>
+                </tr>
+            </table>
+        </div>
+        <div class="military-section">
+            <h3>병역 사항</h3>
+            <table class="info-table">
+                <tr>
+                    <th>군필여부</th>
+                    <td>군필 (✔), 미필 ( ), 면제 ( ), 기타 ( )</td>
+                    <th>군별</th>
+                    <td>육군</td>
+                </tr>
+                <tr>
+                    <th>복무기간</th>
+                    <td colspan="3">2020.06.08 ~ 2021.12.07 (1년 6개월)</td>
+                </tr>
+                <tr>
+                    <th>계급</th>
+                    <td colspan="3">병장</td>
+                </tr>
+            </table>
+        </div>
+    `;
     } else if (section === 'resume') {
         sectionContent = `
             <h2>자기소개서</h2>
