@@ -74,7 +74,7 @@ function showContent(section) {
             </tr>
             <tr>
                 <th>복무기간</th>
-                <td colspan="3">2020.06.08 ~ 2021.12.07 (1년 6개월)</td>
+                <td colspan="2">2020.06.08 ~ 2021.12.07 (1년 6개월)</td>
                 <th>계급</th>
                 <td>병장</td>
             </tr>
