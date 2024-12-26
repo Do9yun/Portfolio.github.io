@@ -171,18 +171,8 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 학력 및 병역사항 추가 스타일 */
-.education-section, .military-section {
-    margin-top: 20px;
-}
-
-.info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.info-table th, .info-table td {
+.info-table th,
+.info-table td {
     border: 1px solid white;
     padding: 10px;
     text-align: center;
@@ -196,19 +186,7 @@ header {
     font-weight: bold;
 }
 
-.info-table td {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 병역사항: 복무기간과 계급을 같은 행에 */
-.military-table .dual-row {
-    display: flex;
-    justify-content: space-between; /* 좌우로 나란히 배치 */
-    gap: 10px;
-}
-
-.military-table .dual-row span {
-    flex: 1;
-    text-align: left;
-    padding-left: 10px; /* 왼쪽 패딩 추가 */
+.info-table td[colspan="2"] {
+    text-align: left; /* 왼쪽 정렬 */
+    padding-left: 15px; /* 좌측 여백 */
 }
