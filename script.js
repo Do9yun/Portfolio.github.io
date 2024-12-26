@@ -106,7 +106,7 @@ function showContent(section) {
         `;
     } else if (section === 'career') {
     sectionContent = `
-        <h2>경력</h2>
+        <h2>수상이력</h2>
         <div class="career-section">
             <table class="info-table">
                 <tr>
