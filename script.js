@@ -1,23 +1,25 @@
-function showInfo(category) {
-    const content = document.getElementById('content');
-    let info = '';
+// 항목별 내용 정의
+const contentMap = {
+    '내 정보': '내 정보 내용: 여기에 내 정보를 입력하세요.',
+    '자기소개서': '자기소개서 내용: 여기에 자기소개서를 입력하세요.',
+    '경력': '경력 내용: 여기에 경력을 입력하세요.',
+    '자격증': '자격증 내용: 여기에 자격증 정보를 입력하세요.',
+};
 
-    switch (category) {
-        case '내 정보':
-            info = '<h1>내 정보</h1><p>여기에 내 정보를 입력하세요.</p>';
-            break;
-        case '자기소개서':
-            info = '<h1>자기소개서</h1><p>자기소개서 내용을 입력하세요.</p>';
-            break;
-        case '경력':
-            info = '<h1>경력</h1><p>경력 사항을 입력하세요.</p>';
-            break;
-        case '자격증':
-            info = '<h1>자격증</h1><p>자격증 정보를 입력하세요.</p>';
-            break;
-        default:
-            info = '<h1>내용 없음</h1>';
-    }
+// 중앙 바 열기 및 내용 변경
+function showCenterBox(key) {
+    const centerBox = document.getElementById('center-box');
+    const centerContent = document.getElementById('center-content');
 
-    content.innerHTML = info;
+    // 클릭된 항목에 해당하는 내용 설정
+    centerContent.textContent = contentMap[key];
+
+    // 중앙 바 보이기
+    centerBox.style.display = 'flex';
+}
+
+// 중앙 바 닫기
+function hideCenterBox() {
+    const centerBox = document.getElementById('center-box');
+    centerBox.style.display = 'none';
 }
