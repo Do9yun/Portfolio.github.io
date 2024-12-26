@@ -32,6 +32,11 @@ header {
 }
 
 /* Portfolio 텍스트 스타일 */
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url('font/PermanentMarker-Regular.ttf') format('truetype');
+}
+
 .portfolio-title {
     position: absolute;
     top: 10px; /* 로고와 같은 높이 */
@@ -41,7 +46,7 @@ header {
     font-weight: bold;
     margin: 0;
     color: white; /* 기본 흰색 */
-    font-family: Arial, sans-serif; /* 동일한 글꼴 */
+    font-family: 'Permanent Marker', sans-serif; /* Permanent Marker 폰트 적용 */
     text-align: center;
 }
 
