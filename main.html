@@ -9,16 +9,18 @@
 <body>
     <header>
         <div class="logo">
-            <a href=" main.html">
+            <a href="main.html">
                 <img src="icon/로고.png" alt="Logo">
             </a>
         </div>
     </header>
     <aside class="sidebar">
-        <ul id="dynamic-list"></ul>
-        <span class="edit-text" onclick="toggleEditMode()">수정</span>
-        <span class="create-text" onclick="createInputBox()">목록 생성</span>
+        <a href="#" onclick="showInfo('내 정보')">내 정보</a>
+        <a href="#" onclick="showInfo('자기소개서')">자기소개서</a>
+        <a href="#" onclick="showInfo('경력')">경력</a>
+        <a href="#" onclick="showInfo('자격증')">자격증</a>
     </aside>
+    <div id="content" style="margin-left: 250px; padding: 20px; color: white;"></div>
     <script src="script.js"></script>
 </body>
 </html>
