@@ -96,3 +96,21 @@ header {
 .content-area.active {
     display: block; /* 활성화 시 보이도록 설정 */
 }
+
+/* 닫기 버튼 스타일 */
+.close-button {
+    position: absolute;
+    top: 10px; /* 콘텐츠 영역 상단에서의 위치 */
+    right: 10px; /* 콘텐츠 영역 오른쪽에서의 위치 */
+    font-size: 1.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.close-button:hover {
+    color: red; /* 호버 시 빨간색 */
+}
