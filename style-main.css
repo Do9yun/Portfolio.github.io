@@ -10,87 +10,74 @@ body {
 
 /* 헤더 스타일 */
 header {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    text-align: center;
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
 }
 
-header .logo {
+/* 로고 스타일 */
+.logo {
     position: absolute;
-    left: 10px;
     top: 10px;
+    left: 10px; /* 왼쪽 10px 여백 */
 }
 
-header h1 {
+.logo img {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    filter: invert(100%) brightness(200%);
+}
+
+/* Portfolio 텍스트 스타일 */
+@font-face {
     font-family: 'Permanent Marker';
-    font-size: 6rem;
-    color: white;
+    src: url('font/PermanentMarker-Regular.ttf') format('truetype');
+}
+
+.portfolio-title {
+    position: absolute;
+    top: 10px; /* 로고와 같은 높이 */
+    left: 50%; /* 중앙 정렬 */
+    transform: translateX(-50%);
+    font-size: 6rem; /* KIM DOGYUN 크기와 동일 */
+    font-weight: bold;
     margin: 0;
+    color: white; /* 기본 흰색 */
+    font-family: 'Permanent Marker', sans-serif; /* Permanent Marker 폰트 적용 */
+    text-align: center;
 }
 
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 180px; /* 위치 조정 */
+    top: 200px; /* 이전 150px에서 200px로 조정 */
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
+    height: auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
-.sidebar button {
-    background-color: black;
+/* 항목 스타일 */
+.sidebar a {
+    text-decoration: none;
     color: white;
-    border: 1px solid white;
+    font-size: 1.2rem;
+    padding: 10px;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: background-color 0.3s;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.sidebar button:hover {
-    background-color: white;
-    color: black;
-}
-
-/* 중앙 바 스타일 */
-.center-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5); /* 투명도 50% */
-    width: 60%;
-    height: 50%;
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    font-size: 1.2rem;
-    display: none; /* 초기에는 숨김 */
-    flex-direction: column;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* 닫기 버튼 스타일 */
-.center-box .close-btn {
-    align-self: flex-end;
-    cursor: pointer;
-    font-size: 1.2rem;
-    color: white;
-    background: none;
-    border: none;
-    padding: 10px;
-    transition: color 0.3s;
-}
-
-.center-box .close-btn:hover {
-    color: #ff4c4c;
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
