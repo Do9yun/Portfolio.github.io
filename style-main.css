@@ -241,7 +241,7 @@ header {
 }
 
 .profile-pic {
-    width: 150px; /* 크기를 기존보다 크게 조정 */
+    width: 50px; /* 이미지 크기 */
     height: auto; /* 자동으로 원본 비율 유지 */
     border-radius: 10px; /* 원형 대신 둥근 모서리 */
     border: 2px solid white;
