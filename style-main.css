@@ -88,4 +88,10 @@ header {
     color: white;
     font-size: 1.2rem;
     line-height: 1.8;
+    display: none; /* 초기 상태를 숨김 */
+}
+
+/* 콘텐츠 영역이 활성화된 경우 */
+.content-area.active {
+    display: block; /* 활성화 시 보이도록 설정 */
 }
