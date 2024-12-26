@@ -31,8 +31,6 @@ function showContent(section) {
             </div>
         </div>
     `;
-}
-
     } else if (section === 'resume') {
         contentArea.innerHTML += `
             <h2>자기소개서</h2>
