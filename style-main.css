@@ -124,42 +124,35 @@ header {
 .info-section {
     display: flex;
     gap: 20px;
-    align-items: flex-start; /* 사진과 테이블 위쪽 라인 맞춤 */
+    align-items: center; /* 중앙 정렬 */
     margin-top: 20px;
 }
 
+/* 프로필 사진 */
 .profile-pic {
-    width: 150px; /* 이미지 크기를 적절히 조정 */
-    height: auto; /* 자동으로 원본 비율 유지 */
+    width: 150px; /* 이미지 크기 */
+    height: auto; /* 원본 비율 유지 */
     border-radius: 10px; /* 둥근 모서리 */
     border: 2px solid white;
-    object-fit: contain; /* 원본 비율 유지하며 모든 내용 표시 */
+    object-fit: contain; /* 원본 비율 유지 */
     background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 */
+    margin-top: 5px; /* 사진과 표의 상단 라인 맞추기 */
 }
 
-.info-details div {
+/* 테이블 컨테이너 */
+.info-details {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start; /* 테이블 위쪽 정렬 */
     gap: 10px;
-    margin-bottom: 10px;
-}
-
-.info-details img {
-    width: 20px; /* 아이콘 크기 */
-    height: 20px;
-    filter: invert(1); /* 아이콘 색상을 흰색으로 변경 */
-}
-
-.info-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
+    margin-top: 5px; /* 사진과 테이블 간의 라인 정렬 */
 }
 
 /* 테이블 스타일 */
 .info-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 0; /* 테이블 상단 여백 제거 */
 }
 
 .info-table th, .info-table td {
