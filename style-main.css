@@ -46,7 +46,6 @@ header {
     src: url('font/PermanentMarker-Regular.ttf') format('truetype');
 }
 
-
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
@@ -90,124 +89,6 @@ header {
     line-height: 1.8;
     display: none; /* 초기 상태를 숨김 */
 }
-
-
-/* 콘텐츠 영역이 활성화된 경우 */
-.content-area.active {
-    display: block; /* 활성화 시 보이도록 설정 */
-}
-
-/* 닫기 버튼 스타일 */
-.close-button {
-    position: absolute;
-    top: 10px; /* 콘텐츠 영역 상단에서의 위치 */
-    right: 10px; /* 콘텐츠 영역 오른쪽에서의 위치 */
-    font-size: 1.5rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.close-button:hover {
-    color: black; /* 호버 시 검정색 */
-}
-
-/* 기본 스타일 */
-body {
-    margin: 0;
-    padding: 0;
-    background: url('images/main1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-
-/* 헤더 스타일 */
-header {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    width: 100px;
-    height: auto;
-    cursor: pointer;
-    filter: invert(100%) brightness(200%);
-    margin: 10px;
-}
-
-/* Portfolio 텍스트에만 특정 폰트 적용 */
-.portfolio-text {
-    font-family: 'Permanent Marker', Arial, sans-serif; /* 폰트 설정 */
-    font-size: 6rem; /* 텍스트 크기 */
-    font-weight: bold;
-    color: white;
-    margin: 0;
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* @font-face 설정 */
-@font-face {
-    font-family: 'Permanent Marker';
-    src: url('font/PermanentMarker-Regular.ttf') format('truetype');
-}
-
-
-/* 사이드바 스타일 */
-.sidebar {
-    position: absolute;
-    top: 200px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
-    width: 200px;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.sidebar a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    text-align: center;
-    transition: background-color 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
-
-/* 콘텐츠 영역 스타일 */
-.content-area {
-    position: absolute;
-    top: 200px;
-    left: calc(250px + 5px); /* 사이드바 너비(250px) + 간격(5px) */
-    right: 20px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    color: white;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    display: none; /* 초기 상태를 숨김 */
-}
-
 
 /* 콘텐츠 영역이 활성화된 경우 */
 .content-area.active {
@@ -241,12 +122,12 @@ header {
 }
 
 .profile-pic {
-    width: 50px; /* 이미지 크기 */
+    width: 150px; /* 이미지 크기를 적절히 조정 */
     height: auto; /* 자동으로 원본 비율 유지 */
-    border-radius: 10px; /* 원형 대신 둥근 모서리 */
+    border-radius: 10px; /* 둥근 모서리 */
     border: 2px solid white;
     object-fit: contain; /* 원본 비율 유지하며 모든 내용 표시 */
-    background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 (옵션) */
+    background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 */
 }
 
 .info-details div {
