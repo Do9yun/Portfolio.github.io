@@ -84,22 +84,23 @@ header {
 
 /* 중앙 바 스타일 */
 .center-box {
+    display: none; /* 초기 숨김 */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5); /* 투명도 50% 설정 */
+    background-color: rgba(0, 0, 0, 0.5); /* 투명도 설정 */
     width: 60%;
-    height: 40%;
     padding: 20px;
     border-radius: 10px;
     color: white;
     font-size: 1.2rem;
-    display: none; /* 초기에는 숨김 */
     flex-direction: column;
-    overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 80%; /* 중앙 바의 최대 높이 */
+    overflow-y: auto; /* 내용이 초과되면 스크롤 생성 */
 }
+
 
 /* 닫기 버튼 스타일 */
 .center-box .close-btn {
