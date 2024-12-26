@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="style-main.css">
 </head>
 <body>
@@ -13,19 +13,42 @@
                 <img src="icon/로고.png" alt="Logo">
             </a>
         </div>
-        <h1 class="portfolio-title">PORTFOLIO</h1>
+        <h1>PORTFOLIO</h1>
     </header>
     <aside class="sidebar">
-        <a href="#" onclick="showCenterBox('내 정보')">내 정보</a>
-        <a href="#" onclick="showCenterBox('자기소개서')">자기소개서</a>
-        <a href="#" onclick="showCenterBox('경력')">경력</a>
-        <a href="#" onclick="showCenterBox('자격증')">자격증</a>
+        <button>내 정보</button>
+        <button>자기소개서</button>
+        <button>경력</button>
+        <button>자격증</button>
     </aside>
-    <!-- 중앙 바 -->
-    <div id="center-box" class="center-box">
-        <button class="close-btn" onclick="hideCenterBox()">X</button>
-        <div id="center-content"></div>
-    </div>
+    <div class="center-box"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style-main.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="main.html">
+                <img src="icon/로고.png" alt="Logo">
+            </a>
+        </div>
+        <h1>PORTFOLIO</h1>
+    </header>
+    <aside class="sidebar">
+        <button>내 정보</button>
+        <button>자기소개서</button>
+        <button>경력</button>
+        <button>자격증</button>
+    </aside>
+    <div class="center-box"></div>
     <script src="script.js"></script>
 </body>
 </html>
