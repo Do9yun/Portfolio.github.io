@@ -153,3 +153,27 @@ header {
     line-height: 1.8;
 }
 
+/* 테이블 스타일 */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.info-table th, .info-table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: left;
+    color: white;
+    font-size: 1rem;
+}
+
+.info-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-weight: bold;
+}
+
+.info-table td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
