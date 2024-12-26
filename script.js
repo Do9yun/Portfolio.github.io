@@ -14,7 +14,7 @@ function showContent(section) {
     contentArea.innerHTML = `
         <h2>내 정보</h2>
         <div class="info-section">
-            <img src="images/증명사진.png" alt="증명사진">
+            <img src="images/증명사진.jpg" alt="증명사진">
             <div class="info-details">
                 <div>
                     <img src="icon/email.png" alt="Email">
