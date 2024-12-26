@@ -72,14 +72,14 @@ header {
 }
 
 .content h1 {
-    font-size: 6rem; /* KIM DOGYUN 크기 */
+    font-size: 6rem; /* PORTFOLIO 크기 */
     font-weight: bold;
     margin: 20px 0;
     color: white; /* 기본 흰색 */
 }
 
 .content h3 {
-    font-size: 2rem; /* PORTFOLIO 크기 */
+    font-size: 2rem; /* KIM DOGYUN 크기 */
     color: #FFA000; /* 더 진한 노란색 */
     display: flex;
     align-items: center;
