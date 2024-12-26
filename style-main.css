@@ -188,6 +188,7 @@ header {
     text-align: center;
     font-size: 1rem;
     color: white;
+    vertical-align: middle; /* 내용 중앙 정렬 */
 }
 
 .info-table th {
@@ -198,3 +199,10 @@ header {
 .info-table td {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* 복무기간과 계급이 같은 줄에 있을 때 조정 */
+.military-section td {
+    text-align: left; /* 왼쪽 정렬로 보기 좋게 */
+    padding-left: 10px; /* 텍스트와 테두리 사이 간격 */
+}
+
