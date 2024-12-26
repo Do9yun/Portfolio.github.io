@@ -10,58 +10,54 @@ body {
 
 /* 헤더 스타일 */
 header {
-    position: relative;
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* 로고 스타일 */
-.logo img {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 100px;
-    height: auto;
-    cursor: pointer;
+    text-align: center;
+    width: 100%;
 }
 
-/* PORTFOLIO 제목 스타일 */
-.portfolio-title {
-    font-family: 'Permanent Marker', cursive;
+header .logo {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+header h1 {
+    font-family: 'Permanent Marker';
     font-size: 6rem;
-    font-weight: bold;
     color: white;
-    margin: 20px 0;
+    margin: 0;
 }
 
 /* 사이드바 스타일 */
 .sidebar {
     position: absolute;
-    top: 150px;
+    top: 180px; /* 위치 조정 */
     left: 10px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 200px;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .sidebar button {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
+    background-color: black;
     color: white;
-    font-size: 1rem;
-    padding: 10px;
-    text-align: left;
+    border: 1px solid white;
     border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .sidebar button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: white;
+    color: black;
 }
 
 /* 중앙 바 스타일 */
@@ -70,15 +66,31 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* 투명도 50% */
     width: 60%;
+    height: 50%;
     padding: 20px;
     border-radius: 10px;
     color: white;
-    font-size: 1rem;
-    display: none;
+    font-size: 1.2rem;
+    display: none; /* 초기에는 숨김 */
     flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-height: 80%;
     overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 닫기 버튼 스타일 */
+.center-box .close-btn {
+    align-self: flex-end;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    background: none;
+    border: none;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.center-box .close-btn:hover {
+    color: #ff4c4c;
 }
