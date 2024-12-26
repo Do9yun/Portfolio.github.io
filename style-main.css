@@ -79,7 +79,7 @@ header {
 /* 콘텐츠 영역 스타일 */
 .content-area {
     position: absolute;
-    top: 150px;
+    top: 200px;
     left: 250px;
     right: 20px;
     padding: 20px;
