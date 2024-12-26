@@ -110,7 +110,7 @@ function showContent(section) {
         <div class="career-section">
             <table class="info-table">
                 <tr>
-                    <th style="width: 50px;">#</th> <!-- 번호 열 추가 -->
+                    <th style="width: 50px;"></th> <!-- 번호 열 추가 -->
                     <th>대회명</th>
                     <th>수상</th>
                 </tr>
