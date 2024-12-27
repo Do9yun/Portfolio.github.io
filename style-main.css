@@ -293,14 +293,14 @@ header {
     font-size: 1rem; /* 본문 글씨 크기 */
 }
 
-.post-text p a {
-    color: white; /* 본문 링크 색상 흰색 */
-    text-decoration: none;
+.post-text p {
+    color: white; /* 본문 글씨 색상 흰색 */
+    font-size: 1rem; /* 본문 글씨 크기 */
     transition: all 0.3s ease-in-out;
 }
 
-.post-text p a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+.post-text:hover p {
+    text-decoration: underline; /* 본문에 마우스 오버 시 밑줄 */
     text-decoration-color: white; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 1.5px; /* 밑줄 두께 */
 }
