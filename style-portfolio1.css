@@ -142,24 +142,24 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-/* 사이드바 스타일 */
 .right-sidebar {
     position: fixed;
     top: 100px; /* 화면 상단에서의 거리 */
     right: 20px; /* 화면 오른쪽에서의 거리 */
-    width: 200px;
-    background-color: white; /* 투명 배경 */
-    color: black;
-    padding: 15px;
+    width: 200px; /* 사이드바 너비 */
+    background-color: white; /* 흰색 배경 */
+    color: black; /* 글자 색상을 검정으로 변경 */
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: Arial, sans-serif;
 }
 
 .right-sidebar h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 10px;
     text-align: center;
+    color: black; /* 제목 글자 색상을 검정으로 변경 */
 }
 
 .right-sidebar ul {
@@ -169,17 +169,17 @@ p {
 }
 
 .right-sidebar ul li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .right-sidebar ul li a {
-    color: black;
+    color: #007bff; /* 링크 색상을 파란색으로 변경 */
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: all 0.3s ease-in-out;
 }
 
 .right-sidebar ul li a:hover {
-    color: black;
+    color: #0056b3; /* 링크 호버 시 더 어두운 파란색 */
     text-decoration: underline;
 }
