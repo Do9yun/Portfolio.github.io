@@ -180,6 +180,6 @@ p {
 }
 
 .right-sidebar ul li a:hover {
-    color: #0056b3; /* 링크 호버 시 더 어두운 파란색 */
+    color: black; /* 링크 호버 시 더 어두운 파란색 */
     text-decoration: underline;
 }
