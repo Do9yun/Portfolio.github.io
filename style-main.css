@@ -259,7 +259,7 @@ header {
 .post {
     display: flex;
     gap: 20px;
-    background-color:rgba(240, 240, 240, 0.4);
+    background-color:rgba(240, 240, 240, 0.6);
     padding: 15px;
     border-radius: 10px;
     align-items: center;
