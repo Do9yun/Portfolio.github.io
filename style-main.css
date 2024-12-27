@@ -259,7 +259,7 @@ header {
 .post {
     display: flex;
     gap: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color:rgba(240, 240, 240, 1);
     padding: 15px;
     border-radius: 10px;
     align-items: center;
@@ -267,13 +267,13 @@ header {
 }
 
 .post:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* 카드 강조 효과 */
+    background-color: rgba(240, 240, 240, 1); /* 카드 강조 효과 */
 }
 
 /* 제목목 텍스트 스타일 */
 .post-text {
     flex: 2;
-    color: white;
+    color: black;
 }
 
 .post-text h3 a {
@@ -285,13 +285,13 @@ header {
 
 .post-text h3 a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
+    text-decoration-color: black; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
 }
 
 /* 본문 텍스트 */
 .post-text p {
-    color: white; /* 본문 글씨 색상 흰색 */
+    color: black; /* 본문 글씨 색상 흰색 */
     font-size: 1rem; /* 본문 글씨 크기 */
     margin: 0;
 }
@@ -304,7 +304,7 @@ header {
 
 .post-text p a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
+    text-decoration-color: black; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 1.5px; /* 밑줄 두께 */
 }
 
