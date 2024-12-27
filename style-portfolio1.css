@@ -148,7 +148,7 @@ p {
     top: 100px; /* 화면 상단에서의 거리 */
     right: 20px; /* 화면 오른쪽에서의 거리 */
     width: 200px;
-    background-color: rgba(0, 0, 0, 0.6); /* 투명 배경 */
+    background-color: white; /* 투명 배경 */
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -173,13 +173,13 @@ p {
 }
 
 .right-sidebar ul li a {
-    color: white;
+    color: black;
     text-decoration: none;
     font-size: 1rem;
     transition: all 0.3s ease-in-out;
 }
 
 .right-sidebar ul li a:hover {
-    color: white;
+    color: black;
     text-decoration: underline;
 }
