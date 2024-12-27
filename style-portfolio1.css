@@ -88,7 +88,7 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-/* 이유 섹션 이미지 스타일 */
+/* 이유 이미지 스타일 */
 .reason-image {
     max-width: 100%; /* 이미지 너비를 콘텐츠에 맞게 조정 */
     height: auto; /* 원본 비율 유지 */
@@ -97,7 +97,7 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-/* YOLOv8 섹션 이미지 스타일 */
+/* YOLOv8 이미지 스타일 */
 .yolo-image {
     max-width: 100%; /* 이미지 너비를 콘텐츠에 맞게 조정 */
     height: auto; /* 원본 비율 유지 */
@@ -106,7 +106,7 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-/* 이미지 피라미드 섹션 이미지 스타일 */
+/* 이미지 피라미드 설명 이미지 스타일 */
 .pyramid-image {
     max-width: 100%; /* 이미지가 콘텐츠 너비에 맞도록 조정 */
     height: auto; /* 원본 비율 유지 */
@@ -115,7 +115,16 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
 }
 
-/* 코드 이미지 스타일 */
+/* 이미지 피라미드 생성 코드 이미지 스타일 */
+.code-image {
+    max-width: 100%; /* 이미지가 콘텐츠 너비에 맞도록 조정 */
+    height: auto; /* 원본 비율 유지 */
+    border: 2px solid #ddd; /* 테두리 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+/* 검증 코드 이미지 스타일 */
 .code-image {
     max-width: 100%; /* 이미지가 콘텐츠 너비에 맞도록 조정 */
     height: auto; /* 원본 비율 유지 */
