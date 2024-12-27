@@ -149,7 +149,7 @@ p {
     right: 20px; /* 화면 오른쪽에서의 거리 */
     width: 200px;
     background-color: white; /* 투명 배경 */
-    color: white;
+    color: black;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
