@@ -277,7 +277,7 @@ header {
 }
 
 .post-text h3 a {
-    color: white; /* 제목 글씨 색상 흰색 */
+    color: black; /* 제목 글씨 색상 흰색 */
     font-size: 1.8rem; /* 제목 글씨 크기 증가 */
     text-decoration: none; /* 기본 상태에서 밑줄 없음 */
     transition: all 0.3s ease-in-out;
@@ -297,7 +297,7 @@ header {
 }
 
 .post-text p a {
-    color: white; /* 본문 링크 색상 흰색 */
+    color: black; /* 본문 링크 색상 흰색 */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
@@ -321,6 +321,6 @@ header {
 }
 
 .post-image img:hover {
-    border: 3px solid white; /* 이미지 강조 효과 */
+    border: 3px solid black; /* 이미지 강조 효과 */
     transform: scale(1.05); /* 확대 효과 */
 }
