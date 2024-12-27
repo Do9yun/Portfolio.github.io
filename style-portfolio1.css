@@ -183,8 +183,3 @@ p {
     color: black; 
     text-decoration: underline;
 }
-
-html {
-    scroll-behavior: smooth; /* 부드러운 스크롤 활성화 */
-    scroll-padding-top: 80px; /* 스크롤 시 상단 여백 추가 */
-}
