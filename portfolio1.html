@@ -120,22 +120,25 @@
     </div>
 
     <script>
-        // 사이드바 항목 클릭 시 부드러운 스크롤
-        document.querySelectorAll('.right-sidebar a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const offset = 10; // 여백 설정
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
+    // 사이드바 항목 클릭 시 부드러운 스크롤
+    document.querySelectorAll('.right-sidebar a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const offset = 10; // 여백 설정
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+            if (targetElement) {
+                const targetPosition = targetElement.offsetTop - offset;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
-    </script>
+    });
+</script>
+
 </body>
 </html>
