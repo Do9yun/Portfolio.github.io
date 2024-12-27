@@ -124,6 +124,7 @@
         document.querySelectorAll('.right-sidebar a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                const offset = 10; // 여백 설정
                 const targetId = this.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
 
