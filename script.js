@@ -140,6 +140,11 @@ function showContent(section) {
             <p>정보처리기사</p>
             <p>필기 합격 후, 실기 준비중입니다.</p>
         `;
+    } else if (section === 'portfolio') {
+        sectionContent = `
+            <h2>포트폴리오</h2>
+            <p>포트폴리오에 대한 내용을 여기에 작성하세요.</p>
+        `;
     }
 
     // 섹션 내용을 콘텐츠 영역에 추가
