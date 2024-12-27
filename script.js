@@ -156,7 +156,7 @@ function showContent(section) {
                 </div>
                 <div class="post-image">
                     <a href="https://example.com/article1" target="_blank">
-                        <img src="images/portfolio_image.jpg" alt="AI 재난 예방 시스템">
+                        <img src="images/화재 감지.png" alt="AI 재난 예방 시스템">
                     </a>
                 </div>
             </div>
