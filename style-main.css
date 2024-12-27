@@ -259,7 +259,7 @@ header {
 .post {
     display: flex;
     gap: 20px;
-    background-color:rgba(240, 240, 240, 0.6);
+    background-color:rgba(0, 0, 0, 0.6);
     padding: 15px;
     border-radius: 10px;
     align-items: center;
@@ -267,7 +267,7 @@ header {
 }
 
 .post:hover {
-    background-color: rgba(240, 240, 240, 1); /* 카드 강조 효과 */
+    background-color: rgba(0, 0, 0, 0.6); /* 카드 강조 효과 */
 }
 
 /* 제목목 텍스트 스타일 */
@@ -277,7 +277,7 @@ header {
 }
 
 .post-text h3 a {
-    color: black; /* 제목 글씨 색상 흰색 */
+    color: white; /* 제목 글씨 색상 흰색 */
     font-size: 1.8rem; /* 제목 글씨 크기 증가 */
     text-decoration: none; /* 기본 상태에서 밑줄 없음 */
     transition: all 0.3s ease-in-out;
@@ -285,7 +285,7 @@ header {
 
 .post-text h3 a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: black; /* 밑줄 색상 흰색 */
+    text-decoration-color: white; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
 }
 
@@ -297,14 +297,14 @@ header {
 }
 
 .post-text p a {
-    color: black; /* 본문 링크 색상 흰색 */
+    color: white; /* 본문 링크 색상 흰색 */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
 .post-text p a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: black; /* 밑줄 색상 흰색 */
+    text-decoration-color: white; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 1.5px; /* 밑줄 두께 */
 }
 
@@ -321,6 +321,6 @@ header {
 }
 
 .post-image img:hover {
-    border: 3px solid black; /* 이미지 강조 효과 */
+    border: 3px solid white; /* 이미지 강조 효과 */
     transform: scale(1.05); /* 확대 효과 */
 }
