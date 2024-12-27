@@ -142,7 +142,6 @@ function showContent(section) {
         `;
     } else if (section === 'portfolio') {
     sectionContent = `
-        <h2>포트폴리오</h2>
         <div class="portfolio-section">
             <div class="post">
                 <div class="post-text">
@@ -155,7 +154,6 @@ function showContent(section) {
                     </p>
                 </div>
                 <div class="post-image">
-                    <a href="https://example.com/article1" target="_blank">
                         <img src="images/화재 감지.png" alt="AI 재난 예방 시스템">
                     </a>
                 </div>
