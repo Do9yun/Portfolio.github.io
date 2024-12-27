@@ -310,5 +310,5 @@ header {
 }
 
 .post-image img:hover {
-    border: 2px solid yellow; /* 이미지 강조 효과 */
+    border: 2px solid white; /* 이미지 강조 효과 */
 }
