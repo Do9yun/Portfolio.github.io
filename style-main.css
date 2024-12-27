@@ -276,25 +276,33 @@ header {
 }
 
 .post-text h3 a {
-    color: #ffcc00;
-    text-decoration: none;
+    color: white; /* 제목 글씨 색상 흰색 */
+    font-size: 1.8rem; /* 제목 글씨 크기 증가 */
+    text-decoration: none; /* 기본 상태에서 밑줄 없음 */
     transition: all 0.3s ease-in-out;
 }
 
 .post-text h3 a:hover {
-    text-decoration: underline;
-    text-decoration-color: yellow; /* 노란 밑줄 추가 */
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+    text-decoration-color: white; /* 밑줄 색상 흰색 */
+    text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
+}
+
+.post-text p {
+    color: white; /* 본문 글씨 색상 흰색 */
+    font-size: 1rem; /* 본문 글씨 크기 */
 }
 
 .post-text p a {
-    color: white;
+    color: white; /* 본문 링크 색상 흰색 */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
 .post-text p a:hover {
-    text-decoration: underline;
-    text-decoration-color: yellow; /* 본문 링크에 노란 밑줄 */
+    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
+    text-decoration-color: white; /* 밑줄 색상 흰색 */
+    text-decoration-thickness: 1.5px; /* 밑줄 두께 */
 }
 
 /* 이미지 스타일 */
@@ -310,5 +318,6 @@ header {
 }
 
 .post-image img:hover {
-    border: 2px solid white; /* 이미지 강조 효과 */
+    border: 3px solid white; /* 이미지 강조 효과 */
+    transform: scale(1.05); /* 확대 효과 */
 }
