@@ -247,3 +247,42 @@ header {
 .info-table td {
     background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* 포트폴리오 */
+.portfolio-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    display: flex;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.post-text {
+    flex: 2;
+    color: white;
+}
+
+.post-text h3 a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.post-text h3 a:hover {
+    text-decoration: underline;
+}
+
+.post-image {
+    flex: 1;
+}
+
+.post-image img {
+    width: 100%;
+    border-radius: 5px;
+}
