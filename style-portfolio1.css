@@ -147,7 +147,7 @@ p {
     position: fixed;
     top: 100px; /* 화면 상단에서의 거리 */
     right: 20px; /* 화면 오른쪽에서의 거리 */
-    width: 250px;
+    width: 200px;
     background-color: rgba(0, 0, 0, 0.6); /* 투명 배경 */
     color: white;
     padding: 15px;
