@@ -60,7 +60,7 @@ p {
 /* 오른쪽 사이드바 스타일 */
 .right-sidebar {
     position: fixed;
-    top: 100px;
+    top: 150px;
     right: 20px;
     width: 200px;
     background-color: white;
