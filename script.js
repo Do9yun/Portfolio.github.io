@@ -1,6 +1,17 @@
 function showContent(section) {
     const contentArea = document.getElementById('content-area');
 
+    if (section === 'intro') {
+        // 비밀번호 입력 창 표시
+        const password = prompt('비밀번호를 입력하세요:');
+        
+        // 올바른 비밀번호 확인
+        if (password !== '1202') { // 여기에 원하는 암호를 입력하세요
+            alert('비밀번호가 틀렸습니다.');
+            return; // 암호가 틀리면 콘텐츠를 표시하지 않음
+        }
+    }
+
     // 콘텐츠 영역 활성화
     contentArea.classList.add('active');
 
