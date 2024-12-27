@@ -173,7 +173,7 @@ p {
 }
 
 .right-sidebar ul li a {
-    color: #007bff; /* 링크 색상을 파란색으로 변경 */
+    color: black; /* 링크 색상을 파란색으로 변경 */
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s ease-in-out;
