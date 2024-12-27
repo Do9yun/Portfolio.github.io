@@ -148,19 +148,22 @@ function showContent(section) {
                 <div class="post-text">
                     <h3><a href="https://example.com/article1" target="_blank">AI 모델을 활용한 재난 예방 시스템</a></h3>
                     <p>
-                        화재 감지 및 예방 시스템에 관한 프로젝트로, 딥러닝 기반의 모델을 훈련시켜
-                        화재 연기와 공장 연기를 구분하고 초기 단계에서 화재를 감지할 수 있는 프로그램을 구현했습니다.
+                        <a href="https://example.com/article1" target="_blank" style="color: white; text-decoration: none;">
+                            화재 감지 및 예방 시스템에 관한 프로젝트로, 딥러닝 기반의 모델을 훈련시켜
+                            화재 연기와 공장 연기를 구분하고 초기 단계에서 화재를 감지할 수 있는 프로그램을 구현했습니다.
+                        </a>
                     </p>
                 </div>
                 <div class="post-image">
                     <a href="https://example.com/article1" target="_blank">
-                        <img src="images/화재 감지.png" alt="AI 재난 예방 시스템">
+                        <img src="images/portfolio_image.jpg" alt="AI 재난 예방 시스템">
                     </a>
                 </div>
             </div>
         </div>
     `;
 }
+
 
 
     // 섹션 내용을 콘텐츠 영역에 추가
