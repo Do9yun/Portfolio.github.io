@@ -162,7 +162,7 @@ function showContent(section) {
     }  else if (section === 'Study') {
         sectionContent = `
             <h2>공부</h2>
-            <p>공부...</p>
+            <p>작성중</p>
         `;
     }
 
