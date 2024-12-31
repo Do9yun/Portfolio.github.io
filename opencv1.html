@@ -13,7 +13,7 @@
 
         <!-- 첫 번째 이미지 섹션 -->
         <div class="image-section">
-            <img src="openCV images/1.png" alt="OpenCV 첫 번째 이미지" class="opencv-image">
+            <img src="openCV images/openCV 사진.png" alt="OpenCV 첫 번째 이미지" class="opencv-image">
         </div>
 
         <!-- 첫 번째 설명 -->
@@ -89,6 +89,56 @@
                 </li>
                 <li><code>cv.destroyAllWindows()</code><br>
                     모든 OpenCV 창을 닫습니다.
+                </li>
+            </ol>
+        </div>
+
+        <!-- 세 번째 이미지 섹션 -->
+        <div class="image-section">
+            <img src="openCV images/33.png" alt="OpenCV 세 번째 이미지" class="opencv-image">
+        </div>
+
+        <!-- 세 번째 설명 -->
+        <div class="description-section">
+            <ol>
+                <li><code>import cv2 as cv</code><br>
+                    OpenCV 라이브러리를 <code>cv</code>라는 이름으로 가져옵니다. 영상 처리에 필요한 주요 함수들을 제공합니다.
+                </li>
+                <li><code>import sys</code><br>
+                    시스템 관련 기능을 제공하는 Python 표준 라이브러리입니다.
+                </li>
+                <li><code>cap=cv.VideoCapture(0, cv.CAP_DSHOW)</code><br>
+                    웹캠을 열어 비디오 캡처 객체를 생성합니다.
+                </li>
+                <li><code>if not cap.isOpened():</code><br>
+                    비디오 캡처 객체가 정상적으로 열리지 않았다면, 아래 코드를 실행합니다.
+                </li>
+                <li><code>sys.exit('카메라 오류 발생')</code><br>
+                    카메라에 연결이 실패한 경우 프로그램을 종료하고 메시지를 출력합니다.
+                </li>
+                <li><code>while True:</code><br>
+                    실시간으로 카메라에서 영상을 계속 읽기 위한 루프를 실행합니다.
+                </li>
+                <li><code>ret, frame = cap.read()</code><br>
+                    카메라에서 프레임을 읽습니다.
+                </li>
+                <li><code>if not ret:</code><br>
+                    프레임 읽기에 실패한 경우, 메시지를 출력하고 루프를 종료합니다.
+                </li>
+                <li><code>cv.imshow('Video Display', frame)</code><br>
+                    읽어온 프레임을 'Video Display'라는 제목의 창에 표시합니다.
+                </li>
+                <li><code>key=cv.waitKey(1)</code><br>
+                    1밀리초 동안 키 입력을 기다립니다.
+                </li>
+                <li><code>if key==ord('q'):</code><br>
+                    'q' 키가 입력되면 루프를 종료합니다.
+                </li>
+                <li><code>cap.release()</code><br>
+                    비디오 캡처 객체를 해제합니다.
+                </li>
+                <li><code>cv.destroyAllWindows()</code><br>
+                    OpenCV 생성된 모든 창을 닫습니다.
                 </li>
             </ol>
         </div>
