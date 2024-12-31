@@ -165,18 +165,18 @@ function showContent(section) {
             <div class="post">
                 <div class="post-text">
                     <h3>
-                        <a href="study.html" target="_blank">
+                        <a href="opencv1.html" target="_blank">
                             OpenCV
                         </a>
                     </h3>
                     <p>
-                        <a href="study.html" target="_blank">
+                        <a href="opencv1.html" target="_blank">
                         Python과 OpenCV를 활용한 영상 처리 및 객체지향 프로그래밍 기초 이해.
                         </a>
                     </p>
                 </div>
                 <div class="post-image">
-                    <a href="study.html" target="_blank">
+                    <a href="opencv1.html" target="_blank">
                         <img src="openCV images/openCV 사진.png" alt="OpenCV 관련 이미지">
                     </a>
                 </div>
