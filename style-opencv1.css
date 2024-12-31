@@ -3,58 +3,57 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
     color: #333;
 }
 
 /* 콘텐츠 컨테이너 */
 .content-container {
-    max-width: 900px;
-    margin: 50px auto;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 제목 스타일 */
 h1 {
-    font-size: 2.5rem;
-    color: #222;
+    font-size: 2rem;
     text-align: center;
-    margin-bottom: 30px;
+    color: #222;
+    margin-bottom: 20px;
 }
 
 /* 이미지 섹션 */
+.image-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
 .image-section img {
-    display: block;
     max-width: 100%;
-    height: auto;
-    margin: 0 auto 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 설명 섹션 */
 .description-section {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555;
+    margin: 20px 0;
 }
 
 .description-section ol {
     padding-left: 20px;
+    line-height: 1.6;
 }
 
 .description-section li {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .description-section code {
-    font-family: 'Courier New', monospace;
-    background-color: #f4f4f4;
-    padding: 2px 5px;
+    background-color: #e9ecef;
+    padding: 2px 4px;
     border-radius: 4px;
-    color: #c7254e;
-    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
 }
