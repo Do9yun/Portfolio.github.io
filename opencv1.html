@@ -255,7 +255,12 @@
             <img src="openCV images/6.png" alt="OpenCV 여섯 번째 이미지" class="opencv-image">
         </div>
 
-        <!-- 여섯 번째 설명 -->
+        <!-- 여섯 번째 섹션 -->
+        <h2>6. 마우스 이벤트를 활용한 그림 그리기</h2>
+        <div class="image-section">
+
+            <img src="openCV images/6.png" alt="OpenCV 여섯 번째 이미지" class="opencv-image">
+        </div>
         <div class="description-section">
             <ol>
                 <li><code>import cv2 as cv</code><br>
@@ -264,41 +269,46 @@
                 <li><code>import sys</code><br>
                     시스템 관련 기능을 사용하기 위해 <code>sys</code> 모듈을 가져옵니다.
                 </li>
-                <li><code>img = cv.imread('girl_laughing.jpg')</code><br>
-                    <code>girl_laughing.jpg</code> 이미지를 읽어 <code>img</code> 변수에 저장합니다.
+                <li><code>img=cv.imread('soccer.jpg')</code><br>
+                    <code>soccer.jpg</code> 이미지를 읽어 <code>img</code> 변수에 저장합니다.
                 </li>
-                <li><code>if img is None:</code><br>
-                    이미지가 없을 경우 프로그램이 종료됩니다.
+                <li><code>BrushSize=5</code><br>
+                    브러시의 크기를 설정합니다. <code>BrushSize</code>는 반지름이 5인 원을 그립니다.
                 </li>
-                <li><code>ix, iy = -1, -1</code><br>
-                    전역 변수를 마우스 클릭 시 초기 좌표로 지정하기 위해 사용됩니다.
+                <li><code>Lcolor, Rcolor=(255,0,0), (0,255,0)</code><br>
+                    마우스 왼쪽 버튼을 클릭할 때는 빨간색 <code>(255, 0, 0)</code>, 마우스 오른쪽 버튼을 클릭할 때는 파란색 <code>(0, 255, 0)</code> 원을 그립니다.
                 </li>
-                <li><code>def draw(event, x, y, flags, param):</code><br>
-                    마우스 이벤트 처리를 위한 콜백 함수입니다.
+                <li><code>def painting(event, x, y, flags, param):</code><br>
+                    마우스 이벤트를 처리하는 콜백 함수입니다.
                 </li>
                 <ul>
                     <li><code>if event == cv.EVENT_LBUTTONDOWN:</code><br>
-                        마우스 왼쪽 버튼이 눌렸을 때, 현재 좌표 <code>(x, y)</code>를 <code>ix</code>와 <code>iy</code>에 저장합니다.
-                    </li>
-                    <li><code>elif event == cv.EVENT_LBUTTONUP:</code><br>
-                        마우스 왼쪽 버튼을 뗄 때, 드래그한 영역에 빨간색 직사각형을 그립니다.<br>
-                        <code>cv.rectangle()</code>를 사용하여 <code>(ix, iy)</code>와 <code>(x, y)</code>를 대각선 좌표로 하는 사각형을 생성합니다.
+                        마우스 왼쪽 버튼 클릭 시, 해당 위치 <code>(x, y)</code>에 파란색 원을 그립니다.
                     </li>
                     <li><code>elif event == cv.EVENT_RBUTTONDOWN:</code><br>
-                        마우스 오른쪽 버튼이 눌리면, 해당 지점에서 고정 크기(100x100)의 파란색 직사각형을 그립니다.
+                        마우스 오른쪽 버튼 클릭 시, 해당 위치 <code>(x, y)</code>에 빨간색 원을 그립니다.
+                    </li>
+                    <li><code>elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_LBUTTON:</code><br>
+                        마우스 왼쪽 버튼을 누른 상태에서 이동 시, 파란색 원을 그립니다.
+                    </li>
+                    <li><code>elif event == cv.EVENT_MOUSEMOVE and flags == cv.EVENT_FLAG_RBUTTON:</code><br>
+                        마우스 오른쪽 버튼을 누른 상태에서 이동 시, 빨간색 원을 그립니다.
                     </li>
                 </ul>
-                <li><code>cv.imshow('Drawing', img)</code><br>
-                    변경된 이미지를 실시간으로 업데이트하여 표시합니다.
+                <li><code>cv.circle(img, (x, y), BrushSize, Color, -1)</code><br>
+                    지정된 좌표 <code>(x, y)</code>에 반지름 <code>BrushSize</code>인 원을 색칠합니다. -1은 원을 채우는 옵션입니다.
                 </li>
-                <li><code>cv.namedWindow('Drawing')</code><br>
-                    <code>'Drawing'</code>이라는 이름의 창을 생성합니다.
+                <li><code>cv.imshow('Painting', img)</code><br>
+                    변경된 이미지를 실시간으로 업데이트합니다.
                 </li>
-                <li><code>cv.setMouseCallback('Drawing', draw)</code><br>
-                    마우스 이벤트 콜백 함수를 <code>'Drawing'</code> 창에 연결합니다.
+                <li><code>cv.namedWindow('Painting')</code><br>
+                    <code>'Painting'</code>이라는 이름의 창을 생성합니다.
+                </li>
+                <li><code>cv.setMouseCallback('Painting', painting)</code><br>
+                    마우스 이벤트 콜백 함수를 <code>'Painting'</code> 창에 연결합니다.
                 </li>
                 <li><code>while True:</code><br>
-                    프로그램이 실행되는 동안 계속 반복됩니다.
+                    프로그램이 실행되는 동안 반복합니다.
                 </li>
                 <ul>
                     <li><code>if cv.waitKey(20) & 0xFF == ord('q'):</code><br>
@@ -310,6 +320,7 @@
                 </li>
             </ol>
         </div>
+        
         <!-- 마무리 멘트 -->
         <div class="closing-remarks">
             <p>
