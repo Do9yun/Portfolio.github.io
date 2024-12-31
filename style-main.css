@@ -324,3 +324,70 @@ header {
     border: 3px solid white; /* 이미지 강조 효과 */
     transform: scale(1.05); /* 확대 효과 */
 }
+
+/* Study 섹션 스타일 */
+.study-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 개별 포스트 스타일 */
+.post {
+    display: flex;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* 배경색 */
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
+}
+
+.post:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* 호버 시 강조 효과 */
+}
+
+/* 텍스트 영역 스타일 */
+.post-text {
+    flex: 2;
+    color: white;
+}
+
+.post-text h3 a {
+    color: #ffcc00; /* 제목 링크 색상 */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.post-text h3 a:hover {
+    text-decoration: underline; /* 제목 링크 강조 */
+    text-decoration-color: yellow;
+}
+
+.post-text p a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.post-text p a:hover {
+    text-decoration: underline; /* 본문 링크 강조 */
+    text-decoration-color: yellow;
+}
+
+/* 이미지 스타일 */
+.post-image {
+    flex: 1;
+}
+
+.post-image img {
+    width: 100%;
+    max-width: 150px; /* 이미지 최대 너비 설정 */
+    border-radius: 5px;
+    border: 2px solid transparent; /* 기본 테두리 */
+    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
+}
+
+.post-image img:hover {
+    border: 2px solid white; /* 이미지 호버 시 테두리 강조 */
+}
