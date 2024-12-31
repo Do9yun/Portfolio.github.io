@@ -159,12 +159,31 @@ function showContent(section) {
             <p>정보처리기사</p>
             <p>필기 합격 후, 실기 준비중입니다.</p>
         `;
-    }  else if (section === 'Study') {
-        sectionContent = `
-            <h2>공부</h2>
-            <p>작성중</p>
-        `;
-    }
+    } else if (section === 'study') {
+    sectionContent = `
+        <div class="study-section">
+            <div class="post">
+                <div class="post-text">
+                    <h3>
+                        <a href="study.html" target="_blank">
+                            OpenCV
+                        </a>
+                    </h3>
+                    <p>
+                        <a href="study.html" target="_blank">
+                        Python과 OpenCV를 활용한 영상 처리 및 객체지향 프로그래밍 기초 이해.
+                        </a>
+                    </p>
+                </div>
+                <div class="post-image">
+                    <a href="study.html" target="_blank">
+                        <img src="openCV images/openCV 사진.png" alt="OpenCV 관련 이미지">
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
     // 섹션 내용을 콘텐츠 영역에 추가
     contentArea.innerHTML += sectionContent;
