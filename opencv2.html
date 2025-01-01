@@ -147,12 +147,12 @@
         </div>
 
         <!-- 여섯 번째 이미지 섹션 -->
-        <h2>이미지 영역 분리 및 RGB 채널 분석</h2>
         <div class="image-section">
+            <h2>이미지 영역 분리 및 RGB 채널 분석</h2>
             <img src="openCV2 images/6.png" alt="이미지 영역 분리 및 RGB 채널 분석" class="opencv-image">
         </div>
 
-        <!-- 여섯섯 번째 설명 -->
+        <!-- 여섯 번째 설명 -->
         <div class="description-section">
             <ol>
                 <li><code>import cv2 as cv</code><br>
@@ -168,15 +168,14 @@
                     이미지 파일이 없거나 잘못된 경로일 경우 프로그램을 종료하며 메시지를 출력합니다.
                 </li>
                 <li><code>cv.imshow('original_RGB', img)</code><br>
-                    원본 이미지를 <code>'original_RGB'</code>라는 창에 표시합니다.
+                    원본 이미지를 'original_RGB'라는 창에 표시합니다.
                 </li>
                 <li><strong>부분 이미지 추출:</strong><br>
                     특정 부분만 잘라낸 이미지를 표시합니다.
                 </li>
                 <ul>
                     <li><code>img[0:img.shape[0]//2, 0:img.shape[1]//2, :]</code>:<br>
-                        이미지의 왼쪽 위 절반을 추출합니다.<br>
-                        <code>img.shape[0]</code>은 이미지 높이, <code>img.shape[1]</code>은 이미지 너비를 나타냅니다.
+                        이미지의 왼쪽 위 절반을 추출합니다.
                     </li>
                     <li><code>img[img.shape[0]//4:3*img.shape[0]//4, img.shape[1]//4:3*img.shape[1]//4, :]</code>:<br>
                         이미지의 중앙 절반을 추출합니다.
