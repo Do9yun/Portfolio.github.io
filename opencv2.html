@@ -113,6 +113,38 @@
                 이를 이해하면 색상 조작이나 분석을 더욱 쉽게 할 수 있습니다.
             </p>
         </div>
+
+        <!-- 다섯 번째 이미지 섹션 -->
+        <h2>numpy 슬라이싱과 채널 분리</h2>
+        <div class="image-section">
+            <img src="openCV2 images/5.png" alt="numpy 슬라이싱과 채널 분리" class="opencv-image">
+        </div>
+
+        <!-- 다섯 번째 설명 -->
+        <div class="description-section">
+            <p><strong>RGB 이미지는 3개의 채널(빨강, 초록, 파랑)로 구성됩니다. OpenCV에서는 numpy 배열의 슬라이싱 기능을 사용해 이미지의 특정 영역이나 채널을 분리할 수 있습니다.</strong></p>
+            <ul>
+                <li><strong>1. 이미지 크기와 구조</strong>:<br>
+                    <code>img.shape</code>은 이미지 배열의 구조를 나타냅니다.<br>
+                    예: (948, 1434, 3)<br>
+                    948: 이미지의 높이 (픽셀 개수)<br>
+                    1434: 이미지의 너비 (픽셀 개수)<br>
+                    3: RGB 채널 (빨강, 초록, 파랑)
+                </li>
+                <li><strong>2. 이미지 슬라이싱</strong>:<br>
+                    <code>img[0:img.shape[0]//2, 0:img.shape[1]//2, :]</code>:<br>
+                    이미지를 위쪽 절반과 왼쪽 절반으로 나누는 슬라이싱입니다.<br>
+                    결과: 이미지의 왼쪽 위 부분이 출력됩니다.
+                </li>
+                <li><strong>3. RGB 채널 분리</strong>:<br>
+                    <code>img[:, :, 2]</code>: 빨강(Red) 채널<br>
+                    <code>img[:, :, 1]</code>: 초록(Green) 채널<br>
+                    <code>img[:, :, 0]</code>: 파랑(Blue) 채널<br>
+                    각각의 채널을 슬라이싱하면, 해당 색상 정보만 분리된 흑백 이미지로 출력됩니다.
+                </li>
+            </ul>
+            <p>💡 <strong>활용 팁:</strong> 슬라이싱을 사용하면 이미지의 특정 영역을 자르거나 색상 채널을 조정하는 작업을 쉽게 수행할 수 있습니다.</p>
+        </div>
     </div>
 </body>
 </html>
