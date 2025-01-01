@@ -50,8 +50,9 @@ h1 {
 
 /* 목록 스타일 */
 .description-section ol {
-    list-style: none;
+    list-style: decimal;
     padding: 0;
+    margin-left: 20px;
 }
 
 .description-section li {
@@ -60,10 +61,7 @@ h1 {
     position: relative;
 }
 
-.description-section li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
+.description-section li::marker {
     color: #555;
     font-size: 1.5rem;
     line-height: 1;
@@ -71,7 +69,7 @@ h1 {
 
 /* 중첩 목록 */
 .description-section ul {
-    margin: 10px 0 20px 20px;
+    margin: 10px 0 20px 40px;
     padding: 0;
     list-style-type: disc;
 }
@@ -79,6 +77,7 @@ h1 {
 .description-section ul li {
     margin-bottom: 10px;
     font-size: 1rem;
+    line-height: 1.4;
 }
 
 /* 강조 텍스트 */
@@ -90,6 +89,9 @@ h1 {
 /* 아이디어 강조 (💡) */
 .description-section li strong::before {
     content: "💡 ";
+    color: #FFA500;
+    font-size: 1.3rem;
+    margin-right: 5px;
 }
 
 /* 반응형 스타일 */
