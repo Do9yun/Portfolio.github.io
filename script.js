@@ -200,6 +200,29 @@ function showContent(section) {
                     </a>
                 </div>
             </div>
+
+             <div class="post">
+                <div class="post-text">
+                    <h3>
+                        <a href="opencv3.html" target="_blank">
+                            엣지와 영역
+                        </a>
+                    </h3>
+                    <p>
+                        <a href="opencv3.html" target="_blank">
+                        디지털 이미지에서 엣지 검출과 영역 분할을 통해 주요 특징을 분석하고 처리하는 방법 이해.
+                        </a>
+                    </p>
+                </div>
+                <div class="post-image">
+                    <a href="opencv3.html" target="_blank">
+                        <img src="openCV3 images/main.png" alt="엣지와 영역 관련 이미지">
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+}
         </div>
     `;
 }
