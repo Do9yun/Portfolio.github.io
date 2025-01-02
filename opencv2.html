@@ -268,6 +268,74 @@
                     </li>
                 </ol>
             </div>
+
+            <!-- 연결 요소 -->
+        <h2>연결 요소</h2>
+        <div class="image-section">
+            <img src="openCV2 images/8.png" alt="연결 요소 설명" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <p>4-연결성: 현재 픽셀을 기준으로 상하좌우(북, 서, 동, 남) 네 방향에 있는 픽셀만 연결된 것으로 간주합니다.</p>
+            <ul>
+                <li>주변 픽셀: <code>nw, w, n, sw</code>는 포함하지 않음.</li>
+                <li>결과적으로 "+" 모양의 연결만 포함합니다.</li>
+            </ul>
+            <p>8-연결성: 현재 픽셀을 기준으로 대각선 방향까지 포함해 총 8개의 방향 픽셀이 연결된 것으로 간주합니다.</p>
+            <ul>
+                <li>모든 방향 포함: 상하좌우 + 대각선 (<code>nw, ne, sw, se</code>).</li>
+                <li>결과적으로 "⬜" 모양의 연결을 고려합니다.</li>
+            </ul>
+        </div>
+
+        <!-- 예제 -->
+        <div class="image-section">
+            <img src="openCV2 images/9.png" alt="예제 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <p>입력 이진 영상:</p>
+            <p>0과 1로 이루어진 이진 행렬입니다. <br> 1은 연결된 픽셀을 나타내며, 0은 배경입니다.</p>
+            <p><strong>4-연결성으로 찾은 연결 요소:</strong></p>
+            <ul>
+                <li>상하좌우로 연결된 <code>1</code>을 같은 연결 요소로 간주해 번호를 부여.</li>
+                <li>예: 왼쪽 위의 <code>1</code>들은 1로 그룹화됨.</li>
+            </ul>
+            <p><strong>8-연결성으로 찾은 연결 요소:</strong></p>
+            <ul>
+                <li>대각선까지 포함해 연결된 <code>1</code>을 같은 연결 요소로 간주해 번호를 부여.</li>
+                <li>예: 오른쪽 아래 대각선으로 연결된 <code>1</code>들도 한 그룹(3)으로 간주.</li>
+            </ul>
+        </div>
+
+        <!-- 모폴로지 -->
+        <h2>모폴로지</h2>
+        <div class="image-section">
+            <img src="openCV2 images/10.png" alt="모폴로지 설명" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <p><strong>구조 요소(Structuring Element):</strong></p>
+            <ul>
+                <li>모폴로지 연산에서 입력 영상의 모양을 변경하기 위해 사용하는 핵심 도구입니다.</li>
+                <li>예시에서는 "+" 모양과 1차원 구조 요소를 보여주고 있습니다.</li>
+            </ul>
+        </div>
+
+        <!-- 예시 -->
+        <div class="image-section">
+            <img src="openCV2 images/11.png" alt="예시 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <p><strong>팽창(Dilation):</strong></p>
+            <ul>
+                <li>주변의 구조 요소와 겹치는 모든 픽셀을 1로 확장.</li>
+                <li>결과: 기존 영역이 확대되며, 끊어진 부분이 연결됨.</li>
+            </ul>
+            <p><strong>침식(Erosion):</strong></p>
+            <ul>
+                <li>주변의 구조 요소와 완전히 겹치지 않는 픽셀은 0으로 축소.</li>
+                <li>결과: 기존 영역이 축소되며, 얇은 돌출 영역은 제거됨.</li>
+            </ul>
+        </div>
+    </div>
         </div>
 </body>
 </html>
