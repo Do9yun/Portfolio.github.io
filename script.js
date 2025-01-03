@@ -197,7 +197,7 @@ function showContent(section) {
                 </div>
                 <div class="post-image">
                     <a href="Deeplearning.html" target="_blank">
-                        <img src="images/deepLearning.png" alt="딥러닝 관련 이미지">
+                        <img src="images/deeplearning.png" alt="딥러닝 관련 이미지">
                     </a>
                 </div>
             </div>
