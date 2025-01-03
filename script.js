@@ -177,7 +177,7 @@ function showContent(section) {
                 </div>
                 <div class="post-image">
                     <a href="openCV.html" target="_blank">
-                        <img src="images/openCV.png" alt="OpenCV 관련 이미지">
+                        <img src="images/opencv.png" alt="OpenCV 관련 이미지">
                     </a>
                 </div>
             </div>
