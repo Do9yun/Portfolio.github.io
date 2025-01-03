@@ -3,83 +3,92 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #1c1c1c;
-    color: #ffffff;
+    background-color: #ffffff; /* 흰 배경 */
+    color: #333;
 }
 
 /* 콘텐츠 컨테이너 */
 .content-container {
-    max-width: 1200px;
-    margin: 50px auto;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #282828;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 제목 스타일 */
-.content-container h1 {
+h1 {
     font-size: 2.5rem;
     text-align: center;
-    color: #f8f9fa;
+    color: #222;
     margin-bottom: 30px;
+    font-weight: bold;
 }
 
-/* 가로 레이아웃 설정 */
-.horizontal-layout {
+/* study-section 스타일 */
+.study-section {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 20px;
-    overflow-x: auto;
-    padding: 10px;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 20px;
 }
 
-/* 개별 콘텐츠 박스 스타일 */
+/* 개별 섹션(post) 스타일 */
 .post {
-    flex: 0 0 45%;
     display: flex;
-    background-color: #333;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* 텍스트와 이미지 배치 */
-.post-text {
-    flex: 2;
-    padding: 15px;
-    color: #ddd;
-}
-
-.post-image {
-    flex: 1;
-    padding: 10px;
-    text-align: center;
-    background-color: #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* 텍스트 스타일 */
+.post-text {
+    flex: 1;
+    margin-right: 20px;
+    text-align: left;
+}
+
 .post-text h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    color: #222;
 }
 
 .post-text p {
     font-size: 1rem;
     line-height: 1.6;
-    margin: 0;
+    color: #555;
+}
+
+.post-text a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-text a:hover {
+    color: #007bff;
 }
 
 /* 이미지 스타일 */
+.post-image {
+    flex: 0 0 250px;
+    text-align: center;
+}
+
 .post-image img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
