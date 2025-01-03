@@ -93,3 +93,9 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
 }
+
+.post-image img:hover {
+    transform: scale(1.1); /* 확대 효과 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 강조된 그림자 효과 */
+    cursor: pointer; /* 마우스 포인터 변경 */
+}
