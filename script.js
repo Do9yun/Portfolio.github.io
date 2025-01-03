@@ -162,6 +162,27 @@ function showContent(section) {
     } else if (section === 'study') {
     sectionContent = `
         <div class="study-section">
+        <div class="post">
+                <div class="post-text">
+                    <h3>
+                        <a href="openCV.html" target="_blank">
+                            OpenCV
+                        </a>
+                    </h3>
+                    <p>
+                        <a href="openCV.html" target="_blank">
+                        컴퓨터 비전과 패턴인식은 머신 러닝과 AI에서 가장 활발히 연구되고 있는 분야이며, 자율 주행 자동차, 로봇 공학, 증강 현실 등과 같은 많은 산업 분야에 응용 프로그램이 있다. 
+                        기초적인 컴퓨터 비전을 이해하고 여러 산업 분야에서 컴퓨터 비전 및 패턴인식의 다양한 응용에 대해 학습한다.
+                        </a>
+                    </p>
+                </div>
+                <div class="post-image">
+                    <a href="openCV.html" target="_blank">
+                        <img src="images/openCV.png" alt="OpenCV 관련 이미지">
+                    </a>
+                </div>
+            </div>
+            
             <div class="post">
                 <div class="post-text">
                     <h3>
