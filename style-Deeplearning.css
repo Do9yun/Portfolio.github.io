@@ -76,16 +76,16 @@ h1 {
 }
 
 .post-image img {
-    width: 200px; /* 사진 너비 일정 */
-    height: 150px; /* 사진 높이 일정 */
+    width: 200px; /* 사진 너비 */
+    height: 150px; /* 사진 높이 */
     border-radius: 10px;
     object-fit: cover; /* 사진 비율 유지 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-image img:hover {
-    transform: scale(1.05); /* 확대 효과 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 강조 효과 */
+    transform: scale(1.1); /* 확대 효과 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 강조된 그림자 효과 */
+    cursor: pointer; /* 마우스 포인터 변경 */
 }
