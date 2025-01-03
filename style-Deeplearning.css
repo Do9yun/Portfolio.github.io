@@ -1,3 +1,12 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* 흰 배경 */
+    color: #333;
+}
+
 /* 콘텐츠 컨테이너 */
 .content-container {
     max-width: 1000px;
@@ -5,21 +14,35 @@
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 각 챕터(중앙 바)의 스타일 */
+/* 제목 스타일 */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #222;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* study-section 스타일 */
+.study-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* 챕터 간격 */
+    margin-top: 20px;
+}
+
+/* 개별 섹션(post) 스타일 */
 .post {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* 너비를 고정 */
-    height: 200px; /* 높이를 고정 */
-    background-color: #f8f9fa;
+    background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* 챕터 간 간격 */
-    overflow: hidden;
+    padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -30,52 +53,39 @@
 
 /* 텍스트 스타일 */
 .post-text {
-    flex: 1; /* 텍스트가 남은 공간을 차지 */
-    padding: 20px;
+    flex: 1;
+    margin-right: 20px;
     text-align: left;
 }
 
-.post-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.post-text p {
-    font-size: 1rem;
-    color: #555;
-}
-
-.post-text a {
+.post-text h3 a, .post-text p a {
     text-decoration: none;
     color: inherit;
+    transition: color 0.3s ease;
 }
 
-.post-text a:hover {
-    color: #007bff;
+.post-text h3 a:hover, .post-text p a:hover {
+    color: #007bff; /* 강조 색상 */
 }
 
 /* 이미지 스타일 */
 .post-image {
-    flex: 0 0 200px; /* 고정 크기 */
-    height: 150px; /* 이미지 높이 */
+    flex: 0 0 200px; /* 일정한 크기 */
     text-align: center;
-    background-color: #e9ecef;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-right: 20px; /* 텍스트와 이미지 간 간격 */
     transition: transform 0.3s ease;
 }
 
 .post-image img {
-    width: 100%; /* 이미지를 컨테이너에 맞게 */
-    height: 100%;
-    object-fit: cover; /* 비율 유지하면서 영역 채우기 */
+    width: 200px; /* 사진 너비 일정 */
+    height: 150px; /* 사진 높이 일정 */
     border-radius: 10px;
+    object-fit: cover; /* 사진 비율 유지 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-image img:hover {
-    transform: scale(1.1); /* 확대 효과 */
-    cursor: pointer; /* 마우스 포인터 변경 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 강조된 그림자 효과 */
+    transform: scale(1.05); /* 확대 효과 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 강조 효과 */
 }
