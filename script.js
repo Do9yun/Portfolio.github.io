@@ -162,13 +162,12 @@ function showContent(section) {
     }else if (section === 'study') {
     sectionContent = 
         <div class="study-section">
-        <div class="post">
-                <div class="post-text">
+                <!-- OpenCV 섹션 -->
+                <div class="post">
+                    <div class="post-text">
                     <h3>
-                        <a href="openCV.html" target="_blank">
-                            OpenCV
-                        </a>
-                    </h3>
+                            <a href="openCV.html" target="_blank">OpenCV</a>
+                        </h3>
                     <p>
                         <a href="openCV.html" target="_blank">
                         컴퓨터 비전과 패턴인식은 머신 러닝과 AI에서 가장 활발히 연구되고 있는 분야이며, 자율 주행 자동차, 로봇 공학, 증강 현실 등과 같은 많은 산업 분야에 응용 프로그램이 있다. 
@@ -183,29 +182,28 @@ function showContent(section) {
                 </div>
             </div>
 
-            <div class="post">
-                <div class="post-text">
-                    <h3>
-                        <a href="Deeplearning.html" target="_blank">
-                            Deep learning
-                        </a>
-                    </h3>
-                    <p>
+             <!-- Deep Learning 섹션 -->
+                <div class="post">
+                    <div class="post-text">
+                        <h3>
+                            <a href="Deeplearning.html" target="_blank">Deep Learning</a>
+                        </h3>
+                        <p>
                         <a href="Deeplearning.html" target="_blank">
                         오늘날 인공지능을 이끄는 첨단 기술중에 하나인 딥러닝에 관해 다룬다. 딥러닝의 기본 모델인 인공 신경망부터 심층 신경망, 콘벌루션 신경망, 순환신경망, 생성적 적대 모델에 대한 기초 원리를 학습하고 활용하는 것을 목표로 한다. 
                         더 나아가 머신러닝에서도 많이 다루었던 분류 및 회귀뿐아니라, 이미지 분석 등의 딥러닝의 활용 예제를 통해 알고리즘의 이해를 높이고, 프로그래밍 능력을 함양한다.
                         </a>
                     </p>
-                </div>
-                <div class="post-image">
-                    <a href="Deeplearning.html" target="_blank">
-                        <img src="images/deepLearning.png" alt="딥러닝 관련 이미지">
-                    </a>
+               </div>
+                    <div class="post-image">
+                        <a href="Deeplearning.html" target="_blank">
+                            <img src="images/deepLearning.png" alt="딥러닝 관련 이미지">
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    ;
-}
+        `;
+    }
 
 
     // 섹션 내용을 콘텐츠 영역에 추가
