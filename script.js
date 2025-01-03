@@ -182,65 +182,6 @@ function showContent(section) {
                     </a>
                 </div>
             </div>
-            
-            <div class="post">
-                <div class="post-text">
-                    <h3>
-                        <a href="opencv1.html" target="_blank">
-                            OpenCV
-                        </a>
-                    </h3>
-                    <p>
-                        <a href="opencv1.html" target="_blank">
-                        Python과 OpenCV를 활용한 영상 처리 및 객체지향 프로그래밍 기초 이해.
-                        </a>
-                    </p>
-                </div>
-                <div class="post-image">
-                    <a href="opencv1.html" target="_blank">
-                        <img src="openCV images/openCV 사진.png" alt="OpenCV 관련 이미지">
-                    </a>
-                </div>
-            </div>
-            <div class="post">
-                <div class="post-text">
-                    <h3>
-                        <a href="opencv2.html" target="_blank">
-                            샘플링과 양자화
-                        </a>
-                    </h3>
-                    <p>
-                        <a href="opencv2.html" target="_blank">
-                        디지털 이미지를 효율적으로 변환하고 저장하기 위한 핵심 과정인 샘플링과 양자화의 개념과 중요성을 이해.
-                        </a>
-                    </p>
-                </div>
-                <div class="post-image">
-                    <a href="opencv2.html" target="_blank">
-                        <img src="openCV2 images/openCV2.png" alt="샘플링과 양자화 관련 이미지">
-                    </a>
-                </div>
-            </div>
-
-             <div class="post">
-                <div class="post-text">
-                    <h3>
-                        <a href="opencv3.html" target="_blank">
-                            엣지와 영역
-                        </a>
-                    </h3>
-                    <p>
-                        <a href="opencv3.html" target="_blank">
-                        디지털 이미지에서 엣지 검출과 영역 분할을 통해 주요 특징을 분석하고 처리하는 방법 이해.
-                        </a>
-                    </p>
-                </div>
-                <div class="post-image">
-                    <a href="opencv3.html" target="_blank">
-                        <img src="openCV3 images/main.png" alt="엣지와 영역 관련 이미지">
-                    </a>
-                </div>
-            </div>
         </div>
     `;
 }
