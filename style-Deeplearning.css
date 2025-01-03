@@ -27,23 +27,62 @@ h1 {
 }
 
 /* 설명 섹션 스타일 */
-.description-section {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
+.study-section {
+    margin-top: 20px;
+}
+
+.post {
     margin-bottom: 20px;
-}
-
-/* 이미지 섹션 스타일 */
-.image-section {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.deep-learning-image {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-text {
+    text-align: left;
+    flex: 2;
+}
+
+.post-text h3 a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.post-text p a {
+    text-decoration: none;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.post-image {
+    flex: 1;
+    text-align: right;
+}
+
+.post-image img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .post {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .post-image {
+        text-align: center;
+        margin-top: 10px;
+    }
 }
