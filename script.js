@@ -186,7 +186,7 @@ function showContent(section) {
             <div class="post">
                 <div class="post-text">
                     <h3>
-                        <a href=Deeplearning.html" target="_blank">
+                        <a href="Deeplearning.html" target="_blank">
                             Deep learning
                         </a>
                     </h3>
