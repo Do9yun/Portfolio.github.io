@@ -205,6 +205,7 @@ function showContent(section) {
 
 
 
+
     // 섹션 내용을 콘텐츠 영역에 추가
     contentArea.innerHTML += sectionContent;
 }
