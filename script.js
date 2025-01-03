@@ -187,7 +187,7 @@ function showContent(section) {
                 <div class="post-text">
                     <h3>
                         <a href=Deep learning.html" target="_blank">
-                            딥러닝
+                            Deep learning
                         </a>
                     </h3>
                     <p>
