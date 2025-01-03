@@ -160,7 +160,7 @@ function showContent(section) {
             <p>필기 합격 후, 실기 준비중입니다.</p>
         `;
     } else if (section === 'study') {
-    sectionContent = 
+    sectionContent = '
         <div class="study-section">
         <div class="post">
                 <div class="post-text">
@@ -204,7 +204,7 @@ function showContent(section) {
                 </div>
             </div>
         </div>
-    ;
+    ';
 }
 
 
