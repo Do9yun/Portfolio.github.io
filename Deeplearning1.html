@@ -105,6 +105,124 @@
                 </li>
             </ul>
         </div>
+
+        <!-- 활성화 함수 -->
+        <div class="description-section">
+            <h2>활성화 함수</h2>
+            <p>
+                먼저 활성화 함수는 전달 함수에서 전달받은 값을 출력할 때 일정 기준에 따라 출력 값을 변화시키는 비선형 함수입니다.<br>
+                활성화 함수로는 시그모이드(sigmoid), 하이퍼볼릭 탄젠트(hyperbolic tangent), 렐루(ReLU) 함수 등이 있습니다.
+            </p>
+        </div>
+
+        <!-- 시그모이드 함수 -->
+        <div class="description-section">
+            <h3>시그모이드 함수</h3>
+            <p>
+                시그모이드 함수는 선형 함수의 결과를 0~1 사이에서 비선형 형태로 변형합니다.<br>
+                주로 로지스틱 회귀와 같은 분류 문제를 확률적으로 표현하는 데 사용되며, 딥러닝 모델의 깊이가 깊어지면 기울기가 사라지는
+                ‘기울기 소멸 문제(vanishing gradient problem)’가 발생하여 딥러닝 모델에서는 잘 사용하지 않습니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/6.png" alt="시그모이드 함수" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 하이퍼볼릭 탄젠트 함수 -->
+        <div class="description-section">
+            <h3>하이퍼볼릭 탄젠트 함수</h3>
+            <p>
+                하이퍼볼릭 탄젠트 함수는 선형 함수의 결과를 -1~1 사이에서 비선형 형태로 변형합니다.<br>
+                시그모이드에서 결괏값의 평균이 0이 아닌 양수로 편향된 문제를 해결하는 데 사용했지만, 기울기 소멸 문제는 여전히 발생합니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/7.png" alt="하이퍼볼릭 탄젠트 함수" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 렐루 함수 -->
+        <div class="description-section">
+            <h3>렐루 함수</h3>
+            <p>
+                경사 하강법(gradient descent)에 영향을 주지 않아 학습 속도가 빠르고, 기울기 소멸 문제가 발생하지 않는 장점이 있습니다.<br>
+                렐루 함수는 일반적으로 은닉층에서 사용되며, 하이퍼볼릭 탄젠트 함수 대비 학습 속도가 6배 빠릅니다.<br>
+                음수 값을 입력받으면 항상 0을 출력하기 때문에 학습 능력이 감소할 수 있습니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/8.png" alt="렐루 함수" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 리키 렐루 함수 -->
+        <div class="description-section">
+            <h3>리키 렐루 함수</h3>
+            <p>
+                리키 렐루(Leaky ReLU) 함수는 입력 값이 음수이면 0이 아닌 0.001처럼 매우 작은 수를 반환합니다.<br>
+                이렇게 하면 입력 값이 수렴하는 구간이 제거되어 렐루 함수를 사용할 때 생기는 문제를 해결할 수 있습니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/9.png" alt="리키 렐루 함수" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 손실 함수 -->
+        <div class="description-section">
+            <h2>손실 함수</h2>
+            <p>
+                손실 함수는 학습을 통해 얻은 데이터의 추정치가 실제 데이터와 얼마나 차이가 나는지 평가하는 지표라고 할 수 있습니다.<br>
+                이 값이 클수록 많이 틀렸다는 의미이고, 이 값이 ‘0’에 가까우면 완벽하게 추정할 수 있다는 의미입니다.<br>
+                대표적인 손실 함수로는 평균 제곱 오차(Mean Squared Error, MSE)와 크로스 엔트로피 오차(Cross Entropy Error, CEE)가 있습니다.
+            </p>
+        </div>
+
+        <!-- 평균 제곱 오차 -->
+        <div class="description-section">
+            <h3>평균 제곱 오차</h3>
+            <p>
+                실제 값과 예측 값의 차이(error)를 제곱하여 평균을 낸 것이 평균 제곱 오차(MSE)입니다.<br>
+                이 값이 작을수록 예측력이 좋다는 것을 의미하며, 회귀에서 손실 함수로 주로 사용됩니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/10.png" alt="평균 제곱 오차" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 크로스 엔트로피 오차 -->
+        <div class="description-section">
+            <h3>크로스 엔트로피 오차</h3>
+            <p>
+                크로스 엔트로피는 분류 모델이 얼마나 잘 수행되는지 측정하기 위해 사용됩니다.<br>
+                0과 1 사이로 측정하며, 주로 결과값이 3개 이상일 때 사용됩니다.<br>
+                결과값이 2개인 경우 Binary Cross Entropy Loss를 사용할 수 있습니다.
+            </p>
+            <div class="image-section">
+                <img src="Deep learning images/11.png" alt="크로스 엔트로피 오차" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 딥러닝 학습 -->
+        <div class="description-section">
+            <h2>딥러닝 학습</h2>
+            <div class="image-section">
+                <img src="Deep learning images/12.png" alt="딥러닝 학습 과정" class="deep-learning-image">
+            </div>
+            <p>
+                <strong>첫 번째 단계:</strong><br>
+                순전파(feedforward)는 네트워크에 훈련 데이터가 들어올 때 발생하며, 데이터를 기반으로 예측 값을 계산하기 위해 전체 신경망을 교차해 지나갑니다.<br>
+                모든 뉴런이 이전 층의 뉴런에서 수신한 정보에 변환(가중합 및 활성화 함수)을 적용하여 다음 층(은닉층)의 뉴런으로 전송하는 방식입니다.<br>
+                데이터를 통과시키며 최종 층(출력층)에 도달하게 됩니다.
+            </p>
+            <p>
+                <strong>두 번째 단계:</strong><br>
+                손실 함수로 네트워크의 예측 값과 실제 값의 차이(손실, 오차)를 추정합니다.<br>
+                손실이 계산되면 역으로 전파(출력층 → 은닉층 → 입력층)되며, 이를 역전파(backpropagation)라고 합니다.<br>
+                예측 값과 실제 값 차이를 각 뉴런의 가중치로 미분한 후 기존 가중치 값에서 빼며 학습이 진행됩니다.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+
     </div>
 </body>
 </html>
