@@ -80,7 +80,7 @@
             <h2>6. 모델 분석 및 학습 진행</h2>
             <div class="image-section.left">
                 <img src="Deep learning3 images/11.png" alt="모델 개요 출력" class="deep-learning-image">
-                <p>torchinfo 라이브러리를 사용해 신경망 모델의 개요를 출력하며, 각 층의 출력 크기와 파라미터 개수를 보여줍니다.</p>
+                <p>torchinfo 라이브러리를 사용해 신경망 모델의 개요를 출력하며, 각 층의 출력 크기와 파라미터 개수를 보여줍니다. 총 학습 가능한 파라미터 수는 101,770개입니다.</p>
             </div>
             <div class="image-section.left">
                 <img src="Deep learning3 images/12.png" alt="학습 데이터 로딩" class="deep-learning-image">
@@ -104,15 +104,18 @@
             </div>
             <div class="image-section.left">
                 <img src="Deep learning3 images/17.png" alt="손실 곡선 시각화" class="deep-learning-image">
-                <p>학습과 테스트 데이터의 손실 곡선을 에포크별로 그래프로 출력하여 모델의 학습 상태와 일반화 성능을 시각적으로 보여줍니다.</p>
+                <p>학습과 테스트 데이터의 손실 곡선을 에포크별로 그래프로 출력하여 모델의 학습 상태와 일반화 성능을 시각적으로 보여줍니다.<br>
+                    그래프를 보면 학습 손실은 점차 감소하고 테스트 손실은 약간 증가하는 경향을 보입니다. 이는 모델이 과적합되고 있을 가능성이 있다는걸 보여줍니다.</p>
             </div>
             <div class="image-section.left">
                 <img src="Deep learning3 images/18.png" alt="정확도 곡선 시각화" class="deep-learning-image">
-                <p>학습과 테스트 데이터의 정확도 곡선을 에포크별로 그래프로 출력하여 모델의 학습 진행과 일반화 성능을 시각적으로 보여줍니다.</p>
+                <p>그래프를 보면 학습과 테스트 데이터의 정확도 곡선을 에포크별로 그래프로 출력하여 모델의 학습 진행과 일반화 성능을 시각적으로 보여줍니다.<br>
+                    그래프를 보면 학습 정확도는 98%에 도달하고 테스트 정확도는 약 95%를 유지하는걸 볼 수 있습니다. 이는 모델이 전반적으로 높은 성능을 보이지만 테스트 데이터에 대한 일반화가 약간 부족할 수 있습니다.</p>
             </div>
             <div class="image-section.left">
                 <img src="Deep learning3 images/19.png" alt="예측 결과 시각화" class="deep-learning-image">
-                <p>테스트 데이터에서 첫 번째 배치를 가져와 모델의 예측 결과를 확인하고, "정답:예측" 형식으로 시각화하여 올바른 예측과 잘못된 예측을 구분해 출력합니다.</p>
+                <p>테스트 데이터에서 첫 번째 배치를 가져와 모델의 예측 결과를 확인하고, 50개의 이미지를 "정답:예측" 형식으로 시각화하여 올바른 예측과 잘못된 예측을 구분해 출력합니다.<br>
+                    결과를 보면 대부분의 예측이 올바르지만 일부 오답이 존재하며 모델의 성능은 우수하나 특정 데이터 분포에 대해 오차를 줄이는 추가 개선이 필요할 수 있습니다.</p>
             </div>
         </div>
     </div>
