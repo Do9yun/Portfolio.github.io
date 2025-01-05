@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINIST 합성곱 신경망(CNN)</title>
+    <link rel="stylesheet" href="style-Deeplearning4.css">
+</head>
+<body>
+    <div class="content-container">
+        <!-- 제목 -->
+        <h1 class="left">MINIST  합성곱 신경망 </h1>
 
+        <!-- 합성곱 신경망의 원리 -->
+        <div class="description-section.left">
+            <h2> 합성곱 신경망의 원리 </h2>
+            <div class="image-section.left">
+                <p>기존의 딥러닝의 역전파를 복습하자면, 순전파 과정에 따라 계산된 오차 정보가 신경망의 모든 노드(출력층→은닉층→입력층)로 전송<br>
+                  • 이러한 계산 과정은 복잡하고 많은 자원(CPU 혹은 GPU, 메모리)을 요구<br>
+                  • 또한, 계산하는 데도 오래 걸림<br>
+                  • 이 문제를 해결하고자 하는 것이 합성곱 신경망<br>
+                  • 합성곱 신경망은 이미지 전체를 한 번에 계산하는 것이 아닌 이미지의 국소적 부분을 계산함으로써 시간과 자원을 절약하여 이미지의 세밀한 부분까지 분석할 수 있는 신경망</p>
+            </div>
+        </div>
+
+        <!-- 합성곱층의 필요성 -->
+        <div class="description-section.left">
+            <h2> 합성곱층의 필요성 </h2>
+            <div class="image-section.left">
+                <img src="Deep learning4 images/1.png" alt="합성곱층의 필요성" class="deep-learning-image">
+                <p>합성곱 신경망은 이미지나 영상을 처리하는 데 유용함<br>
+                  • 예를 들어 다음과 같이 3×3 흑백(그레이스케일) 이미지가 있다고 가정해 보자rb색상은 설명을 위해 추가)<br>
+                  • 이미지 분석은 다음 그림의 왼쪽과 같은 3×3 배열을 오른쪽과 같이 펼쳐서 (flattening) 각 픽셀에 가중치를 곱하여 은닉층으로 전달하게 됨<br>
+                  • 그림에서 보이는 것처럼 이미지를 펼쳐서 분석하면 데이터의 공간적 구조를 무시하게 되는데, 이것을 방지하려고 도입된 것이 합성곱층이다.</p>
+            </div>
+        </div>
+      
+      <!-- 합성곱 신경망 구조 -->
+        <div class="description-section.left">
+            <h2> 합성곱 신경망 구조 </h2>
+            <div class="image-section.left">
+                <p>합성곱 신경망(Convolutional Neural Network, CNN 또는 ConvNet)은 음성 인식이나 이미지/영상 인식에 서 주로 사용되는 신경망<br>
+                  다차원 배열 데이터를 처리하도록 구성되어 컬러 이미지 같은 다차원 배열 처리에 특화되어 있으며, 다음과 같이 계층 다섯 개 (입력층, 합성곱층, 풀링층, 완전연결층, 출력층) 로 구성
+                </p>
+              <img src="Deep learning4 images/2.png" alt="합성곱 신경망 구조" class="deep-learning-image">
+              <img src="Deep learning4 images/3.png" alt="예시" class="deep-learning-image">
+              <p>예를 들어 이미지의 높이4, 너비4이며, RGB 채널을 가진다면, 해당 이미지의 형태(Shape)는 (3, 4, 4)로 표현될 수 있다.<br><br>
+              입력 이미지가 들어왔을 때 이미지에 대한 특성을 감지하기 위해 커널(kernel)이나 필터를 사용<br>
+                • 커널/필터는 이미지의 모든 영역을 훑으면서 특성을 추출하게 되는데, 이렇게 추출된 결과물이 특성 맵(feature map)<br>
+                • 이때 커널은 3×3, 5×5 크기로 적용되는 것이 일반적이며, 스트라이드(stride)라는 지정된 간격에 따라 순차적으로 이동</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
