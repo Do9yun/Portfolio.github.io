@@ -43,14 +43,95 @@
                   다차원 배열 데이터를 처리하도록 구성되어 컬러 이미지 같은 다차원 배열 처리에 특화되어 있으며, 다음과 같이 계층 다섯 개 (입력층, 합성곱층, 풀링층, 완전연결층, 출력층) 로 구성
                 </p>
               <img src="Deep learning4 images/2.png" alt="합성곱 신경망 구조" class="deep-learning-image">
-              <img src="Deep learning4 images/3.png" alt="예시" class="deep-learning-image">
-              <p>예를 들어 이미지의 높이4, 너비4이며, RGB 채널을 가진다면, 해당 이미지의 형태(Shape)는 (3, 4, 4)로 표현될 수 있다.<br><br>
-              입력 이미지가 들어왔을 때 이미지에 대한 특성을 감지하기 위해 커널(kernel)이나 필터를 사용<br>
+              <p>예를 들어 이미지의 높이4, 너비4이며, RGB 채널을 가진다면, 해당 이미지의 형태(Shape)는 (3, 4, 4)로 표현될 수 있다.
+              </p>
+                 <img src="Deep learning4 images/3.png" alt="예시" class="deep-learning-image">
+              <p>입력 이미지가 들어왔을 때 이미지에 대한 특성을 감지하기 위해 커널(kernel)이나 필터를 사용<br>
                 • 커널/필터는 이미지의 모든 영역을 훑으면서 특성을 추출하게 되는데, 이렇게 추출된 결과물이 특성 맵(feature map)<br>
                 • 이때 커널은 3×3, 5×5 크기로 적용되는 것이 일반적이며, 스트라이드(stride)라는 지정된 간격에 따라 순차적으로 이동</p>
-              <img src="Deep learning4 images/3.png" alt="예시" class="deep-learning-image">
+                <img src="Deep learning4 images/4.png" alt="스트라이드1" class="deep-learning-image">
+                <p>다음은 스트라이드가 1일 때 이동하는 과정<br>
+                    • 입력 이미지와 필터를 포개 놓고 대응되는 숫자끼리 곱한 후 모두 더함</p>
+                <img src="Deep learning4 images/5.png" alt="스트라이드2" class="deep-learning-image">
+                <p>스트라이드가 만큼 이동후 계산 반복</p>
+                <img src="Deep learning4 images/6.png" alt="스트라이드3" class="deep-learning-image">
+                <p>커널과 스트라이드의 상호 작용으로 원본 (6, 6, 1) 크기가 (4, 4, 1) 크기의 특성 맵으로 줄어들었음<br><br>
+                그레이스케일에 대한 이미지를 확인했는데, 이제 컬러 이미지의 합성곱을 알아보자.<br>
+                    • 앞서 다룬 그레이스케일 이미지와 구분되는 특징은 첫째, 필터 채널이 3이라는 것과 둘째, RGB 각각에 서로 다른 가중치로 합성곱을 적용한 후 결과를 더해 준다는 것<br>
+                    • 그 외 스트라이드 및 연산하는 방법은 동일<br>
+                    • 이때 필터 채널이 3이라고 해서 필터 개수도 세 개라고 오해하기 쉬운데, 실제로는 필터 개수가 한 개라는 점에 주의</p>
             </div>
         </div>
+
+        <!-- 컬러 이미지의 합성곱 -->
+        <div class="description-section.left">
+            <h2> 컬러 이미지의 합성곱 </h2>
+            <div class="image-section.left">
+                <img src="Deep learning images/7.png" alt="컬러 이미지의 합성곱" class="deep-learning-image">
+                <p>합성곱 신경망은 이미지나 영상을 처리하는 데 유용함<br><br>
+                    그렇다면 필터가 두 개 이상인 합성곱은 어떤 형태일까?<br>
+                    • 필터가 두 개 이상이면 그림 5-11과 같이 필터 각각은 특성 추출 결과의 채널이 됨<br>
+                    • 참고로 각 계산은 앞서 진행했던 방법과 동일</p>
+                <img src="Deep learning images/8.png" alt="필터가 두 개 이상인 합성곱" class="deep-learning-image">
+                <p>패딩 (padding)<br>
+                    • 컨볼루션 연산 자체가 이미지 데이터의 공간적인 구조를 보존하기 위해 진행되는데 여러번 Conv 층을 지나게 되면 공간적인 구조가 소실되는데 이것을 방지.</p>
+                <img src="Deep learning images/9.png" alt="패딩" class="deep-learning-image">
+            </div>
+        </div>
+
+        <!-- 풀링층 -->
+        <div class="description-section.left">
+            <div class="image-section.left">
+            <h2> 풀링층 </h2>
+                <p>풀링층(pooling layer)은 합성곱층과 유사하게 특성 맵의 차원을 다운 샘플링하여 연산량을 감소시키고, 주요한 특성 벡터를 추출하여 학습을 효과적으로 할 수 있게 함<br>
+                    • 풀링 연산에는 두 가지가 사용<br>
+                    - 최대 풀링(max pooling): 대상 영역에서 최댓값을 추출<br>
+                    - 평균 풀링(average pooling): 대상 영역에서 평균을 반환<br>
+                    • 대부분의 합성곱 신경망에서는 최대 풀링이 사용되는데, 평균 풀링은 각 커널 값을 평균화시켜 중요한 가중치를 갖는 값의 특성이 희미해질 수 있기 때문임</p>
+            <img src="Deep learning images/10.png" alt="풀링층" class="deep-learning-image">
+            <p>커널과 스트라이트 크기가 2인 최대풀링 예시</p>
+            </div>
+        </div>    
+
+        <!-- 완전연결층 -->
+        <div class="description-section.left">
+            <div class="image-section.left">
+            <h2> 완전연결층 </h2>
+                <img src="Deep learning images/11.png" alt="완전연결층" class="deep-learning-image">
+                <p>• 합성곱층과 풀링층을 거치면서 차원이 축소된 특성 맵은 최종적으로 완전연결층(fully connected layer)으로 전달<br>
+                    • 이 과정에서 이미지는 3차원 벡터에서 1차원 벡터로 펼쳐지게(flatten) 됨</p>
+            </div>
+        </div>  
+
+        <!-- 이미지 분류 과정 -->
+        <div class="description-section.left">
+            <div class="image-section.left">
+            <h2> 이미지 분류 과정 </h2>
+                <img src="Deep learning images/12.png" alt="이미지 분류 과정" class="deep-learning-image">
+                <p>Input Image: 입력 이미지가 RGB 채널로 나뉘어 처리.<br>
+                    Convolution + Pooling: 특성 추출 과정. ReLU 활성화 함수와 MaxPooling을 통해 이미지의 중요한 특징을 추출.<br>
+                    Flatten → Fully Connected (FC): 추출된 특징을 1차원으로 변환한 뒤 완전 연결층(FC)을 통해 분류 수행.<br>
+                    Softmax: 최종적으로 클래스 확률을 계산하여 예측.<br>
+                    핵심: 입력 이미지를 CNN으로 특징 추출한 뒤, DNN(완전 연결층)으로 분류하는 전형적인 이미지 분류 구조.</p>
+            </div>
+        </div>  
+
+        <!-- 세부적인 구조와 계산 과정 -->
+        <div class="description-section.left">
+            <div class="image-section.left">
+            <h2> 세부적인 구조와 계산 과정 </h2>
+                <img src="Deep learning images/13.png" alt="세부적인 구조와 계산 과정" class="deep-learning-image">
+                <p>Conv2D Layer: Convolution 연산을 수행해 특성을 추출하며, 출력 채널과 커널 크기 등을 설정.<br>
+                    MaxPooling Layer: MaxPooling 연산으로 특성 맵 크기를 줄여 계산량을 감소.<br>
+                    View/Flatten: 특성 맵을 1차원 텐서로 변환.<br>
+                    Linear Layer: 완전 연결층을 통해 분류. 입력 특징 벡터가 최종적으로 클래스 수(예: 고양이, 강아지)만큼의 출력 노드로 연결.<br><br>
+                    계산 예시<br>
+                    Conv2D와 MaxPooling에서 출력 크기 계산<br>
+                    Conv2D(28x28) → (28-5)/1+1 = 24<br>
+                    MaxPooling(24x24) → 24/2 = 12<br>
+                    핵심: Conv2D, MaxPooling 등을 통해 이미지의 차원을 줄이고, 최종적으로 Linear Layer를 통해 분류를 수행.</p>
+            </div>
+        </div>  
     </div>
 </body>
 </html>
