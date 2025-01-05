@@ -20,7 +20,7 @@ body {
 /* 제목 스타일 */
 h1 {
     font-size: 2.5rem;
-    text-align: left; /* 왼쪽 정렬 */
+    text-align: center;
     color: #222;
     margin-bottom: 30px;
     font-weight: bold;
@@ -29,7 +29,6 @@ h1 {
 /* 설명 섹션 스타일 */
 .description-section {
     margin-bottom: 30px;
-    text-align: left; /* 왼쪽 정렬 */
 }
 
 .description-section h2 {
@@ -38,7 +37,6 @@ h1 {
     color: #444;
 }
 
-/* 본문 텍스트 스타일 */
 .description-section p {
     font-size: 1.1rem;
     line-height: 1.6;
@@ -47,7 +45,7 @@ h1 {
 
 /* 이미지 섹션 스타일 */
 .image-section {
-    text-align: center; /* 이미지는 중앙 정렬 */
+    text-align: center;
     margin: 20px 0;
 }
 
