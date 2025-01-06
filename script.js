@@ -27,7 +27,7 @@ function showContent(section) {
         sectionContent = `
             <h2>내 정보</h2>
             <div class="info-section">
-                <img class="profile-pic" src="images/증명사진.jpg" alt="증명사진">
+                <img class="profile-pic" src="images/취업사진.jpg" alt="취업사진">
                 <table class="info-table">
                     <tr>
                         <th rowspan="2">성명</th>
