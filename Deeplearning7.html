@@ -149,18 +149,14 @@ features = ['Open', 'High', 'Low']
     </ul>
 
     <h4>2. 입력 데이터 (X) 추출</h4>
-    <pre><code class="python">
-        X = data.loc[:, features]
-    </code></pre>
+    <pre><code class="python">X = data.loc[:, features]</code></pre>
     <ul>
         <li><code>data.loc[:, features]</code>를 통해 데이터프레임에서 <code>features</code>에 해당하는 열만 선택.</li>
         <li><code>X</code>: <code>Open</code>, <code>High</code>, <code>Low</code> 열을 포함한 입력 데이터.</li>
     </ul>
 
     <h4>3. 출력 데이터 (Y) 추출</h4>
-    <pre><code class="python">
-        Y = data[['Close']]
-    </code></pre>
+    <pre><code class="python">Y = data[['Close']]</code></pre>
     <ul>
         <li><code>data[['Close']]</code>를 사용해 <code>Close</code> 컬럼만 선택.</li>
         <li><code>Y</code>: <code>Close</code> 열을 포함한 출력 데이터 (📉 변수).</li>
