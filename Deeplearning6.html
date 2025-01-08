@@ -29,5 +29,29 @@
         <li>결과적으로 비교적 적은 수의 데이터를 가지고도 우리가 원하는 과제를 해결할 수 있음.</li>
       </ul>
     </div>    
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/2.png" alt="CNN 특성 추출 기법" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>특성 추출 기법</h4>
+          <ul>
+              <li><strong>특성 추출(feature extractor):</strong> ImageNet 데이터셋으로 사전 훈련된 모델을 가져온 후 마지막에 완전연결층 부분만 새로 만듦.</li>
+              <li>
+                  학습할 때는 마지막 완전연결층(이미지의 카테고리를 결정하는 부분)만 학습하고 나머지 계층들은 학습되지 않도록 함.
+              </li>
+              <li>
+                  특성 추출은 이미지 분류를 위해 두 부분으로 구성:
+                  <ul>
+                      <li><strong>합성곱층:</strong> 합성곱과 풀링층으로 구성.</li>
+                      <li><strong>데이터 분류기(완전연결층):</strong> 추출된 특성을 입력받아 최종적으로 이미지에 대한 클래스를 분류하는 부분.</li>
+                  </ul>
+              </li>
+              <li>
+            사전 훈련된 네트워크의 합성곱층(가중치 고정)에 새로운 데이터로 증강시키고, 그 출력값 데이터를 분류기에 훈련시킴.
+              </li>
+          </ul>
+      </div>
+
 </body>
 </html>
