@@ -99,9 +99,7 @@
       </div>
       <div class="description-section">
           <h4>1. 합성곱 층 (Conv2d):</h4>
-          <pre>
-              Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-          </pre>
+          <pre>Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)</pre>
           <ul>
               <li><strong>합성곱 연산을 수행하는 층.</strong></li>
               <li>입력 채널=128, 출력 채널=128, 커널 크기=3x3.</li>
@@ -111,9 +109,7 @@
           </ul>
           
           <h4>2. 배치 정규화 (BatchNorm2d):</h4>
-          <pre>
-              BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          </pre>
+          <pre>BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)</pre>
           <ul>
               <li>채널별로 데이터를 정규화하여 학습 안정성 향상.</li>
               <li><code>eps</code>: 수치 안정성을 위해 추가되는 작은 값.</li>
@@ -122,9 +118,7 @@
           </ul>
           
           <h4>3. 적용형 풀링층 (AdaptiveAvgPool2d):</h4>
-          <pre>
-              AdaptiveAvgPool2d(output_size=(1, 1))
-          </pre>
+          <pre>AdaptiveAvgPool2d(output_size=(1, 1))</pre>
           <ul>
               <li>입력 특징 맵의 크기를 1x1로 변환.</li>
               <li>입력 크기에 상관없이 고정된 출력 크기를 생성.</li>
@@ -142,32 +136,24 @@
           <img src="Deep learning7 images/6.png" alt="7" class="deep-learning-image">
       </div><div class="description-section">
           <h4>1. 라이브러리 설치 및 임포트</h4>
-          <pre>
-              !pip install torchinfo | tail -n 1
-          </pre>
+          <pre>!pip install torchinfo | tail -n 1</pre>
           <ul>
               <li><strong>torchinfo:</strong> PyTorch 모델의 구조를 요약해서 출력하는 라이브러리.</li>
               <li><strong>tail -n 1:</strong> 설치 완료 메시지 한 줄만 출력.</li>
           </ul>
-          <pre>
-              from torchinfo import summary
-          </pre>
+          <pre>from torchinfo import summary</pre>
           <ul>
               <li><code>torchinfo</code>의 <code>summary</code> 함수로 모델 구조를 시각화.</li>
           </ul>
           
           <h4>2. 모델 이동</h4>
-          <pre>
-              net = net.to(device)
-          </pre>
+          <pre>net = net.to(device)</pre>
           <ul>
               <li>모델(<code>net</code>)을 지정된 장치(<code>device</code>, GPU 또는 CPU)로 이동.</li>
           </ul>
           
           <h4>3. 모델 구조 요약</h4>
-          <pre>
-              summary(net, (128, 3, 112, 112))
-          </pre>
+          <pre>summary(net, (128, 3, 112, 112))</pre>
           <ul>
               <li><code>net:</code> 모델 객체.</li>
               <li><code>(128, 3, 112, 112):</code> 입력 데이터 크기.
