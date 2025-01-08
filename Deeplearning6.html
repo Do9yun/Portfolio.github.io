@@ -324,5 +324,69 @@
               <li>각 항목: [에포크, train_loss, train_accuracy, test_loss, test_accuracy].</li>
           </ul>
       </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/12.png" alt="12" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li>이전 코드와 동일.(설명 생략)</li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/13.png" alt="13" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+    <h4>1. 손실 곡선 (Loss Curve)</h4>
+    <h5>그래프 해석</h5>
+    <ul>
+        <li><strong>훈련 손실 (Train error):</strong>
+            <ul>
+                <li>초기에는 손실이 높음.</li>
+                <li>에포크가 진행됨에 따라 꾸준히 감소.</li>
+                <li>최종적으로 매우 낮은 수준의 손실을 기록.</li>
+            </ul>
+        </li>
+        <li><strong>테스트 손실 (Test error):</strong>
+            <ul>
+                <li>초기에는 빠르게 감소.</li>
+                <li>감소 이후부터는 감소가 더디며 약간의 변동.</li>
+                <li>일정 수준에서 안정화.</li>
+            </ul>
+        </li>
+        <li><strong>훈련 vs 테스트 손실:</strong>
+            <ul>
+                <li>훈련 손실이 테스트 손실보다 낮음.</li>
+                <li>약간의 차이는 있지만, 과적합 정도는 심각하지 않음.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h4>2. 정확도 곡선 (Accuracy Curve)</h4>
+    <h5>그래프 해석</h5>
+    <ul>
+        <li><strong>훈련 정확도 (Train Accuracy):</strong>
+            <ul>
+                <li>초기에는 낮은 정확도로 시작.</li>
+                <li>에포크가 진행됨에 따라 꾸준히 상승.</li>
+                <li>최종적으로 약 97%에 도달.</li>
+            </ul>
+        </li>
+        <li><strong>테스트 정확도 (Test Accuracy):</strong>
+            <ul>
+                <li>초기에는 훈련 정확도와 유사한 수준.</li>
+                <li>이후에는 상승이 일관해지며, 약 88~90% 수준에서 안정화.</li>
+            </ul>
+        </li>
+        <li><strong>훈련 vs 테스트 정확도:</strong>
+            <ul>
+                <li>훈련 정확도가 테스트 정확도보다 높음.</li>
+                <li>테스트 정확도의 변동이 훈련 정확도보다 큼.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
