@@ -134,7 +134,8 @@
 
       <div class="image-section.left">
           <img src="Deep learning6 images/7.png" alt="7" class="deep-learning-image">
-      </div><div class="description-section">
+      </div>
+      <div class="description-section">
           <h4>1. 라이브러리 설치 및 임포트</h4>
           <pre>!pip install torchinfo | tail -n 1</pre>
           <ul>
@@ -203,6 +204,124 @@
                       </li>
                   </ul>
               </li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/8.png" alt="8" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li><strong>기존 ResNet 모델:</strong> 최종 레이어를 CIFAR-10 데이터셋에 맞게 수정.</li>
+              <li><strong>전이 학습 (Transfer Learning):</strong>
+                  ResNet의 사전 학습된 가중치를 활용하여 새로운 데이터셋에 빠르게 적용.
+              </li>
+              <li><strong>최종 출력 클래스 수 (<code>n_output</code>):</strong>
+                  간단히 바꾸는 방법으로 다양한 분류 문제에 ResNet을 적용할 수 있음.
+              </li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/9.png" alt="9" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li><strong>변경 전:</strong> ImageNet 데이터셋 (1,000개 클래스)을 위한 구조.</li>
+              <li><strong>변경 후:</strong> CIFAR-10 데이터셋 (10개 클래스)을 위한 구조.</li>
+              <li>ResNet 모델의 최종 레이어 수정만으로 새로운 데이터셋에 맞춰 학습 가능.</li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/10.png" alt="10" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>주요 변경 사항</h4>
+          <ul>
+              <li><strong>AdaptiveAvgPool2d:</strong>
+                  <ul>
+                      <li>이전 계층의 출력 특징을 <code>1×1</code>로 축소.</li>
+                      <li>입력 데이터 크기에 관계없이 일정한 출력 크기를 제공.</li>
+                  </ul>
+              </li>
+              <li><strong>Linear (Fully Connected):</strong>
+                  <ul>
+                      <li><code>out_features</code>가 <code>1,000</code>에서 <code>10</code>으로 변경:
+                          <ul>
+                              <li>ResNet의 기본 ImageNet 분류용 FC 레이어를 CIFAR-10에 맞게 수정.</li>
+                          </ul>
+                      </li>
+                      <li><strong>매개변수 수가 줄어듦:</strong>
+                          <ul>
+                              <li>기존: <code>512 × 1,000 + 1,000 = 513,000</code></li>
+                              <li>변경 후: <code>512 × 10 + 10 = 5,130</code></li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/11.png" alt="11" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <pre>
+              torch.manual_seed(123)
+              torch.cuda.manual_seed(123)
+          </pre>
+          <ul>
+              <li>랜덤 시드를 고정하여 재현 가능성 확보.</li>
+              <li>CPU와 GPU에서 동일한 초기화 보장.</li>
+          </ul>
+          <pre>
+              model = models.resnet18(weights='IMAGENET1K_V1')
+              fc_in_features = model.fc.in_features
+              model.fc = nn.Linear(fc_in_features, n_output)
+          </pre>
+          <ul>
+              <li><strong>ResNet-18 모델 로드:</strong>
+                  <ul>
+                      <li><code>weights='IMAGENET1K_V1'</code>: ImageNet으로 학습된 가중치를 로드.</li>
+                  </ul>
+              </li>
+              <li><strong>최종 Fully Connected 레이어 수정:</strong>
+                  <ul>
+                      <li><code>model.fc</code>: 기존의 1,000개 출력 클래스 → <code>n_output</code> 클래스(CIFAR-10 클래스)로 변경.</li>
+                      <li>입력 특징 수(<code>fc_in_features</code>)는 그대로 사용.</li>
+                  </ul>
+              </li>
+          </ul>
+          <pre>
+              lr = 0.001
+              criterion = nn.CrossEntropyLoss()
+              optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+          </pre>
+          <ul>
+              <li><strong>Learning Rate (lr):</strong>
+                  <ul>
+                      <li>학습률 설정 (<code>lr = 0.001</code>).</li>
+                  </ul>
+              </li>
+              <li><strong>Loss Function:</strong>
+                  <ul>
+                      <li><code>CrossEntropyLoss</code>: 다중 클래스 분류를 위한 손실 함수.</li>
+                  </ul>
+              </li>
+              <li><strong>Optimizer:</strong>
+                  <ul>
+                      <li><code>Adam</code>: 학습 가속과 적응적 학습률 조정에 효과적.</li>
+                      <li><code>model.parameters()</code>: 모델의 모든 가중치와 바이어스를 업데이트.</li>
+                  </ul>
+              </li>
+          </ul>
+          <pre>
+              history = np.zeros((0, 5))
+          </pre>
+          <ul>
+              <li>학습 결과를 저장할 배열 생성.</li>
+              <li>각 항목: [에포크, train_loss, train_accuracy, test_loss, test_accuracy].</li>
           </ul>
       </div>
 </body>
