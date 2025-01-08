@@ -578,6 +578,304 @@
                 <li><strong>출력:</strong> 10개 클래스의 점수.</li>
             </ul>
         </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/15.png" alt="Deeplearning 열 다섯 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 손실 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 1], 'b', label='Train error')</code></li>
+                        <li><code>history[:, 0]</code>: 에포크 값 (x축).</li>
+                        <li><code>history[:, 1]</code>: 훈련 데이터 손실 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train error'</code>: 범례에 "Train error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 손실 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 3], 'k', label='Test error')</code></li>
+                        <li><code>history[:, 3]</code>: 테스트 데이터 손실 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test error'</code>: 범례에 "Test error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Loss')</code>: y축 이름 설정 (손실 값).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>
+                <h4>2. 그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 손실 (Train error):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 에포크 초반 손실이 높음.</li>
+                        <li><strong>진행 상황:</strong> 에포크가 진행될수록 손실이 꾸준히 감소.</li>
+                        <li><strong>최종 상태:</strong> 낮은 손실 값을 기록하며, 모델이 훈련 데이터에 잘 적응했음을 의미.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 손실 (Test error):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 테스트 손실도 높은 상태로 시작.</li>
+                        <li><strong>진행 상황:</strong> 에포크 초반 빠르게 감소, 이후 약간의 변동 발생.</li>
+                        <li><strong>최종 상태:</strong> 일정 수준에서 안정화되며 낮은 손실 값 유지.</li>
+                    </ul>
+                </li>
+                <li><strong>훈련과 테스트 손실 비교:</strong>
+                    <ul>
+                        <li>초반: 훈련 손실과 테스트 손실이 비슷한 경향을 보임.</li>
+                        <li>후반: 훈련 손실은 계속 감소하지만 테스트 손실은 약간의 변동 → 과적합 가능성.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>3. 결론</h4>
+            <ul>
+                <li><strong>훈련 손실:</strong> 모델이 훈련 데이터에 점점 더 적응하여 손실이 꾸준히 감소.</li>
+                <li><strong>테스트 손실:</strong> 초반에는 개선되지만, 후반에 변동 → 모델이 과적합되지 않도록 추가적인 조치 필요 (예: 더 많은 데이터, 규제 기법 등).</li>
+                <li><strong>그래프:</strong> 학습 및 성능의 추이를 확인하고, 과적합 여부를 판단하는 데 유용함.</li>
+            </ul>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/16.png" alt="Deeplearning 열 여섯 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 정확도 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 2], 'b', label='Train Accuracy')</code></li>
+                        <li><code>history[:, 0]</code>: 에포크 값 (x축).</li>
+                        <li><code>history[:, 2]</code>: 훈련 데이터 정확도 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train Accuracy'</code>: 범례에 "Train Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 4], 'k', label='Test Accuracy')</code></li>
+                        <li><code>history[:, 4]</code>: 테스트 데이터 정확도 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test Accuracy'</code>: 범례에 "Test Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Accuracy')</code>: y축 이름 설정 (정확도).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>            
+            <h4>2. 그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 정확도 (Train Accuracy):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 낮은 정확도로 시작.</li>
+                        <li><strong>진행 상황:</strong> 에포크가 진행될수록 정확도가 꾸준히 상승.</li>
+                        <li><strong>최종 상태:</strong> 약 75%의 높은 정확도에 도달, 모델이 훈련 데이터에 잘 적응했음을 의미.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도 (Test Accuracy):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 훈련 정확도와 유사하게 시작.</li>
+                        <li><strong>진행 상황:</strong> 초반에 빠르게 상승, 이후 안정화되며 약간의 변동 발생.</li>
+                        <li><strong>최종 상태:</strong> 약 65%의 정확도에 도달, 훈련 데이터에 비해 약간 낮음.</li>
+                    </ul>
+                </li>
+                <li><strong>훈련과 테스트 정확도 비교:</strong>
+                    <ul>
+                        <li>훈련 데이터에 비해 테스트 데이터에서 낮은 성능을 보임.</li>
+                        <li>이는 과적합 가능성을 나타냄.</li>
+                        <li>그러나 큰 차이가 없으므로, 모델의 일반화 성능이 나쁘지는 않음.</li>
+                    </ul>
+                </li>
+            </ul>            
+            <h4>3. 결론</h4>
+            <ul>
+                <li><strong>훈련 정확도:</strong> 모델이 훈련 데이터에 적응하여 정확도가 꾸준히 상승.</li>
+                <li><strong>테스트 정확도:</strong> 안정적인 정확도를 유지하며, 모델이 어느 정도 일반화되었음을 확인.</li>
+                <li><strong>제안:</strong> 테스트 데이터 성능을 더욱 향상시키기 위해 추가 데이터, 규제 기법 또는 Dropout 적용을 고려.</li>
+                <li><strong>그래프:</strong> 학습 및 모델의 진행 상황과 일반화 성능을 시각적으로 확인할 수 있음.</li>
+            </ul>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/17.png" alt="Deeplearning 열 일곱 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong><code>transforms.ToTensor()</code></strong>
+                    <ul>
+                        <li>이미지를 PyTorch 텐서 형식으로 변환.</li>
+                        <li>픽셀 값을 <code>[0, 255]</code>에서 <code>[0.0, 1.0]</code> 범위로 정규화.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transforms.RandomHorizontalFlip(p=0.5)</code></strong>
+                    <ul>
+                        <li>50% 확률로 이미지를 수평으로 뒤집음.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transforms.RandomVerticalFlip(p=0.5)</code></strong>
+                    <ul>
+                        <li>50% 확률로 이미지를 수직으로 뒤집음.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transforms.RandomErasing(p=0.5, scale=(0.02, 0.33), ratio=(0.5, 2))</code></strong>
+                    <ul>
+                        <li>이미지의 일부를 무작위로 지움.</li>
+                        <li><code>scale:</code> 지워지는 영역의 크기 범위.</li>
+                        <li><code>ratio:</code> 지워지는 영역의 너비와 높이 비율.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transforms.RandomResizedCrop((32, 32), scale=(0.1, 1), ratio=(0.5, 2))</code></strong>
+                    <ul>
+                        <li>이미지를 무작위로 자르고 지정된 크기(<code>32x32</code>)로 재조정.</li>
+                        <li><code>scale:</code> 자른 이미지 크기 비율.</li>
+                        <li><code>ratio:</code> 자른 이미지의 너비와 높이 비율.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transforms.ColorJitter(brightness=0.5, contrast=0.5, saturation=0.5, hue=0.5)</code></strong>
+                    <ul>
+                        <li>이미지의 밝기, 대비, 채도, 색조를 랜덤하게 조정.</li>
+                        <li>모델이 다양한 색상 변화에 적응할 수 있도록 지원.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/18.png" alt="Deeplearning 열 여덟 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 손실 (Train error):</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 1], 'b', label='Train error')</code></li>                     
+                        <li><code>history[:, 1]</code>: 훈련 데이터 손실 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train error'</code>: 범례에 "Train error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 손실 (Test error):</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 3], 'k', label='Test error')</code></li>
+                        <li><code>history[:, 3]</code>: 테스트 데이터 손실 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test error'</code>: 범례에 "Test error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Loss')</code>: y축 이름 설정 (손실 값).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>       
+            <h4>2. 그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 손실 (Train error):</strong>
+                    <ul>
+                        <li>초기 에포크에서 손실이 높게 시작.</li>
+                        <li>에포크가 진행됨에 따라 꾸준히 감소.</li>
+                        <li>모델이 훈련 데이터에 점점 더 잘 적응하고 있음을 나타냄.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 손실 (Test error):</strong>
+                    <ul>
+                        <li>초기에는 높은 손실 값에서 유사하게 감소.</li>
+                        <li>이후 안정적으로 감소하여 약간의 변동 발생.</li>
+                        <li>테스트 손실은 안정적이며 과적합 가능성을 낮게 보임.</li>
+                    </ul>
+                </li>
+                <li><strong>훈련과 테스트 손실 비교:</strong>
+                    <ul>
+                        <li>훈련 손실이 테스트 손실보다 더 낮음.</li>
+                        <li>테스트 손실도 안정적이므로 과적합 가능성은 낮아 보임.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>3. 결론</h4>
+            <ul>
+                <li><strong>훈련 손실:</strong> 꾸준히 감소하며, 모델이 훈련 데이터에 잘 적응.</li>
+                <li><strong>테스트 손실:</strong> 낮은 손실 값에서 안정적, 모델이 데이터를 잘 일반화함.</li>
+                <li><strong>평가:</strong> 훈련 손실은 작아도 테스트 손실이 과도하지 않으며 안정적인 성능을 보임.</li>
+                <li>그래프는 데이터 증강과 규제 기법이 효과적으로 작용했음을 보여줌.</li>
+            </ul>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/19.png" alt="Deeplearning 열 아홉 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 정확도 (Train Accuracy):</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 2], 'b', label='Train Accuracy')</code></li>
+                        <li><code>history[:, 0]</code>: 에포크 값 (x축).</li>
+                        <li><code>history[:, 2]</code>: 훈련 데이터 정확도 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train Accuracy'</code>: 범례에 "Train Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도 (Test Accuracy):</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 4], 'k', label='Test Accuracy')</code></li>
+                        <li><code>history[:, 4]</code>: 테스트 데이터 정확도 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test Accuracy'</code>: 범례에 "Test Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Accuracy')</code>: y축 이름 설정 (정확도).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>
+            <h4>2. 그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 정확도 (Train Accuracy):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 낮은 정확도로 시작, 에포크 증가에 따라 꾸준히 상승.</li>
+                        <li><strong>최종 상태:</strong> 약 75%에 도달, 모델이 훈련 데이터에 잘 적응했음을 나타냄.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도 (Test Accuracy):</strong>
+                    <ul>
+                        <li><strong>초기 상태:</strong> 훈련 정확도와 유사한 상승 곡선을 보임.</li>
+                        <li><strong>최종 상태:</strong> 안정화되어 약 70%에 도달.</li>
+                        <li>테스트 정확도가 훈련 정확도에 비해 약간 낮지만 큰 차이는 없음.</li>
+                    </ul>
+                </li>
+                <li><strong>훈련과 테스트 정확도 비교:</strong>
+                    <ul>
+                        <li>두 곡선이 유사한 경향을 보이며, 훈련 정확도가 약간 더 높음.</li>
+                        <li>테스트 데이터에서 과적합이 거의 없음을 나타냄.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>3. 결론</h4>
+            <ul>
+                <li><strong>훈련 정확도:</strong> 모델이 훈련 데이터에서 높은 정확도를 달성.</li>
+                <li><strong>테스트 정확도:</strong> 모델이 테스트 데이터에서도 안정적이고 높은 성능을 보임.</li>
+                <li><strong>모델 평가:</strong>
+                    <ul>
+                        <li>훈련 데이터와 테스트 데이터 모두에서 성능이 안정적이며 과적합 위험이 낮음.</li>
+                        <li>모델의 일반화 능력을 잘 유지하고 있음을 확인.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
