@@ -121,24 +121,7 @@
               <li><code>affine=True</code>: 학습 가능한 스케일링과 이동 매개변수 사용.</li>
           </ul>
           
-          <h4>3. BasicBlock (기본 블록):</h4>
-          <pre>
-              BasicBlock(
-              (conv1): Conv2d(...)
-              (bn1): BatchNorm2d(...)
-              (relu): ReLU(...
-              
-              (conv2): Conv2d(...)
-              (bn2): BatchNorm2d(...)
-              )
-          </pre>
-          <ul>
-              <li><strong>ResNet의 기본 구성 요소.</strong></li>
-              <li>합성곱, BatchNorm, ReLU 활성화 함수로 구성.</li>
-              <li>Skip Connection(잔차 연결)을 포함하여 그래디언트 소실 문제를 완화.</li>
-          </ul>
-          
-          <h4>4. 적용형 평균 풀링층 (AdaptiveAvgPool2d):</h4>
+          <h4>3. 적용형 풀링층 (AdaptiveAvgPool2d):</h4>
           <pre>
               AdaptiveAvgPool2d(output_size=(1, 1))
           </pre>
@@ -147,10 +130,8 @@
               <li>입력 크기에 상관없이 고정된 출력 크기를 생성.</li>
           </ul>
           
-          <h4>5. 완전 연결층 (Fully Connected):</h4>
-          <pre>
-              Linear(in_features=512, out_features=1000, bias=True)
-          </pre>
+          <h4>4. 완전 연결층 (Fully Connected):</h4>        
+          <code>Linear(in_features=512, out_features=1000, bias=True)</code>
           <ul>
               <li>입력 특성 수=512, 출력 클래스 수=1000 (ImageNet 클래스 개수).</li>
               <li>모델의 최종 출력층으로, 각 클래스에 대한 점수 생성.</li>
