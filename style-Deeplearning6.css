@@ -57,3 +57,17 @@ h1 {
     border-radius: 4px;
     font-family: 'Courier New', Courier, monospace;
 }
+
+/* pre 스타일 정의 */
+pre {
+    background-color: #f1f1f1; /* 배경색 */
+    color: #333; /* 글자 색 */
+    padding: 15px; /* 안쪽 여백 */
+    border-radius: 5px; /* 모서리 둥글기 */
+    font-family: 'Courier New', Courier, monospace; /* 글꼴 */
+    font-size: 1rem; /* 글자 크기 */
+    overflow-x: auto; /* 가로 스크롤 활성화 */
+    white-space: pre-wrap; /* 줄바꿈 유지 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    border: 1px solid #ddd; /* 테두리 */
+}
