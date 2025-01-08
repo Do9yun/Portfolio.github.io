@@ -184,7 +184,6 @@
         <div class="image-section.left">
             <img src="Deep learning5 images/8.png" alt="Deeplearning 여덟 번째 이미지" class="opencv-image">
         </div>
-
         <div class="description-section">
             <ol>
                 <li><strong>훈련 단계</strong>
@@ -287,6 +286,145 @@
             </ul>
             <p><strong>결론:</strong> 학습과 테스트 단계를 반복하며, 모델 성능(손실 및 정확도)을 추적하고 출력합니다.</p>
         </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/9.png" alt="Deeplearning 아홉 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol><li><code>history</code>:
+                <ul>
+                    <li>학습 과정에서 저장된 손실과 정확도 데이터를 담고 있는 배열.</li>
+                    <li>형식: [<code>에포크, train_loss, train_acc, test_loss, test_acc</code>]</li>
+                </ul>
+            </li>
+                <li>초기 상태 출력:
+                    <ul>
+                        <li><code>print(f'초기 손실: 손실 = {history[0, 3]:.5f} ...')</code>: 첫 번째 에포크의 테스트 손실과 정확도 출력.</li>
+                        <li><code>history[0, 3]</code>: 첫 번째 에포크의 테스트 손실.</li>
+                        <li><code>history[0, 4]</code>: 첫 번째 에포크의 테스트 정확도.</li>
+                    </ul>
+                </li>
+                <li>최종 상태 출력:
+                    <ul>
+                        <li><code>print(f'최종 손실: 손실 = {history[-1, 3]:.5f} ...')</code>: 마지막 에포크의 테스트 손실과 정확도 출력.</li>
+                        <li><code>history[-1, 3]</code>: 마지막 에포크의 테스트 손실.</li>
+                        <li><code>history[-1, 4]</code>: 마지막 에포크의 테스트 정확도.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h2>결과</h2>
+            <ul>
+                <li><strong>초기 상태:</strong>
+                    <ul>
+                        <li><strong>손실:</strong> 0.81137</li>
+                        <li><strong>정확도:</strong> 0.49544 (약 49.54%)</li>
+                        <li>모델이 학습 초기에는 낮은 정확도를 보임.</li>
+                    </ul>
+                </li>
+                <li><strong>최종 상태:</strong>
+                    <ul>
+                        <li><strong>손실:</strong> 0.08832</li>
+                        <li><strong>정확도:</strong> 0.64618 (약 64.61%)</li>
+                        <li>학습 후 모델의 정확도가 크게 향상됨.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/10.png" alt="Deeplearning 열 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 손실 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 1], 'b', label='Train error')</code></li>
+                        <li><code>history[:, 0]</code>: 에포크 값 (x축).</li>
+                        <li><code>history[:, 1]</code>: 훈련 데이터 손실 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train error'</code>: 범례에 "Train error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 손실 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 3], 'k', label='Test error')</code></li>
+                        <li><code>history[:, 3]</code>: 테스트 데이터 손실 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test error'</code>: 범례에 "Test error"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Loss')</code>: y축 이름 설정 (손실 값).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h4>그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 손실:</strong> 에포크가 증가함에 따라 손실 값이 꾸준히 감소.<br>
+                    이는 모델이 훈련 데이터에 대해 점점 더 잘 학습하고 있음을 나타냄.</li>
+                <li><strong>테스트 손실:</strong> 초기에 감소하다가 에포크가 진행됨에 따라 약간의 변동이 있음.<br>
+                    모델이 테스트 데이터에도 적절히 학습했음을 보여줌.</li>
+            </ul>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/11.png" alt="Deeplearning 열 한 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ol>
+                <li><strong>훈련 정확도 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 2], 'b', label='Train Accuracy')</code></li>
+                        <li><code>history[:, 0]</code>: 에포크 값 (x축).</li>
+                        <li><code>history[:, 2]</code>: 훈련 데이터 정확도 (y축).</li>
+                        <li><code>'b'</code>: 파란색 선으로 표시.</li>
+                        <li><code>label='Train Accuracy'</code>: 범례에 "Train Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도 출력:</strong>
+                    <ul>
+                        <li><code>plt.plot(history[:, 0], history[:, 4], 'k', label='Test Accuracy')</code></li>
+                        <li><code>history[:, 4]</code>: 테스트 데이터 정확도 (y축).</li>
+                        <li><code>'k'</code>: 검은색 선으로 표시.</li>
+                        <li><code>label='Test Accuracy'</code>: 범례에 "Test Accuracy"로 표시.</li>
+                    </ul>
+                </li>
+                <li><strong>축 및 범례 설정:</strong>
+                    <ul>
+                        <li><code>plt.xlabel('Epoch')</code>: x축 이름 설정 (에포크: 학습 반복 횟수).</li>
+                        <li><code>plt.ylabel('Accuracy')</code>: y축 이름 설정 (정확도).</li>
+                        <li><code>plt.legend()</code>: 범례 추가.</li>
+                        <li><code>plt.show()</code>: 그래프 출력.</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h4>그래프 해석</h4>
+            <ul>
+                <li><strong>훈련 정확도:</strong>
+                    <ul>
+                        <li>초기 정확도에서 빠르게 상승.</li>
+                        <li>에포크가 증가함에 따라 정확도가 약 75%에 도달.</li>
+                        <li>이는 모델이 훈련 데이터에 대해 점진적으로 학습했음을 보여줌.</li>
+                    </ul>
+                </li>
+                <li><strong>테스트 정확도:</strong>
+                    <ul>
+                        <li>처음에 약간의 변동이 있었으나, 안정적으로 증가.</li>
+                        <li>최종적으로 테스트 정확도가 약 65%에 도달.</li>
+                        <li>훈련 정확도와 테스트 정확도 간 간격이 좁아져, 과적합의 위험이 낮음을 나타냄.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 </body>
 </html>
