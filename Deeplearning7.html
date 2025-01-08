@@ -104,5 +104,70 @@
     </p>
   </div>
 
+    <div class="description-section">
+        <h4>RNN 실습</h4>
+        <div class="image-section.left">
+            <img src="Deep learning7 images/8.png" alt="8" class="deep-learning-image">
+        </div>
+    </div>
+    <div class="description-section">
+    <p>
+        기본 라이브러리
+    </p>
+  </div>
+
+    <div class="image-section.left">
+            <img src="Deep learning7 images/9.png" alt="9" class="deep-learning-image">
+    </div>
+    <div class="description-section">
+    <h4>1. Google Drive 연결</h4>
+    <ul>
+        <li>Colab에 Google Drive 마운트.</li>
+        <li><code>drive.mount('/content/drive')</code>.</li>
+    </ul>
+    <h4>2. CSV 파일 로드</h4>
+    <ul>
+        <li><code>train.csv</code> 파일을 Pandas로 불러옴.</li>
+        <li>경로: <code>drive/MyDrive/Colab Notebooks/train.csv</code>.</li>
+    </ul>
+    <h4>3. 데이터</h4>
+    <ul>
+        <li>총 <strong>967개 행, 6개 열</strong>: Date, Open, High, Low, Volume, Close.</li>
+        <li>주식 데이터 분석 및 예측에 적합.</li>
+    </ul>
+    </div>
+
+    <div class="image-section.left">
+            <img src="Deep learning7 images/10.png" alt="10" class="deep-learning-image">
+    </div>
+    <div class="description-section">
+    <h4>1. 입력 변수(features) 설정</h4>
+    <pre><code class="python">
+features = ['Open', 'High', 'Low']
+    </code></pre>
+    <ul>
+        <li><code>Open</code>, <code>High</code>, <code>Low</code> 세 개의 컬럼을 입력 변수로 사용.</li>
+    </ul>
+
+    <h4>2. 입력 데이터 (X) 추출</h4>
+    <pre><code class="python">
+        X = data.loc[:, features]
+    </code></pre>
+    <ul>
+        <li><code>data.loc[:, features]</code>를 통해 데이터프레임에서 <code>features</code>에 해당하는 열만 선택.</li>
+        <li><code>X</code>: <code>Open</code>, <code>High</code>, <code>Low</code> 열을 포함한 입력 데이터.</li>
+    </ul>
+
+    <h4>3. 출력 데이터 (Y) 추출</h4>
+    <pre><code class="python">
+        Y = data[['Close']]
+    </code></pre>
+    <ul>
+        <li><code>data[['Close']]</code>를 사용해 <code>Close</code> 컬럼만 선택.</li>
+        <li><code>Y</code>: <code>Close</code> 열을 포함한 출력 데이터 (📉 변수).</li>
+    </ul>
+    </div>
+
+    
 </body>
 </html>
