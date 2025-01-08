@@ -424,7 +424,160 @@
                 </li>
             </ul>
         </div>
-        
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/12.png" alt="Deeplearning 열 두 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ul>
+        <li><code>class CNN(nn.Module):</code><br>
+            <strong>CNN:</strong> PyTorch의 <code>nn.Module</code>을 상속받아 정의된 단일 합성곱 신경망 클래스.</li>
+                <li><code>def __init__(self):</code><br>
+                    <strong>__init__:</strong> 클래스에서 모델의 구조를 초기화.</li>
+            </ul>
+            
+            <ul>
+        <li><code>self.layers = nn.Sequential(...)</code>
+            <ul>
+                <li><code>nn.Conv2d:</code> 입력 채널을 수용하고, 채널 수를 점차 증가시키며 특징 추출.</li>
+                <li><code>nn.ReLU:</code> 비선형성을 추가해 학습 가능성을 증가.</li>
+                <li><code>nn.MaxPool2d:</code> 공간 크기를 줄여 모델의 효율성을 증가.</li>
+            </ul>
+        </li>
+                <li>채널 증가: 3 → 32 → 64 → 128.</li>
+            </ul>
+            
+            <ul>
+        <li><code>self.l1 = nn.Linear(128*4*4, 128)</code>: 특성을 1차원 벡터로 변환.</li>
+                <li><code>self.l2 = nn.Linear(128, 10)</code>: 클래스 점수 계산.</li>
+            </ul>
+            
+            <ul>
+                <li><code>def forward(self, x):</code>
+                    <ul>
+                        <li><code>self.layer1(x):</code> 합성곱, ReLU, 풀링을 통해 특징 추출.</li>
+                        <li><code>x.view(x.size(0), -1):</code> 특징을 1차원 벡터로 변환.</li>
+                        <li><code>self.l1(x) → self.l2(x):</code> 완전 연결층을 통해 클래스 점수 계산.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <ul>
+                <li>입력: 3채널 RGB 이미지 (예: CIFAR-10, 크기 32x32).</li>
+                <li>합성곱 블록:
+                    <ul>
+                        <li>채널 증가: 3 → 32 → 64 → 128.</li>
+                        <li>각 블록마다 ReLU와 MaxPooling으로 특징 추출.</li>
+                    </ul>
+                </li>
+                <li>완전 연결층:
+                    <ul>
+                        <li>추출된 특징을 활성화해 10개의 클래스에 대한 점수 계산.</li>
+                    </ul>
+                </li>
+                <li>출력: 각 클래스에 대한 점수.</li>
+            </ul>
+        </div>
+
+         <div class="image-section.left">
+            <img src="Deep learning5 images/13.png" alt="Deeplearning 열 세 번째 이미지" class="opencv-image">
+        </div>
+        <div class="description-section">
+            <ul>
+                <li><strong>Dropout의 역할:</strong>
+                    <ul>
+                        <li>과적합 방지를 위해 활성화된 뉴런을 랜덤하게 비활성화.</li>
+                        <li>학습 중 특정 뉴런에 과도하게 의존하지 않도록 도움.</li>
+                    </ul>
+                </li>
+                <li><strong>Dropout 층 추가:</strong>
+                    <ul>
+                        <li><code>nn.Dropout(p)</code> 사용.</li>
+                        <li><code>p</code>: 비활성화할 뉴런의 비율 (예: <code>p=0.2</code>는 20%).</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <ul>
+                <li><code>self.layer1 = nn.Sequential(...)</code>: 각 <code>MaxPool2d</code> 층 뒤에 Dropout 추가.
+                    <ul>
+                        <li>비율은 점진적으로 증가 (<code>p=0.2 → 0.3 → 0.4</code>).</li>
+                        <li>고차원의 특징 학습에 과적합 방지를 강화.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <ul>
+                <li><code>self.l1 = nn.Linear(128*4*4, 128)</code>: 완전 연결층.</li>
+                <li><code>self.l2 = nn.Linear(128, 10)</code>: 클래스 점수 계산.</li>
+                <li><code>self.dropout1 = nn.Dropout(0.4)</code>: 완전 연결층에서도 Dropout 추가.</li>
+            </ul>
+            
+            <ul>
+                <li><code>self.layer1(x)</code>: 합성곱 및 Dropout 적용.</li>
+                <li><code>x.view(x.size(0), -1)</code>: 특징 벡터를 1차원으로 변환.</li>
+                <li><code>self.dropout1(x)</code>: 완전 연결층에서도 Dropout 적용.</li>
+            </ul>
+            
+            <ul>
+                <li><strong>입력:</strong> RGB 이미지 (<code>3채널</code>, 크기 <code>32x32</code>).</li>
+                <li><strong>Dropout 층:</strong>
+                    <ul>
+                        <li>합성곱 층: 각 <code>MaxPool2d</code> 뒤에 추가 (<code>p=0.2 → 0.3 → 0.4</code>).</li>
+                        <li>완전 연결층: <code>p=0.4</code>로 과적합 방지.</li>
+                    </ul>
+                </li>
+                <li><strong>출력:</strong> 10개의 클래스 점수.</li>
+            </ul>
+        </div>
+
+        <div class="image-section.left">
+            <img src="Deep learning5 images/14.png" alt="Deeplearning 열 네 번째 이미지" class="opencv-image">
+        </div>        
+        <div class="description-section">
+            <ul>
+                <li><strong>Batch Normalization (<code>nn.BatchNorm2d</code>):</strong>
+                    <ul>
+                        <li>합성곱 층의 출력값을 정규화하여 학습 안정화 및 속도 향상.</li>
+                        <li>각 채널의 평균과 분산을 정규화한 후 학습 가능한 파라미터로 다시 스케일링과 시프트.</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li><code>self.bn1 = nn.BatchNorm2d(32)</code>: 첫 번째 합성곱 층의 출력 채널에 맞게 Batch Normalization 초기화.</li>
+                <li>각 합성곱 층의 출력 채널에 맞춰 Batch Normalization 정의 (<code>bn1</code> ~ <code>bn6</code>).</li>
+            </ul>            
+            <ul>
+                <li><code>self.layer1 = nn.Sequential(...)</code>
+                    <ul>
+                        <li>각 <code>nn.Conv2d</code> 뒤에 <code>BatchNorm</code> 추가.</li>
+                        <li><strong>위치:</strong> ReLU 활성화 함수 이전에 사용하여 출력값을 정규화.</li>
+                    </ul>
+                </li>
+            </ul>            
+            <ul>
+                <li>완전 연결층에서는 Batch Normalization을 사용하지 않음.</li>
+            </ul>
+            <ul>
+                <li><code>self.layer1(x)</code>: Batch Normalization, ReLU, MaxPool, Dropout 순으로 진행.</li>
+                <li><code>x.view(x.size(0), -1)</code>: 특징 벡터를 1차원으로 변환.</li>
+                <li><code>self.dropout1(x)</code>: Dropout 적용.</li>
+            </ul>            
+            <ul>
+                <li><strong>Batch Normalization 추가:</strong>
+                    <ul>
+                        <li>모든 합성곱 층의 출력값을 정규화하여 학습 속도를 높이고 안정성 향상.</li>
+                        <li>과적합 방지 및 일반화 성능 향상.</li>
+                    </ul>
+                </li>
+                <li><strong>Dropout:</strong>
+                    <ul>
+                        <li>합성곱 층과 완전 연결층에서 Dropout으로 뉴런 비활성화.</li>
+                    </ul>
+                </li>
+                <li><strong>출력:</strong> 10개 클래스의 점수.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
