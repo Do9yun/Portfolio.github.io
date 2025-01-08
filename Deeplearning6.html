@@ -53,5 +53,108 @@
           </ul>
       </div>
 
+      <div class="image-section.left">
+          <img src="Deep learning6 images/3.png" alt="3" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <p>라이브러리와 GPU 할당</p>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/4.png" alt="4" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li><strong>학습 데이터:</strong>
+                  <ul>
+                      <li><strong>데이터 증강:</strong> 크기 조정, 수평 뒤집기, 랜덤 영역 삭제.</li>
+                      <li><strong>정규화:</strong> 데이터 값을 평균과 표준편차로 표준화.</li>
+                      <li><strong>데이터 로더:</strong> 배치 크기=50, 데이터 순서를 섞음.</li>
+                  </ul>
+              </li>
+              <li><strong>검증 데이터:</strong>
+                  <ul>
+                      <li><strong>데이터 증강 없음:</strong> 정규화만 수행.</li>
+                      <li><strong>데이터 로더:</strong> 배치 크기=50, 데이터 순서를 유지.</li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+
+      <div class="image-section.left">
+          <img src="Deep learning6 images/5.png" alt="5" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li><code>weights='IMAGENET1K_V1'</code>:
+                  <ul>
+                      <li>PyTorch 최신 버전에서는 <code>pretrained=True</code> 대신 <code>weights</code> 매개변수를 사용.</li>
+                      <li><code>'IMAGENET1K_V1'</code>: ImageNet 데이터셋으로 학습된 ResNet-18 모델의 가중치를 불러옴.</li>
+                  </ul>
+              </li>
+          </ul>
+      </div>      
+      <div class="image-section.left">
+          <img src="Deep learning6 images/6.png" alt="6" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>1. 합성곱 층 (Conv2d):</h4>
+          <pre>
+              Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          </pre>
+          <ul>
+              <li><strong>합성곱 연산을 수행하는 층.</strong></li>
+              <li>입력 채널=128, 출력 채널=128, 커널 크기=3x3.</li>
+              <li><code>stride=(1, 1)</code>: 필터가 1픽셀씩 이동.</li>
+              <li><code>padding=(1, 1)</code>: 입력 이미지 가장자리에 패딩을 추가하여 출력 크기를 유지.</li>
+              <li><code>bias=False</code>: 바이어스를 BatchNorm과 함께 사용하지 않음.</li>
+          </ul>
+          
+          <h4>2. 배치 정규화 (BatchNorm2d):</h4>
+          <pre>
+              BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          </pre>
+          <ul>
+              <li>채널별로 데이터를 정규화하여 학습 안정성 향상.</li>
+              <li><code>eps</code>: 수치 안정성을 위해 추가되는 작은 값.</li>
+              <li><code>momentum</code>: 이동 평균 계산 시 사용.</li>
+              <li><code>affine=True</code>: 학습 가능한 스케일링과 이동 매개변수 사용.</li>
+          </ul>
+          
+          <h4>3. BasicBlock (기본 블록):</h4>
+          <pre>
+              BasicBlock(
+              (conv1): Conv2d(...)
+              (bn1): BatchNorm2d(...)
+              (relu): ReLU(...
+              
+              (conv2): Conv2d(...)
+              (bn2): BatchNorm2d(...)
+              )
+          </pre>
+          <ul>
+              <li><strong>ResNet의 기본 구성 요소.</strong></li>
+              <li>합성곱, BatchNorm, ReLU 활성화 함수로 구성.</li>
+              <li>Skip Connection(잔차 연결)을 포함하여 그래디언트 소실 문제를 완화.</li>
+          </ul>
+          
+          <h4>4. 적용형 평균 풀링층 (AdaptiveAvgPool2d):</h4>
+          <pre>
+              AdaptiveAvgPool2d(output_size=(1, 1))
+          </pre>
+          <ul>
+              <li>입력 특징 맵의 크기를 1x1로 변환.</li>
+              <li>입력 크기에 상관없이 고정된 출력 크기를 생성.</li>
+          </ul>
+          
+          <h4>5. 완전 연결층 (Fully Connected):</h4>
+          <pre>
+              Linear(in_features=512, out_features=1000, bias=True)
+          </pre>
+          <ul>
+              <li>입력 특성 수=512, 출력 클래스 수=1000 (ImageNet 클래스 개수).</li>
+              <li>모델의 최종 출력층으로, 각 클래스에 대한 점수 생성.</li>
+          </ul>
+      </div>      
 </body>
 </html>
