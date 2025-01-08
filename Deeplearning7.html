@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순환 신경망(RNN)</title>
+    <link rel="stylesheet" href="style-Deeplearning7.css">
+</head>
+<body>
+  <div class="content-container">
+        <!-- 제목 -->
+        <h1 class="left"> 순환 신경망(RNN) </h1>  
+  </div>
 
+  <div class="description-section">
+    <ul>
+      <li><strong>RNN(Recurrent Neural Network):</strong> 시간적으로 연속성이 있는 데이터를 처리하려고 고안된 인공 신경망.</li>
+      <li><strong>RNN의 'Recurrent(반복되는)':</strong> 이전 은닉층이 현재 은닉층의 입력이 되면서 '반복되는 순환 구조를 갖는다'는 의미.</li>
+      <li>RNN이 기존 네트워크와 다른 점은 '기억(memory)'을 갖는다는 것.</li>
+      <li>이때 기억은 현재까지 입력 데이터를 요약한 정보라고 생각하면 됨.</li>
+      <li>새로운 입력이 네트워크로 들어올 때마다 기억은 조금씩 수정되며, 결국 최종적으로 남겨진 기억은 모든 입력 전체를 요약한 정보가 됨.</li>
+    </ul>
+  </div>
+  
+  <div class="image-section.left">
+    <img src="Deep learning7 images/1.png" alt="1" class="deep-learning-image">
+  </div>
+  <div class="description-section">
+    <ul>
+      <li>그림과 같이 첫 번째 입력(<code>x1</code>)이 들어오면 첫 번째 기억(<code>h1</code>)이 만들어지고, 두 번째 입력(<code>x2</code>)이 들어오면 기존 기억(<code>h1</code>)과 새로운 입력을 참고하여 새 기억(<code>h2</code>)을 만듦.</li>
+      <li>입력 길이만큼 이 과정을 얼마든지 반복할 수 있음.</li>
+      <li>즉, RNN은 외부 입력과 자신의 이전 상태를 입력받아 현재 상태를 갱신.</li>
+    </ul>
+  </div>
+
+  <div class="image-section.left">
+    <img src="Deep learning7 images/2.png" alt="2" class="deep-learning-image">
+  </div>
+
+  <div class="description-section">
+    <h4>RNN의 입력과 출력에 따른 유형</h4>
+    <ul>
+        <li><strong>일대일:</strong> 순환이 없기 때문에 RNN이라고 말하기 어려우며, 순방향 네트워크가 대표적 사례.</li>
+        <li><strong>일대다:</strong> 입력이 하나이고, 출력이 다수인 구조.
+            <ul>
+                <li>예: 이미지를 입력해서 이미지에 대한 설명을 문장으로 출력하는 이미지 캡션(image captioning)이 대표적 사례.</li>
+            </ul>
+        </li>
+        <li><strong>다대일:</strong> 입력이 다수이고 출력이 하나인 구조.
+            <ul>
+                <li>예: 문장을 입력해서 긍정/부정을 출력하는 감성 분석기에서 사용.</li>
+            </ul>
+        </li>
+        <li><strong>다대다:</strong> 입력과 출력이 다수인 구조.
+            <ul>
+                <li>예: 언어를 번역하는 자동 번역기 등이 대표적인 사례.</li>
+            </ul>
+        </li>
+    </ul>
+  </div>
+
+   <div class="image-section.left">
+    <img src="Deep learning7 images/3.png" alt="3" class="deep-learning-image">
+  </div>
+  <div class="description-section">
+    <h4>순환 신경망(RNN)</h4>
+    <p>다음 그림은 앞서 언급된 순환 신경망 구조들을 그림으로 표현한 것입니다.</p>
+  </div>
+
+  <div class="image-section.left">
+    <img src="Deep learning7 images/4.png" alt="4" class="deep-learning-image">
+  </div>
+  <div class="description-section">
+    <h4>RNN 구조</h4>
+    <ul>
+        <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
+        <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
+        <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
+    </ul>
+  </div>
+
+  <div class="image-section.left">
+    <img src="Deep learning7 images/5.png" alt="5" class="deep-learning-image">
+  </div>
+  <div class="image-section.left">
+    <img src="Deep learning7 images/6.png" alt="6" class="deep-learning-image">
+  </div>
+
+  <div class="description-section">
+    <h4>RNN 구조</h4>
+    <ul>
+        <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
+        <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
+        <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
+    </ul>
+  </div>
+
+  <div class="image-section.left">
+    <img src="Deep learning7 images/7.png" alt="7" class="deep-learning-image">
+  </div>
+  <div class="description-section">
+    <p>
+        RNN에서 역전파는 <strong>BPTT(BackPropagation Through Time)</strong>를 이용하여 모든 단계마다 처음부터 끝까지 역전파.
+    </p>
+  </div>
+
+</body>
+</html>
