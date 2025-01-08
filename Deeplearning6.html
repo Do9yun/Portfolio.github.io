@@ -268,17 +268,16 @@
       </div>
       <div class="description-section">
           <pre>
-              torch.manual_seed(123)
-              torch.cuda.manual_seed(123)
+torch.manual_seed(123)
+torch.cuda.manual_seed(123)
           </pre>
           <ul>
               <li>랜덤 시드를 고정하여 재현 가능성 확보.</li>
               <li>CPU와 GPU에서 동일한 초기화 보장.</li>
           </ul>
-          <pre>
-              model = models.resnet18(weights='IMAGENET1K_V1')
-              fc_in_features = model.fc.in_features
-              model.fc = nn.Linear(fc_in_features, n_output)
+          <pre>model = models.resnet18(weights='IMAGENET1K_V1')
+fc_in_features = model.fc.in_features
+model.fc = nn.Linear(fc_in_features, n_output)
           </pre>
           <ul>
               <li><strong>ResNet-18 모델 로드:</strong>
@@ -294,9 +293,9 @@
               </li>
           </ul>
           <pre>
-              lr = 0.001
-              criterion = nn.CrossEntropyLoss()
-              optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+lr = 0.001
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=lr)
           </pre>
           <ul>
               <li><strong>Learning Rate (lr):</strong>
@@ -316,9 +315,7 @@
                   </ul>
               </li>
           </ul>
-          <pre>
-              history = np.zeros((0, 5))
-          </pre>
+          <pre>history = np.zeros((0, 5))</pre>
           <ul>
               <li>학습 결과를 저장할 배열 생성.</li>
               <li>각 항목: [에포크, train_loss, train_accuracy, test_loss, test_accuracy].</li>
