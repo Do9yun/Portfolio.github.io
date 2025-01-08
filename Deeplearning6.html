@@ -136,6 +136,88 @@
               <li>입력 특성 수=512, 출력 클래스 수=1000 (ImageNet 클래스 개수).</li>
               <li>모델의 최종 출력층으로, 각 클래스에 대한 점수 생성.</li>
           </ul>
-      </div>      
+      </div>   
+
+      <div class="image-section.left">
+          <img src="Deep learning7 images/6.png" alt="7" class="deep-learning-image">
+      </div><div class="description-section">
+          <h4>1. 라이브러리 설치 및 임포트</h4>
+          <pre>
+              !pip install torchinfo | tail -n 1
+          </pre>
+          <ul>
+              <li><strong>torchinfo:</strong> PyTorch 모델의 구조를 요약해서 출력하는 라이브러리.</li>
+              <li><strong>tail -n 1:</strong> 설치 완료 메시지 한 줄만 출력.</li>
+          </ul>
+          <pre>
+              from torchinfo import summary
+          </pre>
+          <ul>
+              <li><code>torchinfo</code>의 <code>summary</code> 함수로 모델 구조를 시각화.</li>
+          </ul>
+          
+          <h4>2. 모델 이동</h4>
+          <pre>
+              net = net.to(device)
+          </pre>
+          <ul>
+              <li>모델(<code>net</code>)을 지정된 장치(<code>device</code>, GPU 또는 CPU)로 이동.</li>
+          </ul>
+          
+          <h4>3. 모델 구조 요약</h4>
+          <pre>
+              summary(net, (128, 3, 112, 112))
+          </pre>
+          <ul>
+              <li><code>net:</code> 모델 객체.</li>
+              <li><code>(128, 3, 112, 112):</code> 입력 데이터 크기.
+                  <ul>
+                      <li>배치 크기=128, 채널 수=3 (RGB 이미지), 이미지 크기=112x112.</li>
+                  </ul>
+              </li>
+              <li>모델 구조와 각 층의 출력 크기 및 매개변수 수를 요약해서 출력.</li>
+          </ul>
+          
+          <h4>4. 출력 내용 해석</h4>
+          <ul>
+              <li><strong>Column 1: Layer</strong>
+                  <ul>
+                      <li>모델의 각 계층을 계층 깊이(<code>depth-idx</code>)와 함께 나열.</li>
+                      <li>주요 계층:
+                          <ul>
+                              <li><code>Conv2d:</code> 합성곱 계층.</li>
+                              <li><code>BatchNorm2d:</code> 배치 정규화 계층.</li>
+                              <li><code>ReLU:</code> 활성화 함수 계층.</li>
+                              <li><code>MaxPool2d:</code> 맥스 풀링 계층.</li>
+                              <li><code>Sequential:</code> 여러 계층이 연속적으로 연결된 블록.</li>
+                              <li><code>BasicBlock:</code> ResNet의 기본 구성 요소.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <li><strong>Column 2: Output Shape</strong>
+                  <ul>
+                      <li>각 계층의 출력 텐서 크기:
+                          <ul>
+                              <li>예: <code>[128, 64, 56, 56]</code></li>
+                              <li>배치 크기=128, 채널=64, 출력 이미지 크기=56x56.</li>
+                          </ul>
+                      
+                      </li>
+                      <li>계층마다 입력 데이터의 크기가 점진적으로 변환됨.</li>
+                  </ul>
+              </li>
+              <li><strong>Column 3: Param #</strong>
+                  <ul>
+                      <li>각 계층의 학습 가능한 매개변수(Parameter) 개수.
+                          <ul>
+                              <li>예: <code>Conv2d 1-1:</code> 9,408개의 매개변수.</li>
+                              <li><code>BatchNorm2d 1-2:</code> 128개의 매개변수.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
 </body>
 </html>
