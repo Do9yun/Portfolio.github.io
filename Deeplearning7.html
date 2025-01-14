@@ -440,28 +440,9 @@
         <li><strong>출력 크기:</strong> 예측해야 할 변수의 크기.</li>
     </ul>
 
-    <h5>2. 학습 루프 작성</h5>
-    <pre><code class="python">
-model = GRU(input_size=3, hidden_size=8, output_size=1, num_layers=2)
-criterion = nn.MSELoss()
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-
-for epoch in range(100):
-    for x_batch, y_batch in train_loader:
-        optimizer.zero_grad()
-        outputs = model(x_batch)
-        loss = criterion(outputs, y_batch)
-        loss.backward()
-        optimizer.step()
-
-    print(f"Epoch [{epoch+1}/100], Loss: {loss.item():.4f}")
-    </code></pre>
-    <ul>
-        <li><strong>손실 함수:</strong> 평균 제곱 오차(MSE).</li>
-        <li><strong>최적화 알고리즘:</strong> Adam 옵티마이저 사용.</li>
-        <li><strong>학습 출력:</strong> 각 에포크(epoch)별 손실 출력.</li>
-    </ul>
-
+      <div class="image-section.left">
+            <img src="Deep learning7 images/16.png" alt="16" class="deep-learning-image">
+    </div>
   <div class="description-section">
     <h4>데이터셋 생성 및 학습 절차</h4>
     <h5>1. 데이터셋 생성 및 DataLoader 설정</h5>
