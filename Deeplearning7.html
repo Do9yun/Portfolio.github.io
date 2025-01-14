@@ -520,6 +520,49 @@
     <li>이 코드는 모델 학습 과정 중 손실값 변화를 시각화하여, 모델이 학습 데이터와 테스트 데이터에서 어떻게 성능을 향상시키는지 확인하기 위해 사용됩니다. 
         이를 통해 학습이 잘 진행되었는지, 과적합이 발생했는지, 또는 추가 조정이 필요한지를 쉽게 분석할 수 있습니다. 결과적으로 학습 및 테스트 손실이 안정적으로 감소하고 수렴했음을 보여줍니다.</li>
   </div>
+
+      <div class="image-section.left">
+            <img src="Deep learning7 images/18.png" alt="18" class="deep-learning-image">
+    </div>
+      <div class="description-section">
+    <h4>예측값과 실제값 시각화</h4>
+    <h5>1. 학습 데이터 시각화</h5>
+    <ul>
+        <li><code>plt.plot(outputs_train.to('cpu').detach(), label='prediction')</code>: 학습 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
+        <li><code>plt.plot(y_train.to('cpu'), label='actual')</code>: 학습 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
+    </ul>
+
+    <h5>2. 테스트 데이터 시각화</h5>
+    <ul>
+        <li><code>plt.plot(outputs_test.to('cpu').detach(), label='prediction')</code>: 테스트 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
+        <li><code>plt.plot(y_test.to('cpu'), label='actual')</code>: 테스트 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
+    </ul>
+
+    <h5>3. 범례 및 출력</h5>
+    <ul>
+        <li><code>plt.legend()</code>, <code>plt.show()</code>: 그래프에 범례 추가 및 출력.</li>
+    </ul>
+
+    <h5>4. 결과 확인</h5>
+    <ul>
+        <li>왼쪽 그래프 (학습 데이터):</li>
+        <ul>
+            <li><strong>prediction (파란 선):</strong> 모델이 학습 데이터에서 예측한 값.</li>
+            <li><strong>actual (주황 선):</strong> 학습 데이터의 실제값.</li>
+            <li>두 선이 거의 일치하며, 학습 데이터에서 모델이 높은 정확도로 예측했음을 보여줌.</li>
+        </ul>
+        <li>오른쪽 그래프 (테스트 데이터):</li>
+        <ul>
+            <li><strong>prediction (파란 선):</strong> 모델이 테스트 데이터에서 예측한 값.</li>
+            <li><strong>actual (주황 선):</strong> 테스트 데이터의 실제값.</li>
+            <li>선이 대체로 일치하지만, 일부 구간에서 차이가 발생하며, 테스트 데이터에서의 일반화 성능을 확인 가능.</li>
+        </ul>
+    </ul>
+
+    <li>이 코드는 모델이 학습 데이터와 테스트 데이터에서 예측한 값과 실제값을 시각적으로 비교하여 성능을 평가하기 위해 사용됩니다. 
+        학습 데이터 그래프는 모델이 학습 데이터에 잘 맞는지 확인하는 데 도움을 주고, 테스트 데이터 그래프는 모델의 일반화 성능을 평가하며 과적합 여부를 판단하는 데 활용됩니다. 
+        시각화를 통해 모델이 데이터 패턴을 제대로 학습했는지 직관적으로 이해할 수 있습니다.</li>
+  </div>
   </div>
     
 
