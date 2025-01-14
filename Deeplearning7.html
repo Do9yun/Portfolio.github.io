@@ -8,609 +8,593 @@
 </head>
 <body>
   <div class="content-container">
-        <!-- 제목 -->
-        <h1 class="left"> 순환 신경망(RNN) </h1>  
+      <!-- 제목 -->
+      <h1 class="left"> 순환 신경망(RNN) </h1>  
+      
+      <div class="description-section">
+          <ul>
+              <li><strong>RNN(Recurrent Neural Network):</strong> 시간적으로 연속성이 있는 데이터를 처리하려고 고안된 인공 신경망.</li>
+              <li><strong>RNN의 'Recurrent(반복되는)':</strong> 이전 은닉층이 현재 은닉층의 입력이 되면서 '반복되는 순환 구조를 갖는다'는 의미.</li>
+              <li>RNN이 기존 네트워크와 다른 점은 '기억(memory)'을 갖는다는 것.</li>
+              <li>이때 기억은 현재까지 입력 데이터를 요약한 정보라고 생각하면 됨.</li>
+              <li>새로운 입력이 네트워크로 들어올 때마다 기억은 조금씩 수정되며, 결국 최종적으로 남겨진 기억은 모든 입력 전체를 요약한 정보가 됨.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/1.png" alt="1" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <ul>
+              <li>그림과 같이 첫 번째 입력(<code>x1</code>)이 들어오면 첫 번째 기억(<code>h1</code>)이 만들어지고, 두 번째 입력(<code>x2</code>)이 들어오면 기존 기억(<code>h1</code>)과 새로운 입력을 참고하여 새 기억(<code>h2</code>)을 만듦.</li>
+              <li>입력 길이만큼 이 과정을 얼마든지 반복할 수 있음.</li>
+              <li>즉, RNN은 외부 입력과 자신의 이전 상태를 입력받아 현재 상태를 갱신.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/2.png" alt="2" class="deep-learning-image">
+      </div>
+      
+      <div class="description-section">
+          <h4>RNN의 입력과 출력에 따른 유형</h4>
+          <ul>
+              <li><strong>일대일:</strong> 순환이 없기 때문에 RNN이라고 말하기 어려우며, 순방향 네트워크가 대표적 사례.</li>
+              <li><strong>일대다:</strong> 입력이 하나이고, 출력이 다수인 구조.
+                  <ul>
+                      <li>예: 이미지를 입력해서 이미지에 대한 설명을 문장으로 출력하는 이미지 캡션(image captioning)이 대표적 사례.</li>
+                  </ul>
+              </li>
+              <li><strong>다대일:</strong> 입력이 다수이고 출력이 하나인 구조.
+                  <ul>
+                      <li>예: 문장을 입력해서 긍정/부정을 출력하는 감성 분석기에서 사용.</li>
+                  </ul>
+              </li>
+              <li><strong>다대다:</strong> 입력과 출력이 다수인 구조.
+                  <ul>
+                      <li>예: 언어를 번역하는 자동 번역기 등이 대표적인 사례.</li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/3.png" alt="3" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>순환 신경망(RNN)</h4>
+          <p>다음 그림은 앞서 언급된 순환 신경망 구조들을 그림으로 표현한 것입니다.</p>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/4.png" alt="4" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>RNN 구조</h4>
+          <ul>
+              <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
+              <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
+              <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/5.png" alt="5" class="deep-learning-image">
+      </div>
+      <div class="image-section.left">
+          <img src="Deep learning7 images/6.png" alt="6" class="deep-learning-image">
+      </div>
+      
+      <div class="description-section">
+          <h4>RNN 구조</h4>
+          <ul>
+              <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
+              <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
+              <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/7.png" alt="7" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <p>
+              RNN에서 역전파는 <strong>BPTT(BackPropagation Through Time)</strong>를 이용하여 모든 단계마다 처음부터 끝까지 역전파.
+          </p>
+      </div>
+      
+      <div class="description-section">
+          <h4>RNN 실습</h4>
+          <div class="image-section.left">
+              <img src="Deep learning7 images/8.png" alt="8" class="deep-learning-image">
+          </div>
+      </div>
+      <div class="description-section">
+          <p>
+              기본 라이브러리
+          </p>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/9.png" alt="9" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>1. Google Drive 연결</h4>
+          <ul>
+              <li>Colab에 Google Drive 마운트.</li>
+              <li><code>drive.mount('/content/drive')</code>.</li>
+          </ul>
+          <h4>2. CSV 파일 로드</h4>
+          <ul>
+              <li><code>train.csv</code> 파일을 Pandas로 불러옴.</li>
+              <li>경로: <code>drive/MyDrive/Colab Notebooks/train.csv</code>.</li>
+          </ul>
+          <h4>3. 데이터</h4>
+          <ul>
+              <li>총 <strong>967개 행, 6개 열</strong>: Date, Open, High, Low, Volume, Close.</li>
+              <li>주식 데이터 분석 및 예측에 적합.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/10.png" alt="10" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>1. 입력 변수(features) 설정</h4>
+          <pre><code class="python">features = ['Open', 'High', 'Low']</code></pre>
+          <ul>
+              <li><code>Open</code>, <code>High</code>, <code>Low</code> 세 개의 컬럼을 입력 변수로 사용.</li>
+          </ul>
+          
+          <h4>2. 입력 데이터 (X) 추출</h4>
+          <pre><code class="python">X = data.loc[:, features]</code></pre>
+          <ul>
+              <li><code>data.loc[:, features]</code>를 통해 데이터프레임에서 <code>features</code>에 해당하는 열만 선택.</li>
+              <li><code>X</code>: <code>Open</code>, <code>High</code>, <code>Low</code> 열을 포함한 입력 데이터.</li>
+          </ul>
+          
+          <h4>3. 출력 데이터 (Y) 추출</h4>
+          <pre><code class="python">Y = data[['Close']]</code></pre>
+          <ul>
+              <li><code>data[['Close']]</code>를 사용해 <code>Close</code> 컬럼만 선택.</li>
+              <li><code>Y</code>: <code>Close</code> 열을 포함한 출력 데이터 (📉 변수).</li>
+          </ul>
+      </div>
 
-  <div class="description-section">
-    <ul>
-      <li><strong>RNN(Recurrent Neural Network):</strong> 시간적으로 연속성이 있는 데이터를 처리하려고 고안된 인공 신경망.</li>
-      <li><strong>RNN의 'Recurrent(반복되는)':</strong> 이전 은닉층이 현재 은닉층의 입력이 되면서 '반복되는 순환 구조를 갖는다'는 의미.</li>
-      <li>RNN이 기존 네트워크와 다른 점은 '기억(memory)'을 갖는다는 것.</li>
-      <li>이때 기억은 현재까지 입력 데이터를 요약한 정보라고 생각하면 됨.</li>
-      <li>새로운 입력이 네트워크로 들어올 때마다 기억은 조금씩 수정되며, 결국 최종적으로 남겨진 기억은 모든 입력 전체를 요약한 정보가 됨.</li>
-    </ul>
-  </div>
-  
-  <div class="image-section.left">
-    <img src="Deep learning7 images/1.png" alt="1" class="deep-learning-image">
-  </div>
-  <div class="description-section">
-    <ul>
-      <li>그림과 같이 첫 번째 입력(<code>x1</code>)이 들어오면 첫 번째 기억(<code>h1</code>)이 만들어지고, 두 번째 입력(<code>x2</code>)이 들어오면 기존 기억(<code>h1</code>)과 새로운 입력을 참고하여 새 기억(<code>h2</code>)을 만듦.</li>
-      <li>입력 길이만큼 이 과정을 얼마든지 반복할 수 있음.</li>
-      <li>즉, RNN은 외부 입력과 자신의 이전 상태를 입력받아 현재 상태를 갱신.</li>
-    </ul>
-  </div>
-
-  <div class="image-section.left">
-    <img src="Deep learning7 images/2.png" alt="2" class="deep-learning-image">
-  </div>
-
-  <div class="description-section">
-    <h4>RNN의 입력과 출력에 따른 유형</h4>
-    <ul>
-        <li><strong>일대일:</strong> 순환이 없기 때문에 RNN이라고 말하기 어려우며, 순방향 네트워크가 대표적 사례.</li>
-        <li><strong>일대다:</strong> 입력이 하나이고, 출력이 다수인 구조.
-            <ul>
-                <li>예: 이미지를 입력해서 이미지에 대한 설명을 문장으로 출력하는 이미지 캡션(image captioning)이 대표적 사례.</li>
-            </ul>
-        </li>
-        <li><strong>다대일:</strong> 입력이 다수이고 출력이 하나인 구조.
-            <ul>
-                <li>예: 문장을 입력해서 긍정/부정을 출력하는 감성 분석기에서 사용.</li>
-            </ul>
-        </li>
-        <li><strong>다대다:</strong> 입력과 출력이 다수인 구조.
-            <ul>
-                <li>예: 언어를 번역하는 자동 번역기 등이 대표적인 사례.</li>
-            </ul>
-        </li>
-    </ul>
-  </div>
-
-   <div class="image-section.left">
-    <img src="Deep learning7 images/3.png" alt="3" class="deep-learning-image">
-  </div>
-  <div class="description-section">
-    <h4>순환 신경망(RNN)</h4>
-    <p>다음 그림은 앞서 언급된 순환 신경망 구조들을 그림으로 표현한 것입니다.</p>
-  </div>
-
-  <div class="image-section.left">
-    <img src="Deep learning7 images/4.png" alt="4" class="deep-learning-image">
-  </div>
-  <div class="description-section">
-    <h4>RNN 구조</h4>
-    <ul>
-        <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
-        <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
-        <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
-    </ul>
-  </div>
-
-  <div class="image-section.left">
-    <img src="Deep learning7 images/5.png" alt="5" class="deep-learning-image">
-  </div>
-  <div class="image-section.left">
-    <img src="Deep learning7 images/6.png" alt="6" class="deep-learning-image">
-  </div>
-
-  <div class="description-section">
-    <h4>RNN 구조</h4>
-    <ul>
-        <li>RNN은 은닉층 노드들이 연결되어 이전 단계 정보를 은닉층 노드에 저장할 수 있도록 구성한 신경망.</li>
-        <li>다음 그림에서 볼 수 있듯이 <code>x<sub>t-1</sub></code>에서 <code>h<sub>t-1</sub></code>을 얻고, 다음 단계에서 <code>h<sub>t-1</sub></code>과 <code>x<sub>t</sub></code>를 사용하여 과거 정보와 현재 정보를 모두 반영.</li>
-        <li>또한, <code>h<sub>t</sub></code>와 <code>x<sub>t+1</sub></code>의 정보를 이용하여 과거와 현재 정보를 반복해서 반영하는데, 이러한 구조를 요약한 것이 다음 그림의 오른쪽 부분과 같음.</li>
-    </ul>
-  </div>
-
-  <div class="image-section.left">
-    <img src="Deep learning7 images/7.png" alt="7" class="deep-learning-image">
-  </div>
-  <div class="description-section">
-    <p>
-        RNN에서 역전파는 <strong>BPTT(BackPropagation Through Time)</strong>를 이용하여 모든 단계마다 처음부터 끝까지 역전파.
-    </p>
-  </div>
-
-    <div class="description-section">
-        <h4>RNN 실습</h4>
-        <div class="image-section.left">
-            <img src="Deep learning7 images/8.png" alt="8" class="deep-learning-image">
-        </div>
-    </div>
-    <div class="description-section">
-    <p>
-        기본 라이브러리
-    </p>
-  </div>
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/9.png" alt="9" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>1. Google Drive 연결</h4>
-    <ul>
-        <li>Colab에 Google Drive 마운트.</li>
-        <li><code>drive.mount('/content/drive')</code>.</li>
-    </ul>
-    <h4>2. CSV 파일 로드</h4>
-    <ul>
-        <li><code>train.csv</code> 파일을 Pandas로 불러옴.</li>
-        <li>경로: <code>drive/MyDrive/Colab Notebooks/train.csv</code>.</li>
-    </ul>
-    <h4>3. 데이터</h4>
-    <ul>
-        <li>총 <strong>967개 행, 6개 열</strong>: Date, Open, High, Low, Volume, Close.</li>
-        <li>주식 데이터 분석 및 예측에 적합.</li>
-    </ul>
-    </div>
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/10.png" alt="10" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>1. 입력 변수(features) 설정</h4>
-    <pre><code class="python">features = ['Open', 'High', 'Low']</code></pre>
-    <ul>
-        <li><code>Open</code>, <code>High</code>, <code>Low</code> 세 개의 컬럼을 입력 변수로 사용.</li>
-    </ul>
-
-    <h4>2. 입력 데이터 (X) 추출</h4>
-    <pre><code class="python">X = data.loc[:, features]</code></pre>
-    <ul>
-        <li><code>data.loc[:, features]</code>를 통해 데이터프레임에서 <code>features</code>에 해당하는 열만 선택.</li>
-        <li><code>X</code>: <code>Open</code>, <code>High</code>, <code>Low</code> 열을 포함한 입력 데이터.</li>
-    </ul>
-
-    <h4>3. 출력 데이터 (Y) 추출</h4>
-    <pre><code class="python">Y = data[['Close']]</code></pre>
-    <ul>
-        <li><code>data[['Close']]</code>를 사용해 <code>Close</code> 컬럼만 선택.</li>
-        <li><code>Y</code>: <code>Close</code> 열을 포함한 출력 데이터 (📉 변수).</li>
-    </ul>
-    </div>
-  
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/11.png" alt="11" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>최대값 계산:</h4>
-    <ul>
-        <li><code>x_max</code>와 <code>y_max</code>를 통해 각각 입력 데이터(<code>X</code>)와 출력 데이터(<code>Y</code>)의 최대값을 구합니다.</li>
-        <li>이는 각 열(<code>column</code>)의 크기를 1로 정규화하기 위한 기준값입니다.</li>
-    </ul>
-
-    <h4>정규화 수행:</h4>
-    <ul>
-        <li><code>X_s = X / X_max</code>: 각 데이터 포인트를 최대값으로 나눠, 0~1 사이의 값으로 스케일링.</li>
-        <li><code>Y_s = Y / Y_max</code>: 출력 데이터도 동일하게 정규화.</li>
-        <li>결과적으로, 모든 입력과 출력 데이터가 동일한 스케일(0~1)로 변환됩니다.</li>
-    </ul>
-
-    <h4>추가 설명:</h4>
-    <ul>
-        <li>이 단계에서 정규화를 수행함으로써, 모델 학습 전 데이터의 스케일을 조정하여 학습 과정에서의 효율성과 안정성을 보장합니다.</li>
-        <li>이 작업이 없으면 학습 속도가 느려지거나, 모델이 잘 수렴하지 않을 수 있습니다.</li>
-    </ul>
-</div>
-
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/12.png" alt="12" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>목적:</h4>
-    <ul>
-        <li>주어진 데이터(<code>x_data</code>, <code>y_data</code>)를 기반으로 시계열 데이터셋을 생성.</li>
-        <li><code>window_size</code>: 한 번의 입력 데이터로 사용할 시점 개수를 지정.</li>
-    </ul>
-
-    <h4>작동 방식:</h4>
-    <ul>
-        <li><code>x_list</code>: 입력 데이터를 <code>window_size</code> 크기로 슬라이싱하여 저장.</li>
-        <li><code>y_list</code>: <code>window_size</code> 이후의 데이터를 출력값으로 저장.</li>
-        <li>최종적으로 PyTorch 텐서로 변환하여 모델 학습에 사용.</li>
-    </ul>
-
-    <h4>입출력 데이터 형태:</h4>
-    <ul>
-        <li>입력(<code>X_w</code>): (<code>데이터 개수</code>, <code>window_size</code>, <code>feature 수</code>) 형태.</li>
-        <li>출력(<code>Y_w</code>): (<code>데이터 개수</code>,) 형태.</li>
-    </ul>
-
-    <h4>추가 설명:</h4>
-    <ul>
-        <li>정규화된 데이터를 바탕으로 시계열 특성을 반영한 입력과 출력을 준비합니다.</li>
-        <li>이는 LSTM, GRU와 같은 시계열 예측 모델 학습의 필수적인 준비 단계입니다.</li>
-    </ul>
-    </div>
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/13.png" alt="13" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>코드 설명:</h4>
-    <ul>
-        <li>
-            <strong><code>x_train</code>, <code>y_train</code> 변수 설정:</strong>
-            기존의 <code>X_w</code>와 <code>Y_w</code>를 학습 데이터셋 변수로 매핑.
-        </li>
-        <li>
-            <strong>TensorDataset 생성:</strong>
-            <ul>
-                <li><code>TensorDataset</code>은 PyTorch 텐서(<code>x_train</code>, <code>y_train</code>)를 하나의 데이터셋으로 묶어줌.</li>
-                <li>이 데이터셋은 PyTorch 모델 학습에 바로 사용 가능.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>DataLoader 생성:</strong>
-            <ul>
-                <li><code>DataLoader</code>는 <code>TensorDataset</code>에서 데이터를 배치 단위로 나누고, 학습 과정에서 데이터를 효율적으로 로드함.</li>
-                <li><code>batch_size=32</code>: 한 번의 학습에 사용할 데이터 샘플 개수.</li>
-                <li>배치 크기는 GPU 메모리와 학습 속도 간의 균형을 유지하는 일반적인 설정.</li>
-            </ul>
-        </li>
-        <li>
-            <strong>데이터 확인:</strong>
-            <ul>
-                <li>
-                    <code>for x_data, y_data in train_loader:</code> 학습 데이터에서 한 배치를 추출.
-                </li>
-                <li>
-                    <code>x_data.shape:</code> (32, 30, 3)
-                    <ul>
-                        <li>32개의 샘플.</li>
-                        <li>각 샘플은 30개의 시간 윈도우, 3개의 특성(Open, High, Low).</li>
-                    </ul>
-                </li>
-                <li>
-                    <code>y_data.shape:</code> (32,)
-                    <ul>
-                        <li>32개의 출력값(정답).</li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-    <h4>추가 설명:</h4>
-    <ul>
-        <li>이 코드는 정규화되고 윈도우로 나뉜 시계열 데이터를 PyTorch의 <code>DataLoader</code>로 준비하는 단계입니다.</li>
-        <li>이후 단계에서는 이 <code>train_loader</code>를 사용해 모델을 학습시킬 수 있습니다.</li>
-    </ul>
-    </div>
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/14.png" alt="14" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <h4>모델 구조:</h4>
-    <h5>(1) 초기화 메서드 (<code>__init__</code>)</h5>
-    <ul>
-        <li>
-            <strong><code>self.rnn</code>:</strong>
-            <ul>
-                <li>PyTorch의 <code>nn.RNN</code> 계층.</li>
-                <li>입력 크기 (<code>input_size</code>): <code>len(features)</code> (입력 특성 수, 예: Open, High, Low → 3).</li>
-                <li>은닉 크기 (<code>hidden_size</code>): 8.</li>
-                <li>레이어 수 (<code>num_layers</code>): 5 (RNN 층을 5개로 구성).</li>
-                <li><code>batch_first=True</code>: 입력 텐서의 첫 번째 차원이 배치 크기.</li>
-            </ul>
-        </li>
-        <li>
-            <strong><code>self.fc1</code>:</strong>
-            <ul>
-                <li>Fully Connected Layer (FC).</li>
-                <li>입력 크기: <code>window_size * hidden_size</code> (시간 윈도우와 은닉 상태의 결합).</li>
-                <li>출력 크기: 64.</li>
-            </ul>
-        </li>
-        <li>
-            <strong><code>self.fc2</code>:</strong>
-            <ul>
-                <li>최종 Fully Connected Layer.</li>
-                <li>입력 크기: 64.</li>
-                <li>출력 크기: 1 (예측값).</li>
-            </ul>
-        </li>
-        <li>
-            <strong><code>self.relu</code>:</strong>
-            <ul>
-                <li>ReLU 활성화 함수.</li>
-            </ul>
-        </li>
-    </ul>
-    </div>
-    <div class="description-section">
-    <ul>
-        <li>
-            <strong>(1) 초기 은닉 상태 생성:</strong>
-            <ul>
-                <li><code>h0</code>:</li>
-                <ul>
-                    <li>초기 은닉 상태를 0으로 초기화.</li>
-                    <li>크기: (<code>레이어 수</code>, <code>배치 크기</code>, <code>hidden_size</code>).</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>(2) RNN 통과:</strong>
-            <ul>
-                <li><code>self.rnn(x, h0)</code>:</li>
-                <ul>
-                    <li>입력 데이터 <code>x</code>와 초기 은닉 상태 <code>h0</code>를 RNN 계층에 전달.</li>
-                    <li>출력:</li>
-                    <ul>
-                        <li><code>x</code>: 모든 RNN 층의 출력.</li>
-                        <li><code>hn</code>: 마지막 은닉 상태.</li>
-                    </ul>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>(3) 데이터 차원 변환:</strong>
-            <ul>
-                <li><code>x.reshape(x.size(0), -1)</code>:</li>
-                <ul>
-                    <li>RNN 출력 데이터를 평탄화 (<code>Flatten</code>).</li>
-                    <li>배치 크기를 유지하면서 나머지 차원을 하나로 결합.</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>(4) Fully Connected Layer 적용:</strong>
-            <ul>
-                <li><code>self.fc1(x) → self.relu(x) → self.fc2(x)</code>:</li>
-                <ul>
-                    <li>첫 번째 FC 계층과 ReLU 활성화 함수를 통과 후 최종 FC 계층을 통과.</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>(5) 최종 출력:</strong>
-            <ul>
-                <li><code>x.reshape(-1)</code>:</li>
-                <ul>
-                    <li>최종 출력값을 1차원으로 변환.</li>
-                </ul>
-            </ul>
-        </li>
-        <p>
-        RNN 계층으로 시계열 특성을 추출하고, Fully Connected 계층으로 최종 예측 수행. <br>
-        정규화된 시계열 데이터를 바탕으로 종가(<code>Close</code>)를 예측하는 데 적합한 모델.
-    </p>
-    </ul>
-    </div>
-
-    <div class="image-section.left">
-            <img src="Deep learning7 images/15.png" alt="15" class="deep-learning-image">
-    </div>
-    <div class="description-section">
-    <ul>
-        <li>
-            <strong>난수 설정:</strong>
-            <ul>
-                <li><code>torch.cuda.manual_seed(123)</code>:</li>
-                <ul>
-                    <li>난수를 고정하여 학습 결과의 재현성을 확보.</li>
-                    <li>학습 전 동일한 데이터와 설정으로 항상 같은 결과를 얻도록 보장.</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>모델 정의 및 장치 이동:</strong>
-            <ul>
-                <li><code>model = RNN()</code>:</li>
-                <ul>
-                    <li>정의된 RNN 모델을 초기화.</li>
-                </ul>
-                <li><code>model.to(device)</code>:</li>
-                <ul>
-                    <li>모델을 학습 장치(GPU 또는 CPU)로 이동.</li>
-                    <li>학습에 필요한 데이터와 연결될 준비 완료.</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>학습률 및 옵티마이저 설정:</strong>
-            <ul>
-                <li><code>lr = 0.00005</code>:</li>
-                <ul>
-                    <li>학습률 설정.</li>
-                </ul>
-                <li><code>optimizer = torch.optim.Adam(model.parameters(), lr=lr)</code>:</li>
-                <ul>
-                    <li>Adam 옵티마이저 사용.</li>
-                    <li>모델의 파라미터를 업데이트하도록 설정.</li>
-                </ul>
-            </ul>
-        </li>
-        <li>
-            <strong>손실 기록 초기화:</strong>
-            <ul>
-                <li><code>loss_history_train = []</code>, <code>loss_history_test = []</code>:</li>
-                <ul>
-                    <li>학습 및 테스트 손실 기록을 저장할 리스트 초기화.</li>
-                    <li>모델 학습 및 검증 중 손실 변화를 추적하기 위한 필수 작업.</li>
-                </ul>
-            </ul>
-        </li>
-    </ul>
-    </div>
-
-      <!DOCTYPE html>
-        out = self.fc(out[:, -1, :])  # 마지막 시점의 은닉 상태 사용
-        return out
-    </code></pre>
-    <ul>
-        <li><strong>입력 크기:</strong> 입력 데이터의 특성 수.</li>
-        <li><strong>은닉 크기:</strong> GRU 레이어의 노드 수.</li>
-        <li><strong>출력 크기:</strong> 예측해야 할 변수의 크기.</li>
-    </ul>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/11.png" alt="11" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>최대값 계산:</h4>
+          <ul>
+              <li><code>x_max</code>와 <code>y_max</code>를 통해 각각 입력 데이터(<code>X</code>)와 출력 데이터(<code>Y</code>)의 최대값을 구합니다.</li>
+              <li>이는 각 열(<code>column</code>)의 크기를 1로 정규화하기 위한 기준값입니다.</li>
+          </ul>
+          
+          <h4>정규화 수행:</h4>
+          <ul>
+              <li><code>X_s = X / X_max</code>: 각 데이터 포인트를 최대값으로 나눠, 0~1 사이의 값으로 스케일링.</li>
+              <li><code>Y_s = Y / Y_max</code>: 출력 데이터도 동일하게 정규화.</li>
+              <li>결과적으로, 모든 입력과 출력 데이터가 동일한 스케일(0~1)로 변환됩니다.</li>
+          </ul>
+          
+          <h4>추가 설명:</h4>
+          <ul>
+              <li>이 단계에서 정규화를 수행함으로써, 모델 학습 전 데이터의 스케일을 조정하여 학습 과정에서의 효율성과 안정성을 보장합니다.</li>
+              <li>이 작업이 없으면 학습 속도가 느려지거나, 모델이 잘 수렴하지 않을 수 있습니다.</li>
+          </ul>
+      </div>
 
       <div class="image-section.left">
-            <img src="Deep learning7 images/16.png" alt="16" class="deep-learning-image">
-    </div>
-  <div class="description-section">
-    <h4>데이터셋 생성 및 학습 절차</h4>
-    <h5>1. 데이터셋 생성 및 DataLoader 설정</h5>
-    <ul>
-        <li><code>train_dataset = TensorDataset(x_train, y_train)</code>: 입력(<code>x_train</code>)과 출력(<code>y_train</code>) 텐서를 묶어 PyTorch 모델 학습에 적합한 형태의 데이터셋 생성.</li>
-        <li><code>train_loader = DataLoader(train_dataset, batch_size=32)</code>: 학습 데이터셋을 배치 단위로 나누고, 각 배치에서 데이터를 효율적으로 로드.</li>
-    </ul>
-
+          <img src="Deep learning7 images/12.png" alt="12" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>목적:</h4>
+          <ul>
+              <li>주어진 데이터(<code>x_data</code>, <code>y_data</code>)를 기반으로 시계열 데이터셋을 생성.</li>
+              <li><code>window_size</code>: 한 번의 입력 데이터로 사용할 시점 개수를 지정.</li>
+          </ul>
+          
+          <h4>작동 방식:</h4>
+          <ul>
+              <li><code>x_list</code>: 입력 데이터를 <code>window_size</code> 크기로 슬라이싱하여 저장.</li>
+              <li><code>y_list</code>: <code>window_size</code> 이후의 데이터를 출력값으로 저장.</li>
+              <li>최종적으로 PyTorch 텐서로 변환하여 모델 학습에 사용.</li>
+          </ul>
+          
+          <h4>입출력 데이터 형태:</h4>
+          <ul>
+              <li>입력(<code>X_w</code>): (<code>데이터 개수</code>, <code>window_size</code>, <code>feature 수</code>) 형태.</li>
+              <li>출력(<code>Y_w</code>): (<code>데이터 개수</code>,) 형태.</li>
+          </ul>
+          
+          <h4>추가 설명:</h4>
+          <ul>
+              <li>정규화된 데이터를 바탕으로 시계열 특성을 반영한 입력과 출력을 준비합니다.</li>
+              <li>이는 LSTM, GRU와 같은 시계열 예측 모델 학습의 필수적인 준비 단계입니다.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/13.png" alt="13" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>코드 설명:</h4>
+          <ul>
+              <li>
+                  <strong><code>x_train</code>, <code>y_train</code> 변수 설정:</strong>
+                  기존의 <code>X_w</code>와 <code>Y_w</code>를 학습 데이터셋 변수로 매핑.
+              </li> 
+              <li>
+                  <strong>TensorDataset 생성:</strong>
+                  <ul>
+                      <li><code>TensorDataset</code>은 PyTorch 텐서(<code>x_train</code>, <code>y_train</code>)를 하나의 데이터셋으로 묶어줌.</li>
+                      <li>이 데이터셋은 PyTorch 모델 학습에 바로 사용 가능.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>DataLoader 생성:</strong>
+                  <ul>
+                      <li><code>DataLoader</code>는 <code>TensorDataset</code>에서 데이터를 배치 단위로 나누고, 학습 과정에서 데이터를 효율적으로 로드함.</li>
+                      <li><code>batch_size=32</code>: 한 번의 학습에 사용할 데이터 샘플 개수.</li>
+                      <li>배치 크기는 GPU 메모리와 학습 속도 간의 균형을 유지하는 일반적인 설정.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>데이터 확인:</strong>
+                  <ul>
+                      <li>
+                          <code>for x_data, y_data in train_loader:</code> 학습 데이터에서 한 배치를 추출.
+                      </li>
+                      <li>
+                          <code>x_data.shape:</code> (32, 30, 3)
+                          <ul>
+                              <li>32개의 샘플.</li>
+                              <li>각 샘플은 30개의 시간 윈도우, 3개의 특성(Open, High, Low).</li>
+                          </ul>
+                      </li>
+                      <li>
+                          <code>y_data.shape:</code> (32,)
+                          <ul>
+                              <li>32개의 출력값(정답).</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+          
+          <h4>추가 설명:</h4>
+          <ul>
+              <li>이 코드는 정규화되고 윈도우로 나뉜 시계열 데이터를 PyTorch의 <code>DataLoader</code>로 준비하는 단계입니다.</li>
+              <li>이후 단계에서는 이 <code>train_loader</code>를 사용해 모델을 학습시킬 수 있습니다.</li>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/14.png" alt="14" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>모델 구조:</h4>
+          <h5>(1) 초기화 메서드 (<code>__init__</code>)</h5>
+          <ul>
+              <li>
+                  <strong><code>self.rnn</code>:</strong>
+                  <ul>
+                      <li>PyTorch의 <code>nn.RNN</code> 계층.</li>
+                      <li>입력 크기 (<code>input_size</code>): <code>len(features)</code> (입력 특성 수, 예: Open, High, Low → 3).</li>
+                      <li>은닉 크기 (<code>hidden_size</code>): 8.</li>
+                      <li>레이어 수 (<code>num_layers</code>): 5 (RNN 층을 5개로 구성).</li>
+                      <li><code>batch_first=True</code>: 입력 텐서의 첫 번째 차원이 배치 크기.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong><code>self.fc1</code>:</strong>
+                  <ul>
+                      <li>Fully Connected Layer (FC).</li>
+                      <li>입력 크기: <code>window_size * hidden_size</code> (시간 윈도우와 은닉 상태의 결합).</li>
+                      <li>출력 크기: 64.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong><code>self.fc2</code>:</strong>
+                  <ul>
+                      <li>최종 Fully Connected Layer.</li>
+                      <li>입력 크기: 64.</li>
+                      <li>출력 크기: 1 (예측값).</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong><code>self.relu</code>:</strong>
+                  <ul>
+                      <li>ReLU 활성화 함수.</li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+      <div class="description-section">
+          <ul>
+              <li>
+                  <strong>(1) 초기 은닉 상태 생성:</strong>
+                  <ul>
+                      <li><code>h0</code>:</li>
+                      <ul>
+                          <li>초기 은닉 상태를 0으로 초기화.</li>
+                          <li>크기: (<code>레이어 수</code>, <code>배치 크기</code>, <code>hidden_size</code>).</li>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>(2) RNN 통과:</strong>
+                  <ul>
+                      <li><code>self.rnn(x, h0)</code>:</li>
+                      <ul>
+                          <li>입력 데이터 <code>x</code>와 초기 은닉 상태 <code>h0</code>를 RNN 계층에 전달.</li>
+                          <li>출력:</li>
+                          <ul>
+                              <li><code>x</code>: 모든 RNN 층의 출력.</li>
+                              <li><code>hn</code>: 마지막 은닉 상태.</li>
+                          </ul>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>(3) 데이터 차원 변환:</strong>
+                  <ul>
+                      <li><code>x.reshape(x.size(0), -1)</code>:</li>
+                      <ul>
+                          <li>RNN 출력 데이터를 평탄화 (<code>Flatten</code>).</li>
+                          <li>배치 크기를 유지하면서 나머지 차원을 하나로 결합.</li>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>(4) Fully Connected Layer 적용:</strong>
+                  <ul>
+                      <li><code>self.fc1(x) → self.relu(x) → self.fc2(x)</code>:</li>
+                      <ul>
+                          <li>첫 번째 FC 계층과 ReLU 활성화 함수를 통과 후 최종 FC 계층을 통과.</li>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>(5) 최종 출력:</strong>
+                  <ul>
+                      <li><code>x.reshape(-1)</code>:</li>
+                      <ul>
+                          <li>최종 출력값을 1차원으로 변환.</li>
+                      </ul>
+                  </ul>
+              </li>
+              <p>
+                  RNN 계층으로 시계열 특성을 추출하고, Fully Connected 계층으로 최종 예측 수행. <br>
+                  정규화된 시계열 데이터를 바탕으로 종가(<code>Close</code>)를 예측하는 데 적합한 모델.
+              </p>
+          </ul>
+      </div>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/15.png" alt="15" class="deep-learning-image">
+      </div>
+          <div class="description-section">
+              <ul>
+                  <li>
+                      <strong>난수 설정:</strong>
+                      <ul>
+                          <li><code>torch.cuda.manual_seed(123)</code>:</li>
+                          <ul>
+                              <li>난수를 고정하여 학습 결과의 재현성을 확보.</li>
+                              <li>학습 전 동일한 데이터와 설정으로 항상 같은 결과를 얻도록 보장.</li>
+                          </ul>
+                      </ul>
+                  </li>
+                  <li>
+                      <strong>모델 정의 및 장치 이동:</strong>
+                      <ul>
+                          <li><code>model = RNN()</code>:</li>
+                          <ul>
+                              <li>정의된 RNN 모델을 초기화.</li>
+                          </ul>
+                          <li><code>model.to(device)</code>:</li>
+                          <ul>
+                              <li>모델을 학습 장치(GPU 또는 CPU)로 이동.</li>
+                              <li>학습에 필요한 데이터와 연결될 준비 완료.</li>
+                          </ul>
+                      </ul>
+                  </li>
+                  <li>
+                      <strong>학습률 및 옵티마이저 설정:</strong>
+                      <ul>
+                          <li><code>lr = 0.00005</code>:</li>
+                          <ul>
+                              <li>학습률 설정.</li>
+                          </ul>
+                          <li><code>optimizer = torch.optim.Adam(model.parameters(), lr=lr)</code>:</li>
+                          <ul>
+                              <li>Adam 옵티마이저 사용.</li>
+                              <li>모델의 파라미터를 업데이트하도록 설정.</li>
+                          </ul>
+                      </ul>
+                  </li>
+                  <li>
+                      <strong>손실 기록 초기화:</strong>
+                      <ul>
+                          <li><code>loss_history_train = []</code>, <code>loss_history_test = []</code>:</li>
+                          <ul>
+                              <li>학습 및 테스트 손실 기록을 저장할 리스트 초기화.</li>
+                              <li>모델 학습 및 검증 중 손실 변화를 추적하기 위한 필수 작업.</li>
+                          </ul>
+                      </ul>
+                  </li>
+              </ul>
+          </div>     
+      <ul>
+          <li><strong>입력 크기:</strong> 입력 데이터의 특성 수.</li>
+          <li><strong>은닉 크기:</strong> GRU 레이어의 노드 수.</li>
+          <li><strong>출력 크기:</strong> 예측해야 할 변수의 크기.</li>
+      </ul>
+      
+      <div class="image-section.left">
+          <img src="Deep learning7 images/16.png" alt="16" class="deep-learning-image">
+      </div>
+      <div class="description-section">
+          <h4>데이터셋 생성 및 학습 절차</h4>
+          <h5>1. 데이터셋 생성 및 DataLoader 설정</h5>
+          <ul>
+              <li><code>train_dataset = TensorDataset(x_train, y_train)</code>: 입력(<code>x_train</code>)과 출력(<code>y_train</code>) 텐서를 묶어 PyTorch 모델 학습에 적합한 형태의 데이터셋 생성.</li>
+              <li><code>train_loader = DataLoader(train_dataset, batch_size=32)</code>: 학습 데이터셋을 배치 단위로 나누고, 각 배치에서 데이터를 효율적으로 로드.</li>
+          </ul>
     <h5>2. 학습 디바이스로 데이터 이동</h5>
-    <ul>
-        <li><code>x_train, y_train = x_train.to(device), y_train.to(device)</code>: 데이터를 GPU 또는 CPU 같은 학습 디바이스로 이동.</li>
-    </ul>
-
-    <h5>3. 학습 루프 시작</h5>
-    <ul>
-        <li><code>for epoch in range(num_epochs):</code>: 지정된 횟수(<code>num_epochs=2000</code>) 동안 학습 루프 실행.</li>
-        <li><code>model.train()</code>: 모델을 학습 모드로 전환.</li>
-    </ul>
-
-    <h5>4. 손실 계산 및 역전파</h5>
-    <ul>
-        <li><code>outputs = model(x_data)</code>: 입력 데이터(<code>x_data</code>)를 모델에 전달하여 예측값 생성.</li>
-        <li><code>loss_train = nn.MSELoss()(outputs, y_data)</code>: 예측값(<code>outputs</code>)과 실제값(<code>y_data</code>) 사이의 손실(MSE) 계산.</li>
-        <li><code>loss_train.backward()</code>: 손실에 대한 그래디언트를 계산(역전파).</li>
-        <li><code>optimizer.step()</code>: 옵티마이저를 사용해 모델의 파라미터를 업데이트.</li>
-    </ul>
-
-    <h5>5. 테스트 데이터 손실 계산</h5>
-    <ul>
-        <li><code>model.eval()</code>: 모델을 평가 모드로 전환.</li>
-        <li><code>with torch.no_grad():</code> 평가 과정에서 그래디언트 계산 비활성화(메모리 절약).</li>
-        <li><code>loss_test = nn.MSELoss()(outputs_train, y_train)</code>: 테스트 데이터의 예측값과 실제값 사이의 손실 계산.</li>
-    </ul>
-    <li>이 코드는 모델 학습을 위한 전체 과정을 수행하기 위해 사용됩니다. 
-        데이터셋 생성과 DataLoader 설정은 학습 데이터를 효율적으로 관리하기 위한 준비 단계입니다. 
-        학습 루프에서는 모델이 데이터를 학습하며 손실을 계산하고, 역전파를 통해 가중치를 업데이트합니다. 
-        마지막으로 평가 단계에서는 테스트 데이터를 통해 모델의 성능을 확인합니다.
-        이러한 단계들은 모델이 입력 데이터를 기반으로 예측을 개선하고, 성능을 검증하기 위해 필요한 핵심 프로세스입니다.
-    </li>
-</div>
-
+          <ul>
+              <li><code>x_train, y_train = x_train.to(device), y_train.to(device)</code>: 데이터를 GPU 또는 CPU 같은 학습 디바이스로 이동.</li>
+          </ul>
+          
+          <h5>3. 학습 루프 시작</h5>
+          <ul>
+              <li><code>for epoch in range(num_epochs):</code>: 지정된 횟수(<code>num_epochs=2000</code>) 동안 학습 루프 실행.</li>
+              <li><code>model.train()</code>: 모델을 학습 모드로 전환.</li>
+          </ul>
+          
+          <h5>4. 손실 계산 및 역전파</h5>
+          <ul>
+              <li><code>outputs = model(x_data)</code>: 입력 데이터(<code>x_data</code>)를 모델에 전달하여 예측값 생성.</li>
+              <li><code>loss_train = nn.MSELoss()(outputs, y_data)</code>: 예측값(<code>outputs</code>)과 실제값(<code>y_data</code>) 사이의 손실(MSE) 계산.</li>
+              <li><code>loss_train.backward()</code>: 손실에 대한 그래디언트를 계산(역전파).</li>
+              <li><code>optimizer.step()</code>: 옵티마이저를 사용해 모델의 파라미터를 업데이트.</li>
+          </ul>
+          
+          <h5>5. 테스트 데이터 손실 계산</h5>
+          <ul>
+              <li><code>model.eval()</code>: 모델을 평가 모드로 전환.</li>
+              <li><code>with torch.no_grad():</code> 평가 과정에서 그래디언트 계산 비활성화(메모리 절약).</li>
+              <li><code>loss_test = nn.MSELoss()(outputs_train, y_train)</code>: 테스트 데이터의 예측값과 실제값 사이의 손실 계산.</li>
+          </ul>
+          <li>이 코드는 모델 학습을 위한 전체 과정을 수행하기 위해 사용됩니다. 
+              데이터셋 생성과 DataLoader 설정은 학습 데이터를 효율적으로 관리하기 위한 준비 단계입니다. 
+              학습 루프에서는 모델이 데이터를 학습하며 손실을 계산하고, 역전파를 통해 가중치를 업데이트합니다. 
+              마지막으로 평가 단계에서는 테스트 데이터를 통해 모델의 성능을 확인합니다.
+              이러한 단계들은 모델이 입력 데이터를 기반으로 예측을 개선하고, 성능을 검증하기 위해 필요한 핵심 프로세스입니다.
+          </li>
+      </div>
+      
       <div class="image-section.left">
-            <img src="Deep learning7 images/17.png" alt="17" class="deep-learning-image">
-    </div>
+          <img src="Deep learning7 images/17.png" alt="17" class="deep-learning-image">
+      </div>
       <div class="description-section">
-    <h4>학습 및 손실 시각화</h4>
-    <h5>1. 그래프 크기 설정</h5>
-    <ul>
-        <li><code>plt.figure(figsize=(7, 5))</code>: 그래프 크기를 가로 7, 세로 5로 설정.</li>
-    </ul>
-
-    <h5>2. 학습 및 테스트 손실 시각화</h5>
-    <ul>
-        <li><code>plt.plot(loss_history_train, 'b', label='train_error')</code>: 학습 데이터 손실을 파란색 선으로 그리며, 범례에 train_error 로 표시.</li>
-        <li><code>plt.plot(loss_history_test, 'r', label='test_error')</code>: 테스트 데이터 손실을 빨간색 선으로 그리며, 범례에 test_error 로 표시.</li>
-    </ul>
-
-    <h5>3. y축 범위 설정</h5>
-    <ul>
-        <li><code>plt.ylim([0, 0.02])</code>: y축 값을 0에서 0.02 사이로 제한.</li>
-    </ul>
-
-    <h5>4. 범례 및 출력</h5>
-    <ul>
-        <li><code>plt.legend()</code>: 그래프에 범례를 추가.</li>
-        <li><code>plt.show()</code>: 그래프를 화면에 출력.</li>
-    </ul>
-
-    <h5>5. 결과 확인</h5>
-    <ul>
-        <li>학습 손실 (<code>train_error</code>): 초기에는 큰 값으로 시작하나, 에포크가 진행됨에 따라 빠르게 감소하고, 이후 안정적인 값을 유지.</li>
-        <li>테스트 손실 (<code>test_error</code>): 초기에는 학습 손실보다 훨씬 큰 값으로 시작하나, 빠르게 감소하며 안정화. 이후 학습 손실과 유사한 수준에서 수렴.</li>
-    </ul>
-
-    <li>이 코드는 모델 학습 과정 중 손실값 변화를 시각화하여, 모델이 학습 데이터와 테스트 데이터에서 어떻게 성능을 향상시키는지 확인하기 위해 사용됩니다. 
-        이를 통해 학습이 잘 진행되었는지, 과적합이 발생했는지, 또는 추가 조정이 필요한지를 쉽게 분석할 수 있습니다. 결과적으로 학습 및 테스트 손실이 안정적으로 감소하고 수렴했음을 보여줍니다.</li>
-  </div>
-
+          <h4>학습 및 손실 시각화</h4>
+          <h5>1. 그래프 크기 설정</h5>
+          <ul>
+              <li><code>plt.figure(figsize=(7, 5))</code>: 그래프 크기를 가로 7, 세로 5로 설정.</li>
+          </ul>
+          
+          <h5>2. 학습 및 테스트 손실 시각화</h5>
+          <ul>
+              <li><code>plt.plot(loss_history_train, 'b', label='train_error')</code>: 학습 데이터 손실을 파란색 선으로 그리며, 범례에 train_error 로 표시.</li>
+              <li><code>plt.plot(loss_history_test, 'r', label='test_error')</code>: 테스트 데이터 손실을 빨간색 선으로 그리며, 범례에 test_error 로 표시.</li>
+          </ul>
+          
+          <h5>3. y축 범위 설정</h5>
+          <ul>
+              <li><code>plt.ylim([0, 0.02])</code>: y축 값을 0에서 0.02 사이로 제한.</li>
+          </ul>
+          
+          <h5>4. 범례 및 출력</h5>
+          <ul>
+              <li><code>plt.legend()</code>: 그래프에 범례를 추가.</li>
+              <li><code>plt.show()</code>: 그래프를 화면에 출력.</li>
+          </ul>
+          <h5>5. 결과 확인</h5>
+          <ul>
+              <li>학습 손실 (<code>train_error</code>): 초기에는 큰 값으로 시작하나, 에포크가 진행됨에 따라 빠르게 감소하고, 이후 안정적인 값을 유지.</li>
+              <li>테스트 손실 (<code>test_error</code>): 초기에는 학습 손실보다 훨씬 큰 값으로 시작하나, 빠르게 감소하며 안정화. 이후 학습 손실과 유사한 수준에서 수렴.</li>
+          </ul>
+          
+          <li>이 코드는 모델 학습 과정 중 손실값 변화를 시각화하여, 모델이 학습 데이터와 테스트 데이터에서 어떻게 성능을 향상시키는지 확인하기 위해 사용됩니다. 
+              이를 통해 학습이 잘 진행되었는지, 과적합이 발생했는지, 또는 추가 조정이 필요한지를 쉽게 분석할 수 있습니다. 결과적으로 학습 및 테스트 손실이 안정적으로 감소하고 수렴했음을 보여줍니다.</li>
+      </div>
+      
       <div class="image-section.left">
-            <img src="Deep learning7 images/18.png" alt="18" class="deep-learning-image">
-    </div>
+          <img src="Deep learning7 images/18.png" alt="18" class="deep-learning-image">
+      </div>
       <div class="description-section">
-    <h4>예측값과 실제값 시각화</h4>
-    <h5>1. 학습 데이터 시각화</h5>
-    <ul>
-        <li><code>plt.plot(outputs_train.to('cpu').detach(), label='prediction')</code>: 학습 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
-        <li><code>plt.plot(y_train.to('cpu'), label='actual')</code>: 학습 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
-    </ul>
-
-    <h5>2. 테스트 데이터 시각화</h5>
-    <ul>
-        <li><code>plt.plot(outputs_test.to('cpu').detach(), label='prediction')</code>: 테스트 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
-        <li><code>plt.plot(y_test.to('cpu'), label='actual')</code>: 테스트 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
-    </ul>
-
-    <h5>3. 범례 및 출력</h5>
-    <ul>
-        <li><code>plt.legend()</code>, <code>plt.show()</code>: 그래프에 범례 추가 및 출력.</li>
-    </ul>
-
-    <h5>4. 결과 확인</h5>
-    <ul>
-        <li>왼쪽 그래프 (학습 데이터):</li>
-        <ul>
-            <li><strong>prediction (파란 선):</strong> 모델이 학습 데이터에서 예측한 값.</li>
-            <li><strong>actual (주황 선):</strong> 학습 데이터의 실제값.</li>
-            <li>두 선이 거의 일치하며, 학습 데이터에서 모델이 높은 정확도로 예측했음을 보여줌.</li>
-        </ul>
-        <li>오른쪽 그래프 (테스트 데이터):</li>
-        <ul>
-            <li><strong>prediction (파란 선):</strong> 모델이 테스트 데이터에서 예측한 값.</li>
-            <li><strong>actual (주황 선):</strong> 테스트 데이터의 실제값.</li>
-            <li>선이 대체로 일치하지만, 일부 구간에서 차이가 발생하며, 테스트 데이터에서의 일반화 성능을 확인 가능.</li>
-        </ul>
-    </ul>
-
-    <li>이 코드는 모델이 학습 데이터와 테스트 데이터에서 예측한 값과 실제값을 시각적으로 비교하여 성능을 평가하기 위해 사용됩니다. 
-        학습 데이터 그래프는 모델이 학습 데이터에 잘 맞는지 확인하는 데 도움을 주고, 테스트 데이터 그래프는 모델의 일반화 성능을 평가하며 과적합 여부를 판단하는 데 활용됩니다. 
-        시각화를 통해 모델이 데이터 패턴을 제대로 학습했는지 직관적으로 이해할 수 있습니다.</li>
-  </div>
-
+          <h4>예측값과 실제값 시각화</h4>
+          <h5>1. 학습 데이터 시각화</h5>
+          <ul>
+              <li><code>plt.plot(outputs_train.to('cpu').detach(), label='prediction')</code>: 학습 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
+              <li><code>plt.plot(y_train.to('cpu'), label='actual')</code>: 학습 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
+          </ul>
+          
+          <h5>2. 테스트 데이터 시각화</h5>
+          <ul>
+              <li><code>plt.plot(outputs_test.to('cpu').detach(), label='prediction')</code>: 테스트 데이터의 예측값을 CPU로 변환 후 그래프에 그리며, prediction 으로 범례 표시.</li>
+              <li><code>plt.plot(y_test.to('cpu'), label='actual')</code>: 테스트 데이터의 실제값을 CPU로 변환 후 그래프에 그리며, actual 로 범례 표시.</li>
+          </ul>
+          
+          <h5>3. 범례 및 출력</h5>
+          <ul>
+              <li><code>plt.legend()</code>, <code>plt.show()</code>: 그래프에 범례 추가 및 출력.</li>
+          </ul>
+          
+          <h5>4. 결과 확인</h5>
+          <ul>
+              <li>왼쪽 그래프 (학습 데이터):</li>
+              <ul>
+                  <li><strong>prediction (파란 선):</strong> 모델이 학습 데이터에서 예측한 값.</li>
+                  <li><strong>actual (주황 선):</strong> 학습 데이터의 실제값.</li>
+                  <li>두 선이 거의 일치하며, 학습 데이터에서 모델이 높은 정확도로 예측했음을 보여줌.</li>
+              </ul>
+              <li>오른쪽 그래프 (테스트 데이터):</li>
+              <ul>
+                  <li><strong>prediction (파란 선):</strong> 모델이 테스트 데이터에서 예측한 값.</li>
+                  <li><strong>actual (주황 선):</strong> 테스트 데이터의 실제값.</li>
+                  <li>선이 대체로 일치하지만, 일부 구간에서 차이가 발생하며, 테스트 데이터에서의 일반화 성능을 확인 가능.</li>
+              </ul>
+          </ul>
+          
+          <li>이 코드는 모델이 학습 데이터와 테스트 데이터에서 예측한 값과 실제값을 시각적으로 비교하여 성능을 평가하기 위해 사용됩니다. 
+              학습 데이터 그래프는 모델이 학습 데이터에 잘 맞는지 확인하는 데 도움을 주고, 테스트 데이터 그래프는 모델의 일반화 성능을 평가하며 과적합 여부를 판단하는 데 활용됩니다. 
+              시각화를 통해 모델이 데이터 패턴을 제대로 학습했는지 직관적으로 이해할 수 있습니다.</li>
+      </div>
+      
       <div class="image-section.left">
-            <img src="Deep learning7 images/19.png" alt="19" class="deep-learning-image">
-    </div>
+          <img src="Deep learning7 images/19.png" alt="19" class="deep-learning-image">
+      </div>
       <div class="description-section">
-    <h4>학습 데이터 예측값과 실제값 시각화</h4>
-    <h5>1. 학습 데이터 시각화</h5>
-    <ul>
-        <li>예측값과 실제값을 원래 스케일로 변환하기 위해 <code>torch.Tensor(Y_max)</code>를 곱함.</li>
-        <li><code>outputs_train.to('cpu').detach()</code>와 <code>y_train.to('cpu')</code>를 사용해 예측값(<code>prediction</code>)과 실제값(<code>actual</code>)을 CPU에서 그래프로 표현.</li>
-    </ul>
-
-    <h5>2. 테스트 데이터 시각화</h5>
-    <ul>
-        <li>테스트 데이터 역시 예측값과 실제값을 <code>torch.Tensor(Y_max)</code>로 원래 스케일로 변환.</li>
-        <li>테스트 데이터에서 예측(<code>prediction</code>)과 실제값(<code>actual</code>) 비교.</li>
-    </ul>
-
-    <h5>결과 확인</h5>
-    <ul>
-        <li>왼쪽 그래프 (학습 데이터):</li>
-        <ul>
-            <li>원래 스케일로 변환된 학습 데이터에서 모델의 예측값(파란 선)과 실제값(주황 선)이 거의 일치.</li>
-            <li>모델이 학습 데이터에서 정확히 패턴을 학습했음을 보여줌.</li>
-        </ul>
-        <li>오른쪽 그래프 (테스트 데이터):</li>
-        <ul>
-            <li>테스트 데이터에서도 예측값과 실제값이 유사하지만, 일부 구간에서 차이가 있음.</li>
-            <li>이는 모델이 테스트 데이터에 대해 어느 정도 일반화가 잘 되었음을 나타냄.</li>
-        </ul>
-    </ul>
-
-    <li>이 코드는 모델의 예측값과 실제값을 원래 스케일로 변환하여 시각적으로 비교하기 위해 사용됩니다. 
-        이를 통해 학습 데이터와 테스트 데이터에서 모델이 얼마나 잘 예측했는지를 직관적으로 확인할 수 있습니다. 
-        특히, 데이터가 원래 스케일로 표현되므로 실제 값과의 차이를 더 명확하게 분석할 수 있습니다.</li>
-  </div>
-
+          <h4>학습 데이터 예측값과 실제값 시각화</h4>
+          <h5>1. 학습 데이터 시각화</h5>
+          <ul>
+              <li>예측값과 실제값을 원래 스케일로 변환하기 위해 <code>torch.Tensor(Y_max)</code>를 곱함.</li>
+              <li><code>outputs_train.to('cpu').detach()</code>와 <code>y_train.to('cpu')</code>를 사용해 예측값(<code>prediction</code>)과 실제값(<code>actual</code>)을 CPU에서 그래프로 표현.</li>
+          </ul>
+          
+          <h5>2. 테스트 데이터 시각화</h5>
+          <ul>
+              <li>테스트 데이터 역시 예측값과 실제값을 <code>torch.Tensor(Y_max)</code>로 원래 스케일로 변환.</li>
+              <li>테스트 데이터에서 예측(<code>prediction</code>)과 실제값(<code>actual</code>) 비교.</li>
+          </ul>
+          
+          <h5>결과 확인</h5>
+          <ul>
+              <li>왼쪽 그래프 (학습 데이터):</li>
+              <ul>
+                  <li>원래 스케일로 변환된 학습 데이터에서 모델의 예측값(파란 선)과 실제값(주황 선)이 거의 일치.</li>
+                  <li>모델이 학습 데이터에서 정확히 패턴을 학습했음을 보여줌.</li>
+              </ul>
+              <li>오른쪽 그래프 (테스트 데이터):</li>
+              <ul>
+                  <li>테스트 데이터에서도 예측값과 실제값이 유사하지만, 일부 구간에서 차이가 있음.</li>
+                  <li>이는 모델이 테스트 데이터에 대해 어느 정도 일반화가 잘 되었음을 나타냄.</li>
+              </ul>
+          </ul>
+          
+          <li>이 코드는 모델의 예측값과 실제값을 원래 스케일로 변환하여 시각적으로 비교하기 위해 사용됩니다. 
+              이를 통해 학습 데이터와 테스트 데이터에서 모델이 얼마나 잘 예측했는지를 직관적으로 확인할 수 있습니다. 
+              특히, 데이터가 원래 스케일로 표현되므로 실제 값과의 차이를 더 명확하게 분석할 수 있습니다.</li>
+      </div>
       <br><br>
       <p> 오늘은 <strong>RNN(Recurrent Neural Network)</strong>을 활용한 시계열 데이터 예측에 대해 공부했습니다. 주식 데이터를 이용하여 <code>Open</code>, <code>High</code>, <code>Low</code> 값을 입력으로 받고, <code>Close</code> 값을 예측하는 과정을 다뤘습니다.
           주요 내용으로는 데이터를 30일 단위로 묶어 시계열 학습용 데이터셋을 생성하고, 5개의 RNN레이어와 Fully Connected Layer를 사용하는 모델을 학습시키는 과정이었습니다. <br>
-           RNN이 시계열 데이터의 패턴을 학습하여 미래를 예측하는 데 매우 효과적이라는 점과, 이를 위해 데이터 전처리가 중요하다는 점이 핵심 내용입니다!</p>
-  </div>
-    
-
-
-
-
-    
-    
+          RNN이 시계열 데이터의 패턴을 학습하여 미래를 예측하는 데 매우 효과적이라는 점과, 이를 위해 데이터 전처리가 중요하다는 점이 핵심 내용입니다!</p>
+  </div>   
 </body>
 </html>
