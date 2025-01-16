@@ -131,6 +131,18 @@
           <li><code>datasets.MNIST(root="./data", train=True, transform=transform, download=True)</code>: GAN 학습에 사용할 학습 데이터(MNIST)를 다운로드하고, 전처리를 적용.</li>
           <h4>DataLoader</h4>
           <li><code>DataLoader(train_dataset, batch_size=512, shuffle=True)</code>: GAN 학습에서 데이터가 배치 단위로 로드되며, 데이터 순서가 섞여 다양한 패턴을 학습 가능하도록 설정.</li>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/10.png" alt="10" class="deep-learning-image">
+          </div>
+          <h4><code>nz = 128</code> (잠재 공간 크기)</h4>
+          <li>잠재 벡터 크기: 생성자의 입력으로 사용되는 랜덤 벡터 크기 설정.</li>
+          <h4>Generator 클래스</h4>
+          <li>GAN에서 이미지를 생성하는 역할.</li>
+          <li><code>nn.Linear</code>: 잠재 벡터<code>(nz)</code>를 점진적으로 확대하여 출력 이미지를 생성.<li>128 → 256 → 512 → 1024 → 784</li></li>
+          <li><code>nn.LeakyReLU(0.2)</code>: 비선형 활성화 함수로 Leaky ReLU 사용, 음수 영역에서도 작은 기울기를 보장하여 학습 안정화.</li>
+          <li><code>nn.Tanh()</code>: 최종 출력값을 -1 ~ 1 범위로 스케일링하여 GAN의 데이터 정규화 범위와 일치</li>
+          <li>forward(self, x)<li>입력 잠재 벡터(x)를 신경망 계층(self.main)에 통과시켜 최종 이미지로 변환.</li><li>.view(-1, 1, 28, 28)<li>생성된 데이터를 MNIST 이미지 크기(1채널, 28x28)로 재구성.</li></li>
       </div>
   </div>   
 </body>
