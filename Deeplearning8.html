@@ -173,7 +173,283 @@
                   </ul>
               </li>
           </ol>
-          <li>GAN의 핵심 구성 요소인 생성자를 설계하여 랜덤 벡터로부터 학습 가능한 이미지를 생성하기 위해 사용되며, Leaky ReLU와 Tanh를 사용하여 안정적인 학습과 데이터 출력 범위를 정규화합니다.</li>
+          <p>GAN의 핵심 구성 요소인 생성자를 설계하여 랜덤 벡터로부터 학습 가능한 이미지를 생성하기 위해 사용되며, Leaky ReLU와 Tanh를 사용하여 안정적인 학습과 데이터 출력 범위를 정규화합니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/11.png" alt="11" class="deep-learning-image">
+          </div>
+          <ul>
+              <li>
+                  <strong>Discriminator 클래스:</strong><br>
+                  GAN에서 <strong>이미지의 진위 여부를 판단하는 역할</strong>.
+                  <ul>
+                      <li>
+                          <strong>구조:</strong>
+                          <ul>
+                              <li>
+                                  <code>nn.Linear</code>: 입력 이미지를 점진적으로 축소하여 진위 여부를 출력.
+                                  <ul>
+                                      <li>784 → 1024 → 512 → 256 → 1</li>
+                                  </ul>
+                              </li>
+                              <li>
+                                  <code>nn.LeakyReLU(0.2)</code>: 비선형 활성화 함수로 Leaky ReLU 사용, 음수 영역에서도 작은 기울기를 보장하여 학습 안정화.
+                              </li>
+                              <li>
+                                  <code>nn.Dropout(0.3)</code>: 일부 뉴런을 무작위로 비활성화하여 과적합 방지.
+                              </li>
+                              <li>
+                                  <code>nn.Sigmoid()</code>: 최종 출력을 0과 1 사이로 변환, 결과를 확률로 표현.
+                              </li>
+                          </ul>
+                      </li>
+                      <li>
+                          <code>forward(self, x):</code><br>
+                          입력 이미지 <code>(x)</code>를 평탄화(<code>.view(-1, 784)</code>)하여 신경망 계층(<code>self.main</code>)에 통과.<br>
+                          결과값은 이미지가 진짜일 확률로 출력.
+                      </li>
+                  </ul>
+              </li>
+          </ul>        
+          <p>판별자를 정의하여 입력 이미지가 진짜인지 가짜인지 학습하고 판단하기 위해 사용됩니다. 
+              판별자의 출력은 생성자가 더 현실적인 이미지를 생성하도록 피드백을 제공합니다. 
+              Leaky ReLU와 Dropout은 학습 안정화와 일반화 성능 향상에 기여합니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/12.png" alt="12" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>Generator와 Discriminator 초기화</strong>
+                  <ul>
+                      <li><code>generator = Generator(nz).to(device)</code>: 생성자(Generator)를 정의하고, 학습에 사용할 디바이스(GPU 또는 CPU)에 로드.</li>
+                      <li><code>discriminator = Discriminator().to(device)</code>: 판별자(Discriminator)를 정의하고, 디바이스에 로드.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>모델 구조 출력</strong>
+                  <ul>
+                      <li><code>print(generator)</code>와 <code>print(discriminator)</code>: 생성자와 판별자의 네트워크 구조를 출력해 확인.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>최적화 도구 설정</strong>
+                  <ul>
+                      <li><code>optim_g = optim.Adam(generator.parameters(), lr=0.0002)</code>: 생성자(Generator) 학습을 위한 Adam 옵티마이저 설정, 학습률은 0.0002.</li>
+                      <li><code>optim_d = optim.Adam(discriminator.parameters(), lr=0.0002)</code>: 판별자(Discriminator) 학습을 위한 Adam 옵티마이저 설정, 학습률은 0.0002.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 함수 정의</strong>
+                  <ul>
+                      <li><code>criterion = nn.BCELoss()</code>: Binary Cross Entropy Loss를 손실 함수로 사용. 진짜/가짜 여부를 판별할 확률에 기반한 손실 계산.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 기록 리스트 초기화</strong>
+                  <ul>
+                      <li><code>losses_g = []</code>: 생성자(Generator) 손실 기록을 저장할 리스트.</li>
+                      <li><code>losses_d = []</code>: 판별자(Discriminator) 손실 기록을 저장할 리스트.</li>
+                  </ul>
+              </li>
+          </ol>
+          <p>Generator와 Discriminator를 초기화하고, 학습에 필요한 손실 함수와 최적화 도구를 설정하기 위해 사용됩니다. 
+              이는 GAN 학습의 시작점으로, 네트워크 구조와 학습 설정을 명확히 하고, 학습 중 손실 변화를 기록하여 성능을 평가하기 위함입니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/13.png" alt="13" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>에포크 설정</strong>
+                  <ul>
+                      <li><code>epochs = 500</code>: 모델 학습 반복 횟수를 500으로 설정.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>학습 루프 시작</strong>
+                  <ul>
+                      <li><code>for epoch in range(epochs):</code>: 지정된 에포크 수만큼 학습 루프 실행.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 초기화</strong>
+                  <ul>
+                      <li><code>loss_g = 0.0, loss_d = 0.0</code>: 각 에포크마다 생성자(Generator)와 판별자(Discriminator)의 손실값을 초기화.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>데이터 로드 및 준비</strong>
+                  <ul>
+                      <li>
+                          <code>for idx, data in enumerate(train_loader):</code><br>
+                          학습 데이터셋을 배치 단위로 로드.
+                      </li>
+                      <li>
+                          <code>image, _ = data</code>: 입력 이미지 데이터를 가져옴(MNIST 데이터셋에서 레이블은 무시).
+                      </li>
+                      <li>
+                          <code>data_real = image.to(device)</code>: 로드한 이미지를 학습 디바이스(GPU 또는 CPU)로 이동.
+                      </li>
+                      <li>
+                          <code>b_size = len(data_real)</code>: 현재 배치 크기 계산.
+                      </li>
+                  </ul>
+              </li>
+          </ol>
+          <p>GAN 학습의 기본 루프를 설정하고, 각 에포크와 배치에서 사용할 데이터를 준비하기 위해 사용됩니다. 
+              이 코드에서는 손실 초기화를 통해 각 에포크에서 독립적으로 손실을 계산할 수 있도록 하고, 배치 단위로 데이터를 로드하여 학습 효율성을 높입니다. 
+              디바이스로 데이터를 이동시켜 모델과 데이터 간 연산을 원활하게 수행할 수 있도록 설정합니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/14.png" alt="14" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>배치 크기 설정 및 라벨 정의</strong>
+                  <ul>
+                      <li><code>b_size = data_real.size(0)</code>: 입력된 진짜 데이터(<code>data_real</code>)의 배치 크기 계산.</li>
+                      <li><code>real_label = torch.ones(b_size, 1).to(device)</code>: 진짜 데이터에 대한 정답 라벨(1)을 생성하여 디바이스로 이동.</li>
+                      <li><code>fake_label = torch.zeros(b_size, 1).to(device)</code>: 가짜 데이터에 대한 정답 라벨(0)을 생성하여 디바이스로 이동.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>그래디언트 초기화</strong>
+                  <ul>
+                      <li><code>optimizer.zero_grad()</code>: 이전에 계산된 그래디언트를 초기화하여 새로운 그래디언트를 계산 준비.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>진짜 데이터에 대한 손실 계산</strong>
+                  <ul>
+                      <li><code>output_real = discriminator(data_real)</code>: 판별자가 진짜 데이터를 입력하여 예측값 생성.</li>
+                      <li><code>loss_real = criterion(output_real, real_label)</code>: 진짜 데이터를 진짜로 분류하는 손실 계산(Binary Cross Entropy Loss).</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>가짜 데이터에 대한 손실 계산</strong>
+                  <ul>
+                      <li><code>output_fake = discriminator(data_fake)</code>: 판별자가 가짜 데이터를 입력하여 예측값 생성.</li>
+                      <li><code>loss_fake = criterion(output_fake, fake_label)</code>: 가짜 데이터를 가짜로 분류하는 손실 계산(Binary Cross Entropy Loss).</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>총 손실 계산 및 역전파</strong>
+                  <ul>
+                      <li><code>loss_total = (loss_real + loss_fake) / 2</code>: 진짜와 가짜 데이터에 대한 손실의 평균을 계산.</li>
+                      <li><code>loss_total.backward()</code>: 판별자에 대해 손실에 대한 그래디언트 계산.</li>
+                      <li><code>optimizer.step()</code>: 판별자의 파라미터를 업데이트하여 성능 향상.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 반환</strong>
+                  <ul>
+                      <li><code>return loss_total</code>: 판별자의 총 손실을 반환.</li>
+                  </ul>
+              </li>
+          </ol>
+          <p> 판별자를 학습시키기 위한 함수로, 진짜 데이터와 가짜 데이터에 대한 손실을 각각 계산하여 판별자가 진짜와 가짜를 더 정확히 구분하도록 학습시킵니다.
+              손실값을 통해 판별자의 성능을 평가하고, 생성자 학습에 사용할 신호를 제공합니다. 
+              이를 통해 GAN의 판별자가 생성자의 출력을 더 잘 판단할 수 있도록 학습됩니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/15.png" alt="15" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>배치 크기와 라벨 정의</strong>
+                  <ul>
+                      <li><code>b_size = data_fake.size(0)</code>: 생성된 가짜 데이터의 배치 크기를 계산.</li>
+                      <li>
+                          <code>real_label = torch.ones(b_size, 1).to(device)</code>:<br>
+                          생성자가 판별자를 속이도록 가짜 데이터를 진짜로 분류하게 만들기 위해 <strong>진짜 데이터 라벨(1)</strong>을 생성.
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>그래디언트 초기화</strong>
+                  <ul>
+                      <li><code>optimizer.zero_grad()</code>: 이전에 계산된 그래디언트를 초기화하여 새로운 그래디언트 계산 준비.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 계산</strong>
+                  <ul>
+                      <li><code>output = discriminator(data_fake)</code>: 가짜 데이터를 판별자에 입력하여 진짜로 분류할 확률 출력.</li>
+                      <li>
+                          <code>loss = criterion(output, real_label)</code>:<br>
+                          가짜 데이터를 진짜로 분류하도록 하는 손실 계산(Binary Cross Entropy Loss).
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>역전파 및 최적화</strong>
+                  <ul>
+                      <li><code>loss.backward()</code>: 생성자의 그래디언트를 계산하여 손실을 줄이는 방향으로 학습.</li>                      
+                      <li><code>optimizer.step()</code>: 생성자의 파라미터를 업데이트하여 학습 진행.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>손실 반환</strong>
+                  <ul>
+                      <li><code>return loss</code>: 생성자의 손실값을 반환하여 학습 진행 상황을 모니터링.</li>
+                  </ul>
+              </li>
+          </ol>        
+          <p>생성자를 학습시키기 위한 함수로, 판별자를 속여 가짜 데이터를 진짜로 분류하도록 유도합니다. 
+              생성자가 생성한 데이터를 판별자가 진짜로 인식할 확률을 높이는 방향으로 손실을 줄여 나가며, GAN의 학습을 진행합니다. 
+              이를 통해 생성자가 점점 더 현실적인 데이터를 생성하도록 개선됩니다.</p><br>
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/16.png" alt="16" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>학습 설정</strong>
+                  <ul>
+                      <li><code>epochs = 500</code>: 학습 반복 횟수를 500으로 설정.</li>
+                      <li><code>loss_g = 0.0, loss_d = 0.0</code>: 에포크별로 생성자(Generator)와 판별자(Discriminator)의 손실을 초기화.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>데이터 로드</strong>
+                  <ul>
+                      <li><code>for idx, data in enumerate(train_loader):</code>: 배치 단위로 학습 데이터를 로드.</li>
+                      <li><code>data_real = image.to(device)</code>: 진짜 데이터 이미지를 학습 디바이스(GPU/CPU)로 이동.</li>
+                      <li><code>b_size = len(data_real)</code>: 현재 배치의 크기를 계산.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>판별자 학습</strong>
+                  <ul>
+                      <li><code>data_fake = generator(torch.randn(b_size, nz).to(device))</code>: 생성자가 잠재 벡터(<code>torch.randn</code>)를 입력받아 가짜 데이터를 생성.</li>
+                      <li><code>loss_d = train_discriminator(optim_d, data_real, data_fake)</code>: 판별자를 학습시키고, 손실을 누적.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>생성자 학습</strong>
+                  <ul>
+                      <li><code>data_fake = generator(torch.randn(b_size, nz).to(device))</code>: 생성자가 새로운 가짜 데이터를 생성.</li>
+                      <li><code>loss_g = train_generator(optim_g, data_fake)</code>: 생성자를 학습시키고, 손실을 누적.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>에포크 손실 계산</strong>
+                  <ul>
+                      <li><code>epoch_loss_g = loss_g / idx, epoch_loss_d = loss_d / idx</code>: 에포크별 평균 생성자와 판별자 손실 계산.</li>
+                      <li><code>losses_g.append(epoch_loss_g), losses_d.append(epoch_loss_d)</code>: 손실 기록을 저장.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>학습 진행 상태 출력</strong>
+                  <ul>
+                      <li><code>if epoch % 20 == 0:</code>: 20 에포크마다 학습 상태를 출력.</li>
+                      <li>생성자와 판별자의 손실을 출력해 학습 과정을 모니터링.</li>
+                  </ul>
+              </li>
+          </ol>
+          <p>GAN의 학습 루프를 구현하여 생성자와 판별자를 반복적으로 학습시키고, 손실을 계산 및 기록합니다. 
+              생성자와 판별자의 손실 변화를 통해 학습이 잘 진행되는지 모니터링할 수 있으며, 학습 도중 생성자와 판별자의 균형 상태를 확인하기 위해 사용됩니다.</p>
       </div>
   </div>   
 </body>
