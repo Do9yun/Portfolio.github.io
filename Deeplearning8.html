@@ -120,6 +120,18 @@
               <li>참고로 GAN을 학습시키려면 판별자와 생성자의 파라미터를 번갈아 가며 업데이트</li>
               <li>또한, 판별자의 파라미터를 업데이트할 때는 생성자의 파라미터를 고정시키고, 생성자의 파라미터를 업데이트할 때는 판별자의 파라미터를 고정</li>
           </ul>          
+
+          <div class="image-section.left">
+              <img src="Deep learning8 images/9.png" alt="9" class="deep-learning-image">
+          </div>
+          <ul>
+              <h4>데이터 전처리</h4>
+              <li><code>transforms.Normalize((0.5,), (0.5,))</code>: GAN의 생성자와 판별자가 데이터의 값 범위를 동일하게 학습하도록 MNIST 데이터를 -1 ~ 1 범위로 정규화.</li>
+              <h4>MNIST 데이터셋 로드</h4>
+              <li><code>datasets.MNIST(root="./data", train=True, transform=transform, download=True)</code>: GAN 학습에 사용할 학습 데이터(MNIST)를 다운로드하고, 전처리를 적용.</li>
+              <h4>DataLoader</h4>
+              <li><code>DataLoader(train_dataset, batch_size=512, shuffle=True)</code>: GAN 학습에서 데이터가 배치 단위로 로드되며, 데이터 순서가 섞여 다양한 패턴을 학습 가능하도록 설정.</li>
+          </ul>
       </div>
   </div>   
 </body>
