@@ -138,4 +138,28 @@
             </li>
         </ol>
 
+        <ol>
+            <p>6개의 Input 값에 대한 결과를 element-wise addition 으로 최종 결과 도출</p>
+            <li>
+                <strong>6개의 입력 값에 대한 연산 결과:</strong>
+                <ul>
+                    <li>각 입력 값에 대해 <code>ConvTranspose2d</code> 연산이 수행되며, 이를 통해 6개의 개별 출력 행렬이 생성됩니다.</li>
+                    <li>이 행렬들은 각각 필터와 입력 값의 곱셈 결과를 나타냅니다.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Element-wise Addition:</strong>
+                <ul>
+                    <li>6개의 출력 행렬을 같은 위치에 있는 요소끼리 더해 최종 결과를 생성합니다.</li>
+                    <li>이 과정을 통해 모든 입력 값의 연산 결과가 하나의 출력 행렬로 결합됩니다.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>최종 출력 (Final Result):</strong>
+                <ul>
+                    <li>합산된 결과는 최종 출력 행렬로 나타나며, 이는 입력 값들이 <code>ConvTranspose2d</code>를 통해 출력 데이터로 변환된 결과입니다.</li>
+                </ul>
+            </li>
+        </ol>
+
         
