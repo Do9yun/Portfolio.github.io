@@ -138,6 +138,9 @@
             </li>
         </ol>
 
+        <div class="image-section.left">
+            <img src="Deep learning9 images/5.png" alt="5" class="deep-learning-image">
+        </div>
         <p>6개의 Input 값에 대한 결과를 element-wise addition 으로 최종 결과 도출</p>
         <ol>
             <li>
@@ -158,6 +161,57 @@
                 <strong>최종 출력 (Final Result):</strong>
                 <ul>
                     <li>합산된 결과는 최종 출력 행렬로 나타나며, 이는 입력 값들이 <code>ConvTranspose2d</code>를 통해 출력 데이터로 변환된 결과입니다.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/6.png" alt="6" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>Generator 구조:</strong>
+                <ul>
+                    <li>
+                        Generator는 작은 랜덤 벡터(예: <code>fake_sz=100</code>)를 받아 이미지를 생성하는 역할을 합니다.
+                    </li>
+                    <li>
+                        코드는 <code>nn.Sequential</code>을 사용하여 Generator의 계층을 정의합니다:
+                        <ul>
+                            <li>첫 번째 계층: <code>ConvTranspose2d</code>로 입력 벡터 크기를 4x4로 변환.</li>
+                            <li>이후 계층: 점진적으로 해상도를 확대하며 채널 수를 줄이는 구조.</li>
+                            <li>마지막 계층: 최종 이미지를 생성 (<code>tanh</code> 활성화 함수 사용).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>ConvTranspose2d 연산:</strong>
+                <ul>
+                    <li>
+                        <strong>입력 및 출력 크기 계산:</strong>
+                        <ul>
+                            <li>공식:<br>
+                                <code>x_out = (x_in - kernel size + 2 * padding) / stride + 1</code>
+                            </li>
+                            <li>첫 번째 계층에서:<br>
+                                <code>kernel=4, stride=1, padding=0</code> 설정.</li>
+                            <li>입력 크기 <code>1x1</code> → 출력 크기 <code>4x4</code>.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Generator 계층의 세부 구조:</strong>
+                <ul>
+                    <li>
+                        각 계층에서 <code>ConvTranspose2d</code>, <code>BatchNorm2d</code>, <code>ReLU</code>가 조합되어 사용됨:
+                        <ul>
+                            <li><code>ConvTranspose2d</code>: 이미지를 점진적으로 확장.</li>
+                            <li><code>BatchNorm2d</code>: 학습을 안정화하고 성능을 향상.</li>
+                            <li><code>ReLU</code>: 활성화 함수로 비선형성을 추가.</li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ol>
