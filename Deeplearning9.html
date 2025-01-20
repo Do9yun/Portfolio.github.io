@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAN</title>
+    <link rel="stylesheet" href="style-Deeplearning8.css">
+</head>
+<body>
+  <div class="content-container">
+    <!-- 제목 -->
+      <h1 class="left"> DCGAN </h1>
 
+    <div class="description-section">
+      <h2>GAN 파생 기술</h2>
+      <ul>
+        <li>GAN은 생성자와 판별자가 서로 대결하면서 학습하는 구조이기 때문에 학습이 매우 불안정.</li>
+        <li>생성자와 판별자 중 한쪽으로 치우친 훈련이 발생하면 성능에 문제가 생겨 정상적인 분류(진짜 혹은 가짜 분류)가 불가능.</li>
+        <li>이러한 제약을 해결한 모델이 <strong>DCGAN</strong>(<em>Deep Convolutional GAN</em>).</li>
+        <li>이름에서도 알 수 있듯이 DCGAN은 GAN 학습에 CNN을 사용하는 것.</li>
+      </ul>
+
+      <h2>DCGAN</h2>
+      <ul>
+        <li>
+          DCGAN은 GAN과 동일하게 입력된 이미지를 바탕으로 그것과 매우 유사한 가짜 이미지를 만들고, 이를 평가하는 과정을 반복하여 실제와 매우 유사한 이미지를 생산하는 학습법.
+        </li>
+        <li>
+          DCGAN 역시 생성자와 판별자 네트워크 두 개가 서로 적대적으로 학습하는 구조.
+        </li>
+      </ul>
+
+      <ul>
+        <li>그럼 왜 생성자 네트워크에서는 업샘플링을 사용하고, 판별자 네트워크에서는 스트라이드 합성곱을 사용할까?</li>
+        <li><strong>생성자 네트워크</strong>에서는 노이즈를 입력으로 받아 훈련 데이터셋의 <strong>이미지와 같은 해상도를 가진 이미지를 생성해야 하기 때문에 공간을 확장시켜야</strong> 업샘플링이 필요.</li>
+        <li>반면 <strong>판별자 네트워크</strong>는 실제 이미지와 생성자가 생성한 이미지 사이에서 어떤 이미지가 진짜인지 판단해야 하기 때문에 <strong>각 이미지의 특성을 추출할 수 있는 합성곱 연산</strong>을 수행.</li>
+        <li>이때 스트라이드 합성곱을 사용하면 특성을 잘 추출할 수 있음.</li><br>
+        <li>생성자가 수행하는 <strong>Deconvolution Layer</strong>는 이 때 손실된 정보를 복원하는 일을 한다.</li>
+        <li><strong>Deconvolution</strong>은 여러 가지 의미로 사용되지만, 수학적으로는 정확히<strong>Convolution 연산의 역연산</strong>을 가리키는 개념이다.</li>
+        <li>그렇다면 과연 프로그래밍적으로 완전한 역연산을 구현할 수 있을까?</li>
+      </ul>
+
+      <div class="image-section.left">
+        <img src="Deep learning9 images/1.png" alt="1" class="deep-learning-image">
+      </div>
+      <ol>
+        <li>
+          <strong>입력 파라미터 설정:</strong>
+          <ul>
+            <li><code>input size = (1, 2, 3)</code> (입력 행렬 크기)</li>
+            <li><code>Kernel size = 4</code> (커널 크기)</li>
+            <li><code>stride = 1</code> (이동 간격)</li>
+            <li><code>padding = 1</code> (경계 패딩)</li>
+          </ul>
+        </li>
+        <li>
+          <strong>출력 크기 계산:</strong>
+          <ul>
+            <li>
+              출력 크기는 아래 공식을 사용합니다:<br>
+                <img src="Deep learning9 images/2.png" alt="2" class="deep-learning-image">
+            </li>
+            <li>이 공식을 통해 출력 행(row) 크기가 5, 출력 열(column) 크기가 6임을 확인합니다.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>ConvTranspose2d 연산 과정:</strong>
+          <ul>
+            <li><strong>Filter (kernel)</strong> 값이 주어진 상태에서 입력 행렬에 역연산이 수행됩니다.</li>
+            <li>그림은 필터가 입력 값 <code>(1, 4)</code>에 적용되며 출력 값을 계산하는 과정을 시각적으로 보여줍니다.</li>
+          </ul>
+        </li>
+      </ol>
