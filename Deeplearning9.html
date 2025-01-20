@@ -294,7 +294,153 @@
                 </ul>
             </li>
         </ol>
-        
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/12.png" alt="12" class="deep-learning-image">
+        </div>
+        <h3>결과 합산</h3>
+        <ul>
+            <li>필터가 입력 행렬 위에서 모든 가능한 위치를 계산한 후, 모든 출력 값을 결합하여 최종 결과 생성.</li>
+            <li>최종 출력 행렬의 유효 크기: <code>8 × 8</code>.</li>
+        </ul>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/13.png" alt="13" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>입력과 필터 설정</strong>
+                <ul>
+                    <li>입력 행렬: <code>4 × 4</code>.</li>
+                    <li>필터(kernel): <code>4 × 4</code> 크기의 값.</li>
+                    <li><code>stride</code>: 2칸씩 이동하며 연산.</li>
+                    <li><code>padding</code>: 입력 행렬의 경계에 0을 추가해 <code>10 × 10</code> 크기로 확장.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>연산 과정</strong>
+                <ul>
+                    <li>필터가 <code>stride = 2</code> 설정에 따라 한 번에 2칸씩 이동하며 연산 수행.</li>
+                    <li>필터 각 위치에서 계산된 결과는 출력 행렬의 점차 부분에 더해짐.</li>
+                    <li>연산 결과로 <code>10 × 10</code> 크기의 초기 출력 행렬이 생성됨.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>최종 출력</strong>
+                <ul>
+                    <li>겹치는 부분은 모든 값을 합산하여 최종 값을 결정.</li>
+                    <li>패딩된 경계 부분은 제거되고, 실제 유효한 출력 크기는 <code>8 × 8</code> 도출.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/14.png" alt="14" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>GPU 설정 및 모델 초기화</strong>
+                <ul>
+                    <li>
+                        <code>generator</code> (생성자)와 <code>discriminator</code> (판별자)를 초기화하고 GPU(<code>device</code>)에 할당.
+                    </li>
+                    <li><code>print(generator)</code> 및 <code>print(discriminator)</code> 명령을 사용해 모델 구조를 출력하여 확인.</li>
+                </ul>
+            </li>
+            <li><strong>옵티마이저 정의</strong><ul>
+                <li>생성자와 판별자의 옵티마이저를 각각 정의:
+                    <ul>
+                        <li><code>optim_g</code>: 생성자(Generator) 옵티마이저.</li>
+                        <li><code>optim_d</code>: 판별자(Discriminator) 옵티마이저.</li>
+                </li>
+                <li>
+                    <strong>Adam 옵티마이저 사용:</strong>
+                    <ul>
+                        <li>학습률(<code>lr</code>) = 0.0001.</li>
+                        <li>모멘텀 계수(<code>beta1</code>, <code>beta2</code>) = (0.5, 0.999)로 설정 (기본값은 0.9, 0.999).</li>
+                        <li><code>beta1 = 0.5</code> 설정은 GAN에서 안정적인 학습을 위해 일반적으로 사용.</li>
+                    </ul>
+                </li>
+            </ul>
+            </li>
+            <li>
+                <strong>손실 함수 정의</strong>
+                <ul>
+                    <li>
+                        <code>nn.BCELoss()</code>: 이진 분류(Binary Classification)에서 사용되는 손실 함수.
+                    </li>
+                    <li>생성된 데이터와 실제 데이터를 구분하기 위한 손실 계산.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>손실 추적</strong>
+                <ul>
+                    <li>
+                        <code>losses_g</code>: 생성자의 손실 값을 저장하는 리스트.
+                    </li>
+                    <li>
+                        <code>losses_d</code>: 판별자의 손실 값을 저장하는 리스트.
+                    </li>
+                    <li>에포크(<code>epoch</code>)마다 손실 변화를 추적하기 위해 사용.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/15.png" alt="15" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>SGD와 모멘텀의 차이</strong>
+                <ul>
+                    <li>
+                        <strong>SGD (Stochastic Gradient Descent):</strong>
+                        <ul>
+                            <li>현재 위치에서 기울기(<strong>Gradient</strong>) 방향으로 이동하며 최적화.</li>
+                            <li>하지만 기울기 변화가 큰 경우, 진동이 심해져 최적화 속도가 느려질 수 있음.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>SGD 모멘텀:</strong>
+                        <ul>
+                            <li>현재 속도(모멘텀)와 새로운 기울기를 조합하여 이동.</li>
+                            <li>이전 속도를 활용해 관성을 추가함으로써 진동을 줄이고 빠르게 수렴.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>모멘텀 공식</strong>
+                <ul>
+                    <li>
+                        <strong>속도 업데이트:</strong>
+                        <img src="Deep learning9 images/16.png" alt="16">
+                        <ul>
+                            <li><strong>v<sub>t</sub></strong>: 현재 속도.</li>
+                            <li><strong>ρ</strong>: 모멘텀 계수 (보통 0.9로 설정).</li>
+                            <li><strong>∇f(x<sub>t</sub>)</strong>: 현재 기울기.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>위치 업데이트:</strong>
+                        <img src="Deep learning9 images/17.png" alt="17"">
+                        <ul>
+                            <li><strong>α</strong>: 학습률.</li>
+                            <li><strong>x<sub>t</sub></strong>: 현재 위치.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>그래프 해석</strong>
+                <ul>
+                    <li>현재 속도 (파란색 화살표): 이전 단계에서 이동한 방향과 크기.</li>
+                    <li>기울기 (빨간색 화살표): 현재 위치에서의 최적화 방향.</li>
+                    <li>두 벡터 합이 최종 이동 방향 (실제 스텝, 파란색 경로)을 결정.</li>
+                </ul>
+            </li>
+        </ol>
+
     </div>
   </div>
 </body>
