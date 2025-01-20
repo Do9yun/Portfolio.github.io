@@ -261,5 +261,38 @@
             </li>
         </ol>
 
-        
+        <div class="image-section.left">
+            <img src="Deep learning9 images/11.png" alt="11" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>Padding 적용 과정:</strong>
+                <ul>
+                    <li>
+                        <code>padding = 1</code>이 설정되면, 입력 행렬 주변에 1칸씩 0으로 채운 <strong>패딩(padding)</strong>이 추가됩니다.
+                    </li>
+                    <li>계산 결과는 패딩을 포함한 크기에서 시작하여 출력 크기가 결정됩니다:</li>
+                    <ul>
+                        <li>패딩 적용 전: <code>8 × 8</code></li>
+                        <li>패딩 적용 후: <code>10 × 10</code></li>
+                    </ul>
+                </ul>
+            </li>
+            <li>
+                <strong>Stride 적용 과정:</strong>
+                <ul>
+                    <li>
+                        <code>stride = 2</code>로 설정되면, 필터(kernel)가 한 번의 연산 후 <strong>2칸씩 이동</strong>합니다.
+                    </li>
+                    <li>필터가 이동하면서 새로운 위치에서 출력 값을 계산하고, 이를 출력 행렬에 기록합니다.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>출력 과정 시작:</strong>
+                <ul>
+                    <li>첫 번째 계산: 필터가 <code>4 × 4</code> 입력의 첫 번째 위치에서 연산.</li>
+                    <li>두 번째 계산: 필터가 2칸 이동한 후 새로운 위치에서 연산.</li>
+                </ul>
+            </li>
+        </ol>
         
