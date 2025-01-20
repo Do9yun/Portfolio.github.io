@@ -192,7 +192,7 @@
                         <strong>입력 및 출력 크기 계산:</strong>
                         <ul>
                             <li>공식:<br>
-                                <code>x_out = (x_in - kernel size + 2 * padding) / stride + 1</code>
+                                    <img src="Deep learning9 images/7.png" alt="7">
                             </li>
                             <li>첫 번째 계층에서:<br>
                                 <code>kernel=4, stride=1, padding=0</code> 설정.</li>
@@ -216,4 +216,50 @@
             </li>
         </ol>
 
+        <div class="image-section.left">
+            <img src="Deep learning9 images/8.png" alt="8" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>ConvTranspose2d 설정</strong>
+                <ul>
+                    <li><strong>파라미터:</strong>
+                        <ul>
+                            <li><code>kernel_size = 4</code></li>
+                            <li><code>stride = 2</code></li>
+                            <li><code>padding = 1</code></li>
+                        </ul>
+                    </li>
+                    <li>입력 크기: <code>4 × 4</code> (채널 수: 512).</li>
+                    <li>출력 크기: <code>8 × 8</code> (채널 수: 256).</li>
+                </ul>
+            </li>
+            <li>
+                <strong>출력 크기 계산</strong>
+                <ul>
+                    <li><strong>공식:</strong></li>
+                    <img src="Deep learning9 images/9.png" alt="9">
+                    <li>입력 크기 <code>x_in = 4</code>,</li>
+                    <li><code>kernel size = 4</code>,</li>
+                    <li><code>padding = 1</code>,</li>
+                    <li><code>stride = 2</code>.</li>
+                    <li>계산 결과:
+                        <img src="Deep learning9 images/10.png" alt="10" class="deep-learning-image">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Generator 계층의 역할</strong>
+                <ul>
+                    <li>두 번째 <code>ConvTranspose2d</code> 계층은:</li>
+                    <ul>
+                        <li>입력 <code>4 × 4</code> 데이터를 <code>8 × 8</code>로 확장.</li>
+                        <li>채널 수를 <code>512 → 256</code>으로 감소.</li>
+                    </ul>
+                    <li>이 과정을 통해 Generator는 점진적으로 이미지를 확장하며 해상도를 높입니다.</li>
+                </ul>
+            </li>
+        </ol>
+
+        
         
