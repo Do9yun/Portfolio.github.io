@@ -576,7 +576,356 @@
                 </ul>
             </li>
         </ol>
-        
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/26.png" alt="26" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>Adam의 구성 요소</strong>
+                <ul>
+                    <li><strong>관성 (Momentum):</strong>
+                        <ul>
+                            <li>SGD 모멘텀처럼 속도를 반영하여 학습 방향을 조정.</li>
+                            <li>1차 관성(속도): <pre>v<sub>t+1</sub> = β<sub>1</sub>v<sub>t</sub> + (1 - β<sub>1</sub>)∇f(x<sub>t</sub>)</pre></li>
+                        </ul>
+                    </li>
+                    <li><strong>적응적 학습률 (Adaptive Learning Rate):</strong>
+                        <ul>
+                            <li>RMSProp처럼 최근 그래디언트 제곱의 지수 가중 평균을 사용하여 학습률을 조정.</li>
+                            <li>2차 관성: <pre>r<sub>t+1</sub> = β<sub>2</sub>r<sub>t</sub> + (1 - β<sub>2</sub>)(∇f(x<sub>t</sub>))²</pre></li>
+                        </ul>
+                    </li>
+                    <li><strong>최종 업데이트 식:</strong>
+                        <pre>x<sub>t+1</sub> = x<sub>t</sub> - α / √(r<sub>t+1</sub> + ε) v<sub>t+1</sub></pre>
+                        <ul>
+                            <li>v<sub>t+1</sub>: 관성을 반영한 속도.</li>
+                            <li>r<sub>t+1</sub>: 최근 곡면의 변화량.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>Adam의 핵심 특징</strong>
+                <ul>
+                    <li>SGD 모멘텀의 관성과 RMSProp의 적응적 학습률을 결합.</li>
+                    <li>관성을 통해 학습 방향을 안정적으로 조정.</li>
+                    <li>적응적 학습률로 곡면 변화에 따라 학습 속도를 동적으로 조정.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/27.png" alt="27" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>이미지 저장 라이브러리</strong>
+                <ul>
+                    <li><code>from torchvision.utils import save_image</code>: 학습 도중 생성된 이미지를 저장하기 위해 사용하는 라이브러리.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>학습 반복문</strong>
+                <ul>
+                    <li><code>epochs = 25</code>: 총 25번의 학습 반복.</li>
+                    <li><code>for epoch in range(epochs)</code>: 학습 과정의 지정된 에포크 수만큼 실행됨.</li>
+                    <li><code>loss_g, loss_d</code>: 생성자와 판별자의 손실 값을 초기화.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>판별자 학습 함수</strong>
+                <ul>
+                    <li><strong>실제 데이터 학습:</strong>
+                        <ul>
+                            <li><code>data_real = image.to(device)</code>: 실제 데이터를 GPU 또는 CPU로 이동.</li>
+                            <li><code>real_label</code>과 <code>fake_label</code>: 실제 데이터는 1, 가짜 데이터는 0으로 라벨링.</li>
+                            <li><code>output_real</code>: 판별자가 실제 데이터를 판별한 결과.</li>
+                            <li><code>loss_real</code>: 실제 데이터에 대한 손실 계산.</li>
+                        </ul>
+                    </li>
+                    <li><strong>가짜 데이터 학습:</strong>
+                        <ul>
+                            <li><code>noise = torch.randn(...)</code>: 생성자를 위한 랜덤 노이즈 생성.</li>
+                            <li><code>data_fake = generator(noise)</code>: 생성자를 통해 가짜 데이터 생성.</li>
+                            <li><code>output_fake</code>: 판별자가 가짜 데이터를 판별한 결과.</li>
+                            <li><code>loss_fake</code>: 가짜 데이터에 대한 손실 계산.</li>
+                        </ul>
+                    </li>
+                    <li><strong>판별자 총 손실:</strong>
+                        <ul>                          
+                            <li><code>loss_total = (loss_real + loss_fake) / 2</code>: 실제 데이터와 가짜 데이터의 평균 손실 계산.</li>
+                            <li><code>loss_total.backward()</code>: 손실에 대해 역전파 실행.</li>
+                            <li><code>optim_d.step()</code>: 판별자의 파라미터 업데이트.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/28.png" alt="28" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>생성자 학습의 목적</strong>
+                <ul>
+                    <li>생성자는 가짜 데이터를 생성하여 판별자를 속이는 것을 목표로 합니다.</li>
+                    <li>판별자가 가짜 데이터를 실제 데이터로 분류하도록 학습합니다.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>생성자 학습 과정</strong>
+                <ul>
+                    <li><strong>손실 초기화:</strong>
+                        <ul>
+                            <li><code>optim_g.zero_grad()</code>: 생성자의 그래디언트를 초기화.</li>
+                        </ul>
+                    </li>
+                    <li><strong>출력 계산:</strong>
+                        <ul>
+                            <li><code>output = discriminator(data_fake)</code>: 생성된 가짜 데이터를 판별자에 입력하여 출력 결과를 얻음.</li>
+                        </ul>
+                    </li>
+                    <li><strong>손실 계산:</strong>
+                        <ul>
+                            <li><code>g_loss = criterion(torch.squeeze(output), real_label)</code>: 
+                                가짜 데이터를 판별자가 "진짜(real)"로 판단하도록 손실 계산.</li>
+                            <li><code>real_label</code>은 1로 설정.</li>
+                        </ul>
+                    </li>
+                    <li><strong>역전파:</strong>
+                        <ul>
+                            <li><code>g_loss.backward()</code>: 생성자 파라미터에 대해 손실의 그래디언트를 계산.</li>
+                        </ul>
+                    </li>
+                    <li><strong>파라미터 업데이트:</strong>
+                        <ul>
+                            <li><code>optim_g.step()</code>: 생성자의 파라미터를 업데이트하여 판별자를 속이는 방향으로 학습.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>손실 누적</strong>
+                <ul>
+                    <li><code>loss_g += g_loss</code>: 생성자의 손실을 누적하여 추적.</li>
+                    <li><code>loss_d += loss_total</code>: 판별자의 총 손실을 누적.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/29.png" alt="29" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>생성자와 판별자 손실 함수 저장</strong>
+                <ul>
+                    <li><strong>에포크 손실 계산:</strong>
+                        <ul>
+                            <li><code>epoch_loss_g = loss_g / idx</code>: 생성자 손실의 평균 계산.</li>
+                            <li><code>epoch_loss_d = loss_d / idx</code>: 판별자 손실의 평균 계산.</li>
+                        </ul>
+                    </li>
+                    <li><strong>손실 저장:</strong>
+                        <ul>
+                            <li><code>losses_g.append(epoch_loss_g)</code>: 생성자의 손실을 리스트에 저장.</li>
+                            <li><code>losses_d.append(epoch_loss_d)</code>: 판별자의 손실을 리스트에 저장.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>에포크 진행 상황 출력</strong>
+                <ul>
+                    <li><strong>현재 학습 상태 출력:</strong>
+                        <ul>
+                            <li><code>print(f"Epoch {epoch} of {epochs}")</code>: 현재 에포크 진행 상황 출력.</li>
+                            <li><code>print(f"Generator loss: {epoch_loss_g:.8f}, Discriminator loss: {epoch_loss_d:.8f}")</code>: 생성자와 판별자 손실 값을 소수점 8자리까지 출력.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>각 에포크마다 이미지 저장</strong>
+                <ul>
+                    <li><strong>저장할 이미지 데이터:</strong>
+                        <ul>
+                            <li><code>data_fake[:25]</code>: 생성된 가짜 데이터 중 25개 샘플을 저장.</li>
+                        </ul>
+                    </li>
+                    <li><strong>이미지 저장:</strong>
+                        <ul>
+                            <li><code>save_image(data_fake[:25], f'{epoch}.png', nrow=5, normalize=True)</code></li>
+                            <ul>
+                                <li><code>f'{epoch}.png'</code>: 현재 에포크 번호를 파일 이름으로 설정.</li>
+                                <li><code>nrow=5</code>: 이미지를 5개씩 행으로 정렬.</li>
+                                <li><code>normalize=True</code>: 이미지를 정규화하여 시각화 가능하게 저장.</li>
+                            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/30.png" alt="30" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>CenterCrop 기능</strong>
+                <ul>
+                    <li><code>CenterCrop</code>은 원본 이미지에서 가운데 부분을 잘라내는 기능입니다.</li>
+                    <li>가운데 영역을 Crop한 후, 원본 크기(<code>image_sz</code>)로 업스케일링하여 모델 입력에 적합하게 변환합니다.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>코드 설명</strong>
+                <ul>
+                    <li><code>transforms.Resize</code>: 입력 이미지를 (<code>image_sz, image_sz</code>)로 리사이즈.</li>
+                    <li><code>transforms.ToTensor</code>: 이미지를 텐서(<code>tensor</code>)로 변환.</li>
+                    <li><code>transforms.CenterCrop</code>: 이미지를 가운데에서 잘라내어 모델 입력 크기에 맞춤.</li>
+                    <li><code>transforms.Normalize</code>: RGB 값 범위를 정규화하여 학습 속도 향상 및 안정성을 확보.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>시각적 예시</strong>
+                <ul>
+                    <li><strong>Original:</strong> 원본 이미지.</li>
+                    <li><strong>CenterCrop:</strong> 이미지의 가운데 부분을 잘라낸 결과.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/31.png" alt="31" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>Generator (생성자)</strong>
+                <ul>
+                    <li>목적: 랜덤 노이즈 벡터를 입력받아 가짜 이미지를 생성.</li>
+                    <li>
+                        구조:
+                        <ol>
+                            <li><code>ConvTranspose2d</code> (Transposed Convolution)로 업스케일링 수행.</li>
+                            <li>
+                                각 레이어마다:
+                                <ul>
+                                    <li><code>BatchNorm2d</code>로 학습 안정화 및 가속화.</li>
+                                    <li><code>ReLU</code> 활성화 함수로 비선형성을 추가.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                마지막 레이어:
+                                <ul>
+                                    <li><code>Tanh</code> 활성화 함수로 출력값을 -1~1로 정규화.</li>
+                                    <li><code>bias=False</code>: <code>BatchNorm</code> 사용 시, 바이어스가 필요 없으므로 비활성화.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+                <strong>코드 흐름</strong>
+                <pre>
+def forward(self, x):
+return self.gen(x)</pre>
+                <ul>
+                    <li>입력 데이터 <code>x</code>를 통해 가짜 이미지를 생성.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Discriminator (판별자)</strong>
+                <ul>
+                    <li>목적: 입력 이미지(진짜/가짜)를 받아 진짜일 확률을 출력.</li>
+                    <li>
+                        구조:
+                        <ol>
+                            <li><code>Conv2d</code> (Convolution)로 다운스케일링 수행.</li>
+                            <li>
+                                각 레이어마다:
+                                <ul>
+                                    <li><code>BatchNorm2d</code>로 학습 안정화.</li>
+                                    <li><code>LeakyReLU(0.2)</code>로 음수 값 처리 시 기울기 손실 방지.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                마지막 레이어:
+                                <ul>
+                                    <li><code>Sigmoid</code> 활성화 함수로 출력값을 0~1로 변환.</li>
+                                    <li><code>bias=False</code>: <code>BatchNorm</code>과 호환성을 위해 비활성화.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>              
+                <pre>
+def forward(self, x):
+return self.disc(x)</pre>
+                <ul>
+                    <li>입력 데이터 <code>x</code>를 통해 진짜/가짜 여부를 판별.</li>
+                </ul>
+            </li>
+        </ol>
+        <h3>Generator와 Discriminator의 차이</h3>
+        <ul>
+            <li><strong>Generator:</strong> 업스케일링 (<code>Transposed Convolution</code>)을 통해 작은 입력에서 큰 이미지를 생성.</li>
+            <li><strong>Discriminator:</strong> 다운스케일링 (<code>Convolution</code>)을 통해 입력 이미지의 특성을 추출하고 진짜/가짜를 판별.</li>
+        </ul>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/32.png" alt="32" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>가중치 초기화의 목적</strong>
+                <ul>
+                    <li>모델 학습의 안정성과 성능을 향상시키기 위해 적절한 초기화가 중요.</li>
+                    <li>평균 0, 표준편차 0.02의 정규분포를 기반으로 가중치를 초기화.</li>
+                    <li>생성자(Generator)와 판별자(Discriminator)의 합성곱 계층과 배치 정규화 계층에 각각 초기화 방식을 적용.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>weights_init 함수</strong>
+                <ul>
+                    <li>매개변수: 모델의 계층 <code>m</code>.</li>
+                    <li>동작:
+                        <ol>
+                            <li><code>classname</code>으로 계층 이름을 확인.</li>
+                            <li>합성곱 계층 (<code>Conv</code>)의 경우:
+                                <pre>
+nn.init.normal_(m.weight.data, 0.0, 0.02)</pre>
+                                <ul>
+                                    <li>가중치를 평균 0, 표준편차 0.02의 정규분포로 초기화.</li>
+                                </ul>
+                            </li>
+                            <li>배치 정규화 계층 (<code>BatchNorm</code>)의 경우:
+                                <pre>
+nn.init.normal_(m.weight.data, 1.0, 0.02)
+nn.init.constant_(m.bias.data, 0)</pre>
+                                <ul>
+                                    <li>가중치를 평균 1, 표준편차 0.02로 초기화.</li>
+                                    <li>바이어스를 0으로 초기화.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>초기화 적용</strong>
+                <pre>
+generator = Generator().to(device)
+generator.apply(weights_init)
+
+discriminator = Discriminator().to(device)
+discriminator.apply(weights_init)</pre>
+                <ul>
+                    <li>모델 생성 후 <code>apply</code> 메서드를 호출하여 가중치 초기화.</li>
+                </ul>
+            </li>            
+        </ol>        
     </div>
   </div>
 </body>
