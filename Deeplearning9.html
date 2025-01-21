@@ -488,6 +488,96 @@
                 </ul>
             </li>
         </ol>
+        
+        <div class="image-section.left">
+            <img src="Deep learning9 images/19.png" alt="19" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>RMSProp의 개념</strong>
+                <ul>
+                    <li><strong>목적:</strong> 경사 하강법에서 학습률을 곡면 변화량에 따라 적응적으로 조정.</li>
+                    <li><strong>원리:</strong>
+                        <ul>
+                            <li>경사가 급격히 변하는 지점에서는 작은 스텝(학습률 감소).</li>
+                            <li>경사가 완만한 지점에서는 큰 스텝(학습률 증가).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>곡면 변화량에 따른 이동</strong>
+                <ul>
+                    <li><strong>최근 변화가 많을 때:</strong>
+                        <ul>
+                            <li>곡면 변화량이 크기 때문에 작은 스텝으로 이동하며 안정성을 유지.</li>
+                        </ul>
+                    </li>
+                    <li><strong>최근 변화가 적을 때:</strong>
+                        <ul>
+                            <li>곡면이 완만할 때 큰 스텝으로 이동하여 빠른 최적화 진행.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>지수 가중 이동 평균 (Exponentially Weighted Moving Average)</strong>
+                <ul>
+                    <li>최근 경로의 변화를 측정할 때 전체 경로가 아닌 최근 변화만 반영.</li>
+                    <li>이는 기울기 변화의 평균을 계산하여 변동성을 줄이고 학습을 안정화.</li>                
+                </ul>
+            </li>
+        </ol>
+
+        <div class="image-section.left">
+            <img src="Deep learning9 images/20.png" alt="20" class="deep-learning-image">
+        </div>
+        <ol>
+            <li>
+                <strong>RMSProp의 핵심 수식</strong>
+                <ul>
+                    <li>
+                        <strong>지수 가중 이동 평균:</strong>
+                        <img src="Deep learning9 images/21.png" alt="21">
+                        <ul>
+                            <li><strong>r<sub>t</sub></strong>: 이전 스텝의 변화량 평균.</li>
+                            <li><strong>β</strong>: 최근 변화량과 과거 변화량의 가중치를 조절하는 계수(보통 0.9 사용).</li>
+                            <li><strong>∇f(x<sub>t</sub>)</strong>: 현재 스텝에서의 그래디언트 제곱 값.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>학습률 조정:</strong>
+                        <img src="Deep learning9 images/22.png" alt="22">
+                        <ul>
+                            <li><strong>α</strong>: 학습률.</li>
+                            <li><strong>ε</strong>: 0으로 나누는 문제를 방지하기 위한 작은 값.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>지수 가중 이동 평균의 유도</strong>
+                <ul>
+                    <li>
+                        <img src="Deep learning9 images/23.png" alt="23">
+                        <ul>
+                            <li>최근 변화는 <code>1 - β</code> 계수에 의해 더 큰 영향을 받음.</li>
+                            <li>과거 변화는 <code>βⁿ</code>에 의해 점차 작게 반영.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <strong>적응적 학습률 적용</strong>
+                <ul>
+                    <li>최근 변화량과 과거 변화를 반영하여 학습률을 동적으로 조정:</li>
+                    <pre>x<sub>t+1</sub> = x<sub>t</sub> - α / √(r<sub>t+1</sub> + ε) ∇f(x<sub>t</sub>)</pre>
+                    <li>곡면 변화가 작은 경우 작은 스텝으로 이동.</li>
+                    <li>곡면 변화가 완만한 경우 큰 스텝으로 이동해 학습 속도가 빨라짐.</li>
+                </ul>
+            </li>
+        </ol>
+        
     </div>
   </div>
 </body>
