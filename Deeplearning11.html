@@ -1,88 +1,463 @@
-/* 기본 스타일 */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINN</title>
+    <link rel="stylesheet" href="style-Deeplearning11.css">
+</head>
+<body>
+  <div class="content-container">
+    <!-- 제목 -->
+      <h1 class="left"> PINN </h1>
 
-/* 콘텐츠 컨테이너 */
-.content-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
+      <div class="description-section">
+          <p>이번에는 PINN을 활용하여 감염자를 예측하는 신경망을 만들어 보겠습니다.</p><br>
+          <p>다음 데이터는 어떤 감염병의 20XX년 07월 01일부터 7월 20일까지 그 날의 감염되어 있는 사람의 수를 나타낸 것이다.<br>
+              20XX년 07월 21일부터 7월 30일까지 그 날의 감염되어 있는 사람의 수를 예측하는 신경망을 만들어 보자.<br>              
+              단, 그 날의 총 감염되어 있는 사람의 수는 다음 지배방정식을 따른다고 가정한다.</p>
 
-/* 제목 스타일 */
-h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    color: #222;
-    margin-bottom: 30px;
-    font-weight: bold;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/1.png" alt="1">
+          </div>
 
-/* 소제목 스타일 */
-h2 {
-    font-size: 1.8rem;
-    color: black;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/2.png" alt="2" class="deep-learning-image">
+          </div>
+          <li>이전과 같이 데이터를 불러옵니다.</li>
 
-/* 본문 텍스트 스타일 */
-.description-section p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: justify;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/3.png" alt="3" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>코드 설명</strong>
+                  <ul>
+                      <li><code>train_time</code>을 20으로 설정해 학습 데이터를 분리합니다.</li>
+                      <li><code>x_train</code>과 <code>y_train</code>은 학습용 데이터(<code>time</code>과 <code>cases</code>)를 가져오고, <code>x_test</code>와 <code>y_test</code>는 테스트용 데이터로 분리합니다.</li>
+                      <li>데이터를 <code>torch.Tensor</code> 형식으로 변환한 후, GPU를 사용할 수 있도록 <code>.to(device)</code>를 호출합니다.</li>
+                      <li>각 데이터를 (행, 열) 형태로 <code>reshape</code>하여 모델 입력 형식에 맞게 준비합니다.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>데이터는 학습용(<code>train</code>)과 테스트용(<code>test</code>)으로 분리되어, 신경망 학습 및 검증에 사용할 준비가 완료되었습니다.</li>
+                      <li><code>train_time</code> 이전까지는 학습 데이터, 이후는 테스트 데이터로 처리됩니다.</li>
+                  </ul>
+              </li>
+          </ol>
 
-/* 이미지 섹션 */
-.image-section {
-    text-align: center;
-    margin-top: 30px;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/4.png" alt="4" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>코드 구현:</strong>
+                  <ul>
+                      <li><code>N = 100</code>: 총 개체 수.</li>
+                      <li><code>beta = 0.5</code>: 전염률.</li>
+                      <li><code>gamma = 1.0 / 4.0</code>: 회복률.</li>
+                      <li>
+                          <strong>초기 조건:</strong>
+                          <ul>
+                              <li><code>S0 = 99.0</code>: 감염되지 않은 개체 수.</li>
+                              <li><code>I0 = 1.0</code>: 감염된 개체 수.</li>
+                              <li><code>R0 = 0.0</code>: 회복된 개체 수.</li>
+                          </ul>
+                      </li>
+                      <li>
+                          <strong>시간 범위:</strong>
+                          <ul>
+                              <li><code>t1 = 0</code>, <code>tr = 30</code>: 시뮬레이션 시작과 종료 시간.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>지배방정식과 초기 조건이 정의되었으며, 이를 바탕으로 SIR 모델 시뮬레이션을 수행할 준비가 완료되었습니다.</li>
+                  </ul>
+              </li>
+          </ol>
 
-.deep-learning-image {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/5.png" alt="5" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>함수 정의:</strong>
+                  <ul>
+                      <li><code>deriv_SIR</code>: SIR 모델의 미분 방정식을 계산하는 함수.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>입력값:</strong>
+                  <ul>
+                      <li><code>u</code>: 현재 상태 벡터 <code>[S, I, R]</code>.</li>
+                      <li><code>N</code>: 총 개체 수.</li>
+                      <li><code>beta</code>: 전염률.</li>
+                      <li><code>gamma</code>: 회복률.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>계산 과정:</strong>
+                  <ul>
+                      <li>
+                          <strong>S, I, R 값 분리:</strong>
+                          <pre><code>
+S = u[:, 0:1]
+I = u[:, 1:2]
+R = u[:, 2:3]</code></pre>
+                      </li>
+                      <li>
+                          <strong>미분 방정식:</strong>
+                          <ul>
+                              <li><code>dS = -beta * S * I / N</code>: 감염되지 않은 개체 수의 변화율.</li>
+                              <li><code>dI = beta * S * I / N - gamma * I</code>: 감염 개체 수의 변화율.</li>
+                              <li><code>dR = gamma * I</code>: 회복 개체 수의 변화율.</li>
+                          </ul>
+                      </li>
+                      <li>
+                          <strong>결과 결합:</strong>
+                          <pre><code>
+return torch.cat([dS, dI, dR], dim=1)</code></pre>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>이 함수는 주어진 상태와 매개변수를 바탕으로 SIR 모델의 변화율 <code>dS, dI, dR</code>을 계산하여 반환합니다.</li>
+                  </ul>
+              </li>
+          </ol>
 
-.description-section code {
-    background-color: #e9ecef;
-    padding: 2px 4px;
-    border-radius: 4px;
-    font-family: 'Courier New', Courier, monospace;
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/6.png" alt="6" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>초기 조건 설정:</strong>
+                  <ul>
+                      <li><code>x_ic</code>: 시간 <code>t = 0</code>에서 초기 조건을 나타냄.</li>
+                      <li><code>u_ic</code>: 초기 상태 <code>S(0), I(0), R(0)</code> 값을 포함.</li>
+                      <li><code>to(device)</code>: 데이터를 GPU 또는 CPU로 전송하여 학습에 활용.</li>
+                  </ul>
+                  <ul>
+                      <li><strong>역할:</strong> 초기 조건이 학습 과정에서 PINN의 손실 계산에 반영되도록 설정.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>콜로케이션 포인트 설정:</strong>
+                  <ul>
+                      <li><code>N_colloc</code>: 콜로케이션 포인트 수를 정의(여기서는 2000개).</li>
+                      <li><code>torch.rand</code>: 랜덤한 값을 생성하여 시간 범위 <code>[t_l, t_r]</code>에 매핑.</li>
+                      <li><code>to(device)</code>: 생성된 데이터를 GPU 또는 CPU로 전송.</li>
+                  </ul>
+                  <ul>
+                      <li><strong>역할:</strong> PINN이 다양한 시간 점에서 물리적 방정식을 학습하도록 보장.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>이 함수들은 초기 조건과 랜덤 샘플링된 시간 점을 설정하여 PINN의 학습을 준비합니다.</li>
+                      <li>초기 조건은 모델의 정확한 시작점을 설정하고, 콜로케이션 포인트는 물리적 방정식을 다양한 시간에서 만족하도록 보장합니다.</li>
+                  </ul>
+              </li>
+          </ol>
 
-/* pre 스타일 */
-pre {
-    background-color: #f1f3f5; /* 연한 회색 배경 */
-    color: #212529; /* 어두운 텍스트 색상 */
-    border-radius: 5px; /* 모서리를 둥글게 */
-    font-family: 'Courier New', Courier, monospace; /* 고정폭 글꼴 */
-    font-size: 0.95rem; /* 글자 크기 */
-    line-height: 1.5; /* 줄 간격 */
-    border: 1px solid #dee2e6; /* 연한 회색 테두리 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
-    display: inline-block; /* 글자 길이에 맞춰 테두리 자동 조정 */
-    white-space: pre-wrap; /* 긴 텍스트 줄바꿈 */
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/7.png" alt="7" class="deep-learning-image">
+          </div>
+          <ul>
+              <li>
+                  <strong>PINN_test 클래스:</strong>
+                  <ul>
+                      <li>신경망 모델 정의로, 4개의 Fully Connected Layer와 활성화 함수 <code>tanh</code>를 사용.</li>
+                      <li>입력 데이터를 비선형적으로 매핑하여 복잡한 관계를 학습.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>forward 메서드:</strong>
+                  <ul>
+                      <li>계층별로 데이터를 처리하고 <code>tanh</code> 활성화 함수로 비선형성을 부여.</li>
+                      <li>최종적으로 예측값을 출력.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>모델 초기화:</strong>
+                  <ul>
+                      <li>고정된 난수 시드로 일관성 유지.</li>
+                      <li>GPU 또는 CPU로 모델 배치.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>Adam Optimizer:</strong>
+                  <ul>
+                      <li>효율적이고 빠른 학습을 지원.</li>
+                      <li>학습률 <code>lr = 0.0005</code>로 설정해 안정적 학습 가능.</li>
+                  </ul>
+              </li>
+          </ul>
 
-/* pre 안의 code 스타일 */
-pre code {
-    background: none; /* 코드 배경 제거 */
-    color: inherit; /* 코드 색상 상속 */
-    padding: 0; /* 코드 내부 여백 제거 */
-    font-size: inherit; /* 코드 글자 크기 상속 */
-}
+          <div class="image-section.left">
+              <img src="Deep learning11 images/8.png" alt="8" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>손실 계산:</strong>
+                  <ul>
+                      <li>
+                          <strong>Boundary Condition 손실 (<code>loss_BC</code>):</strong> 
+                          초기 조건에서 모델 출력과 실제 값의 차이를 Mean Squared Error (MSE)로 계산.
+                      </li>
+                      <li>
+                          <strong>ODE 손실 (<code>loss_ODE</code>):</strong> 
+                          모델의 출력 미분값과 SIR 미분 방정식 결과의 차이를 MSE로 계산.
+                          <ul>
+                              <li><code>autograd.grad</code>로 <code>S, I, R</code>의 시간에 따른 미분값을 구함.</li>
+                              <li><code>deriv_SIR</code> 함수로 SIR 모델 미분 방정식을 계산.</li>
+                          </ul>
+                      </li>
+                      <li>
+                          <strong>Data 손실 (<code>loss_Data</code>):</strong> 
+                          모델이 예측한 <code>y</code>값과 실제 <code>y</code> 데이터 간 차이를 MSE로 계산.
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>총 손실:</strong> 
+                  <code>loss = loss_BC + loss_ODE + loss_Data</code>.
+              </li>
+              <li>
+                  <strong>최적화 과정:</strong>
+                  <ul>
+                      <li>손실의 역전파로 기울기를 계산 (<code>loss.backward()</code>).</li>
+                      <li>옵티마이저를 통해 모델 가중치를 업데이트 (<code>optimizer_P.step()</code>).</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>훈련 과정:</strong>
+                  <ul>
+                      <li>30,000번의 반복을 통해 모델 학습.</li>
+                      <li>매 10회마다 손실값을 출력해 학습 진행 상황 확인.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>핵심 역할:</strong>
+                  <ul>
+                      <li>물리 기반 손실과 데이터 기반 손실을 결합해 PINN 학습.</li>
+                      <li>초기 조건 및 미분 방정식을 통해 모델의 일반화 능력 향상.</li>
+                  </ul>
+              </li>
+          </ol>
+
+          <div class="image-section.left">
+              <img src="Deep learning11 images/9.png" alt="9" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>그래프 설명:</strong>
+                  <ul>
+                      <li><code>train_Data</code> (검은 점): 훈련 데이터의 실제 값.</li>
+                      <li><code>train_predicted</code> (파란 점): 훈련 데이터에서 예측된 값.</li>
+                      <li><code>test_Data</code> (검은 점): 테스트 데이터의 실제 값.</li>
+                      <li><code>test_predicted</code> (빨간 점): 테스트 데이터에서 예측된 값.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>주요 역할:</strong>
+                  <ul>
+                      <li><code>U_pred = model_P.forward(x_test)</code>: 테스트 데이터 입력을 통해 PINN 모델의 예측값 생성.</li>
+                      <li>훈련 데이터와 테스트 데이터 모두에서 예측값과 실제 값을 비교해 모델의 정확도를 시각적으로 확인.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>핵심 결과:</strong>
+                  <ul>
+                      <li>훈련 데이터에서 모델 예측이 실제 데이터와 매우 근접.</li>
+                      <li>테스트 데이터에서도 모델이 일반화 성능을 보이며 추세를 잘 따라감.</li>
+                      <li>결과적으로 PINN이 SIR 모델의 동작을 학습하고 예측하는 데 성공했음을 나타냄.</li>
+                  </ul>                  
+              </li>
+          </ol>
+
+          <div class="image-section.left">
+              <img src="Deep learning11 images/10.png" alt="10" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>deriv는 SIR 모델의 변화율을 정의하고, rk4는 이를 기반으로 시간에 따른 상태를 계산하여 모델의 동적 변화를 시뮬레이션합니다.</li>
+              <li>
+                  <strong>deriv(u, N, beta, gamma):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> SIR 모델의 미분 방정식을 정의합니다.</li>
+                      <li><strong>입력값:</strong>
+                          <ul>
+                              <li><code>u</code>: 상태 벡터 (<code>[S, I, R]</code>).</li>
+                              <li><code>N</code>: 총 인구 수.</li>
+                              <li><code>beta, gamma</code>: 전염률과 회복률.</li>
+                          </ul>
+                      </li>
+                      <li><strong>출력값:</strong> 미분 방정식의 결과 (<code>dS, dI, dR</code>).</li>
+                      <li><strong>핵심 내용:</strong>
+                          <ul>
+                              <li><code>dS</code>: 감염 가능한 인구의 감소율.</li>
+                              <li><code>dI</code>: 감염 인구의 증가율.</li>
+                              <li><code>dR</code>: 회복 인구의 증가율.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>rk4(deriv, u0, t, N, beta, gamma):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> 4차 룽게-쿠타 방법으로 SIR 방정식을 수치적으로 푸는 함수.</li>
+                      <li><strong>입력값:</strong>
+                          <ul>
+                              <li><code>deriv</code>: 미분 방정식 함수.</li>
+                              <li><code>u0</code>: 초기 상태 (<code>[S0, I0, R0]</code>).</li>
+                              <li><code>t</code>: 시간 배열.</li>
+                              <li><code>N, beta, gamma</code>: SIR 모델 파라미터.</li>
+                          </ul>
+                      </li>
+                      <li><strong>출력값:</strong> 시간에 따른 SIR 상태 (<code>[S, I, R]</code>).</li>
+                      <li><strong>핵심 내용:</strong>
+                          <ul>
+                              <li><code>k1, k2, k3, k4</code>: 각 단계에서 미분 값을 계산.</li>
+                              <li>결과를 누적해 상태를 업데이트하며 시간에 따른 변화를 추적.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+          </ol>
+
+          <div class="image-section.left">
+              <img src="Deep learning11 images/11.png" alt="11" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>t = np.linspace(t1, tr, n+1):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> 시간을 나타내는 축을 <code>n+1</code>개의 균등한 간격으로 생성.</li>
+                      <li><strong>핵심 내용:</strong> <code>t1</code>부터 <code>tr</code>까지 총 <code>n+1</code>개의 시간 점을 생성하여 SIR 모델의 시뮬레이션에 사용.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>u0 = S0, I0, R0:</strong>
+                  <ul>
+                      <li><strong>역할:</strong> SIR 모델의 초기 상태(<code>S, I, R</code>)를 설정.</li>
+                      <li><strong>핵심 내용:</strong> 초기 조건으로 감수성 인구(<code>S</code>), 감염자(<code>I</code>), 회복자(<code>R</code>) 값을 정의.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>u = rk4(deriv, u0, t, N, beta, gamma):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> <code>rk4</code> 함수로 SIR 모델의 방정식을 풀어 시간에 따른 상태(<code>S, I, R</code>)를 계산.</li>
+                      <li><strong>핵심 내용:</strong> 초기 상태 <code>u0</code>와 파라미터(<code>N, beta, gamma</code>)를 사용하여 각 시간 단계의 결과를 반환.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>all_time_x_test = torch.Tensor(t).view(-1,1).to(device):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> 시간 축 <code>t</code>를 텐서 형식으로 변환하고 모델 학습에 적합하도록 차원을 재구성.</li>
+                      <li><strong>핵심 내용:</strong> <code>.view(-1,1)</code>로 열 벡터로 변환 후 GPU 장치(<code>device</code>)에 로드.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>all_time_u = torch.Tensor(u).to(device):</strong>
+                  <ul>
+                      <li><strong>역할:</strong> RK4로 계산된 상태 벡터(<code>S, I, R</code>)를 텐서로 변환.</li>
+                      <li><strong>핵심 내용:</strong> 모델 학습 및 평가에 참고할 실제 데이터를 사용.</li>
+                  </ul>
+              </li>
+          </ol>
+
+          <div class="image-section.left">
+              <img src="Deep learning11 images/12.png" alt="12" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>RK4 실제 값과 모델 예측값 비교:</strong>
+                  <ul>
+                      <li>파란색 실선 (<code>RK4_I</code>): 4차 런지쿠타(RK4) 방법으로 계산한 실제 값을 나타냅니다.</li>
+                      <li>빨간 점선 (<code>predicted_I</code>): PINN 모델이 예측한 값을 나타냅니다.</li>
+                      <li>두 선이 일치할수록 모델의 예측 정확도가 높음을 의미합니다.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>학습 및 테스트 데이터 분포:</strong>
+                  <ul>
+                      <li>검은색 별표 (<code>train_Data</code>): 학습 데이터의 실제 값을 나타냅니다.</li>
+                      <li>파란 점선 (<code>train_predicted_I</code>): 학습 데이터에 대한 모델의 예측값입니다.</li>
+                      <li>검은색 동그라미 (<code>test_Data</code>): 테스트 데이터의 실제 값을 나타냅니다.</li>
+                      <li>빨간 점선 (<code>test_predicted_I</code>): 테스트 데이터에 대한 모델의 예측값입니다.</li>
+                      <li>모델의 예측값이 실제 데이터와 얼마나 일치하는지를 시각적으로 확인할 수 있습니다.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>모델의 예측값 (<code>학습 값</code> 및 <code>테스트 값</code>)이 실제 값과 매우 유사하게 나타났습니다.</li>
+                      <li>PINN 모델은 물리적 방정식과 데이터를 함께 활용하여 높은 정확도를 보여줍니다.</li>
+                      <li>결과적으로 PINN은 테스트 데이터의 외삽 영역에서도 높은 일반화 성능을 발휘하여 기존 데이터 범위를 넘어선 상황에서도 효과적인 예측을 보였습니다.</li>
+                  </ul>
+              </li>
+          </ol>
+
+          <div class="image-section.left">
+              <img src="Deep learning11 images/13.png" alt="13" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong>S, I, R의 비교:</strong>
+                  <ul>
+                      <li><code>RK4 S, RK4 I, RK4 R</code>: RK4 방법으로 계산된 S(감수성 있는 집단), I(감염자 집단), R(회복된 집단)의 값입니다.</li>
+                      <li>RK4는 정확한 수치해석 방법으로 이 값을 기준으로 삼습니다.</li>
+                      <li><code>predicted S, predicted I, predicted R</code>: PINN 모델이 예측한 S, I, R 값입니다.</li>
+                      <li>PINN 모델의 예측값이 RK4 결과와 매우 유사한 경향을 보입니다.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>훈련 데이터와 테스트 데이터:</strong>
+                  <ul>
+                      <li><strong>훈련 데이터 (<code>train_Data</code>):</strong>
+                          <ul>
+                              <li>검은색 별표로 표시되며, S, I, R 값이 학습 데이터의 실제 값을 나타냅니다.</li>
+                              <li>파란색 점선 (<code>train_predicted I</code>): 학습 데이터에 대한 PINN 모델의 예측값입니다.</li>
+                          </ul>
+                      </li>
+                      <li><strong>테스트 데이터 (<code>test_Data</code>):</strong>
+                          <ul>
+                              <li>검은색 원으로 표시되며, S, I, R 값이 테스트 데이터의 실제 값을 나타냅니다.</li>
+                              <li>빨간 점선 (<code>test_predicted I</code>): 테스트 데이터에 대한 PINN 모델의 예측값입니다.</li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>그래프 해석:</strong>
+                  <ul>
+                      <li><code>S</code>: 시간이 지남에 따라 감소하며, I와 R을 증가합니다.</li>
+                      <li>PINN 모델은 RK4 결과와 매우 유사한 형태로 S, I, R 값을 예측합니다.</li>
+                  </ul>
+              </li>
+              <li>
+                  <strong>결론:</strong>
+                  <ul>
+                      <li>RK4 방법과 PINN 모델의 결과가 매우 유사하게 나타났습니다.</li>
+                      <li>이는 PINN이 SIR 방정식을 성공적으로 학습하고 일반화할 수 있음을 보여줍니다.</li>
+                      <li>따라서 PINN은 데이터를 활용하여 수치적 방법과 비교해도 높은 정확도와 성능을 보여줍니다.</li>
+                  </ul>
+              </li>
+          </ol>
+
+          <p>PINN(Physics-Informed Neural Networks)은 SIR 모델의 동역학을 정확히 학습하며, RK4 수치해석 결과와 높은 일치를 보여 데이터가 제한적인 상황에서도 효과적인 전염병 확산 예측이 가능함을 입증했습다. 
+              이를 통해 PINN은 물리적 제약을 활용한 학습으로 기존 방법과 유사한 성능을 달성하며, 동적 시스템 예측에서 강력한 도구로 활용될 수 있음을 확인할 수 있습니다.</p>
+      </div>
+  </div>
+</body>
+</html>
+          
