@@ -58,10 +58,9 @@ h2 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.size-50% {
-    width: 50%;
+.deep-learning-image2 {
+    max-width: 100%;
     height: auto;
-}
 
 .description-section code {
     background-color: #e9ecef;
