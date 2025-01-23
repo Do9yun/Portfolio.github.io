@@ -1,1 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PINN</title>
+    <link rel="stylesheet" href="style-Deeplearning12.css">
+</head>
+<body>
+  <div class="content-container">
+    <!-- 제목 -->
+      <h1 class="left"> SRGAN </h1>
 
+      <div class="description-section">
+        <p>GAN을 이용하여 이미지의 화질을 개선하는 신경망을 알아보겠습니다.</p>
+        
+        <h2>Super Resolution Generative Adversarial Networks(SRGAN)의 기본 설계</h2>
+        
+        <div class="image-section.left">
+          <img src="Deep learning12 images/1.png" alt="1" class="deep-learning-image">
+        </div>
+
+        <li>SRGAN은 일반적인 GAN에는 없는 특징 추출기가 있어, 생성자가 감별자를 속임과 동시에, 진짜 이미지와 비슷한 특징을 갖도록 학습됨</li>
+        <ol>
+          <li>
+            <strong>저화질 이미지 → 생성자:</strong>
+            <ul>
+              <li>저화질 이미지를 입력으로 받아 생성자가 고화질 이미지를 생성합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>생성된 고화질 이미지 → 감별자:</strong>
+            <ul>
+              <li>생성된 이미지는 감별자(Discriminator)에 전달됩니다.</li>
+              <li>감별자는 생성된 이미지와 진짜 고화질 이미지 사이의 차이를 학습하여, 생성된 이미지가 진짜인지 가짜인지 판별합니다.</li>
+              <li>감별자는 "1(진짜)"에 가까운 출력을 학습합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>생성된 고화질 이미지 → CNN (Convolutional Neural Network):</strong>
+            <ul>
+              <li>생성된 이미지와 진짜 고화질 이미지 간의 차이를 줄이기 위해 학습합니다.</li>
+              <li>이를 통해 생성된 이미지가 진짜 고화질 이미지와 거의 동일하도록 만듭니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>결론:</strong>
+            <ul>
+              <li>SRGAN은 생성자와 감별자가 경쟁하며 학습하는 GAN 구조를 기반으로, 고화질 이미지를 생성하는 과정을 최적화합니다.</li>
+              <li>이 모델은 저화질 이미지를 고화질로 업스케일링하는 데 매우 유용합니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/2.png" alt="2" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>2D 합성곱:</strong>
+            <ul>
+              <li>저화질 이미지를 입력으로 받아 첫 번째 합성곱 계층을 통해 특징을 추출합니다.</li>
+              <li>이는 저화질 이미지의 기본적인 패턴과 세부 정보를 학습합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Residual Block (잔차 블록):</strong>
+            <ul>
+              <li>여러 개의 잔차 블록을 통해 이미지의 고유한 특징을 강화합니다.</li>
+              <li>각 잔차 블록은 합성곱 계층과 활성화 함수(ReLU)로 구성되며, 입력과 출력을 더하는 skip connection을 포함합니다.</li>
+              <li>잔차 블록의 반복을 통해 더 복잡한 패턴을 학습합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Skip Connection (직접 연결):</strong>
+            <ul>
+              <li>잔차 블록의 입력과 출력을 더하여 정보를 결합합니다.</li>
+              <li>이 과정은 학습을 안정화하고 성능을 향상시킵니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>업스케일링:</strong>
+            <ul>
+              <li>이미지의 해상도를 높이기 위해 업스케일링 계층(픽셀 셔플링 등)을 사용합니다.</li>
+              <li>입력 이미지의 크기를 점진적으로 확장하여 고화질 이미지를 생성합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>2D 합성곱 (최종 단계):</strong>
+            <ul>
+              <li>마지막 합성곱 계층을 통해 최종 고화질 이미지를 생성합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>생성자는 저화질 이미지를 입력받아 여러 계층의 처리를 통해 고화질 이미지를 출력하며, 이 과정에서 SRGAN은 기존 이미지의 세부 정보를 복원하고 고해상도 이미지를 생성하는 데 중점을 둡니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/3.png" alt="3" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>SRGAN 생성자의 구성:</strong>
+            <ul>
+              <li>저화질 이미지를 입력받아 2D 합성곱 계층으로 특징을 추출합니다.</li>
+              <li>여러 잔차 블록을 통해 고해상도 이미지 생성에 필요한 세부 특징을 학습합니다.</li>
+              <li>최종적으로 업스케일링 과정을 통해 고해상도 이미지를 생성합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>잔차 블록의 세부 구성 (SRGAN 기본 블록):</strong>
+            <ul>
+              <li><strong>2D 합성곱:</strong> 입력 이미지에서 특징을 추출합니다.</li>
+              <li><strong>배치 정규화:</strong> 학습을 안정화시키고, 학습 속도를 개선합니다.</li>
+              <li><strong>PReLU (Parametric ReLU):</strong> 비선형 활성화 함수를 적용해 모델의 표현력을 높입니다.</li>
+              <li><strong>잔차 연결:</strong> 입력과 출력을 더해 잔차 학습을 가능하게 합니다. 이는 정보 손실을 최소화하고 학습을 효과적으로 진행하도록 돕습니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/4.png" alt="4" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>SRGAN 기본 블록의 PReLU:</strong>
+            <ul>
+              <li>
+                <strong>PReLU란?</strong>
+                <ul>
+                  <li>Parametric ReLU는 ReLU의 변형된 버전으로, 음수 영역의 기울기를 학습 가능한 파라미터로 설정한 활성화 함수입니다.</li>
+                  <li>함수는 다음과 같이 정의됩니다:
+                    <img src="Deep learning12 images/4.png" alt="4">
+                  </li>
+                  <li>여기서 a는 학습 가능한 파라미터입니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>ReLU와의 차이점:</strong>
+                <ul>
+                  <li>ReLU: 음수 값은 0으로 변환되어 정보 손실 가능성이 있습니다.</li>
+                  <li>Leaky ReLU: 음수 값에서 고정된 기울기(예: 0.02)를 사용합니다.</li>
+                  <li>PReLU: 음수 값에 기울기를 학습하여 데이터에 적응할 수 있습니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>그래프 비교:</strong>
+                <ul>
+                  <li>ReLU: 음수 값에서 출력이 항상 0입니다.</li>
+                  <li>Leaky ReLU: 음수 값에서 고정된 비율로 출력이 감소합니다.</li>
+                  <li>PReLU: 음수 값에서 기울기를 학습해 더 유연한 모델링이 가능합니다.</li>
+                  <img src="Deep learning12 images/6.png" alt="6">
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>SRGAN에서 PReLU의 역할:</strong>
+            <ul>
+              <li>SRGAN에서는 저해상도 이미지를 고해상도로 변환하기 위해 PReLU를 사용해 비선형성을 추가하고 복잡한 패턴을 효과적으로 학습합니다.</li>
+              <li>이는 잔차 블록 내부에 사용되어 더 유연한 학습과 고품질의 고해상도 이미지를 생성하는 데 기여합니다.</li>
+            </ul>
+            <li>결론: PReLU는 학습 가능한 기울기를 통해 음수 값 처리에 유연성을 제공하며, SRGAN의 성능을 향상시키는 중요한 활성화 함수입니다.</li>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/7.png" alt="7" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>업샘플링 층의 구성:</strong>
+            <ul>
+              <li>
+                <strong>2D 합성곱 (Convolution 2D):</strong>
+                <ul>
+                  <li>저해상도 이미지의 특징 맵을 학습하며, 업샘플링을 위한 기초 정보를 제공합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>픽셀 셔플 (Pixel Shuffle):</strong>
+                <ul>
+                  <li>업샘플링의 핵심 단계로, 특징 맵의 크기를 증가시켜 해상도를 높입니다.</li>
+                  <li>다차원 텐서를 재배치하여 저해상도를 고해상도로 변환합니다.</li>
+                  <li>계산 효율적이며, 고품질의 업스케일링을 지원합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>PReLU (Parametric ReLU):</strong>
+                <ul>
+                  <li>비선형 활성화 함수로, 픽셀 셔플 후에 특징 맵의 표현력을 향상시킵니다.</li>
+                  <li>학습 가능한 기울기를 포함하여 음수 값도 효과적으로 처리합니다.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>업샘플링 층의 역할:</strong>
+            <ul>
+              <li>업샘플링 층은 저해상도 특징 맵의 공간적 해상도를 증가시켜 고화질 이미지를 생성하는 데 기여합니다.</li>
+              <li>픽셀 셔플은 기존 업스케일링 방식(예: Interpolation)보다 품질이 뛰어나며, PReLU는 이미지 품질을 추가로 향상시킵니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/8.png" alt="8" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>픽셀 셔플(Pixel Shuffle) 알고리즘:</strong>
+            <ul>
+              <li>
+                <strong>입력 특징 맵:</strong>
+                <ul>
+                  <li>픽셀 셔플은 낮은 해상도의 특징 맵(여러 채널로 구성)을 입력으로 받아 고해상도의 이미지로 변환합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>작동 원리:</strong>
+                <ul>
+                  <li>입력 텐서의 채널 정보를 공간적으로 재배치하여 해상도를 증가시킵니다.</li>
+                  <li>텐서를 분리된 작은 블록으로 나누어 각각의 블록을 공간의 특정 위치로 이동시킵니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>예시:</strong>
+                <ul>
+                  <li>입력 채널(4개의 값)을 2×2 블록으로 변환합니다.</li>
+                  <li>이 과정을 통해 채널 수는 줄어들고 공간적 크기는 증가합니다.</li>
+                </ul>
+              </li>
+              <li>
+                <strong>결과:</strong>
+                <ul>
+                  <li>결과적으로 해상도가 높아진 새로운 특징 맵을 생성합니다.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>SRGAN에서의 역할:</strong>
+            <ul>
+              <li>픽셀 셔플은 업샘플링의 계산 효율성을 높이고, 기존 방식(예: Interpolation)보다 더 세부적인 고화질 이미지를 생성합니다.</li>
+              <li>SRGAN에서 저해상도 이미지를 고해상도로 변환하는 데 있어 핵심 기술입니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/9.png" alt="9" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>모델 정의:</strong>
+            <ul>
+              <li>생성자와 감별자의 구조를 설정합니다.</li>
+              <li>SRGAN 모델의 학습을 위한 초기화 단계입니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>데이터 호출:</strong>
+            <ul>
+              <li>저화질-고화질 이미지 쌍 데이터셋을 불러옵니다.</li>
+              <li>학습에 사용할 데이터를 배치 단위로 준비합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>생성자의 순전파:</strong>
+            <ul>
+              <li>저화질 이미지를 입력받아 생성자가 고화질 이미지를 생성합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>감별자의 역할:</strong>
+            <ul>
+              <li>감별자는 생성된 고화질 이미지와 실제 고화질 이미지를 비교하여 진짜와 가짜를 구별합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>손실 계산:</strong>
+            <ul>
+              <li><strong>GAN 손실:</strong> 생성된 이미지가 진짜처럼 보이도록 생성자와 감별자의 손실을 계산합니다.</li>
+              <li><strong>콘텐츠 손실:</strong> 생성된 이미지가 실제 고화질 이미지와 얼마나 유사한지를 측정합니다.</li>
+              <li><strong>특징 추출기 손실:</strong> VGG 네트워크 등의 사전 학습된 모델을 사용해 특징 기반 손실(Perceptual Loss)을 계산합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>역전파 및 최적화:</strong>
+            <ul>
+              <li>계산된 손실 값을 기반으로 생성자와 감별자의 가중치를 업데이트합니다.</li>
+              <li>역전파 알고리즘을 통해 모델의 성능을 점진적으로 개선합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>반복:</strong>
+            <ul>
+              <li>원하는 학습 목표에 도달할 때까지 루프를 반복합니다.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>학습 종료:</strong>
+            <ul>
+              <li>충분한 성능을 달성하거나 설정된 반복 횟수에 도달하면 학습을 종료합니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h2>코드 구현</h2>
+        <div class="image-section.left">
+          <img src="Deep learning12 images/10.png" alt="10" class="deep-learning-image">
+        </div>
+        <li>먼저 필요한 라이브러리 호출고 구글 드라이브에 저장된 이미지 데이터를 불러옵니다.</li>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/11.png" alt="11" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>입력 및 출력 이미지 크기 정의:</strong>
+            <ul>
+              <li><code>image_low</code>와 <code>image_high</code>로 입력 이미지(저해상도)와 출력 이미지(고해상도)의 크기를 각각 32x32와 64x64로 설정합니다.</li>
+              <li>-> "SRGAN에서 저해상도 이미지를 고해상도로 변환하기 위한 크기 설정입니다."</li>
+            </ul>
+          </li>
+          <li>
+            <strong>저해상도 이미지 전처리:</strong>
+            <ul>
+              <li><code>trans_low</code>: 입력 이미지로서 32x32 크기로 리사이즈(<code>Resize</code>).</li>
+              <li>텐서 형태로 변환(<code>ToTensor</code>).</li>
+              <li>정규화(<code>Normalize</code>)하여 픽셀 값을 [-1, 1] 범위로 스케일링.</li>
+              <li>-> "저해상도 이미지를 모델 입력에 적합한 형태로 변환합니다."</li>
+            </ul>
+          </li>
+          <li>
+            <strong>고해상도 이미지 전처리:</strong>
+            <ul>
+              <li><code>trans_high</code>: 출력 이미지로서 64x64 크기로 리사이즈.</li>
+              <li>동일하게 텐서화 및 정규화.</li>
+              <li>-> "고해상도 이미지를 학습에 필요한 형태로 변환합니다."</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/12.png" alt="12" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>데이터셋 로드:</strong>
+            <ul>
+              <li>
+                <code>trainlow</code>: <code>ImageFolder</code>를 사용해 경로 <code>data_root</code>에서 입력 이미지를 로드하고, <code>trans_low</code> 전처리를 적용.
+              </li>
+              <li>
+                <code>trainhigh</code>: 동일한 경로에서 출력 이미지를 로드하고, <code>trans_high</code> 전처리를 적용.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>DataLoader 생성:</strong>
+            <ul>
+              <li>
+                <code>batch_size = 8</code>: 한 번에 8개의 데이터를 로드.
+              </li>
+              <li>
+                <code>low_loader</code>와 <code>high_loader</code>: 각각 저해상도와 고해상도 이미지를 셔플하여 배치 단위로 로드.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>데이터 형태 확인:</strong>
+            <ul>
+              <li>
+                <code>len(low_loader)</code>: <code>low_loader</code>의 배치 개수를 확인. 출력 값은 442.
+              </li>
+              <li>
+                <code>images.shape</code>: <code>(8, 3, 32, 32)</code>로 확인. 이는 배치 크기 8, RGB 채널 3, 크기 32x32의 이미지를 나타냄.
+              </li>
+              <li>
+                <code>labels.shape</code>: <code>(8,)</code>로 확인. 이는 배치의 각 이미지에 대해 8개의 레이블을 가지고 있음을 의미.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>이미지 저장:</strong>
+            <ul>
+              <li>
+                <code>torchvision.utils.save_image</code>: 배치의 이미지를 <code>image_32.png</code>로 저장. <code>normalize=True</code>로 이미지를 정규화하여 저장.
+              </li>
+            </ul>
+          </li>
+        </ol>
+        
+        <div class="image-section.left">
+          <img src="Deep learning12 images/13.png" alt="13" class="deep-learning-image">
+        </div>
+       <ol>
+         <li>
+           <strong>고해상도 데이터 확인:</strong>
+           <ul>
+             <li>
+               <code>len(high_loader)</code>: 고해상도 데이터 로더의 배치 개수를 확인. 출력 값은 442.
+             </li>
+             <li>
+               <code>images.shape</code>: <code>(8, 3, 64, 64)</code>로 확인. 이는 배치 크기 8, RGB 채널 3, 크기 64x64의 이미지를 나타냄.
+             </li>
+             <li>
+               <code>labels.shape</code>: <code>(8,)</code>로 확인. 이는 배치의 각 이미지에 대해 8개의 레이블을 가지고 있음을 의미.
+             </li>
+           </ul>
+         </li>
+         <li>
+           <strong>이미지 저장:</strong>
+           <ul>
+             <li>
+               <code>save_image</code>: 배치의 이미지를 <code>image_64.png</code>로 저장. <code>normalize=True</code>로 이미지를 정규화하여 저장.
+             </li>
+           </ul>
+         </li>
+       </ol>
+        
+        <div class="image-section.left">
+          <img src="Deep learning12 images/14.png" alt="14" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>새로운 전처리 정의 (<code>trans_lowhigh</code>):</strong>
+            <ul>
+              <li>입력 이미지를 <code>image_low</code> 크기(32x32)로 조정한 후 텐서로 변환하고, 정규화 수행.</li>
+              <li>이후, 이미지를 다시 <code>image_high</code> 크기(64x64)로 리사이즈하여 학습 데이터에 필요한 형태로 변환.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>데이터셋 로드:</strong>
+            <ul>
+              <li>
+                <code>trainlowhigh: ImageFolder</code>를 사용해 <code>data_root</code> 경로에서 데이터를 로드하며, <code>trans_lowhigh</code> 전처리를 적용.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>DataLoader 생성:</strong>
+            <ul>
+              <li><code>lowhigh_loader</code>: 배치 크기 8로 설정해 데이터를 로드 및 셔플링.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>데이터 확인:</strong>
+            <ul>
+              <li><code>len(lowhigh_loader)</code>: 로더에 포함된 배치 개수 확인 (442).</li>
+              <li><code>images.shape</code>: <code>(8, 3, 64, 64)</code>. 리사이즈 결과 고해상도 크기 확인.</li>
+              <li><code>labels.shape</code>: <code>(8,)</code>. 각 이미지의 레이블 개수 확인.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>이미지 저장:</strong>
+            <ul>
+              <li>
+                <code>save_image</code>: 전처리된 데이터를 <code>image_3264.png</code>로 저장하여 시각적으로 확인 가능하도록 설정.
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/15.png" alt="15" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong><code>CelebA</code> 커스텀 데이터셋 클래스:</strong>
+            <ul>
+              <li>
+                <code>torch.utils.data.Dataset</code>를 상속받아 고해상도와 저해상도 이미지를 처리하기 위한 커스텀 데이터셋을 정의.
+              </li>
+              <li>
+                <strong><code>__init__</code> 메서드:</strong>
+                <ul>
+                  <li>데이터셋 이미지 경로를 <code>glob</code>를 사용해 <code>/ex1/*.jpg</code>에서 로드.</li>
+                  <li>두 가지 전처리 파이프라인 (<code>low_res_tf</code>, <code>high_res_tf</code>) 정의:
+                    <ul>
+                      <li><code>low_res_tf</code>: 저해상도 크기로 리사이즈, 텐서 변환, 정규화 수행.</li>
+                      <li><code>high_res_tf</code>: 고해상도 크기로 리사이즈, 텐서 변환, 정규화 수행.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong><code>__len__</code> 메서드:</strong>
+                <ul>
+                  <li>데이터셋의 이미지 개수를 반환.</li>
+                </ul>
+              </li>
+              <li>
+                <strong><code>__getitem__</code> 메서드:</strong>
+                <ul>
+                  <li>특정 인덱스의 이미지를 열고, 저해상도 및 고해상도 전처리를 각각 적용.</li>
+                  <li>두 가지 이미지 데이터를 튜플로 반환 (<code>img_low_res</code>, <code>img_high_res</code>).</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>데이터셋 및 <code>DataLoader</code> 생성:</strong>
+            <ul>
+              <li><code>dataset = CelebA()</code>: <code>CelebA</code> 데이터셋 인스턴스 생성.</li>
+              <li><code>DataLoader</code>: 배치 크기 8로 설정하고, 셔플링 활성화.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/16.png" alt="16" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>ResidualBlock 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Module</code>을 상속받아 잔차(residual) 학습을 수행하는 블록을 구현.</li>
+              <li>
+                <strong><code>__init__</code> 메서드:</strong>
+                <ul>
+                  <li><code>nn.Sequential</code>로 구성된 신경망 계층(<code>self.layers</code>) 정의.</li>
+                  <li>
+                    <strong>구성 요소:</strong>
+                    <ol>
+                      <li>
+                        <strong>첫 번째:</strong> 
+                        <ul>
+                          <li><code>Conv2d</code>: 커널 크기 3x3, 스트라이드 1, 패딩 1로 64개의 출력 채널 생성.</li>
+                          <li><code>BatchNorm2d</code>: 배치 정규화로 학습 안정화.</li>
+                          <li><code>PReLU</code>: 비선형 활성화 함수.</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>두 번째:</strong>
+                        <ul>
+                          <li>동일한 설정으로 또 하나의 컨볼루션 레이어 추가.</li>
+                          <li><code>BatchNorm2d</code>: 다시 배치 정규화 수행.</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <strong><code>forward</code> 메서드:</strong>
+                <ul>
+                  <li>입력 값을 <code>x_old</code>로 저장하여 잔차 연결에 사용.</li>
+                  <li>입력 데이터를 <code>self.layers</code>를 통해 처리.</li>
+                  <li>처리된 결과에 <code>x_old</code>를 더하여 잔차 연결 적용.</li>
+                  <li>최종 출력을 반환.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li>
+                <code>ResidualBlock</code>은 <strong>SRGAN(Super-Resolution GAN)</strong>의 핵심 구성 요소 중 하나로, 입력 데이터를 변환하면서 원래 정보를 잃지 않도록 잔차 연결을 사용하여 학습을 안정화하고 성능을 향상시키기 위한 코드입니다.
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/17.png" alt="17" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>UpSample 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Sequential</code>을 상속받아 업스케일링(upscaling) 과정을 구현.</li>
+              <li>
+                <strong><code>__init__</code> 메서드:</strong>
+                <ul>
+                  <li><strong>구성 요소:</strong>
+                    <ol>
+                      <li>
+                        <strong>Conv2d:</strong> 입력 채널 64개, 출력 채널 256개, 커널 크기 3x3, 스트라이드 1, 패딩 1로 설정된 컨볼루션 레이어.
+                      </li>
+                      <li>
+                        <strong>PixelShuffle:</strong> 업스케일링 팩터를 2로 설정하여 출력 이미지의 해상도를 2배로 증가.
+                      </li>
+                      <li>
+                        <strong>PReLU:</strong> 비선형 활성화 함수로, 업스케일된 데이터에 활성화 적용.
+                      </li>
+                    </ol>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li>
+                <code>UpSample</code> 클래스는 SRGAN에서 저해상도 이미지를 점진적으로 고해상도로 변환하는 업스케일링 과정을 처리하기 위한 코드입니다.
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/18.png" alt="18" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>Generator 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Module</code>을 상속받아 SRGAN의 생성기(Generator) 네트워크를 구현.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__init__</code> 메서드:</strong>
+            <ul>
+              <li><strong>네트워크 구성:</strong>
+                <ol>
+                  <li>
+                    <strong><code>self.conv1:</code></strong> 입력 이미지를 처리하는 초기 컨볼루션 레이어로, 커널 크기 9x9, 스트라이드 1, 패딩 4, 출력 채널 64.
+                    <ul>
+                      <li><code>PReLU</code>: 활성화 함수 적용.</li>
+                    </ul>
+                  </li>
+                  <li><strong><code>self.res_blocks:</code></strong> 잔차 블록(<code>ResidualBlock</code>) 3개로 구성된 레이어. 입력 데이터의 잔차 연결을 통해 학습 안정화 및 성능을 향상.</li>
+                  <li><strong><code>self.conv2</code>와 <code>self.bn2:</code></strong> 잔차 블록의 출력을 처리하는 컨볼루션 레이어와 배치 정규화.</li>
+                  <li><strong><code>self.upsample_blocks:</code></strong> 업스케일링을 수행하는 업샘플 블록(<code>UpSample</code>)으로 구성.</li>
+                  <li><strong><code>self.conv3:</code></strong> 최종 출력을 생성하는 컨볼루션 레이어로, 커널 크기 9x9, 출력 채널 3(RGB).</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>forward</code> 메서드:</strong>
+            <ul>
+              <li><strong>네트워크의 순전파(Forward Pass) 과정:</strong>
+                <ol>
+                  <li>입력을 초기 컨볼루션 레이어(<code>conv1</code>)를 통해 처리.</li>
+                  <li>잔차 블록(<code>res_blocks</code>)을 거친 후 <code>conv2</code>와 <code>bn2</code> 처리.</li>
+                  <li>잔차 연결(<code>x + x_old</code>) 적용.</li>
+                  <li>업샘플링 블록(<code>upsample_blocks</code>)을 통과.</li>
+                  <li>마지막 컨볼루션 레이어(<code>conv3</code>)를 통해 최종 고해상도 이미지 생성.</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li><code>Generator</code> 클래스는 SRGAN 모델의 생성기로, 저해상도 이미지를 입력받아 점진적으로 고해상도로 변환하는 과정을 구현한 코드입니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/19.png" alt="19" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>DiscBlock 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Module</code>을 상속받아 SRGAN의 판별기(<code>Discriminator</code>)에서 사용될 기본 블록 구현.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__init__</code> 메서드:</strong>
+            <ul>
+              <li><code>self.layers</code>: 
+                <ul>
+                  <li><code>nn.Sequential</code>을 사용해 다음 구성으로 신경망 레이어 정의:</li>
+                  <ol>
+                    <li>
+                      <code>Conv2d</code>: 입력 채널 64, 출력 채널 64, 커널 크기 3x3, 스트라이드 2, 패딩 1로 설정.
+                    </li>
+                    <li>
+                      <code>BatchNorm2d</code>: 배치 정규화를 통해 학습 안정화 및 속도 향상.
+                    </li>
+                    <li>
+                      <code>LeakyReLU</code>: 음수 영역에서도 학습이 가능하도록 하는 비선형 활성화 함수.
+                    </li>
+                  </ol>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>forward</code> 메서드:</strong>
+            <ul>
+              <li>입력 <code>x</code>를 <code>self.layers</code>에 통과시키고 출력 반환.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li><code>DiscBlock</code>은 SRGAN의 판별기에서 입력 이미지를 저차원 공간으로 변환하고 특징을 추출하기 위해 사용되는 기본 단위 블록을 구현한 코드입니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/20.png" alt="20" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong><code>Discriminator</code> 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Module</code>을 상속받아 SRGAN의 판별기(Discriminator) 네트워크를 구현.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__init__</code> 메서드:</strong>
+            <ul>
+              <li><code>self.conv1</code>: 
+                <ul>
+                  <li>입력 이미지를 처리하는 초기 컨볼루션 레이어.</li>
+                  <li>커널 크기 3x3, 스트라이드 1, 패딩 1 설정.</li>
+                  <li><code>LeakyReLU</code> 활성화 함수 적용.</li>
+                </ul>
+              </li>
+              <li><code>self.blocks</code>: 
+                <ul>
+                  <li><code>DiscBlock</code>을 사용해 추가 특징 추출 수행.</li>
+                </ul>
+              </li>
+              <li><code>self.fc1</code>: 
+                <ul>
+                  <li>입력 자원(64x64x32)을 1024 차원으로 축소.</li>
+                </ul>
+              </li>
+              <li><code>self.activation</code>: 
+                <ul>
+                  <li><code>LeakyReLU</code> 활성화 함수.</li>
+                </ul>
+              </li>
+              <li><code>self.fc2</code>: 
+                <ul>
+                  <li>1024 자원을 1로 축소하는 최종 완전연결 레이어.</li>
+                </ul>
+              </li>
+              <li><code>self.sigmoid</code>: 
+                <ul>
+                  <li>판별기 출력 확률 값을 0~1로 변환.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>forward</code> 메서드:</strong>
+            <ul>
+              <li>입력 <code>x</code>의 순전파(Forward Pass) 과정:</li>
+              <ul>
+                <li>초기 컨볼루션 레이어(<code>conv1</code>)를 통과.</li>
+                <li><code>DiscBlock</code>에서 추가 특징 추출 수행.</li>
+                <li>출력 데이터를 펼친(flatten) 뒤에 완전연결 레이어(<code>fc1</code>, <code>fc2</code>)에 전달.</li>
+                <li>최종적으로 <code>sigmoid</code>를 통해 확률 값 반환.</li>
+              </ul>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li><code>Discriminator</code> 클래스는 SRGAN 모델의 판별기로서, 입력 이미지가 실제 이미지인지 생성된 이미지인지 판별하기 위해 사용되는 네트워크를 구현한 코드입니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/21.png" alt="21" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong><code>FeatureExtractor</code> 클래스 정의:</strong>
+            <ul>
+              <li><code>nn.Module</code>을 상속받아 특징 추출기(Feature Extractor) 역할을 수행하는 네트워크를 구현.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__init__</code> 메서드:</strong>
+            <ul>
+              <li><code>vgg19_model</code>: 
+                <ul>
+                  <li><code>torchvision.models.vgg</code>에서 사전 학습된(pretrained) VGG19 모델을 로드.</li>
+                </ul>
+              </li>
+              <li><code>self.feature_extractor</code>: 
+                <ul>
+                  <li>VGG19 모델의 특징 추출 부분(<code>features</code>)에서 처음 9개의 레이어를 추출해 <code>nn.Sequential</code>로 구성.</li>
+                  <li>이 구조는 입력 이미지의 고수준 특징을 추출하는 데 사용.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>forward</code> 메서드:</strong>
+            <ul>
+              <li>입력 이미지 <code>img</code>를 <code>self.feature_extractor</code>에 통과시켜 특징 맵(feature map)을 반환.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li><code>FeatureExtractor</code> 클래스는 SRGAN 모델의 <strong>손실 함수(Perceptual Loss)</strong>를 계산하기 위해 사용됩니다.</li>
+              <li>이 클래스는 VGG19의 일부 레이어를 활용해 입력 이미지와 생성된 이미지의 고수준 특징 차이를 비교하여 더 현실적인 고해상도 이미지를 생성하도록 학습을 돕습니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/22.png" alt="22" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>모델 초기화 및 설정:</strong>
+            <ul>
+              <li><code>G = Generator().to(device)</code>: 생성기(Generator) 모델을 초기화하고 <code>device</code>로 이동(CPU 또는 GPU) 설정.</li>
+              <li><code>D = Discriminator().to(device)</code>: 판별기(Discriminator) 모델을 초기화하고 <code>device</code>로 이동.</li>
+              <li><code>feature_extractor = FeatureExtractor().to(device)</code>: 특징 추출기(Feature Extractor)를 초기화하고 <code>device</code>로 이동.</li>
+              <li><code>feature_extractor.eval()</code>: 특징 추출기를 평가 모드로 설정해(학습 비활성화) 안정적인 결과를 보장.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>옵티마이저 설정:</strong>
+            <ul>
+              <li>
+                <code>G_optim</code>: 생성기(Generator) 매개변수에 대해 Adam 옵티마이저 설정.
+                <ul>
+                  <li>학습률(<code>lr</code>)은 0.0001, 모멘텀 베타 값은 (0.5, 0.999)로 설정.</li>
+                </ul>
+              </li>
+              <li>
+                <code>D_optim</code>: 판별기(Discriminator) 매개변수에 대해 동일한 Adam 옵티마이저 설정.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li>생성기, 판별기, 특징 추출기 모델을 초기화하고 학습 준비를 수행.</li>
+              <li>옵티마이저를 설정하여 생성기와 판별기 모두에 대해 학습 가능한 매개변수를 업데이트할 수 있도록 준비합니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/23.png" alt="23" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>에포크 반복 설정:</strong>
+            <ul>
+              <li><code>epochs = 25</code>: 총 25번의 에포크 동안 학습 수행.</li>
+              <li>데이터 로더에서 저해상도(<code>low_res</code>)와 고해상도(<code>high_res</code>) 이미지를 배치 단위로 가져옴.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>생성기 학습:</strong>
+            <ul>
+              <li><code>G_optim.zero_grad()</code>: 생성기의 그래디언트를 초기화.</li>
+              <li>
+                <code>label_true</code> 및 <code>label_false</code>: 
+                <ul>
+                  <li>판별기에 입력되는 실제 및 가짜 데이터의 라벨을 정의.</li>
+                  <li><code>label_true = 1</code>, <code>label_false = 0</code>.</li>
+                </ul>
+              </li>
+              <li><code>fake = G(low_res)</code>: 생성기에서 저해상도 이미지를 입력받아 고해상도로 변환.</li>
+              <li><code>GAN_loss</code>: 생성된 고해상도 이미지(<code>fake</code>)가 판별기에 "진짜"로 분류되도록 유도하는 손실 (<code>MSELoss</code>).</li>
+              <li>
+                <code>content_loss</code>: 
+                <ul>
+                  <li>VGG19 기반의 특징 지표를 사용해 생성된 이미지와 실제 고해상도 이미지 간의 특징 차이를 계산.</li>
+                </ul>
+              </li>
+              <li><code>loss_G = content_loss + GAN_loss</code>: 생성기의 손실.</li>
+              <li><code>loss_G.backward()</code>: 생성기의 손실에 대해 역전파 수행 및 가중치 업데이트.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>판별기 학습:</strong>
+            <ul>
+              <li><code>D_optim.zero_grad()</code>: 판별기의 그래디언트를 초기화.</li>
+              <li><code>real_loss</code>: 실제 고해상도 이미지를 "진짜"로 분류하는 판별기의 손실 (<code>MSELoss</code>).</li>
+              <li><code>fake_loss</code>: 생성된 고해상도 이미지를 "가짜"로 분류하는 판별기의 손실 (<code>MSELoss</code>).</li>
+              <li><code>loss_D</code>: 판별기의 총 손실은 <code>real_loss</code>와 <code>fake_loss</code>의 평균값으로 정의.</li>
+              <li><code>loss_D.backward()</code>와 <code>D_optim.step()</code>: 판별기의 손실에 대해 역전파 수행 및 가중치 업데이트.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>결과 출력:</strong>
+            <ul>
+              <li>각 에포크마다 현재 에포크 번호와 생성기의 손실을 출력.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>이 코드의 목적:</strong>
+            <ul>
+              <li>생성기와 판별기의 학습 과정을 정의하며, 생성기는 더 현실적인 고해상도 이미지를 생성하도록 학습하고 판별기는 생성된 이미지를 실제와 구분하도록 학습합니다.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/24.png" alt="24" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong><code>torchvision.utils</code>를 활용한 시각화 준비:</strong>
+            <ul>
+              <li><code>torch.no_grad()</code>: 그래디언트를 계산하지 않도록 설정하여 예측 과정에서 메모리와 계산 효율성을 증가.</li>
+              <li><code>low_res, high_res = dataset[0]</code>: 데이터셋에서 하나의 샘플(저해상도와 고해상도 이미지를 로드).</li>
+            </ul>
+          </li>
+          <li>
+            <strong>생성기 예측 수행:</strong>
+            <ul>
+              <li><code>input_tensor</code>: 
+                <ul>
+                  <li>저해상도 이미지를 배치 형태로 변환하기 위해 차원을 추가(<code>unsqueeze</code>)하고 <code>device</code>로 이동.</li>
+                </ul>
+              </li>
+              <li><code>pred = G(input_tensor)</code>: 생성기 <code>G</code>를 사용해 저해상도 이미지를 고해상도로 변환.</li>
+              <li>
+                <code>pred.squeeze()</code>와 <code>permute()</code>: 
+                <ul>
+                  <li>배치 차원을 제거하고, 텐서를 (Height, Width, Channel) 순서로 재배치(CPU로 이동).</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>입력과 출력 데이터 재배치:</strong>
+            <ul>
+              <li><code>low_res</code>, <code>high_res</code>: 텐서를 시각화에 적합한 형식으로 재배치 (Channel 마지막 순서).</li>
+            </ul>
+          </li>
+          <li>
+            <strong>이미지 시각화:</strong>
+            <ul>
+              <li><code>plt.subplot</code>: 
+                <ul>
+                  <li>행 1과 열 3의 여러 그래프 틀을 생성.</li>
+                  <li>첫 번째 틀: 입력 저해상도 이미지 (<code>low_res</code>).</li>
+                  <li>두 번째 틀: 생성기가 예측한 고해상도 이미지 (<code>pred</code>).</li>
+                  <li>세 번째 틀: 실제 고해상도 이미지 (<code>high_res</code>).</li>
+            </ul>
+          </li>
+              <li>
+                <code>vutils.make_grid</code>: 
+                <ul>
+                  <li>저해상도와 고해상도 이미지를 시각화하기 위한 격자를 생성.</li>
+                  <li><code>padding=2</code>, <code>normalize=True</code>로 시각화를 조정.</li>
+                </ul>
+              </li>
+              <li><code>plt.show()</code>: 생성된 틀들을 화면에 표시.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/25.png" alt="25" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong><code>Celeb_test</code> 데이터셋 클래스 정의:</strong>
+            <ul>
+              <li>**<code>Dataset</code>**을 상속받아 테스트 데이터셋을 로드 및 전처리하는 역할을 수행.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__init__</code> 메서드:</strong>
+            <ul>
+              <li>
+                <code>self.imgs</code>: 
+                <ul>
+                  <li><code>glob</code>을 사용해 <code>drive/MyDrive/image_celeb_test/</code> 경로에 있는 모든 <code>.jpg</code> 이미지를 로드.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>전처리 파이프라인:</strong>
+            <ul>
+              <li>
+                <code>self.low_res_tf</code>: 
+                <ul>
+                  <li>입력 이미지를 저해상도 크기 (<code>image_low</code>)로 리사이즈, 텐서 변환 및 정규화 수행.</li>
+                </ul>
+              </li>
+              <li>
+                <code>self.high_res_tf</code>: 
+                <ul>
+                  <li>입력 이미지를 고해상도 크기 (<code>image_high</code>)로 리사이즈, 텐서 변환 및 정규화 수행.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__len__</code> 메서드:</strong>
+            <ul>
+              <li>데이터셋에 있는 이미지 개수를 반환.</li>
+            </ul>
+          </li>
+          <li>
+            <strong><code>__getitem__</code> 메서드:</strong>
+            <ul>
+              <li>
+                특정 인덱스 <code>i</code>의 이미지를 로드하고, 저해상도 및 고해상도 전처리를 각각 적용.
+              </li>
+              <li>반환 값: <code>(img_low_res, img_high_res)</code>.</li>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>이 코드의 목적:</strong></p>
+        <ul>
+          <li>
+            <code>CelebA</code> 테스트 데이터셋을 로드 및 전처리하여 <code>SRGAN</code> 모델의 성능을 평가하기 위해 사용됩니다.
+          </li>
+        </ul>
+
+        <div class="image-section.left">
+          <img src="Deep learning12 images/26.png" alt="26" class="deep-learning-image">
+        </div>
+        <ol>
+          <li>
+            <strong>테스트 데이터셋 초기화:</strong>
+            <ul>
+              <li><code>testset = Celeb_test()</code>:</li>
+              <ul>
+                <li>이전에 정의한 <code>Celeb_test</code> 클래스를 사용해 테스트 데이터셋을 로드.</li>
+              </ul>
+            </ul>
+          </li>
+          <li>
+            <strong>생성기 예측 수행 (평가 모드):</strong>
+            <ul>
+              <li><code>torch.no_grad()</code>:</li>
+              <ul>
+                <li>평가 과정에서 그래디언트를 계산하지 않아 메모리 사용량을 줄이고 효율성을 증가.</li>
+              </ul>
+              <li><code>low_res, high_res = testset[1]</code>:</li>
+              <ul>
+                <li>테스트 데이터셋에서 저해상도(<code>low_res</code>)와 고해상도(<code>high_res</code>) 이미지를 가져옴.</li>
+              </ul>
+              <li><code>input_tensor</code>:</li>
+              <ul>
+                <li>저해상도 이미지를 배치 형태로 변환 (<code>unsqueeze</code>)하고 <code>device</code>로 이동.</li>
+              </ul>
+              <li><code>pred = G(input_tensor)</code>:</li>
+              <ul>
+                <li>생성기 <code>G</code>를 사용해 입력 저해상도 이미지를 고해상도로 변환.</li>
+              </ul>
+              <li><code>pred.squeeze()</code>와 <code>permute()</code>:</li>
+              <ul>
+                <li>배치 차원을 제거하고, 텐서를 (Height, Width, Channel) 순서로 재배치(CPU로 이동).</li>
+              </ul>
+            </ul>
+          </li>
+          <li>
+            <strong>입력과 출력 데이터 재배치:</strong>
+            <ul>
+              <li><code>low_res와 high_res</code>:</li>
+              <ul>
+                <li>텐서를 시각화에 적합한 형식으로 재배치 (Channel 마지막 순서).</li>
+              </ul>
+            </ul>
+          </li>
+          <li>
+            <strong>이미지 시각화:</strong>
+            <ul>
+              <li><code>plt.subplot</code>:</li>
+              <ul>
+                <li>3개의 행과 1개의 열로 구성된 틀을 설정.</li>
+                <li>첫 번째 틀에: 원본 저해상도 이미지 (<code>low_res</code>).</li>
+                <li>두 번째 틀에: 생성기가 예측한 고해상도 이미지 (<code>pred</code>).</li>
+                <li>세 번째 틀에: 실제 고해상도 이미지 (<code>high_res</code>).</li>
+              </ul>
+              <li><code>vutils.make_grid</code>:</li>
+              <ul>
+                <li>여러 이미지를 한 번에 시각화하기 위한 그리드 생성.</li>
+                <li><code>padding=2, normalize=True</code>로 시각화 품질을 조정.</li>
+              </ul>
+              <li><code>plt.show()</code>:</li>
+              <ul>
+                <li>생성된 통합을 화면에 표시.</li>
+              </ul>
+            </ul>
+          </li>
+        </ol>
+        <p><strong>이 코드의 목적:</strong></p>
+        <ul>
+          <li><code>SRGAN</code> 모델을 통해 테스트 데이터셋의 저해상도 이미지를 고해상도로 변환한 결과를 실제 고해상도 이미지와 비교하여 모델의 성능을 시각적으로 평가하기 위해 작성된 코드입니다.</li>
+        </ul>
+
+        <p>**SRGAN(Super Resolution Generative Adversarial Networks)**에 대해 알아봤습니다. 
+          SRGAN은 이미지 화질을 개선하기 위한 GAN 기반 신경망으로, 일반 GAN에는 없는 특징 추출기를 사용하여 생성된 이미지가 실제 이미지와 유사한 특징을 갖도록 학습됩니다. 
+          주요 구성 요소로는 PReLU(Parametric ReLU), Residual Block, Pixel Shuffle 등이 있으며, 특히 PReLU는 음수 영역에서도 학습 가능한 gradient를 제공하여 성능을 향상시킵니다. 
+          또한, 판별자와 생성자가 상호 경쟁하며 이미지를 개선하며, 사전 학습된 VGG19 분류기의 초기 레이어를 특징 추출기로 활용합니다. 핵심은 GAN Loss 계수를 조정해 이미지 왜곡과 선명도 간의 균형을 맞추는 것입니다.</p>
+      </div>
+  </div>
+</body>
+</html>
+        
