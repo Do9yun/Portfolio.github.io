@@ -959,143 +959,122 @@
             </ul>
           </li>
         </ol>
-
+          
         <div class="image-section.left">
-          <img src="Deep learning12 images/25.png" alt="25" class="deep-learning-image">
+            <img src="Deep learning12 images/29.png" alt="29" class="deep-learning-image">
         </div>
-        <ol>
-          <li>
-            <strong><code>Celeb_test</code> 데이터셋 클래스 정의:</strong>
-            <ul>
-              <li>**<code>Dataset</code>**을 상속받아 테스트 데이터셋을 로드 및 전처리하는 역할을 수행.</li>
-            </ul>
-          </li>
-          <li>
-            <strong><code>__init__</code> 메서드:</strong>
-            <ul>
+          <div class="image-section.left">
+              <img src="Deep learning12 images/27.png" alt="27" class="deep-learning-image">
+          </div>
+          <ol>
               <li>
-                <code>self.imgs</code>: 
-                <ul>
-                  <li><code>glob</code>을 사용해 <code>drive/MyDrive/image_celeb_test/</code> 경로에 있는 모든 <code>.jpg</code> 이미지를 로드.</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>전처리 파이프라인:</strong>
-            <ul>
-              <li>
-                <code>self.low_res_tf</code>: 
-                <ul>
-                  <li>입력 이미지를 저해상도 크기 (<code>image_low</code>)로 리사이즈, 텐서 변환 및 정규화 수행.</li>
-                </ul>
+                  <strong>필요한 라이브러리 임포트:</strong>
+                  <ul>
+                      <li><code>os</code>: 파일 경로 및 디렉토리 작업을 위해 사용.</li>
+                      <li><code>torch.utils.data.Dataset</code>: PyTorch 데이터셋 클래스 상속.</li>
+                      <li><code>transforms 및 PIL</code>: 이미지 전처리 및 로딩에 사용.</li>
+                  </ul>
               </li>
               <li>
-                <code>self.high_res_tf</code>: 
-                <ul>
-                  <li>입력 이미지를 고해상도 크기 (<code>image_high</code>)로 리사이즈, 텐서 변환 및 정규화 수행.</li>
-                </ul>
+                  <strong><code>Celeb_test</code> 클래스 정의:</strong>
+                  <ul>
+                      <li><strong><code>__init__</code> 메서드:</strong>
+                          <ul>
+                              <li><code>self.imgs</code>:</li>
+                              <ul>
+                                  <li>디렉토리 <code>/content/drive/MyDrive/image_celeba_test/</code>에서 <code>.jpg</code> 또는 <code>.png</code> 확장자를 가진 모든 파일을 리스트로 저장.</li>
+                                  <li>파일이 없으면 예외를 발생시킴.</li>
+                              </ul>
+                              <li><strong>전처리 정의:</strong></li>
+                              <ul>
+                                  <li><code>self.low_res_tf</code>: 저해상도 크기(<code>image_low</code>)로 리사이즈, 텐서 변환, 정규화 수행.</li>
+                                  <li><code>self.high_res_tf</code>: 고해상도 크기(<code>image_high</code>)로 리사이즈, 텐서 변환, 정규화 수행.</li>
+                              </ul>
+                          </ul>
+                      </li>
+                      <li><strong><code>__len__</code> 메서드:</strong>
+                          <ul>
+                              <li>데이터셋의 총 이미지 개수를 반환.</li>
+                          </ul>
+                      </li>
+                      <li><strong><code>__getitem__</code> 메서드:</strong>
+                          <ul>
+                              <li>특정 인덱스 <code>i</code>의 이미지를 로드하고 RGB로 변환.</li>
+                              <li>저해상도 및 고해상도 전처리를 각각 적용.</li>
+                              <li>반환 형식: <code>(img_low_res, img_high_res)</code>.</li>
+                          </ul>
+                      </li>
+                  </ul>
               </li>
-            </ul>
-          </li>
-          <li>
-            <strong><code>__len__</code> 메서드:</strong>
-            <ul>
-              <li>데이터셋에 있는 이미지 개수를 반환.</li>
-            </ul>
-          </li>
-          <li>
-            <strong><code>__getitem__</code> 메서드:</strong>
-            <ul>
               <li>
-                특정 인덱스 <code>i</code>의 이미지를 로드하고, 저해상도 및 고해상도 전처리를 각각 적용.
+                  <strong>테스트 데이터셋 초기화:</strong>
+                  <ul>
+                      <li><code>testset = Celeb_test()</code>:</li>
+                      <ul>
+                          <li><code>Celeb_test</code> 데이터셋 클래스의 인스턴스를 생성하고 초기화.</li>
+                      </ul>
+                  </ul>
               </li>
-              <li>반환 값: <code>(img_low_res, img_high_res)</code>.</li>
-            </ul>
-          </li>
-        </ol>
-        <p><strong>이 코드의 목적:</strong></p>
-        <ul>
-          <li>
-            <code>CelebA</code> 테스트 데이터셋을 로드 및 전처리하여 <code>SRGAN</code> 모델의 성능을 평가하기 위해 사용됩니다.
-          </li>
-        </ul>
-
-        <div class="image-section.left">
-          <img src="Deep learning12 images/26.png" alt="26" class="deep-learning-image">
+          </ol>
+          
+          <div class="image-section.left">
+            <img src="Deep learning12 images/30.png" alt="30" class="deep-learning-image">
         </div>
-        <ol>
-          <li>
-            <strong>테스트 데이터셋 초기화:</strong>
-            <ul>
-              <li><code>testset = Celeb_test()</code>:</li>
-              <ul>
-                <li>이전에 정의한 <code>Celeb_test</code> 클래스를 사용해 테스트 데이터셋을 로드.</li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <strong>생성기 예측 수행 (평가 모드):</strong>
-            <ul>
-              <li><code>torch.no_grad()</code>:</li>
-              <ul>
-                <li>평가 과정에서 그래디언트를 계산하지 않아 메모리 사용량을 줄이고 효율성을 증가.</li>
-              </ul>
-              <li><code>low_res, high_res = testset[1]</code>:</li>
-              <ul>
-                <li>테스트 데이터셋에서 저해상도(<code>low_res</code>)와 고해상도(<code>high_res</code>) 이미지를 가져옴.</li>
-              </ul>
-              <li><code>input_tensor</code>:</li>
-              <ul>
-                <li>저해상도 이미지를 배치 형태로 변환 (<code>unsqueeze</code>)하고 <code>device</code>로 이동.</li>
-              </ul>
-              <li><code>pred = G(input_tensor)</code>:</li>
-              <ul>
-                <li>생성기 <code>G</code>를 사용해 입력 저해상도 이미지를 고해상도로 변환.</li>
-              </ul>
-              <li><code>pred.squeeze()</code>와 <code>permute()</code>:</li>
-              <ul>
-                <li>배치 차원을 제거하고, 텐서를 (Height, Width, Channel) 순서로 재배치(CPU로 이동).</li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <strong>입력과 출력 데이터 재배치:</strong>
-            <ul>
-              <li><code>low_res와 high_res</code>:</li>
-              <ul>
-                <li>텐서를 시각화에 적합한 형식으로 재배치 (Channel 마지막 순서).</li>
-              </ul>
-            </ul>
-          </li>
-          <li>
-            <strong>이미지 시각화:</strong>
-            <ul>
-              <li><code>plt.subplot</code>:</li>
-              <ul>
-                <li>3개의 행과 1개의 열로 구성된 틀을 설정.</li>
-                <li>첫 번째 틀에: 원본 저해상도 이미지 (<code>low_res</code>).</li>
-                <li>두 번째 틀에: 생성기가 예측한 고해상도 이미지 (<code>pred</code>).</li>
-                <li>세 번째 틀에: 실제 고해상도 이미지 (<code>high_res</code>).</li>
-              </ul>
-              <li><code>vutils.make_grid</code>:</li>
-              <ul>
-                <li>여러 이미지를 한 번에 시각화하기 위한 그리드 생성.</li>
-                <li><code>padding=2, normalize=True</code>로 시각화 품질을 조정.</li>
-              </ul>
-              <li><code>plt.show()</code>:</li>
-              <ul>
-                <li>생성된 통합을 화면에 표시.</li>
-              </ul>
-            </ul>
-          </li>
-        </ol>
-        <p><strong>이 코드의 목적:</strong></p>
-        <ul>
-          <li><code>SRGAN</code> 모델을 통해 테스트 데이터셋의 저해상도 이미지를 고해상도로 변환한 결과를 실제 고해상도 이미지와 비교하여 모델의 성능을 시각적으로 평가하기 위해 작성된 코드입니다.</li>
-        </ul>
-
-        <p>**SRGAN(Super Resolution Generative Adversarial Networks)**에 대해 알아봤습니다. 
+          <div class="image-section.left">
+              <img src="Deep learning12 images/28.png" alt="28" class="deep-learning-image">
+          </div>
+          <ol>
+              <li>
+                  <strong><code>pred</code>, <code>low_res</code>, <code>high_res</code> 텐서 변환:</strong>
+                  <ul>
+                      <li><code>pred.detach().cpu().numpy()</code>:</li>
+                      <ul>
+                          <li>예측된 고해상도 이미지 텐서를 GPU에서 CPU로 이동하고 넘파이 배열로 변환.</li>
+                      </ul>
+                      <li><code>low_res.numpy()</code>, <code>high_res.numpy()</code>:</li>
+                      <ul>
+                          <li>저해상도 및 고해상도 이미지를 넘파이 배열로 변환.</li>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>정규화 역변환:</strong>
+                  <ul>
+                      <li><code>pred = (pred + 1) / 2</code>, <code>low_res = (low_res + 1) / 2</code>, <code>high_res = (high_res + 1) / 2</code>:</li>
+                      <ul>
+                          <li>원래 픽셀 값을 [0, 1] 범위로 정규화 해제.</li>
+                      </ul>
+                  </ul>
+              </li>
+              <li>
+                  <strong>이미지 시각화:</strong>
+                  <ul>
+                      <li><code>plt.subplot</code>:</li>
+                      <ul>
+                          <li>3개의 행과 1개의 열로 구성된 플롯 설정:</li>
+                          <ul>
+                              <li>첫 번째 플롯: 저해상도 이미지(<code>low_res</code>).</li>
+                              <li>두 번째 플롯: 생성기가 예측한 고해상도 이미지(<code>pred</code>).</li>
+                              <li>세 번째 플롯: 실제 고해상도 이미지(<code>high_res</code>).</li>
+                          </ul>
+                      </ul>
+                      <li><code>plt.axis('off')</code>:</li>
+                      <ul>
+                          <li>플롯의 축을 비활성화하여 이미지만 표시.</li>
+                      </ul>
+                      <li><code>plt.imshow</code>:</li>
+                      <ul>
+                          <li>이미지를 플롯에 추가.</li>
+                      </ul>
+                      <li><code>plt.show()</code>:</li>
+                      <ul>
+                          <li>모든 플롯을 화면에 표시.</li>
+                      </ul>
+                  </ul>
+              </li>
+          </ol>
+          
+          <p>**SRGAN(Super Resolution Generative Adversarial Networks)**에 대해 알아봤습니다. 
           SRGAN은 이미지 화질을 개선하기 위한 GAN 기반 신경망으로, 일반 GAN에는 없는 특징 추출기를 사용하여 생성된 이미지가 실제 이미지와 유사한 특징을 갖도록 학습됩니다. 
           주요 구성 요소로는 PReLU(Parametric ReLU), Residual Block, Pixel Shuffle 등이 있으며, 특히 PReLU는 음수 영역에서도 학습 가능한 gradient를 제공하여 성능을 향상시킵니다. 
           또한, 판별자와 생성자가 상호 경쟁하며 이미지를 개선하며, 사전 학습된 VGG19 분류기의 초기 레이어를 특징 추출기로 활용합니다. 핵심은 GAN Loss 계수를 조정해 이미지 왜곡과 선명도 간의 균형을 맞추는 것입니다.</p>
