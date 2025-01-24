@@ -159,7 +159,7 @@ function showContent(section) {
             <p>정보처리기사</p>
             <p>필기 합격 후, 실기 준비중입니다.</p>
         `;
-    } else if (section === 'study') {
+    } else if (section === 'skill') {
     sectionContent = `
         <div class="study-section">
             <!-- OpenCV 섹션 -->
