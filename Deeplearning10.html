@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style-Deeplearning10.css">
 </head>
 <body>
+    <div id="top"></div>
   <div class="content-container">
     <!-- 제목 -->
       <h1 class="left"> PINN </h1>
@@ -1118,6 +1119,14 @@ y_H0 = torch.Tensor([1000]) # 초기 위치 s(0) = 1000</pre>
         반면, 상미분방정식의 정보가 배제되면 모델은 데이터만으로 학습하게 되어 물리적 일관성을 확보하지 못하고, 예측 정확도가 낮아지며 손실 값이 크게 변동하거나 감소하지 않는 결과를 초래합니다.</p>
     </div>
   </div>
+    <!-- 페이지 맨 위로 이동할 수 있도록 id 추가 -->
+    <div id="top"></div>
+
+    <!-- 맨 위로 이동 버튼 -->
+    <a href="#top" id="scrollTopButton" aria-label="맨 위로 이동">
+
+        <img src="icon/화살표.png" alt="맨 위로 이동">
+    </a>
 </body>
 </html>
       
