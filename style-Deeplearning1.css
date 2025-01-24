@@ -58,3 +58,25 @@ h2 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 맨 위로 이동 버튼 스타일 */
+#scrollTopButton {
+    position: fixed;
+    bottom: 20px; /* 화면 아래에서 20px 위 */
+    right: 20px; /* 화면 오른쪽에서 20px 왼쪽 */
+    width: 50px; /* 버튼 너비 */
+    height: 50px; /* 버튼 높이 */
+    display: block; /* 항상 표시 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+#scrollTopButton img {
+    width: 100%; /* 이미지 너비 */
+    height: 100%; /* 이미지 높이 */
+    border-radius: 50%; /* 둥근 모양 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    transition: opacity 0.3s ease; /* 부드러운 효과 */
+}
+
+#scrollTopButton img:hover {
+    opacity: 0.8; /* 마우스 호버 시 투명도 변경 */
+}
