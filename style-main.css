@@ -325,8 +325,8 @@ header {
     transform: scale(1.05); /* 확대 효과 */
 }
 
-/* Study 섹션 */
-.study-section {
+/* Skill 섹션 */
+.skill-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -348,56 +348,56 @@ header {
 }
 
 /* 제목 텍스트 스타일 */
-.study-section .post-text {
+.skill-section .post-text {
     flex: 2;
     color: black;
 }
 
-.study-section .post-text h3 a {
+.skill-section .post-text h3 a {
     color: white; /* 제목 글씨 색상 흰색 */
     font-size: 1.8rem; /* 제목 글씨 크기 증가 */
     text-decoration: none; /* 기본 상태에서 밑줄 없음 */
     transition: all 0.3s ease-in-out;
 }
 
-.study-section .post-text h3 a:hover {
+.skill-section .post-text h3 a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
     text-decoration-color: white; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
 }
 
 /* 본문 텍스트 */
-.study-section .post-text p {
+.skill-section .post-text p {
     color: black; /* 본문 글씨 색상 흰색 */
     font-size: 1rem; /* 본문 글씨 크기 */
     margin: 0;
 }
 
-.study-section .post-text p a {
+.skill-section .post-text p a {
     color: white; /* 본문 링크 색상 흰색 */
     text-decoration: none;
     transition: all 0.3s ease-in-out;
 }
 
-.study-section .post-text p a:hover {
+.skill-section .post-text p a:hover {
     text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
     text-decoration-color: white; /* 밑줄 색상 흰색 */
     text-decoration-thickness: 1.5px; /* 밑줄 두께 */
 }
 
 /* 이미지 스타일 */
-.study-section .post-image {
+.skill-section .post-image {
     flex: 1;
 }
 
-.study-section .post-image img {
+.skill-section .post-image img {
     width: 100%;
     border-radius: 5px;
     border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
     transition: all 0.3s ease-in-out; /* 부드러운 효과 */
 }
 
-.study-section .post-image img:hover {
+.skill-section .post-image img:hover {
     border: 3px solid white; /* 이미지 강조 효과 */
     transform: scale(1.05); /* 확대 효과 */
 }
