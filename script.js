@@ -161,7 +161,7 @@ function showContent(section) {
         `;
     } else if (section === 'skill') {
     sectionContent = `
-        <div class="study-section">
+        <div class="skill-section">
             <!-- OpenCV 섹션 -->
             <div class="post">
                 <div class="post-text">
