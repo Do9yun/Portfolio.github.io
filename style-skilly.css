@@ -26,8 +26,8 @@ h1 {
     font-weight: bold;
 }
 
-/* study-section 스타일 */
-.study-section {
+/* skill-section 스타일 */
+.skill-section {
     display: flex;
     flex-direction: column;
     gap: 5px; /* 챕터 간격 */
