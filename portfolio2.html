@@ -25,17 +25,35 @@
             성능 측면에서는 서버와 클라이언트 양측에서 자원 사용량을 측정하여 실제 서비스 환경에서의 안정성을 확인하였습니다.
         </p>
 
+        <hr>
+
         <!-- 테스트 화면 -->
         <div id="section2" class="image-section">
             <h2>테스트 화면</h2>
-            <img src="portfolio2/images1.png" alt="테스트 화면" class="result-image">
+            <img src="portfolio2/images1.png" alt="테스트 화면">
         </div>
+
+        <p class="image-description">
+            본 프로젝트는 웹 서비스 내 프로필 수정 화면을 대상으로 시험을 수행하였습니다.
+            주요 시험 대상은 프로필 사진 변경, 캐릭터 생성, 삭제, 별명 입력, 적용 및 취소 기능이었으며,
+            사용자 관점에서 실제 사용 흐름을 기준으로 기능 동작 여부를 검증하였습니다.
+        </p>
+
+        <hr>
 
         <!-- 메뉴 트리 -->
         <div id="section3" class="image-section">
             <h2>메뉴 트리</h2>
-            <img src="portfolio2/images2.png" alt="메뉴 트리" class="result-image">
+            <img src="portfolio2/images2.png" alt="메뉴 트리">
         </div>
+
+        <p class="image-description">
+            메뉴 트리를 기준으로 기능 단위를 분리하고, 각 기능별로 테스트 범위를 정의하였습니다.
+            프로필 사진 기능은 사진 변경, 캐릭터 만들기, 삭제로 세분화하였고,
+            별명 입력 및 적용/취소 버튼도 각각 독립적인 시험 항목으로 구성하였습니다.
+        </p>
+
+        <hr>
 
         <!-- 테스트 설계 방법 -->
         <div id="section4" class="image-section">
@@ -74,9 +92,12 @@
             • 수정 이후 재검증과 회귀 테스트까지 연결 가능한 구조로 설계
         </p>
 
+        <hr>
+
         <!-- 테스트 케이스 -->
         <div id="section5" class="image-section">
             <h2>테스트 케이스</h2>
+            <img src="portfolio2/images3.png" alt="테스트 케이스">
         </div>
 
         <p class="image-description">
@@ -90,17 +111,16 @@
         </p>
 
         <p class="image-description">
-            또한 버튼 기능은 단순 클릭 여부만 확인하는 것이 아니라, 실제 저장 반영 여부와 취소 시 원복 여부까지 검증하여 사용자의 최종 작업 결과가 정확하게 처리되는지를 확인하였습니다.
+            또한 버튼 기능은 단순 클릭 여부만 확인하는 것이 아니라, 실제 저장 반영 여부와 취소 시 원복 여부까지 검증하여
+            사용자의 최종 작업 결과가 정확하게 처리되는지를 확인하였습니다.
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images3.png" alt="테스트 케이스" class="result-image">
-        </div>
+        <hr>
 
         <!-- 결함 리포트 -->
         <div id="section6" class="image-section">
             <h2>결함 리포트</h2>
-            <img src="portfolio2/images4.png" alt="결함 리포트" class="result-image">
+            <img src="portfolio2/images4.png" alt="결함 리포트">
         </div>
 
         <p class="image-description">
@@ -137,8 +157,10 @@
             • 적용 버튼 클릭 시 데이터 저장 실패<br>
             • 취소 버튼 클릭 시 변경사항 원복 실패<br>
             • 업로드 진행 상태 미표시<br>
-            • 업로드 취소 기능 미동작
+            • HSTS(Strict-Transport-Security) 헤더 미설정 또는 설정 미흡
         </p>
+
+        <hr>
 
         <!-- 보안 테스트 -->
         <div id="section7" class="image-section">
@@ -172,12 +194,11 @@
 
         <p class="image-description">
             이 과정에서 단순히 취약점 탐지 결과를 확인하는 데 그치지 않고, 실제 서비스에 어떤 영향을 줄 수 있는지까지 함께 분석하였습니다.
-            예를 들어 HSTS 미설정은 HTTPS 강제 정책이 적용되지 않아 최초 접속 구간에서 보안성이 저하될 수 있고, 취약한 TLS 설정은 최신 보안 기준에 미달하여 서비스 신뢰도와 보안 수준에 영향을 줄 수 있음을 확인하였습니다.
+            예를 들어 HSTS 미설정은 HTTPS 강제 정책이 적용되지 않아 최초 접속 구간에서 보안성이 저하될 수 있고,
+            취약한 TLS 설정은 최신 보안 기준에 미달하여 서비스 신뢰도와 보안 수준에 영향을 줄 수 있음을 확인하였습니다.
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images5.png" alt="보안 테스트" class="result-image">
-        </div>
+        <hr>
 
         <!-- 성능 테스트 -->
         <div id="section8" class="image-section">
@@ -203,9 +224,7 @@
             이를 통해 본 기능은 보안 및 기능적 보완은 필요했지만, 시스템 자원 사용 측면에서는 비교적 안정적인 구조로 동작하고 있음을 확인하였습니다.
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images6.png" alt="성능 테스트" class="result-image">
-        </div>
+        <hr>
 
         <!-- 테스트 수행 프로세스 -->
         <div id="section9" class="image-section">
@@ -229,9 +248,7 @@
             이 프로세스를 통해 테스트 설계부터 수정 검증, 회귀 테스트까지 일관된 기준으로 품질을 관리하였습니다.
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images7.png" alt="테스트 수행 프로세스" class="result-image">
-        </div>
+        <hr>
 
         <!-- 결과 분석 -->
         <div id="section10" class="image-section">
@@ -252,9 +269,7 @@
             즉, 본 테스트를 통해 기능 안정성뿐 아니라 보안성과 사용자 경험 측면의 문제까지 함께 도출하고 개선할 수 있었습니다.
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images8.png" alt="결과 분석" class="result-image">
-        </div>
+        <hr>
 
         <!-- 수행 역량 -->
         <div id="section11" class="image-section">
@@ -273,9 +288,7 @@
             • 기능/보안/성능을 통합적으로 검증하는 QA 수행 능력
         </p>
 
-        <div class="image-section">
-            <img src="portfolio2/images9.png" alt="수행 역량" class="result-image">
-        </div>
+        <hr>
 
         <!-- 최종 정리 -->
         <div id="section12" class="image-section">
@@ -290,16 +303,12 @@
         <p class="image-description">
             이를 통해 기능 중심 테스트, 보안 점검, 성능 측정, 결함 관리, 재검증까지 연결되는 실무 중심의 QA 경험을 확보하였습니다.
         </p>
-
-        <div class="image-section">
-            <img src="portfolio2/images10.png" alt="최종 정리" class="result-image">
-        </div>
     </div>
 
     <div class="right-sidebar">
         <h3>목차</h3>
         <ul>
-            <li><a href="#section1">제목</a></li>
+            <li><a href="#section1">프로젝트 개요</a></li>
             <li><a href="#section2">테스트 화면</a></li>
             <li><a href="#section3">메뉴 트리</a></li>
             <li><a href="#section4">테스트 설계 방법</a></li>
