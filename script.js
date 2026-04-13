@@ -159,7 +159,7 @@ function showContent(section) {
                 </div>
                 <div class="post-image">
                     <a href="portfolio2.html" target="_blank">
-                        <img src="images/qa.png" alt="QA 프로젝트">
+                        <img src="images/QA.png" alt="QA 프로젝트">
                     </a>
                 </div>
             </div>
