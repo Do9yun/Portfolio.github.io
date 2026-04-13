@@ -379,12 +379,15 @@
 
     <script>
     function openModal(img) {
-        document.getElementById("imageModal").style.display = "flex";
-        document.getElementById("modalImage").src = img.src;
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+    
+        modal.classList.add("show");
+        modalImage.src = img.src;
     }
     
     function closeModal() {
-        document.getElementById("imageModal").style.display = "none";
+        document.getElementById("imageModal").classList.remove("show");
     }
     
     document.getElementById("imageModal").addEventListener("click", function () {
