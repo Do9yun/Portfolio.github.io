@@ -144,12 +144,12 @@ function showContent(section) {
             <div class="post">
                 <div class="post-text">
                     <h3>
-                        <a href="portfolio2.html" target="_blank">
+                        <a href="Portfolio2.html" target="_blank">
                             S/W QA 품질 검증 프로젝트
                         </a>
                     </h3>
                     <p>
-                        <a href="portfolio2.html" target="_blank">
+                        <a href="Portfolio2.html" target="_blank">
                         웹 서비스 ‘내 프로필 수정 기능’을 대상으로 기능 테스트, 사용성 테스트, 보안 테스트,
                         성능 테스트를 수행한 프로젝트입니다. 테스트 케이스 설계부터 결함 도출, 재검증,
                         회귀 테스트까지 QA 전 과정을 수행하였으며 Invicti, Postman, JMeter를 활용하여
@@ -158,7 +158,7 @@ function showContent(section) {
                     </p>
                 </div>
                 <div class="post-image">
-                    <a href="portfolio2.html" target="_blank">
+                    <a href="Portfolio2.html" target="_blank">
                         <img src="images/qa.png" alt="QA 프로젝트">
                     </a>
                 </div>
