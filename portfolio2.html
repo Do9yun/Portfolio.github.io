@@ -370,10 +370,26 @@
     <a href="#top" id="scrollTopButton" aria-label="맨 위로 이동">
         <img src="icon/화살표.png" alt="맨 위로 이동">
     </a>
+
     <!-- 이미지 확대 모달 -->
     <div id="imageModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImage" onclick="event.stopPropagation()">
     </div>
+
+    <script>
+    function openModal(img) {
+        document.getElementById("imageModal").style.display = "block";
+        document.getElementById("modalImage").src = img.src;
+    }
+    
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    
+    document.getElementById("imageModal").addEventListener("click", function () {
+        closeModal();
+    });
+    </script>
 </body>
 </html>
