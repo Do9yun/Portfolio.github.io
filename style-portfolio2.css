@@ -155,10 +155,10 @@ html {
 .modal-content {
     display: block;
     margin: auto;
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1600px;
     height: auto;
-    max-height: 85vh;
+    max-height: 100vh;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
