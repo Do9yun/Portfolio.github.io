@@ -3,150 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 모델을 활용한 재난 예방 시스템</title>
+    <title>S/W QA 품질 검증 프로젝트</title>
     <link rel="stylesheet" href="style-portfolio1.css">
 </head>
 <body>
-    <!-- 페이지 맨 위로 이동할 수 있도록 id 추가 -->
     <div id="top"></div>
+
     <div class="content-container">
-        <h1 id="section1">AI 모델을 활용한 재난 예방 시스템</h1>
-        <p>       
-            
-        <!-- 국내 화재 동향 -->
+        <h1 id="section1">S/W QA 품질 검증 프로젝트</h1>
+
+        <p class="image-description">
+            웹 서비스의 <strong>내 프로필 편집 기능</strong>을 대상으로 기능, 사용성, 보안성, 성능을 포함한 전반적인 품질 검증을 수행하였습니다.
+            단순 기능 동작 여부만 확인하는 수준이 아니라, 메뉴 구조를 기준으로 테스트 범위를 정의하고 기능 단위별 테스트 케이스를 설계하여 체계적으로 검증하였습니다.
+        </p>
+        <p class="image-description">
+            테스트 수행 과정에서 발견된 결함은 재현 가능한 형태로 정리하여 결함 리포트로 작성하였고, 개발 수정 이후에는 동일 테스트 케이스를 기준으로 재검증을 수행하였습니다.
+            또한 수정 과정에서 영향을 받을 수 있는 범위를 확인하기 위해 전체 기능 대상 회귀 테스트를 진행하여 최종 품질을 검증하였습니다.
+        </p>
+        <p class="image-description">
+            추가로 보안 점검 도구인 <strong>Invicti</strong>를 활용하여 입력값 검증, 파일 업로드, HTTPS 보안 설정, 인증서, TLS 암호화 설정 등 기능 테스트만으로 확인하기 어려운 보안 취약점까지 함께 점검하였습니다.
+            성능 측면에서는 서버와 클라이언트 양측에서 자원 사용량을 측정하여 실제 서비스 환경에서의 안정성을 확인하였습니다.
+        </p>
+
+        <!-- 테스트 화면 -->
         <div id="section2" class="image-section">
-            <img src="fire detection images/국내 화재 동향.png" alt="국내 화재 동향 그래프" class="fire-trend-image">
+            <h2>테스트 화면</h2>
+            <img src="portfolio2/images1.png" alt="테스트 화면" class="result-image">
         </div>
-        <p class="image-description">
-            이 그래프는 2020년부터 2022년까지 장소별 화재 발생 건수를 보여줍니다. 주거시설에서 가장 많은 화재가 발생했으며, 매년 비슷한 수준을 유지하고 있습니다. 산업시설과 자동차/운송수단에서도 화재가 꾸준히 발생하며 주요 화재 장소로 나타납니다. 반면, 위험물/가스 제조소나 도로에서는 화재 건수가 매우 적습니다. 전반적으로 연도별 큰 변화는 없지만, 화재 예방이 필요한 주요 장소가 명확히 드러납니다.
-        </p>
-        
-        <!-- 화재 골든 타임 -->
+
+        <!-- 메뉴 트리 -->
         <div id="section3" class="image-section">
-            <img src="fire detection images/화재 골든 타임.png" alt="화재 골든 타임" class="fire-golden-time-image">
+            <h2>메뉴 트리</h2>
+            <img src="portfolio2/images2.png" alt="메뉴 트리" class="result-image">
         </div>
-        <p class="image-description">
-            화재가 발생하면 초기 1분은 개인이 소화기로 진압 가능한 최적의 시간입니다. 3분이 지나면 연소가 확산되고 유독가스가 발생해 인명 피해 위험이 커집니다. 5분이 되면 전소 단계로 접어들어 큰 인명과 재산 피해가 발생합니다. 초기 1분 내 대응이 가장 중요합니다.
-        </p>
 
-        <!-- 목표 -->
+        <!-- 테스트 설계 방법 -->
         <div id="section4" class="image-section">
-            <img src="fire detection images/목표.png" alt="AI 모델 개발 목표" class="goal-image">
+            <h2>테스트 설계 방법</h2>
         </div>
+
         <p class="image-description">
-            제가 구현하려는 목표는 다양한 환경에서 화염과 연기를 정확히 탐지할 수 있는 AI 모델을 개발하는 것입니다. 이 모델은 실내와 실외 환경에서 발생하는 화재를 신속히 인지하여 경고를 제공할 수 있도록 설계됩니다. 주요 기능으로는 화염과 연기를 명확히 구분하며, 다양한 조명, 각도, 배경 조건에서도 높은 정확도를 유지하는 것입니다. 이를 통해 화재 발생 시 초기에 대응할 수 있는 효율적인 시스템을 구현하는 것이 최종 목표입니다.
+            메뉴 트리를 기준으로 기능 단위를 분리하고, 각 기능별로 테스트 케이스를 설계하였습니다.
+            테스트 케이스는 단순 정상 동작 여부만 확인하는 것이 아니라, 사용자 관점과 시스템 관점을 함께 반영하여 작성하였습니다.
         </p>
 
-        <!-- 이유 -->
+        <p class="image-description">
+            테스트 설계 시 다음 기준을 포함하였습니다.
+        </p>
+
+        <p class="image-description">
+            • <strong>기능적합성</strong>: 기능이 요구사항에 맞게 정상 동작하는지 검증<br>
+            • <strong>사용성</strong>: 안내 메시지, UI 흐름, 사용자 편의성 검증<br>
+            • <strong>보안성</strong>: 입력값 검증, 파일 업로드, 취약점 검증<br>
+            • <strong>운영성</strong>: 실행 상태 표시, 취소 기능, 처리 흐름 검증
+        </p>
+
+        <p class="image-description">
+            또한 모든 테스트 케이스는 사전조건, 기대 결과, 실제 결과, 결함 여부를 포함하여 작성하였으며, 재현 가능한 형태로 관리하였습니다.
+            이 과정을 통해 테스트 수행 이후 결함 발생 시 원인 추적과 수정 검증이 가능하도록 구성하였습니다.
+        </p>
+
+        <p class="image-description">
+            추가로 다음과 같은 방향을 반영하여 테스트를 설계하였습니다.
+        </p>
+
+        <p class="image-description">
+            • 정상 시나리오와 비정상 시나리오를 함께 검증<br>
+            • 파일 업로드, 입력 필드, 버튼 동작 등 사용자 영향이 큰 기능 우선 점검<br>
+            • 기능 결함뿐 아니라 보안 취약점까지 함께 도출할 수 있도록 테스트 항목 구성<br>
+            • 수정 이후 재검증과 회귀 테스트까지 연결 가능한 구조로 설계
+        </p>
+
+        <!-- 테스트 케이스 -->
         <div id="section5" class="image-section">
-            <img src="fire detection images/이유.png" alt="AI 모델 개발 이유" class="reason-image">
+            <h2>테스트 케이스</h2>
         </div>
+
         <p class="image-description">
-            기존 화재 감지 시스템은 연기 감지기나 열 감지기에 의존하여 작동하며, 물리적 설치와 제한된 반응 범위가 특징입니다. 이러한 시스템은 연기나 열이 일정 수준에 도달해야 작동하기 때문에 초기 화재를 감지하는 데 한계가 있습니다. 또한, 특정 환경에서는 오작동하거나 감지 속도가 느릴 수 있습니다.
-        </p>
-        <p class="image-description">
-            이러한 단점을 해결하기 위해, 저는 AI를 활용한 화염 및 연기 탐지 모델을 목표로 설정했습니다. 이 모델은 영상 데이터를 분석하여 실시간으로 화재를 탐지하고, 기존 시스템보다 더 빠르고 정확한 경고를 제공할 수 있습니다. 특히 다양한 환경과 조건에서도 유연하게 작동하며, 화재 초기 단계에서 빠르게 대응할 수 있다는 점이 주요 이유입니다.
+            테스트 케이스는 메뉴 구조를 기준으로 기능 단위별로 설계하였습니다.
+            기능적합성, 사용성, 보안성을 구분하여 각 항목별 검증 포인트를 도출하였고, 결과는 P, F, N/A 기준으로 기록하였습니다.
         </p>
 
-        <!-- YOLOv8 -->
-        <div id="section6" class="image-section">
-            <img src="fire detection images/fpn&prnet.png" alt="YOLOv8과 FPN 구조" class="yolo-image">
-        </div>
         <p class="image-description">
-            이 프로그램을 만들기 위해 YOLOv8을 사용했습니다. YOLOv8은 객체 감지 분야에서 최신 기술을 적용한 모델로, 실시간 탐지와 높은 정확도를 제공하기 때문에 선택했습니다. 특히 화재와 연기 같은 다양한 크기와 형태를 가진 객체를 감지하는 데 있어 매우 효과적입니다.
-        </p>
-        <p class="image-description">
-            YOLOv8은 위의 FPN(Feature Pyramid Network) 구조와 유사한 방식을 사용해 다양한 스케일에서 특징을 추출하고 결합합니다. 이는 작은 화염, 연기, 혹은 먼 거리의 작은 객체까지 효과적으로 탐지할 수 있는 이유입니다. FPN은 이미지의 작은 특징부터 큰 특징까지 모두 활용해 감지 정확도를 높이는 구조인데, YOLOv8도 이러한 다중 스케일 학습을 통해 다양한 크기의 객체를 처리합니다.
-        </p>
-        <p class="image-description">
-            또한 YOLOv8은 가벼운 구조로 빠르게 작동하여 실시간 탐지가 가능합니다. 화재와 같은 긴급 상황에서는 빠른 탐지가 매우 중요하기 때문에, YOLOv8은 이러한 요구에 적합한 모델입니다. 최신 기술로 최적화된 학습 알고리즘을 사용해 기존 모델보다 더 높은 정확도와 성능을 제공하며, 이를 통해 다양한 환경에서 화재와 연기를 신속하고 정확하게 감지할 수 있습니다.
+            특히 사진 변경 기능은 업로드 정상 동작, 업로드 제한, 실행파일 업로드 차단, 안내 메시지, 진행 상태, 취소 기능까지 세분화하여 설계하였고,
+            별명 입력 기능은 입력 제한, 특수문자 처리, XSS 및 SQL 특수문자 검증까지 포함하여 보안성을 함께 점검하였습니다.
         </p>
 
-        <!-- 이미지 피라미드 -->
-        <div id="section7" class="image-section">
-            <img src="fire detection images/이미지피라미드.png" alt="이미지 피라미드 기법" class="pyramid-image">
-        </div>
         <p class="image-description">
-            작은 객체를 정확히 탐지하기 위해 이미지 피라미드 기법을 사용했습니다. 이 기법은 동일한 이미지를 다양한 크기로 축소하여 여러 해상도로 변환하는 방법으로, 크기가 다른 객체를 효과적으로 탐지할 수 있도록 돕습니다. 이미지의 원본 크기는 큰 화염이나 연기를 감지하기에 적합하고, 축소된 크기에서는 작은 화염이나 먼 거리의 연기 같은 세밀한 특징을 더 잘 분석할 수 있습니다. 이렇게 이미지를 다양한 해상도로 변환하면, 고해상도에서 작은 객체를 탐지하고 저해상도에서 큰 객체를 효율적으로 분석할 수 있어 다양한 크기와 형태를 가진 객체를 놓치지 않고 탐지할 수 있습니다.
-        </p>
-        <p class="image-description">
-            이 프로그램은 이미지 피라미드 기법을 활용해 다중 해상도의 데이터를 생성하고 이를 YOLOv8과 같은 객체 탐지 모델과 결합하여, 화재와 연기와 같은 미세한 징후도 놓치지 않도록 설계되었습니다. 이는 초기 화재 징후를 신속히 감지하고 대응할 수 있도록 시스템의 탐지 성능과 정확도를 높이는 데 중요한 역할을 합니다.
+            또한 버튼 기능은 단순 클릭 여부만 확인하는 것이 아니라, 실제 저장 반영 여부와 취소 시 원복 여부까지 검증하여 사용자의 최종 작업 결과가 정확하게 처리되는지를 확인하였습니다.
         </p>
 
-        <!-- 이미지 피라미드 코드 섹션 -->
         <div class="image-section">
-            <img src="fire detection images/이미지피라미드 코드.png" alt="이미지 피라미드 코드" class="code-image">
+            <img src="portfolio2/images3.png" alt="테스트 케이스" class="result-image">
         </div>
+
+        <!-- 결함 리포트 -->
+        <div id="section6" class="image-section">
+            <h2>결함 리포트</h2>
+            <img src="portfolio2/images4.png" alt="결함 리포트" class="result-image">
+        </div>
+
         <p class="image-description">
-            이 코드는 이미지 피라미드 기법을 적용해 이미지를 다양한 크기로 변환합니다. 먼저, scales 리스트를 통해 0.3, 0.5, 1.0 크기로 이미지를 축소할 비율을 정의합니다. 각 비율에 맞는 출력 디렉토리를 생성한 뒤, 입력 디렉토리에서 이미지 파일을 읽어옵니다. 읽은 이미지는 OpenCV의 <code>cv2.resize</code>를 사용해 정의된 비율로 축소되며, 축소된 이미지는 각 스케일에 해당하는 디렉토리에 저장됩니다. 이 과정은 화재나 연기와 같은 작은 객체를 탐지하기 위한 데이터 증강 작업으로, 다양한 크기의 이미지를 생성해 모델 학습의 정확도를 높이는 데 활용됩니다.
+            테스트 수행 결과 실패(F)한 항목에 대해서는 결함 리포트를 작성하였습니다.
+            결함 리포트는 단순히 문제를 나열하는 형태가 아니라, 실제 재현 가능한 절차를 포함하여 작성하였습니다.
+            각 결함은 순번, 시험환경 OS, 결함요약, 결함정도, 발생빈도, 품질특성, 결함 설명, 비고, 결함 발송일 기준으로 정리하였습니다.
         </p>
 
-        <!-- 검증 코드 섹션 -->
+        <p class="image-description">
+            결함 설명에는 다음 내용을 포함하였습니다.
+        </p>
+
+        <p class="image-description">
+            • 메뉴 경로<br>
+            • 실제 발생 현상<br>
+            • 재현 과정<br>
+            • 필요한 경우 참고 화면 번호
+        </p>
+
+        <p class="image-description">
+            이를 통해 개발자와의 커뮤니케이션 시 결함 전달 정확도를 높였고, 수정 이후 동일한 절차로 재검증이 가능하도록 관리하였습니다.
+        </p>
+
+        <p class="image-description">
+            주요 결함 사례는 다음과 같습니다.
+        </p>
+
+        <p class="image-description">
+            • 이미지 변경 후 UI에 즉시 반영되지 않는 현상<br>
+            • 비허용 확장자 업로드 가능<br>
+            • 삭제 후 기본 이미지 미표시<br>
+            • 별명 입력 길이 제한 미적용<br>
+            • 특수문자 입력 오류<br>
+            • 적용 버튼 클릭 시 데이터 저장 실패<br>
+            • 취소 버튼 클릭 시 변경사항 원복 실패<br>
+            • 업로드 진행 상태 미표시<br>
+            • 업로드 취소 기능 미동작
+        </p>
+
+        <!-- 보안 테스트 -->
+        <div id="section7" class="image-section">
+            <h2>보안 테스트 수행</h2>
+        </div>
+
+        <p class="image-description">
+            보안성 검증을 위해 웹 취약점 스캐닝 도구인 <strong>Invicti</strong>를 활용하여 테스트를 수행하였습니다.
+            전체 웹 경로를 대상으로 자동 스캔을 수행한 후, 탐지된 취약점에 대해 실제 기능 테스트와 결합하여 재현 검증을 진행하였습니다.
+        </p>
+
+        <p class="image-description">
+            특히 다음 항목을 중심으로 보안성을 점검하였습니다.
+        </p>
+
+        <p class="image-description">
+            • 입력값 검증 미흡 여부<br>
+            • 스크립트 파일 업로드 가능 여부<br>
+            • XSS 취약점<br>
+            • HTTPS 보안 설정<br>
+            • HSTS(Strict-Transport-Security) 헤더 설정 여부<br>
+            • 인증서 유효성 및 인증서 대상 정보 일치 여부<br>
+            • SSL/TLS 프로토콜 및 암호화 스위트 보안 수준<br>
+            • 서버 및 라이브러리 버전 정보 노출 여부
+        </p>
+
+        <p class="image-description">
+            테스트 결과 입력값 검증 및 파일 검증 로직이 미흡한 것으로 확인되었으며, 실행파일 업로드 취약점과 XSS 취약점이 도출되었습니다.
+            또한 설정 영역에서는 HSTS 미설정 또는 설정 미흡, 인증서 정보 불일치, 취약한 TLS 암호화 스위트 활성화, 구버전 TLS 허용 등 보안 설정 관점의 개선 필요 사항도 확인하였습니다.
+        </p>
+
+        <p class="image-description">
+            이 과정에서 단순히 취약점 탐지 결과를 확인하는 데 그치지 않고, 실제 서비스에 어떤 영향을 줄 수 있는지까지 함께 분석하였습니다.
+            예를 들어 HSTS 미설정은 HTTPS 강제 정책이 적용되지 않아 최초 접속 구간에서 보안성이 저하될 수 있고, 취약한 TLS 설정은 최신 보안 기준에 미달하여 서비스 신뢰도와 보안 수준에 영향을 줄 수 있음을 확인하였습니다.
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images5.png" alt="보안 테스트" class="result-image">
+        </div>
+
+        <!-- 성능 테스트 -->
         <div id="section8" class="image-section">
-            <img src="fire detection images/검증 코드.png" alt="검증 코드" class="code-image">
+            <h2>성능 테스트 수행</h2>
         </div>
+
         <p class="image-description">
-            scale_30과 scale_50 데이터를 통합하여 학습 데이터로 사용하며, 이를 <code>train_dir_combined</code> 디렉토리에 저장합니다. 이 데이터는 작은 화염이나 연기 같은 작은 객체를 학습하기 위해 사용됩니다.
-            <br>
-            검증 데이터는 원본 크기의 <code>scale_100</code> 데이터를 사용하며, 검증 데이터 경로는 <code>val</code>에 설정됩니다. 검증 단계에서 원본 크기를 사용함으로써, 모델이 실제 환경에서 다양한 크기의 객체를 정확히 탐지할 수 있는 성능을 평가합니다.
-            <br>
-            이 설정은 작은 객체로 학습하고, 원본 크기로 검증하여 모델의 성능을 효과적으로 테스트하는 데 초점을 맞추고 있습니다.
-            <br><br>
-            이렇게 만들어진 데이터를 이용하여 학습을 완료하면 
+            서버 환경에 따라 다음 도구를 활용하여 성능을 측정하였습니다.
         </p>
 
-        <!-- 학습 결과 섹션 -->
-        <div id="section9" class="image-section">
-            <img src="fire detection images/결과.png" alt="학습 결과" class="result-image">
-        </div>
         <p class="image-description">
-            위와 같은 결과를 얻을 수 있습니다. 이미지 상에서 화염과 연기를 정확히 감지하여 경계 상자로 표시되며, 각각의 감지 항목에 대한 신뢰도 점수도 확인할 수 있습니다.
-            <br><br>
-            이러한 결과는 모델이 다양한 크기와 형태의 객체를 성공적으로 탐지할 수 있도록 설계되었음을 보여줍니다. 이는 실제 화재 현장에서 신속하고 정확한 탐지가 가능하도록 중요한 역할을 합니다.
+            • Linux 환경: <strong>vmstat</strong><br>
+            • Windows 환경: <strong>성능 모니터</strong>
         </p>
+
+        <p class="image-description">
+            서버와 클라이언트 양측에서 CPU, 메모리, 시스템 부하를 동시에 측정하여 실제 서비스 환경에서의 성능을 확인하였습니다.
+            특히 기능 수행 시점과 결함 발생 가능성이 있는 구간을 기준으로 자원 사용량을 함께 분석하여, 단순 사용량 확인이 아니라 기능과 성능 간의 연관성도 함께 검토하였습니다.
+        </p>
+
+        <p class="image-description">
+            측정 결과 시스템 자원 사용은 전반적으로 안정적인 수준을 유지하였으며, 과부하 상황에서도 성능 저하 및 병목 현상은 발생하지 않았습니다.
+            이를 통해 본 기능은 보안 및 기능적 보완은 필요했지만, 시스템 자원 사용 측면에서는 비교적 안정적인 구조로 동작하고 있음을 확인하였습니다.
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images6.png" alt="성능 테스트" class="result-image">
+        </div>
+
+        <!-- 테스트 수행 프로세스 -->
+        <div id="section9" class="image-section">
+            <h2>테스트 수행 프로세스</h2>
+        </div>
+
+        <p class="image-description">
+            1. 메뉴트리 기반 기능 구조 정의<br><br>
+            2. 테스트 케이스 설계<br><br>
+            3. 기능 테스트 수행<br><br>
+            4. 보안 테스트 수행<br><br>
+            5. 테스트 결과 기록(P/F/N/A)<br><br>
+            6. 결함 도출 및 결함 리포트 작성<br><br>
+            7. 개발 수정 요청 및 패치 적용<br><br>
+            8. 동일 테스트 케이스 기반 재검증 수행<br><br>
+            9. 전체 기능 대상 회귀 테스트 수행<br><br>
+            10. 최종 품질 검증 완료
+        </p>
+
+        <p class="image-description">
+            이 프로세스를 통해 테스트 설계부터 수정 검증, 회귀 테스트까지 일관된 기준으로 품질을 관리하였습니다.
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images7.png" alt="테스트 수행 프로세스" class="result-image">
+        </div>
+
+        <!-- 결과 분석 -->
+        <div id="section10" class="image-section">
+            <h2>결과 분석</h2>
+        </div>
+
+        <p class="image-description">
+            기능은 전반적으로 정상 동작하였으나, 입력값 검증 및 파일 업로드 처리 과정에서 보안 취약점이 확인되었습니다.
+            또한 일부 기능에서는 UI 반영 지연, 저장 실패, 원복 실패와 같은 기능적 결함이 발생하였습니다.
+        </p>
+
+        <p class="image-description">
+            결함 수정 이후 재검증을 수행하였으며, 추가적인 결함 발생 여부를 확인하기 위해 전체 기능에 대한 회귀 테스트를 진행하였습니다.
+            그 결과 최종적으로 모든 기능이 정상 동작함을 확인하였습니다.
+        </p>
+
+        <p class="image-description">
+            즉, 본 테스트를 통해 기능 안정성뿐 아니라 보안성과 사용자 경험 측면의 문제까지 함께 도출하고 개선할 수 있었습니다.
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images8.png" alt="결과 분석" class="result-image">
+        </div>
+
+        <!-- 수행 역량 -->
+        <div id="section11" class="image-section">
+            <h2>수행 역량</h2>
+        </div>
+
+        <p class="image-description">
+            • 메뉴 구조 기반 테스트 범위 정의 능력<br><br>
+            • 기능 단위 테스트 케이스 설계 능력<br><br>
+            • 사용자 시나리오 기반 테스트 수행 능력<br><br>
+            • Invicti를 활용한 웹 취약점 분석 경험<br><br>
+            • 입력값 및 파일 업로드 보안 검증 경험<br><br>
+            • 성능 측정 및 시스템 자원 분석 경험<br><br>
+            • 결함 재현 및 리포트 작성 능력<br><br>
+            • 재검증 및 회귀 테스트 수행 능력<br><br>
+            • 기능/보안/성능을 통합적으로 검증하는 QA 수행 능력
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images9.png" alt="수행 역량" class="result-image">
+        </div>
+
+        <!-- 최종 정리 -->
+        <div id="section12" class="image-section">
+            <h2>최종 정리</h2>
+        </div>
+
+        <p class="image-description">
+            테스트 케이스 설계부터 테스트 수행, 결함 분석, 보안 및 성능 검증, 회귀 테스트까지 QA 전 과정을 수행하였습니다.
+            단순히 기능이 동작하는지 확인하는 수준을 넘어, 실제 서비스 품질에 영향을 주는 기능 결함과 보안 취약점을 함께 도출하고 개선 방향을 제시하였습니다.
+        </p>
+
+        <p class="image-description">
+            이를 통해 기능 중심 테스트, 보안 점검, 성능 측정, 결함 관리, 재검증까지 연결되는 실무 중심의 QA 경험을 확보하였습니다.
+        </p>
+
+        <div class="image-section">
+            <img src="portfolio2/images10.png" alt="최종 정리" class="result-image">
+        </div>
     </div>
-    
+
     <div class="right-sidebar">
         <h3>목차</h3>
         <ul>
             <li><a href="#section1">제목</a></li>
-            <li><a href="#section2">화재 발생 동향</a></li>
-            <li><a href="#section3">화재 골든 타임</a></li>
-            <li><a href="#section4">목표</a></li>
-            <li><a href="#section5">개발 이유</a></li>
-            <li><a href="#section6">YOLOv8 설명</a></li>
-            <li><a href="#section7">이미지 피라미드</a></li>
-            <li><a href="#section8">검증 코드</a></li>
-            <li><a href="#section9">결과</a></li>
+            <li><a href="#section2">테스트 화면</a></li>
+            <li><a href="#section3">메뉴 트리</a></li>
+            <li><a href="#section4">테스트 설계 방법</a></li>
+            <li><a href="#section5">테스트 케이스</a></li>
+            <li><a href="#section6">결함 리포트</a></li>
+            <li><a href="#section7">보안 테스트</a></li>
+            <li><a href="#section8">성능 테스트</a></li>
+            <li><a href="#section9">테스트 프로세스</a></li>
+            <li><a href="#section10">결과 분석</a></li>
+            <li><a href="#section11">수행 역량</a></li>
+            <li><a href="#section12">최종 정리</a></li>
         </ul>
     </div>
 
     <script>
-    // 사이드바 항목 클릭 시 부드러운 스크롤
-    document.querySelectorAll('.right-sidebar a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const offset = 10; // 여백 설정
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+        document.querySelectorAll('.right-sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const offset = 10;
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
 
-            if (targetElement) {
-                const targetPosition = targetElement.offsetTop - offset;
+                if (targetElement) {
+                    const targetPosition = targetElement.offsetTop - offset;
 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-    });
-</script>
-    <!-- 페이지 맨 위로 이동할 수 있도록 id 추가 -->
-    <div id="top"></div>
+    </script>
 
-    <!-- 맨 위로 이동 버튼 -->
     <a href="#top" id="scrollTopButton" aria-label="맨 위로 이동">
-
         <img src="icon/화살표.png" alt="맨 위로 이동">
     </a>
 </body>
