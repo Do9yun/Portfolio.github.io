@@ -1,4 +1,4 @@
-/* 기본 스타일 */
+/* 기본 레이아웃 및 폰트 설정 */
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* 콘텐츠 컨테이너 중앙 정렬 */
+/* 메인 콘텐츠 영역 스타일 */
 .content-container {
     max-width: 800px;
     margin: 0 auto;
@@ -17,7 +17,7 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 제목 스타일 */
+/* 제목 및 본문 텍스트 스타일 */
 h1 {
     font-size: 2.5rem;
     color: #222;
@@ -25,7 +25,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* 본문 텍스트 스타일 */
 p {
     font-size: 1.2rem;
     line-height: 1.6;
@@ -33,22 +32,22 @@ p {
     text-align: justify;
 }
 
-/* 이미지 섹션 */
+/* 이미지 섹션 및 이미지 기본 스타일 */
 .image-section {
     text-align: center;
     margin: 20px 0;
 }
 
 .image-section img {
-    width: auto; /* 원본 너비 유지 */
-    height: auto; /* 원본 높이 유지 */
-    max-width: 100%; /* 화면보다 커지지 않도록 제한 */
+    width: auto;
+    height: auto;
+    max-width: 100%;
     border: 2px solid #ddd;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 이미지 설명 스타일 */
+/* 이미지 설명 텍스트 스타일 */
 .image-description {
     font-size: 1.1rem;
     color: #555;
@@ -57,7 +56,7 @@ p {
     margin-top: 15px;
 }
 
-/* 오른쪽 사이드바 스타일 */
+/* 우측 고정 목차 사이드바 스타일 */
 .right-sidebar {
     position: fixed;
     top: 150px;
@@ -100,7 +99,7 @@ p {
     text-decoration: underline;
 }
 
-/* 부드러운 스크롤 */
+/* 페이지 내 부드러운 스크롤 이동 */
 html {
     scroll-behavior: smooth;
 }
@@ -108,26 +107,27 @@ html {
 /* 맨 위로 이동 버튼 스타일 */
 #scrollTopButton {
     position: fixed;
-    bottom: 20px; /* 화면 아래에서 20px 위 */
-    right: 20px; /* 화면 오른쪽에서 20px 왼쪽 */
-    width: 50px; /* 버튼 너비 */
-    height: 50px; /* 버튼 높이 */
-    display: block; /* 항상 표시 */
-    z-index: 1000; /* 다른 요소 위에 표시 */
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    display: block;
+    z-index: 1000;
 }
 
 #scrollTopButton img {
-    width: 100%; /* 이미지 너비 */
-    height: 100%; /* 이미지 높이 */
-    border-radius: 50%; /* 둥근 모양 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-    transition: opacity 0.3s ease; /* 부드러운 효과 */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
 }
 
 #scrollTopButton img:hover {
-    opacity: 0.8; /* 마우스 호버 시 투명도 변경 */
+    opacity: 0.8;
 }
 
+/* 섹션 구분선 스타일 */
 .section-line {
     border: none;
     height: 1px;
@@ -135,20 +135,7 @@ html {
     margin: 50px 0;
 }
 
-/* 모달 배경 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
+/* 이미지 확대 모달 배경 및 표시 제어 */
 .modal {
     display: none;
     position: fixed;
@@ -165,7 +152,8 @@ html {
 .modal.show {
     display: flex;
 }
- /* 확대 이미지 */
+
+/* 모달 내부 확대 이미지 스타일 */
 .modal-content {
     display: block;
     margin: auto;
@@ -179,12 +167,13 @@ html {
     animation: zoomIn 0.2s ease;
 }
 
+/* 모달 이미지 확대 애니메이션 */
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* 닫기 버튼 */
+/* 모달 닫기 버튼 스타일 */
 .close {
     position: absolute;
     top: 40px;
@@ -195,6 +184,7 @@ html {
     cursor: pointer;
 }
 
+/* 이미지 호버 효과 및 클릭 커서 설정 */
 .image-section img {
     transition: transform 0.3s ease;
     cursor: pointer;
