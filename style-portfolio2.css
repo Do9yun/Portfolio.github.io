@@ -1,1 +1,136 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
 
+/* 콘텐츠 컨테이너 중앙 정렬 */
+.content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+h1 {
+    font-size: 2.5rem;
+    color: #222;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 본문 텍스트 스타일 */
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+/* 이미지 섹션 */
+.image-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.image-section img {
+    width: auto; /* 원본 너비 유지 */
+    height: auto; /* 원본 높이 유지 */
+    max-width: 100%; /* 화면보다 커지지 않도록 제한 */
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 이미지 설명 스타일 */
+.image-description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    text-align: justify;
+    margin-top: 15px;
+}
+
+/* 오른쪽 사이드바 스타일 */
+.right-sidebar {
+    position: fixed;
+    top: 150px;
+    right: 20px;
+    width: 200px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+.right-sidebar h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: black;
+}
+
+.right-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.right-sidebar ul li {
+    margin-bottom: 8px;
+}
+
+.right-sidebar ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.right-sidebar ul li a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+/* 부드러운 스크롤 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 맨 위로 이동 버튼 스타일 */
+#scrollTopButton {
+    position: fixed;
+    bottom: 20px; /* 화면 아래에서 20px 위 */
+    right: 20px; /* 화면 오른쪽에서 20px 왼쪽 */
+    width: 50px; /* 버튼 너비 */
+    height: 50px; /* 버튼 높이 */
+    display: block; /* 항상 표시 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+#scrollTopButton img {
+    width: 100%; /* 이미지 너비 */
+    height: 100%; /* 이미지 높이 */
+    border-radius: 50%; /* 둥근 모양 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    transition: opacity 0.3s ease; /* 부드러운 효과 */
+}
+
+#scrollTopButton img:hover {
+    opacity: 0.8; /* 마우스 호버 시 투명도 변경 */
+}
+
+.section-line {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #aaa, transparent);
+    margin: 50px 0;
+}
