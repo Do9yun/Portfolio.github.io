@@ -152,9 +152,13 @@ html {
 .modal-content {
     display: block;
     margin: auto;
-    max-width: 80%;
-    max-height: 80%;
+    width: 90%;
+    max-width: 1200px;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* 닫기 버튼 */
