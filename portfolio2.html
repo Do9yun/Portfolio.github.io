@@ -371,9 +371,9 @@
         <img src="icon/화살표.png" alt="맨 위로 이동">
     </a>
     <!-- 이미지 확대 모달 -->
-<div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-</div>
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" onclick="event.stopPropagation()">
+    </div>
 </body>
 </html>
