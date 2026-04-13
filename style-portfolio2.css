@@ -167,3 +167,12 @@ html {
     font-weight: bold;
     cursor: pointer;
 }
+
+.image-section img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.image-section img:hover {
+    transform: scale(1.05);
+}
