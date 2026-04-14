@@ -254,3 +254,11 @@ header {
     max-width: 800px;
     margin: 0 auto;
 }
+
+.cover-letter {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
