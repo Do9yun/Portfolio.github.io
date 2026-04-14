@@ -98,6 +98,7 @@ function showContent(section) {
         `,
 
         resume: `
+        <div class="resume-section">
             <h2>자기소개서</h2>
             <p>
                 서비스의 완성도는 개발이 아닌 검증에서 결정된다고 생각합니다. 저는 사용자 입장에서 문제를 발견하고
@@ -134,6 +135,8 @@ function showContent(section) {
                 앞으로는 기능 테스트를 넘어 성능, 보안, 자동화 테스트까지 역량을 확장하여
                 서비스 품질을 전반적으로 책임질 수 있는 QA 엔지니어로 성장하겠습니다.
             </p>
+        </div>
+        
         `,
 
         portfolio: `
