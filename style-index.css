@@ -1,9 +1,10 @@
+/* 커스텀 폰트 설정 */
 @font-face {
     font-family: 'Permanent Marker';
     src: url('font/PermanentMarker-Regular.ttf') format('truetype');
 }
 
-/* 기본 스타일 */
+/* 기본 레이아웃 및 배경 스타일 */
 body {
     margin: 0;
     padding: 0;
@@ -13,7 +14,7 @@ body {
     color: white;
 }
 
-/* 헤더 스타일 */
+/* 상단 헤더 영역 */
 header {
     position: absolute;
     top: 10px;
@@ -25,7 +26,7 @@ header {
     z-index: 10;
 }
 
-/* 로고 스타일 */
+/* 로고 이미지 스타일 */
 .logo img {
     width: 100px;
     height: auto;
@@ -34,18 +35,16 @@ header {
     margin: 10px;
 }
 
-
 /* 홈 버튼 스타일 */
 .home-button img {
     filter: invert(100%) brightness(200%);
     width: 50px;
     height: 50px;
-    position: relative; /* 위치 조정을 위해 relative 추가 */
-    left: -10px; /* 왼쪽으로 10px 이동 */
+    position: relative;
+    left: -10px;
 }
 
-
-/* 콘텐츠 스타일 */
+/* 메인 콘텐츠 중앙 정렬 */
 .content {
     position: absolute;
     top: 50%;
@@ -54,45 +53,50 @@ header {
     text-align: center;
 }
 
+/* 상단 텍스트(WELCOME) 스타일 */
 .content h2 {
-    font-size: 2.5rem; /* WELCOME 크기 */
-    color: #FFA000; /* 더 진한 노란색 */
+    font-size: 2.5rem;
+    color: #FFA000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* h2 양옆 라인 스타일 */
 .content h2::before,
 .content h2::after {
     content: "";
     display: inline-block;
-    width: 80px; /* 작대기 길이 */
-    height: 3px; /* 작대기 두께 */
-    background-color: #FFA000; /* 더 진한 노란색 */
+    width: 80px;
+    height: 3px;
+    background-color: #FFA000;
     margin: 0 15px;
 }
 
+/* 메인 타이틀(PORTFOLIO) 스타일 */
 .content h1 {
-    font-size: 6rem; /* PORTFOLIO 크기 */
+    font-size: 6rem;
     font-weight: bold;
     margin: 20px 0;
-    color: white; /* 기본 흰색 */
+    color: white;
 }
 
+/* 하단 텍스트(이름) 스타일 */
 .content h3 {
-    font-size: 2rem; /* KIM DOGYUN 크기 */
-    color: #FFA000; /* 더 진한 노란색 */
+    font-size: 2rem;
+    color: #FFA000;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* h3 양옆 라인 스타일 */
 .content h3::before,
 .content h3::after {
     content: "";
     display: inline-block;
-    width: 60px; /* 작대기 길이 */
-    height: 3px; /* 작대기 두께 */
-    background-color: #FFA000; /* 더 진한 노란색 */
+    width: 60px;
+    height: 3px;
+    background-color: #FFA000;
     margin: 0 15px;
 }
