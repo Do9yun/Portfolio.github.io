@@ -50,6 +50,29 @@ function showContent(section) {
                     </tr>
                 </table>
             </div>
+
+            <!-- 경력 사항 -->
+            <h2 style="margin-top: 30px;">경력 사항</h2>
+
+            <table style="width:100%; border-collapse: collapse; margin-bottom: 30px;">
+                <tr>
+                    <th style="border:1px solid #ccc; padding:10px; background-color:#2f3e3e; color:white;">구분</th>
+                    <th style="border:1px solid #ccc; padding:10px; background-color:#2f3e3e; color:white;">내용</th>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ccc; padding:10px;">회사명</td>
+                    <td style="border:1px solid #ccc; padding:10px;">TTA (한국정보통신기술협회)</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ccc; padding:10px;">입사일</td>
+                    <td style="border:1px solid #ccc; padding:10px;">2025.03</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #ccc; padding:10px;">재직 상태</td>
+                    <td style="border:1px solid #ccc; padding:10px;">재직 중</td>
+                </tr>
+            </table>
+            
             <div class="education-section">
             <h3>학력 사항</h3>
             <table class="info-table">
