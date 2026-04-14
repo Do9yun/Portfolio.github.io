@@ -157,10 +157,14 @@
     
         modal.classList.add("show");
         modalImage.src = img.src;
+        modalImage.alt = img.alt;
+
+        document.body.style.overflow = "hidden";
     }
     
     function closeModal() {
         document.getElementById("imageModal").classList.remove("show");
+        document.body.style.overflow = "auto";
     }
     
     document.getElementById("imageModal").addEventListener("click", function () {
