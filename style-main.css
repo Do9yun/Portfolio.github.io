@@ -1,11 +1,13 @@
-/* 기본 스타일 */
+/* =========================
+   전체 레이아웃 및 기본 설정
+========================= */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* 세로 스크롤 활성화 */
-    overflow-x: hidden; /* 가로 스크롤 비활성화 */
+    overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
     background: url('images/main1.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -13,7 +15,9 @@ html, body {
     color: white;
 }
 
-/* 헤더 스타일 */
+/* =========================
+   헤더 영역 (로고, 상단)
+========================= */
 header {
     position: absolute;
     top: 10px;
@@ -26,40 +30,41 @@ header {
 
 .logo img {
     width: 100px;
-    height: auto;
     cursor: pointer;
     filter: invert(100%) brightness(200%);
     margin: 10px;
 }
 
-/* Portfolio 텍스트에만 특정 폰트 적용 */
+/* =========================
+   메인 타이틀 (PORTFOLIO)
+========================= */
 .portfolio-text {
-    font-family: 'Permanent Marker', Arial, sans-serif; /* 폰트 설정 */
-    font-size: 6rem; /* 텍스트 크기 */
+    font-family: 'Permanent Marker', Arial, sans-serif;
+    font-size: 6rem;
     font-weight: bold;
-    color: white;
-    margin: 0;
     position: absolute;
     top: 5px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* @font-face 설정 */
+/* 커스텀 폰트 */
 @font-face {
     font-family: 'Permanent Marker';
     src: url('font/PermanentMarker-Regular.ttf') format('truetype');
 }
 
-/* 사이드바 스타일 */
+/* =========================
+   사이드바 메뉴
+========================= */
 .sidebar {
     position: absolute;
     top: 200px;
     left: 10px;
-    background-color: rgba(0, 0, 0, 0.4);
     width: 200px;
     padding: 20px;
     border-radius: 5px;
+    background-color: rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -71,244 +76,174 @@ header {
     font-size: 1.2rem;
     padding: 10px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255,255,255,0.1);
     text-align: center;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255,255,255,0.3);
 }
 
-/* 콘텐츠 영역 스타일 */
+/* =========================
+   콘텐츠 영역 (오른쪽)
+========================= */
 .content-area {
     position: absolute;
     top: 200px;
-    left: calc(250px + 5px); /* 사이드바 너비(250px) + 간격(5px) */
+    left: calc(250px + 5px);
     right: 20px;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
-    color: white;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
     font-size: 1.2rem;
     line-height: 1.8;
-    display: none; /* 초기 상태를 숨김 */
 }
 
-/* 콘텐츠 영역이 활성화된 경우 */
 .content-area.active {
-    display: block; /* 활성화 시 보이도록 설정 */
+    display: block;
 }
 
-/* 닫기 버튼 스타일 */
+/* 닫기 버튼 */
 .close-button {
     position: absolute;
-    top: 10px; /* 콘텐츠 영역 상단에서의 위치 */
-    right: 10px; /* 콘텐츠 영역 오른쪽에서의 위치 */
+    top: 10px;
+    right: 10px;
     font-size: 1.5rem;
-    color: white;
     background: none;
     border: none;
+    color: white;
     cursor: pointer;
-    font-weight: bold;
-    transition: color 0.3s;
 }
 
 .close-button:hover {
-    color: black; /* 호버 시 검정색 */
-}
-
-/* 내 정보 섹션 스타일 */
-.info-section {
-    display: flex;
-    gap: 20px;
-    align-items: center; /* 중앙 정렬 */
-    margin-top: 20px;
-}
-
-/* 프로필 사진 */
-.profile-pic {
-    width: 150px; /* 이미지 크기 */
-    height: auto; /* 원본 비율 유지 */
-    border-radius: 10px; /* 둥근 모서리 */
-    border: 2px solid white;
-    object-fit: contain; /* 원본 비율 유지 */
-    background-color: rgba(255, 255, 255, 0.1); /* 빈 영역에 배경색 추가 */
-    margin-top: 5px; /* 사진과 표의 상단 라인 맞추기 */
-}
-
-/* 테이블 컨테이너: 사진과 정보를 담는 컨테이너 */
-.info-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 테이블 위쪽 정렬 */
-    gap: 10px;
-    margin-top: 5px; /* 사진과 테이블 간의 라인 정렬 */
-}
-
-/* 공통 테이블 스타일 */
-.info-table {
-    width: 100%;
-    border-collapse: collapse; /* 테이블 경계선 겹침 제거 */
-    margin-top: 0; /* 테이블 상단 여백 제거 */
-}
-
-/* 공통 셀 스타일 */
-.info-table th, .info-table td {
-    border: 1px solid white; /* 테두리 색상 */
-    padding: 10px; /* 셀 내부 여백 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    color: white; /* 텍스트 색상 */
-    font-size: 1rem; /* 텍스트 크기 */
-    vertical-align: middle; /* 내용 세로 정렬 */
-}
-
-/* 헤더 셀 스타일 */
-.info-table th {
-    background-color: rgba(255, 255, 255, 0.2); /* 헤더 배경 색상 */
-    font-weight: bold; /* 텍스트 굵게 */
-}
-
-/* 일반 셀 스타일 */
-.info-table td {
-    background-color: rgba(255, 255, 255, 0.1); /* 일반 셀 배경 색상 */
-}
-
-/* 학력 사항 표에 적용: 왼쪽 정렬 */
-.info-table td[colspan="3"] {
-    text-align: left; /* 왼쪽 정렬 */
-    padding-left: 15px; /* 좌측 여백 */
-}
-
-/* 병역 사항 테이블 스타일 */
-.military-section .info-table {
-    width: 100%;
-    table-layout: fixed; /* 열 너비 고정 */
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.military-section .info-table th, 
-.military-section .info-table td {
-    border: 1px solid white;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle; /* 내용 세로 정렬 */
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 열 너비 명시적 설정 */
-.military-section .info-table th:nth-child(1),
-.military-section .info-table td:nth-child(1) {
-    width: 20%; /* 군필 여부 열 */
-}
-
-.military-section .info-table th:nth-child(2),
-.military-section .info-table td:nth-child(2) {
-    width: 40%; /* 내용 열 */
-}
-
-.military-section .info-table th:nth-child(3),
-.military-section .info-table td:nth-child(3) {
-    width: 20%; /* 군별 */
-}
-
-.military-section .info-table th:nth-child(4),
-.military-section .info-table td:nth-child(4) {
-    width: 20%; /* 계급 */
-}
-
-/* 수상이력 섹션 */
-.career-section {
-    margin-top: 20px;
-}
-
-/* 테이블 스타일 */
-.info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.info-table th, .info-table td {
-    border: 1px solid white;
-    padding: 10px;
-    text-align: center;
-    font-size: 1rem;
-    color: white;
-    vertical-align: middle;
-}
-
-.info-table th {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: bold;
-}
-
-.info-table td {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* 포트폴리오 섹션 */
-.portfolio-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 30px; /* 추가된 여백 */
-}
-
-.post {
-    display: flex;
-    gap: 20px;
-    background-color:rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 10px;
-    align-items: center;
-    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
-}
-
-.post:hover {
-    background-color: rgba(0, 0, 0, 0.6); /* 카드 강조 효과 */
-}
-
-/* 제목목 텍스트 스타일 */
-.post-text {
-    flex: 2;
     color: black;
 }
 
+/* =========================
+   프로필 영역
+========================= */
+.info-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-pic {
+    width: 150px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================
+   테이블 공통 스타일
+========================= */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-table th, .info-table td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+}
+
+.info-table th {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.info-table td {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* 특정 셀 좌측 정렬 */
+.info-table td[colspan="3"] {
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* =========================
+   병역 테이블 (비율 고정)
+========================= */
+.military-section .info-table {
+    table-layout: fixed;
+}
+
+.military-section th:nth-child(1),
+.military-section td:nth-child(1) { width: 20%; }
+
+.military-section th:nth-child(2),
+.military-section td:nth-child(2) { width: 40%; }
+
+.military-section th:nth-child(3),
+.military-section td:nth-child(3) { width: 20%; }
+
+.military-section th:nth-child(4),
+.military-section td:nth-child(4) { width: 20%; }
+
+/* =========================
+   포트폴리오 / 스킬 카드 공통
+========================= */
+.portfolio-section,
+.skill-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* 카드 UI */
+.post {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    align-items: center;
+    background-color: rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+/* 텍스트 영역 */
+.post-text {
+    flex: 2;
+}
+
 .post-text h3 a {
-    color: white; /* 제목 글씨 색상 흰색 */
-    font-size: 1.8rem; /* 제목 글씨 크기 증가 */
-    text-decoration: none; /* 기본 상태에서 밑줄 없음 */
-    transition: all 0.3s ease-in-out;
+    color: white;
+    font-size: 1.8rem;
+    text-decoration: none;
 }
 
 .post-text h3 a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
-    text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
+    text-decoration: underline;
 }
 
-/* 본문 텍스트 */
+/* 본문 */
 .post-text p {
-    color: black; /* 본문 글씨 색상 흰색 */
-    font-size: 1rem; /* 본문 글씨 크기 */
+    font-size: 1rem;
     margin: 0;
 }
 
 .post-text p a {
-    color: white; /* 본문 링크 색상 흰색 */
+    color: white;
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
 }
 
 .post-text p a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
-    text-decoration-thickness: 1.5px; /* 밑줄 두께 */
+    text-decoration: underline;
 }
 
-/* 이미지 스타일 */
+/* 이미지 영역 */
 .post-image {
     flex: 1;
 }
@@ -316,88 +251,21 @@ header {
 .post-image img {
     width: 100%;
     border-radius: 5px;
-    border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
-    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
+    transition: 0.3s;
 }
 
 .post-image img:hover {
-    border: 3px solid white; /* 이미지 강조 효과 */
-    transform: scale(1.05); /* 확대 효과 */
+    transform: scale(1.05);
+    border: 3px solid white;
 }
 
-/* Skill 섹션 */
-.skill-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-top: 30px; /* 추가된 여백 */
-}
-
-.post {
-    display: flex;
-    gap: 20px;
-    background-color:rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 10px;
-    align-items: center;
-    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
-}
-
-.post:hover {
-    background-color: rgba(0, 0, 0, 0.6); /* 카드 강조 효과 */
-}
-
-/* 제목 텍스트 스타일 */
-.skill-section .post-text {
-    flex: 2;
-    color: black;
-}
-
+/* =========================
+   스킬 섹션 (별도 클래스)
+========================= */
 .skill-section .post-text h3 a {
-    color: white; /* 제목 글씨 색상 흰색 */
-    font-size: 1.8rem; /* 제목 글씨 크기 증가 */
-    text-decoration: none; /* 기본 상태에서 밑줄 없음 */
-    transition: all 0.3s ease-in-out;
-}
-
-.skill-section .post-text h3 a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
-    text-decoration-thickness: 2px; /* 밑줄 두께 조정 */
-}
-
-/* 본문 텍스트 */
-.skill-section .post-text p {
-    color: black; /* 본문 글씨 색상 흰색 */
-    font-size: 1rem; /* 본문 글씨 크기 */
-    margin: 0;
+    font-size: 1.8rem;
 }
 
 .skill-section .post-text p a {
-    color: white; /* 본문 링크 색상 흰색 */
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.skill-section .post-text p a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 추가 */
-    text-decoration-color: white; /* 밑줄 색상 흰색 */
-    text-decoration-thickness: 1.5px; /* 밑줄 두께 */
-}
-
-/* 이미지 스타일 */
-.skill-section .post-image {
-    flex: 1;
-}
-
-.skill-section .post-image img {
-    width: 100%;
-    border-radius: 5px;
-    border: 2px solid transparent; /* 기본 상태에서 투명한 테두리 */
-    transition: all 0.3s ease-in-out; /* 부드러운 효과 */
-}
-
-.skill-section .post-image img:hover {
-    border: 3px solid white; /* 이미지 강조 효과 */
-    transform: scale(1.05); /* 확대 효과 */
+    color: white;
 }
