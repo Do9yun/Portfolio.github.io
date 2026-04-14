@@ -121,6 +121,24 @@
         </ul>
     </div>
 
+    <script>
+        document.querySelectorAll('.right-sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const offset = 10;
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const targetPosition = targetElement.offsetTop - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 
     <a href="#top" id="scrollTopButton" aria-label="맨 위로 이동">
@@ -150,13 +168,6 @@
         closeModal();
     });
     </script>
-    <!-- 페이지 맨 위로 이동할 수 있도록 id 추가 -->
-    <div id="top"></div>
-
-    <!-- 맨 위로 이동 버튼 -->
-    <a href="#top" id="scrollTopButton" aria-label="맨 위로 이동">
-
-        <img src="icon/화살표.png" alt="맨 위로 이동" >
-    </a>
+            
 </body>
 </html>
