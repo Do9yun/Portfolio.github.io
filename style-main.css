@@ -249,3 +249,8 @@ header {
 .skill-section .post-text p a {
     color: white;
 }
+
+.resume-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
