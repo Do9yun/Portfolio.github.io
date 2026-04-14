@@ -123,6 +123,14 @@ html {
     opacity: 0.8;
 }
 
+/* 섹션 구분선 */
+.section-line {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #aaa, transparent);
+    margin: 50px 0;
+}
+
 /* 이미지 확대 모달 */
 .modal {
     display: none;
