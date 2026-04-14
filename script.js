@@ -74,7 +74,7 @@ function showContent(section) {
             </table>
             
             <div class="education-section">
-            <h3>학력 사항</h3>
+            <h2>학력 사항</h2>
             <table class="info-table">
                 <tr>
                     <th rowspan="3">학력사항</th>
@@ -98,7 +98,7 @@ function showContent(section) {
             </table>
         </div>
         <div class="military-section">
-        <h3>병역 사항</h3>
+        <h2>병역 사항</h2>
         <table class="info-table">
         <tr>
         <th>군필여부</th>
