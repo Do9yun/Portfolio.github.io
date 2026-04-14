@@ -1,4 +1,6 @@
-/* 기본 레이아웃 및 폰트 설정 */
+/* =========================
+   기본 레이아웃 및 전체 스타일
+========================= */
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +9,9 @@ body {
     color: #333;
 }
 
-/* 메인 콘텐츠 영역 스타일 */
+/* =========================
+   메인 콘텐츠 영역
+========================= */
 .content-container {
     max-width: 800px;
     margin: 0 auto;
@@ -17,7 +21,9 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 제목 및 본문 텍스트 스타일 */
+/* =========================
+   제목 및 본문 텍스트
+========================= */
 h1 {
     font-size: 2.5rem;
     color: #222;
@@ -32,7 +38,9 @@ p {
     text-align: justify;
 }
 
-/* 이미지 섹션 및 이미지 기본 스타일 */
+/* =========================
+   이미지 섹션 및 설명
+========================= */
 .image-section {
     text-align: center;
     margin: 20px 0;
@@ -45,9 +53,14 @@ p {
     border: 2px solid #ddd;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
-/* 이미지 설명 텍스트 스타일 */
+.image-section img:hover {
+    transform: scale(1.05);
+}
+
 .image-description {
     font-size: 1.1rem;
     color: #555;
@@ -56,7 +69,9 @@ p {
     margin-top: 15px;
 }
 
-/* 우측 고정 목차 사이드바 스타일 */
+/* =========================
+   우측 사이드바 (목차)
+========================= */
 .right-sidebar {
     position: fixed;
     top: 150px;
@@ -67,14 +82,12 @@ p {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-family: Arial, sans-serif;
 }
 
 .right-sidebar h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
     text-align: center;
-    color: black;
 }
 
 .right-sidebar ul {
@@ -99,19 +112,19 @@ p {
     text-decoration: underline;
 }
 
-/* 페이지 내 부드러운 스크롤 이동 */
+/* =========================
+   스크롤 및 상단 이동 버튼
+========================= */
 html {
     scroll-behavior: smooth;
 }
 
-/* 맨 위로 이동 버튼 스타일 */
 #scrollTopButton {
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 50px;
     height: 50px;
-    display: block;
     z-index: 1000;
 }
 
@@ -127,7 +140,9 @@ html {
     opacity: 0.8;
 }
 
-/* 섹션 구분선 스타일 */
+/* =========================
+   섹션 구분선
+========================= */
 .section-line {
     border: none;
     height: 1px;
@@ -135,7 +150,9 @@ html {
     margin: 50px 0;
 }
 
-/* 이미지 확대 모달 배경 및 표시 제어 */
+/* =========================
+   이미지 확대 모달
+========================= */
 .modal {
     display: none;
     position: fixed;
@@ -153,13 +170,11 @@ html {
     display: flex;
 }
 
-/* 모달 내부 확대 이미지 스타일 */
 .modal-content {
     display: block;
     margin: auto;
     width: 95%;
     max-width: 1600px;
-    height: auto;
     max-height: 95vh;
     object-fit: contain;
     border-radius: 10px;
@@ -167,13 +182,13 @@ html {
     animation: zoomIn 0.2s ease;
 }
 
-/* 모달 이미지 확대 애니메이션 */
+/* 확대 애니메이션 */
 @keyframes zoomIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* 모달 닫기 버튼 스타일 */
+/* 모달 닫기 버튼 */
 .close {
     position: absolute;
     top: 40px;
@@ -182,14 +197,4 @@ html {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-}
-
-/* 이미지 호버 효과 및 클릭 커서 설정 */
-.image-section img {
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.image-section img:hover {
-    transform: scale(1.05);
 }
