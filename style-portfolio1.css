@@ -47,6 +47,10 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.image-section img:hover {
+    transform: scale(1.05);
+}
+
 .image-description {
     font-size: 1.1rem;
     color: #555;
