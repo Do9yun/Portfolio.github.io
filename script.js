@@ -99,6 +99,7 @@ function showContent(section) {
 
         resume: `
         <div class="resume-section">
+        <div class="cover-letter">
             <h2>자기소개서</h2>
             <p>
                 서비스의 완성도는 개발이 아닌 검증에서 결정된다고 생각합니다. 저는 사용자 입장에서 문제를 발견하고
