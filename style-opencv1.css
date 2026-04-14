@@ -1,4 +1,4 @@
-/* 기본 스타일 */
+/* 기본 레이아웃 및 전체 스타일 */
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ body {
     color: #333;
 }
 
-/* 콘텐츠 컨테이너 */
+/* 메인 콘텐츠 영역 */
 .content-container {
     max-width: 800px;
     margin: 0 auto;
@@ -17,7 +17,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 제목 스타일 */
+/* 페이지 제목 스타일 */
 h1 {
     font-size: 2rem;
     text-align: center;
@@ -25,7 +25,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* 이미지 섹션 */
+/* 이미지 섹션 및 이미지 스타일 */
 .image-section {
     text-align: center;
     margin: 20px 0;
@@ -37,7 +37,7 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* 설명 섹션 */
+/* 설명 섹션 및 목록 스타일 */
 .description-section {
     margin: 20px 0;
 }
@@ -51,6 +51,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* 인라인 코드 스타일 */
 .description-section code {
     background-color: #e9ecef;
     padding: 2px 4px;
