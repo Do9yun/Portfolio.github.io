@@ -73,7 +73,7 @@ function showContent(section) {
                         <td>2025.02</td>
                         <td>강원대학교</td>
                         <td>AI소프트웨어학과</td>
-                        <td>졸업예정</td>
+                        <td>졸업</td>
                     </tr>
                 </table>
             </div>
